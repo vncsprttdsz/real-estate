@@ -206,3 +206,56 @@ def test_quintoandar_rent_from_total():
          "neighbourhood": "Itaim Bibi"}
     l = quintoandar.parse_house(h, "aluguel")
     assert l.price == 10000 and l.total_monthly == 12500
+
+
+def test_grupozap_param_ladder(cfg, monkeypatch):
+    """Se a API recusar os parâmetros (400), recua para um conjunto mais simples e lembra dele."""
+    grupozap._working_rung.clear()
+    calls = []
+
+    class R:
+        def __init__(self, code, body):
+            self.status_code, self._body = code, body
+            self.text = json.dumps(body)
+
+        def json(self):
+            return self._body
+
+    class FakeHttp:
+        def get(self, url, params=None, headers=None):
+            calls.append(params.copy())
+            if "addressZone" in params:
+                return R(400, {"err": "bad"})
+            return R(200, {"search": {"totalCount": 1, "result": {"listings": [ZAP_ITEM]}}})
+
+    items = grupozap._fetch_api(FakeHttp(), cfg, "zap", "venda", "Itaim Bibi")
+    assert len(items) == 1 and "addressZone" in calls[0] and "addressZone" not in calls[1]
+    assert calls[1]["usableAreasMin"] == 100 and calls[1]["unitTypes"] == "APARTMENT"
+    calls.clear()
+    grupozap._fetch_api(FakeHttp(), cfg, "zap", "aluguel", "Itaim Bibi")
+    assert len(calls) == 1  # já começa pelo conjunto que funcionou
+
+
+def test_quintoandar_real_fields(cfg):
+    """Formato observado no site em 11/10/2026."""
+    h = {"id": "893060793", "rentPrice": 7500, "area": 168, "bedrooms": 3, "totalCost": 11414,
+         "forSale": True, "forRent": False, "salePrice": 3098560, "parkingSpots": 2, "condoIptu": 3624,
+         "address": {"address": "Rua Tapinas", "city": "São Paulo"}, "regionName": "Itaim Bibi",
+         "neighbourhood": "Itaim Bibi", "type": "Apartamento"}
+    sale = quintoandar.parse_house(h, "venda")
+    assert sale.price == 3098560 and sale.address == "Rua Tapinas" and sale.condo == 3624
+    assert quintoandar.parse_house(h, "aluguel") is None  # forRent False
+    rent = quintoandar.parse_house({**h, "forRent": True, "salePrice": 0}, "aluguel")
+    assert rent.price == 7500 and rent.total_monthly == 11414
+    assert quintoandar.parse_house({**h, "salePrice": 0}, "venda") is None
+
+
+def test_vivareal_dedup(monkeypatch, cfg):
+    a = Listing("zap", "1", "u", "venda", neighborhood="Itaim Bibi", area=120, price=2_000_000)
+    b = Listing("vivareal", "1", "u", "venda", neighborhood="Itaim Bibi", area=120, price=2_000_000)
+    c = Listing("vivareal", "2", "u", "venda", neighborhood="Itaim Bibi", area=130, price=2_100_000)
+    monkeypatch.setattr(grupozap, "fetch", lambda http, cfg, src: [a] if src == "zap" else [b, c])
+    monkeypatch.setattr(quintoandar, "fetch", lambda http, cfg: [])
+    monkeypatch.setattr(zuk, "fetch", lambda *a, **k: [])
+    results, errors = app.collect(cfg, {"seen": {}, "zuk_rejected": []})
+    assert [l.id for l in results["vivareal"]] == ["2"]

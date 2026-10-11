@@ -40,18 +40,18 @@ def parse_house(h: dict, business: str) -> Listing | None:
     if business == "aluguel":
         price = to_float(h.get("rent") or h.get("rentPrice"))
         total = to_float(h.get("totalCost"))
-        fees = to_float(h.get("iptuPlusCondominium"))
+        fees = to_float(h.get("condoIptu") or h.get("iptuPlusCondominium"))
         if price is None and total and fees is not None and fees < total:
             price = total - fees  # aluguel puro = total − (condomínio + IPTU)
     else:
-        price = to_float(h.get("salePrice"))
+        price = to_float(h.get("salePrice")) or None  # 0 = não está à venda
         total = None
     if price is None and total is None:
         return None
 
     addr = h.get("address")
     if isinstance(addr, dict):
-        addr = " ".join(str(x) for x in (addr.get("street"), addr.get("number")) if x)
+        addr = addr.get("address") or " ".join(str(x) for x in (addr.get("street"), addr.get("number")) if x)
     neighborhood = h.get("neighbourhood") or h.get("neighborhood") or h.get("regionName") or ""
 
     path = f"/imovel/{hid}" + ("/comprar" if business == "venda" else "")
@@ -66,7 +66,7 @@ def parse_house(h: dict, business: str) -> Listing | None:
         area=to_float(h.get("area")),
         price=price,
         total_monthly=total,
-        condo=to_float(h.get("condoPrice") or h.get("iptuPlusCondominium")),
+        condo=to_float(h.get("condoPrice") or h.get("condoIptu") or h.get("iptuPlusCondominium")),
         bedrooms=h.get("bedrooms"),
         parking=h.get("parkingSpots"),
     )

@@ -66,6 +66,10 @@ def collect(cfg: Config, state: dict) -> tuple[dict[str, list[Listing]], dict[st
             errors[name] = str(e)[:500]
             print(f"{name}: ERRO {e}", file=sys.stderr)
             traceback.print_exc()
+    # ZAP e Viva Real usam o mesmo estoque (mesmos ids): mantém um só aviso por imóvel.
+    if "zap" in results and "vivareal" in results:
+        zap_ids = {l.id for l in results["zap"]}
+        results["vivareal"] = [l for l in results["vivareal"] if l.id not in zap_ids]
     state["zuk_rejected"] = sorted(rejected)[-2000:]
     return results, errors
 

@@ -1,9 +1,9 @@
 """ZAP Imóveis e Viva Real (mesma plataforma do Grupo OLX, API "glue-api")."""
 from __future__ import annotations
 
-import json
+import unicodedata
 
-from ..common import Config, Listing, dump_debug, iter_dicts, next_data, norm, slug, to_float
+from ..common import Config, Listing, dump_debug, slug, to_float
 from ..http import Http
 
 SITES = {
@@ -96,28 +96,56 @@ def parse_listing(item: dict, source: str, business: str) -> Listing | None:
     )
 
 
-def _api_params(cfg: Config, business: str, neighborhood: str, offset: int) -> dict:
-    return {
+# Do mais filtrado ao mais simples: a API recusa (HTTP 400) alguns parâmetros,
+# então tentamos em ordem e guardamos o primeiro conjunto que funcionou.
+PARAM_LADDER = [
+    ("full", {"listingType": "USED", "unitTypes": "APARTMENT", "usableAreasMin": True,
+              "addressZone": "Zona Sul", "addressLocationId": True, "size": 100}),
+    ("area+tipo", {"listingType": "USED", "unitTypes": "APARTMENT", "usableAreasMin": True, "size": 100}),
+    ("area", {"usableAreasMin": True, "size": 100}),
+    ("minimo", {"size": 50}),
+]
+_working_rung: dict[str, int] = {}
+
+
+def _ascii(text: str) -> str:
+    return "".join(c for c in unicodedata.normalize("NFKD", text) if not unicodedata.combining(c))
+
+
+def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung: int) -> dict:
+    params = {
         "business": BUSINESS[business],
         "categoryPage": "RESULT",
-        "listingType": "USED",
-        "unitTypes": "APARTMENT",
-        "unitTypesV3": "APARTMENT",
-        "usageTypes": "RESIDENTIAL",
-        "usableAreasMin": int(cfg.min_area),
-        "addressCountry": "Brasil",
-        "addressState": "São Paulo",
         "addressCity": cfg.city,
+        "addressState": "São Paulo",
         "addressNeighborhood": neighborhood,
-        "addressType": "neighborhood",
-        "size": PAGE_SIZE,
         "from": offset,
-        "sort": "updatedAt DESC",
-        "includeFields": (
-            "search(result(listings(listing(id,title,unitTypes,usableAreas,totalAreas,"
-            "pricingInfos,address,bedrooms,parkingSpaces,createdAt,updatedAt),link)),totalCount)"
-        ),
     }
+    for k, v in PARAM_LADDER[rung][1].items():
+        if k == "usableAreasMin":
+            params[k] = int(cfg.min_area)
+        elif k == "addressLocationId":
+            params[k] = f"BR>Sao Paulo>NULL>Sao Paulo>Zona Sul>{_ascii(neighborhood)}"
+        else:
+            params[k] = v
+    return params
+
+
+def _get_page(http: Http, source: str, params_for, headers) -> dict:
+    site = SITES[source]
+    last = None
+    for rung in range(_working_rung.get(source, 0), len(PARAM_LADDER)):
+        params = params_for(rung)
+        r = http.get(site["api"], params=params, headers=headers)
+        dump_debug(f"{source}-{params['business']}-{slug(params['addressNeighborhood'])}-{params['from']}.json "
+                   f"[HTTP {r.status_code}] rung={PARAM_LADDER[rung][0]}", r.text)
+        if r.status_code == 200:
+            _working_rung[source] = rung
+            return r.json()
+        last = f"{source} API HTTP {r.status_code} ({PARAM_LADDER[rung][0]}): {r.text[:200]}"
+        if r.status_code != 400:
+            break
+    raise RuntimeError(last)
 
 
 def _fetch_api(http: Http, cfg: Config, source: str, business: str, neighborhood: str) -> list[dict]:
@@ -130,36 +158,15 @@ def _fetch_api(http: Http, cfg: Config, source: str, business: str, neighborhood
     }
     items, offset = [], 0
     while offset < MAX_RESULTS:
-        r = http.get(site["api"], params=_api_params(cfg, business, neighborhood, offset), headers=headers)
-        dump_debug(f"{source}-{business}-{slug(neighborhood)}-{offset}.json [HTTP {r.status_code}] {r.url}", r.text)
-        if r.status_code != 200:
-            raise RuntimeError(f"{source} API HTTP {r.status_code}")
-        data = r.json()
-        result = (data.get("search") or {}).get("result") or {}
-        page = result.get("listings") or []
+        data = _get_page(http, source, lambda rung: _api_params(cfg, business, neighborhood, offset, rung), headers)
+        search = data.get("search") or {}
+        page = (search.get("result") or {}).get("listings") or []
         items.extend(page)
-        total = (data.get("search") or {}).get("totalCount") or 0
-        offset += PAGE_SIZE
+        total = search.get("totalCount") or 0
+        offset += len(page)
         if not page or offset >= total:
             break
     return items
-
-
-def _fetch_html(http: Http, cfg: Config, source: str, business: str, neighborhood: str) -> list[dict]:
-    """Plano B: página de resultados do site, extraindo o JSON embutido (Next.js)."""
-    site = SITES[source]
-    url = (
-        f"{site['site']}/{SITE_PATH[business]}/apartamentos/"
-        f"{cfg.state.lower()}+{slug(cfg.city)}++{slug(neighborhood)}/"
-    )
-    r = http.get(url, params={"areaMinima": int(cfg.min_area)})
-    dump_debug(f"{source}-{business}-{slug(neighborhood)}.html [HTTP {r.status_code}] {r.url}", r.text)
-    if r.status_code != 200:
-        raise RuntimeError(f"{source} página HTTP {r.status_code}")
-    data = next_data(r.text)
-    if data is None:
-        raise RuntimeError(f"{source}: JSON da página não encontrado")
-    return [d for d in iter_dicts(data) if isinstance(d.get("listing"), dict)]
 
 
 def fetch(http: Http, cfg: Config, source: str) -> list[Listing]:
@@ -170,7 +177,7 @@ def fetch(http: Http, cfg: Config, source: str) -> list[Listing]:
             continue
         for nb in cfg.neighborhoods:
             items = None
-            for method in (_fetch_api, _fetch_html):
+            for method in (_fetch_api,):
                 try:
                     items = method(http, cfg, source, business, nb)
                     break

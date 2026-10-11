@@ -8,108 +8,86 @@ import re
 from imoveis.common import iter_dicts, next_data
 from imoveis.http import Http
 
-http = Http(1.0, 2.0)
-OUT = []
+http = Http(0.8, 1.5)
 
 
 def p(*a):
-    line = " ".join(str(x) for x in a)
-    print(line, flush=True)
+    print(" ".join(str(x) for x in a), flush=True)
 
 
 def get(url, **kw):
     try:
-        r = http.get(url, retries=1, **kw)
-        return r.status_code, r.text, str(r.url)
+        r = http.get(url, retries=1, timeout=25, **kw)
+        return r.status_code, r.text
     except Exception as e:
-        return None, str(e), url
+        return None, str(e)
 
 
-def snippets(text, pat, n=3, width=300):
-    out = []
-    for m in re.finditer(pat, text):
-        a = max(0, m.start() - width // 2)
-        out.append(re.sub(r"\s+", " ", text[a:a + width]))
-        if len(out) >= n:
-            break
-    return out
+# ---------- Portal Zuk: descobrir o formato de URL por bairro ----------
+p("=" * 30, "ZUK")
+st, body = get("https://www.portalzuk.com.br/leilao-de-imoveis")
+links = sorted({h for h in re.findall(r'href=["\']([^"\']+)["\']', body) if "leilao-de-imoveis/" in h})
+p(f"[zuk raiz] HTTP {st} links de busca: {len(links)}")
+for h in links[:40]:
+    p("   busca:", h)
+for sn in re.findall(r"(?i)[^\n]{0,120}(?:bairro|regiao)[^\n]{0,160}", body)[:8]:
+    p("   bairro-js:", re.sub(r"\s+", " ", sn)[:280])
+for url in (
+    "https://www.portalzuk.com.br/leilao-de-imoveis/c/todos-imoveis/sp",
+    "https://www.portalzuk.com.br/leilao-de-imoveis/c/todos-imoveis/sp/sao-paulo/zona-sul",
+    "https://www.portalzuk.com.br/leilao-de-imoveis/c/todos-imoveis/sp/sao-paulo/zona-sul/itaim-bibi",
+    "https://www.portalzuk.com.br/leilao-de-imoveis/c/apartamento/sp/sao-paulo",
+    "https://www.portalzuk.com.br/leilao-de-imoveis/c/todos-imoveis/sp/sao-paulo?bairro=itaim-bibi",
+):
+    st, body = get(url)
+    imv = sorted(set(re.findall(r"/imovel/sp/sao-paulo/([a-z0-9-]+)/", body)))
+    total = re.findall(r"(?i)(\d+)\s*(?:im[oó]veis|resultados?)\s*encontrad", body)[:2]
+    p(f"[zuk] HTTP {st} {url} imoveis-sp={len(re.findall('/imovel/sp/', body))} bairros={imv[:15]} total={total}")
+    more = re.findall(r'(?i)(?:data-[a-z-]*url|action|fetch\(|ajax)[^>]{0,200}', body)[:4]
+    for m in more:
+        p("   ajax:", re.sub(r"\s+", " ", m)[:220])
 
-
-# ---------- ZAP / Viva Real ----------
-p("=" * 30, "ZAP / VIVAREAL API")
-base_params = {"business": "SALE", "categoryPage": "RESULT", "size": 5, "from": 0,
-               "addressCity": "São Paulo", "addressState": "São Paulo", "addressNeighborhood": "Itaim Bibi"}
-for site, api, dom in (("zap", "https://glue-api.zapimoveis.com.br", "www.zapimoveis.com.br"),
-                       ("vivareal", "https://glue-api.vivareal.com", "www.vivareal.com.br")):
-    for ver in ("v2", "v3", "v4"):
-        for xdom in ("." + dom.split("www.")[1], dom):
-            st, body, _ = get(f"{api}/{ver}/listings", params=base_params,
-                              headers={"x-domain": xdom, "Origin": "https://" + dom, "Referer": "https://" + dom + "/"})
-            p(f"[{site} {ver} x-domain={xdom}] HTTP {st} :: {re.sub(chr(10), ' ', body[:500])}")
-
-p("=" * 30, "ZAP / VIVAREAL PAGES")
-for site, dom in (("zap", "https://www.zapimoveis.com.br"), ("vivareal", "https://www.vivareal.com.br")):
-    cands = []
-    for zone in ("zona-sul", "zona-oeste", "centro"):
-        cands.append(f"{dom}/venda/apartamentos/sp+sao-paulo+{zone}+itaim-bibi/")
-    cands.append(f"{dom}/venda/sp/sao-paulo/zona-sul/itaim-bibi/apartamento_residencial/")
-    cands.append(f"{dom}/venda/sp/sao-paulo/zona-oeste/itaim-bibi/apartamento_residencial/")
-    cands.append(f"{dom}/venda/apartamentos/sp+sao-paulo/")
-    for url in cands:
-        st, body, final = get(url)
-        info = {
-            "len": len(body), "final": final,
-            "next_data": bool(next_data(body)), "next_f": body.count("self.__next_f.push"),
-            "usableAreas": body.count("usableAreas"), "cloudflare": "cloudflare" in body.lower()[:3000],
-        }
-        p(f"[{site} page] HTTP {st} {url} {json.dumps(info)}")
-        if st == 200:
-            for sn in snippets(body, r"glue-api[^\"' ]{0,200}", 3, 260):
-                p("   api-ref:", sn)
-            for sn in snippets(body, r"usableAreas", 2, 600):
-                p("   areas:", sn)
-            hrefs = sorted(set(re.findall(r'href="(/imovel/[^"]+)"', body)))[:5]
-            p("   imovel-hrefs:", hrefs)
-
-# ---------- QuintoAndar ----------
+# ---------- QuintoAndar: API e paginação ----------
 p("=" * 30, "QUINTOANDAR")
-for bus, path in (("aluguel", "alugar"), ("venda", "comprar")):
-    url = f"https://www.quintoandar.com.br/{path}/imovel/itaim-bibi-sao-paulo-sp-brasil/apartamento"
-    st, body, final = get(url)
-    p(f"[qa page {bus}] HTTP {st} len={len(body)} final={final}")
-    data = next_data(body)
-    if not data:
-        p("   sem __NEXT_DATA__"); continue
-    houses = [d for d in iter_dicts(data) if "id" in d and "area" in d]
-    p(f"   casas encontradas: {len(houses)}")
-    for h in houses[:2]:
-        p("   exemplo:", json.dumps({k: h[k] for k in list(h)[:40]}, ensure_ascii=False)[:1500])
-    # Onde ficam as casas e quantos resultados a busca diz ter
-    def walk(o, path=""):
-        if isinstance(o, dict):
-            for k, v in o.items():
-                if re.search(r"total|count|hits|pagination|nextPage|offset", k, re.I) and not isinstance(v, (dict, list)):
-                    p(f"   {path}.{k} = {v}")
-                walk(v, f"{path}.{k}")
-        elif isinstance(o, list) and o:
-            walk(o[0], path + "[0]")
-    walk(data.get("props", {}))
-    for sn in snippets(body, r"apigw[^\"' ]{0,160}", 4, 220):
-        p("   api-ref:", sn)
+API = "https://apigw.prod.quintoandar.com.br/house-listing-search/v2/search/list"
+hdr = {"Origin": "https://www.quintoandar.com.br", "Referer": "https://www.quintoandar.com.br/",
+       "Content-Type": "application/json"}
+loc = {"coordinate": {"lat": -23.585, "lng": -46.677},
+       "viewport": {"north": -23.565, "south": -23.605, "east": -46.655, "west": -46.700},
+       "neighborhoods": [], "countryCode": "BR"}
+bodies = {
+    "minimo": {"context": {"mapShowing": True, "listShowing": True, "numPhotos": 1, "isSSR": False},
+               "filters": {"businessContext": "RENT", "location": loc},
+               "pagination": {"pageSize": 12, "offset": 0}, "slug": "itaim-bibi-sao-paulo-sp-brasil",
+               "fields": ["id", "area", "rentPrice", "totalCost", "neighbourhood"]},
+    "com_area": {"context": {"mapShowing": True, "listShowing": True, "numPhotos": 1, "isSSR": False},
+                 "filters": {"businessContext": "RENT", "location": loc,
+                             "houseSpecs": {"area": {"range": {"min": 100}}, "houseTypes": ["APARTMENT"]}},
+                 "sorting": {"criteria": "MOST_RECENT", "order": "DESC"},
+                 "pagination": {"pageSize": 12, "offset": 0}, "slug": "itaim-bibi-sao-paulo-sp-brasil",
+                 "fields": ["id", "area", "rentPrice", "totalCost", "neighbourhood"]},
+}
+for name, b in bodies.items():
+    try:
+        r = http.post(API, json=b, headers=hdr, retries=1)
+        p(f"[qa api {name}] HTTP {r.status_code} :: {r.text[:400]}")
+    except Exception as e:
+        p(f"[qa api {name}] erro {e}")
 
-# ---------- Portal Zuk ----------
-p("=" * 30, "PORTAL ZUK")
-for url in ("https://www.portalzuk.com.br/leilao-de-imoveis/c/todos-imoveis/sp/sao-paulo/itaim-bibi",
-            "https://www.portalzuk.com.br/leilao-de-imoveis/c/todos-imoveis/sp/sao-paulo/vila-nova-conceicao",
-            "https://www.portalzuk.com.br/leilao-de-imoveis/u/todos-imoveis/sp/sao-paulo",
-            "https://www.portalzuk.com.br/leilao-de-imoveis"):
-    st, body, final = get(url)
-    hrefs = re.findall(r'href=["\']([^"\']+)["\']', body)
-    interesting = sorted({h for h in hrefs if re.search(r"imovel|lote|leilao/", h)})
-    p(f"[zuk] HTTP {st} {url} len={len(body)} hrefs={len(hrefs)} interessantes={len(interesting)}")
-    for h in interesting[:15]:
-        p("   href:", h)
-    for sn in snippets(body, r"(?i)itaim|nova concei", 3, 300):
-        p("   trecho:", sn)
-    for sn in snippets(body, r"(?i)nenhum (im[oó]vel|resultado)", 2, 200):
-        p("   vazio?:", sn)
+for url in (
+    "https://www.quintoandar.com.br/alugar/imovel/itaim-bibi-sao-paulo-sp-brasil/apartamento",
+    "https://www.quintoandar.com.br/alugar/imovel/itaim-bibi-sao-paulo-sp-brasil/apartamento/de-100-a-1000-m2",
+    "https://www.quintoandar.com.br/alugar/imovel/itaim-bibi-sao-paulo-sp-brasil/apartamento/100-m2-mais",
+    "https://www.quintoandar.com.br/alugar/imovel/itaim-bibi-sao-paulo-sp-brasil/apartamento?pagina=2",
+    "https://www.quintoandar.com.br/alugar/imovel/itaim-bibi-sao-paulo-sp-brasil/apartamento?ordem=mais-recente",
+):
+    st, body = get(url)
+    data = next_data(body) or {}
+    houses = [d for d in iter_dicts(data) if "id" in d and "area" in d]
+    areas = sorted(int(h["area"]) for h in houses if h.get("area"))
+    total = None
+    for d in iter_dicts(data):
+        if isinstance(d.get("visibleHouses"), dict):
+            total = d["visibleHouses"].get("total")
+    p(f"[qa page] HTTP {st} {url} casas={len(houses)} total={total} >=100m2={sum(a >= 100 for a in areas)} "
+      f"ids={[h['id'] for h in houses[:4]]}")
