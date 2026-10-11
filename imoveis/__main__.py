@@ -16,6 +16,7 @@ from datetime import datetime, timezone
 from .common import ROOT, Config, Listing
 from .http import Http
 from .notify import Notifier, brl, describe
+from . import dashboard
 from .sources import grupozap, quintoandar, zuk
 
 STATE = ROOT / "data" / "state.json"
@@ -114,7 +115,11 @@ def run(dry_run: bool = False) -> int:
                     first_load[source] += 1
                 else:
                     new_items.append(l)
-                state["seen"][l.key] = {"first_seen": ts, "last_seen": ts, "price": l.ref_price}
+                state["seen"][l.key] = {
+                    "first_seen": ts, "last_seen": ts, "price": l.ref_price,
+                    "hist": [[ts, l.ref_price]] if l.ref_price else [],
+                    **({"initial": True} if initializing else {}),
+                }
                 continue
             old_price = prev.get("price")
             if (
@@ -123,8 +128,10 @@ def run(dry_run: bool = False) -> int:
             ):
                 drops.append((l, old_price))
             prev["last_seen"] = ts
-            if l.ref_price:
+            if l.ref_price and l.ref_price != old_price:
                 prev["price"] = l.ref_price
+                prev.setdefault("hist", []).append([ts, l.ref_price])
+                prev["hist"] = prev["hist"][-30:]
         if initializing:
             state["initialized"].append(source)
 
@@ -144,6 +151,9 @@ def run(dry_run: bool = False) -> int:
                 broken.append(name)
         elif name in results:
             state["failures"][name] = 0
+            state.setdefault("last_ok", {})[name] = ts
+    state["last_run"] = ts
+    state["last_errors"] = errors
 
     if dry_run:
         for l in new_items:
@@ -180,6 +190,7 @@ def run(dry_run: bool = False) -> int:
         except Exception:
             pass
     write_report(all_current)
+    dashboard.build(cfg, state, results, errors)
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1, sort_keys=True))
     print(f"novos={len(new_items)} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
     return 0

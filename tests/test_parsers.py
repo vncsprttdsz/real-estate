@@ -99,6 +99,10 @@ def test_full_cycle(tmp_path, monkeypatch, cfg):
     monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
     monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
     monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
     monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
     sent = []
     monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
@@ -115,6 +119,12 @@ def test_full_cycle(tmp_path, monkeypatch, cfg):
     app.run()  # a caiu de preço 6,7%
     assert "baixaram" in sent[2][0]
     assert "Itaim Bibi" in (tmp_path / "ANUNCIOS.md").read_text()
+    data = json.loads((tmp_path / "dados.json").read_text())
+    rows = {r["id"]: r for r in data["listings"]}
+    assert rows["1"]["initial"] and not rows["2"]["initial"]
+    assert [p for _, p in rows["1"]["hist"]] == [3_000_000, 2_800_000]
+    assert rows["1"]["active"] and rows["1"]["ppm2"] == round(2_800_000 / 120, 2)
+    assert data["history"][-1]["groups"]["venda|Itaim Bibi"]["n"] == 2
 
 
 def test_whatsapp_callmebot(monkeypatch):

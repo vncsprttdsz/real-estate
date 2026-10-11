@@ -57,7 +57,7 @@ jobs:
         run: |
           git config user.name "monitor-imoveis[bot]"
           git config user.email "monitor-imoveis@users.noreply.github.com"
-          git add data/ ANUNCIOS.md
+          git add data/ docs/ ANUNCIOS.md
           git diff --cached --quiet || git commit -m "Atualiza anúncios $(date -u +'%Y-%m-%d %H:%M')"
           git push
 

@@ -57,6 +57,29 @@ máximo 6 mensagens são enviadas por ciclo; o restante fica em `ANUNCIOS.md`.
 3. Rode de novo sem marcar nada. Na primeira execução ele faz a **carga inicial** (registra o que já está anunciado,
    sem disparar centenas de alertas) e manda uma mensagem "Monitor de imóveis ativado". Daí em diante, só novidades.
 
+## Dashboard
+
+Um painel em `docs/index.html`, atualizado automaticamente a cada ciclo, mostra:
+
+- **Indicadores do período**: anúncios ativos, novos (com barrinhas por dia), mediana do R$/m² e sua variação, quedas de preço;
+- **Preço × área**: cada anúncio é um ponto, com a linha da mediana de R$/m² de cada bairro (ponto abaixo da linha = barato para o bairro); clique para abrir o anúncio;
+- **Novidades**: linha do tempo de anúncios novos, quedas de preço e anúncios que saíram do ar;
+- **Tendências**: mediana do R$/m² e quantidade de anúncios ativos ao longo do tempo, por bairro;
+- **Comprar ou alugar?**: rendimento bruto do aluguel em cada bairro e simulação de compra × aluguel para a metragem que você escolher;
+- **Leilões**: próximos leilões e o desconto do lance em relação ao preço de mercado do bairro;
+- **Tabela completa** com busca, ordenação e comparação de cada anúncio com a mediana do bairro.
+
+Filtros no topo (período, comprar/alugar/leilão, bairro, quartos, preço máximo) valem para a página inteira.
+Funciona no celular e tem modo escuro.
+
+**Para publicar** (uma vez): *Settings → Pages → Build and deployment → Source: Deploy from a branch*,
+escolha a branch principal e a pasta **`/docs`**, salve. O painel fica em
+`https://<seu-usuário>.github.io/<repositório>/`. Como o repositório é público, o painel também é — ele mostra
+só anúncios públicos e os critérios de busca.
+
+Para ver o visual antes de existirem dados reais, abra o painel com `?dados=demo.json` no final do endereço
+(dados fictícios gerados por `scripts/demo_data.py`).
+
 ## Ajustando os critérios
 
 Edite [`config.yaml`](config.yaml): bairros, área mínima, venda/aluguel, preço máximo, sites ligados e

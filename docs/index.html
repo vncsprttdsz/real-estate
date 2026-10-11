@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar de Apartamentos</title>
+<meta name="description" content="Apartamentos acima de 100 m² na Vila Nova Conceição e no Itaim Bibi: novidades, preços e tendências.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Cpath d='M8 25V14l8-6 8 6v11h-6v-6h-4v6z' fill='white'/%3E%3C/svg%3E">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --surface-2: #f3f2ee;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #6f6d68;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11,11,11,0.10);
+  --hover: rgba(11,11,11,0.04);
+  --s1: #2a78d6;   /* Vila Nova Conceição */
+  --s2: #eb6834;   /* Itaim Bibi */
+  --s3: #1baf7a;
+  --neutral-mark: #a8a69e;
+  --good: #0ca30c;
+  --good-ink: #006300;
+  --critical: #d03b3b;
+  --critical-ink: #b42828;
+  --warning: #fab219;
+  --div-lo: #2a78d6;
+  --div-hi: #e34948;
+  --accent-wash: #e8f1fc;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --surface-2: #232321;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #98968f;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10); --hover: rgba(255,255,255,0.05);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --neutral-mark: #5f5e59;
+    --good-ink: #2fbf2f; --critical-ink: #ef6b6b; --div-lo: #3987e5; --div-hi: #e66767;
+    --accent-wash: #16263b; --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --surface-2: #232321;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #98968f;
+  --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10); --hover: rgba(255,255,255,0.05);
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --neutral-mark: #5f5e59;
+  --good-ink: #2fbf2f; --critical-ink: #ef6b6b; --div-lo: #3987e5; --div-hi: #e66767;
+  --accent-wash: #16263b; --shadow: none;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px 48px; }
+@media (max-width: 640px) { .wrap { padding: 0 16px 40px; } }
+
+/* Header */
+header.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; padding: 28px 0 18px; }
+h1 { font-size: 22px; line-height: 1.2; margin: 0; font-weight: 650; letter-spacing: -0.01em; }
+.sub { color: var(--ink-2); margin-top: 4px; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; color: var(--ink-2); font-size: 13px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 8px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); font-size: 12.5px; white-space: nowrap; }
+.chip .ico { font-weight: 700; font-size: 11px; width: 14px; height: 14px; border-radius: 50%; display: inline-grid; place-items: center; color: #fff; }
+.chip.ok .ico { background: var(--good); }
+.chip.bad .ico { background: var(--critical); }
+.iconbtn { border: 1px solid var(--border); background: var(--surface); border-radius: 8px; height: 30px; padding: 0 10px; cursor: pointer; }
+.iconbtn:hover { background: var(--hover); }
+
+.banner { background: var(--accent-wash); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; color: var(--ink); }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 12px 0 18px; position: sticky; top: 0; z-index: 5; background: var(--page); border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+.fgroup { display: flex; align-items: center; gap: 8px; }
+.flabel { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.seg { display: inline-flex; background: var(--surface-2); border-radius: 9px; padding: 2px; border: 1px solid var(--border); }
+.seg button { border: 0; background: transparent; padding: 5px 11px; border-radius: 7px; cursor: pointer; color: var(--ink-2); white-space: nowrap; }
+.seg button:hover { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.seg .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+select, input[type="number"], input[type="search"] { height: 32px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); padding: 0 10px; }
+input[type="number"] { width: 130px; }
+:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
+
+/* Layout */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.c3 { grid-column: span 3; } .c4 { grid-column: span 4; } .c5 { grid-column: span 5; } .c6 { grid-column: span 6; } .c7 { grid-column: span 7; } .c8 { grid-column: span 8; } .c12 { grid-column: span 12; }
+@media (max-width: 1080px) { .c3 { grid-column: span 6; } .c4, .c5, .c7, .c8 { grid-column: span 12; } }
+@media (max-width: 760px) {
+  .c6 { grid-column: span 12; } .c3 { grid-column: span 6; }
+  .filters { position: static; gap: 8px 12px; }
+  .kpi .value { font-size: 24px; } .card { padding: 14px 14px; }
+  .tablewrap { margin: 0 -14px -14px; }
+}
+@media (max-width: 640px) {
+  #tbl thead { display: none; }
+  #tbl tbody tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  #tbl td { border: 0; padding: 0; white-space: normal; text-align: left; }
+  #tbl td.c-parking, #tbl td.c-source, #tbl td.c-ppm2 { display: none; }
+  #tbl td.c-title { grid-column: 1 / 3; order: -2; font-weight: 600; }
+  #tbl td.c-status { grid-column: 1 / 3; order: -1; } #tbl td.c-status:empty { display: none; }
+  #tbl td.c-title .ttl, #tbl td .addr { max-width: none; white-space: normal; }
+  #tbl td.c-neighborhood { order: 1; } #tbl td.c-area { order: 2; text-align: right; }
+  #tbl td.c-bedrooms { order: 3; color: var(--ink-2); } #tbl td.c-bedrooms::after { content: " quartos"; }
+  #tbl td.c-first_seen { order: 4; text-align: right; color: var(--muted); } #tbl td.c-first_seen::before { content: "no ar: "; }
+  #tbl td.c-price { order: 5; font-weight: 600; text-align: left; } #tbl td.c-vs { order: 6; text-align: right; }
+}
+}
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); min-width: 0; }
+.card h2 { font-size: 15px; margin: 0; font-weight: 620; }
+.card .hint { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+section { margin-top: 16px; }
+
+/* KPIs */
+.kpi .label { color: var(--ink-2); font-size: 13px; }
+.kpi .value { font-size: 30px; font-weight: 640; letter-spacing: -0.02em; margin: 4px 0 2px; line-height: 1.15; }
+.kpi .value small { font-size: 14px; font-weight: 500; color: var(--ink-2); letter-spacing: 0; }
+.kpi .foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; min-height: 30px; color: var(--ink-2); font-size: 12.5px; }
+.delta.good { color: var(--good-ink); } .delta.bad { color: var(--critical-ink); }
+
+/* Legend */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.swl { width: 14px; height: 2px; border-radius: 2px; display: inline-block; }
+.swring { width: 10px; height: 10px; border-radius: 50%; display: inline-block; border: 2px solid var(--ink); }
+
+/* Charts */
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.chart .gridl { stroke: var(--grid); stroke-width: 1; }
+.chart .base { stroke: var(--axis); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,.14); padding: 9px 11px; font-size: 12.5px; min-width: 160px; max-width: 260px; z-index: 10; opacity: 0; transition: opacity .08s; }
+.tip.on { opacity: 1; }
+.tip .tv { font-weight: 650; font-size: 14px; color: var(--ink); }
+.tip .tl { color: var(--ink-2); }
+.tip .row { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.chart text.halo { fill: var(--ink-2); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.empty { color: var(--muted); padding: 28px 8px; text-align: center; border: 1px dashed var(--border); border-radius: 10px; }
+
+/* Feed */
+.feed { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-height: 432px; overflow: auto; }
+.feed li { border-top: 1px solid var(--border); }
+.feed li:first-child { border-top: 0; }
+.feed a { display: grid; grid-template-columns: auto 1fr auto; gap: 2px 10px; padding: 10px 6px; text-decoration: none; border-radius: 8px; }
+.feed a:hover { background: var(--hover); }
+.feed .t { font-weight: 600; }
+.feed .d { color: var(--ink-2); font-size: 12.5px; grid-column: 2 / 4; }
+.feed .when { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.badge { font-size: 11px; font-weight: 650; padding: 2px 7px; border-radius: 999px; white-space: nowrap; align-self: start; margin-top: 1px; border: 1px solid transparent; }
+.badge.new { background: var(--accent-wash); color: var(--ink); border-color: var(--border); }
+.badge.drop { color: var(--good-ink); border-color: currentColor; }
+.badge.gone { color: var(--muted); border-color: var(--border); }
+.badge.auction { color: var(--ink); border-color: var(--axis); }
+
+/* Buy vs rent */
+.bvr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 560px) { .bvr { grid-template-columns: 1fr; } }
+.bvr .nb { border: 1px solid var(--border); border-radius: 12px; padding: 14px; background: var(--surface-2); }
+.bvr .nb h3 { margin: 0 0 8px; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+.bvr dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 0; }
+.bvr dt { color: var(--ink-2); } .bvr dd { margin: 0; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bvr .big { font-size: 24px; font-weight: 650; letter-spacing: -.02em; }
+.calc { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 14px 0 6px; color: var(--ink-2); }
+.calc input { width: 90px; }
+.note { color: var(--muted); font-size: 12.5px; margin-top: 10px; }
+
+/* Table */
+.tools { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.tablewrap { overflow-x: auto; margin: 0 -20px -18px; border-top: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 9px 12px; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--border); }
+th { font-weight: 600; color: var(--ink-2); font-size: 12px; background: var(--surface); position: sticky; top: 0; }
+th button { all: unset; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; }
+th button:focus-visible { outline: 2px solid var(--s1); border-radius: 4px; }
+th[aria-sort] button::after { content: "↕"; color: var(--muted); font-size: 11px; }
+th[aria-sort="ascending"] button::after { content: "↑"; color: var(--ink); }
+th[aria-sort="descending"] button::after { content: "↓"; color: var(--ink); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr:hover { background: var(--hover); }
+tr.inactive td { color: var(--muted); }
+td .addr { color: var(--ink-2); font-size: 12px; max-width: 280px; overflow: hidden; text-overflow: ellipsis; display: block; }
+td .ttl { max-width: 280px; overflow: hidden; text-overflow: ellipsis; display: block; }
+.vs { display: inline-flex; align-items: center; gap: 6px; justify-content: flex-end; }
+.vsbar { position: relative; width: 56px; height: 8px; }
+.vsbar::before { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--axis); }
+.vsbar i { position: absolute; top: 0; height: 8px; border-radius: 2px; }
+.pager { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px 2px; color: var(--ink-2); font-size: 12.5px; }
+details.data { margin-top: 10px; font-size: 12.5px; color: var(--ink-2); }
+details.data summary { cursor: pointer; color: var(--muted); }
+details.data table { margin-top: 8px; }
+footer { color: var(--muted); font-size: 12.5px; margin-top: 28px; line-height: 1.6; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.loading { opacity: .5; transition: opacity .15s; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Radar de apartamentos</h1>
+      <div class="sub" id="criteria">Carregando…</div>
+    </div>
+    <div class="meta">
+      <span id="updated"></span>
+      <span id="sources" class="meta"></span>
+      <button class="iconbtn" id="theme" type="button" aria-label="Alternar tema claro/escuro">◐</button>
+    </div>
+  </header>
+
+  <div id="banner"></div>
+
+  <div class="filters" role="toolbar" aria-label="Filtros">
+    <div class="fgroup"><span class="flabel">Período</span>
+      <div class="seg" data-f="period">
+        <button data-v="7">7 dias</button><button data-v="30">30 dias</button><button data-v="90">90 dias</button><button data-v="0">Tudo</button>
+      </div></div>
+    <div class="fgroup"><span class="flabel">Negócio</span>
+      <div class="seg" data-f="business">
+        <button data-v="venda">Comprar</button><button data-v="aluguel">Alugar</button><button data-v="leilao">Leilão</button>
+      </div></div>
+    <div class="fgroup"><span class="flabel">Bairro</span>
+      <div class="seg" data-f="bairro" id="bairroSeg"></div></div>
+    <div class="fgroup"><label class="flabel" for="fq">Quartos</label>
+      <select id="fq"><option value="0">Qualquer</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></div>
+    <div class="fgroup"><label class="flabel" for="fp">Preço máx.</label>
+      <input id="fp" type="number" inputmode="numeric" min="0" step="50000" placeholder="sem limite"></div>
+  </div>
+
+  <main id="main">
+    <div class="grid" id="kpis"></div>
+
+    <section class="grid">
+      <div class="card c8">
+        <div class="card-head">
+          <div><h2 id="scTitle">Preço × área</h2><div class="hint" id="scHint"></div></div>
+          <div class="legend" id="scLegend"></div>
+        </div>
+        <div class="chart" id="scatter"></div>
+      </div>
+      <div class="card c4">
+        <div class="card-head"><div><h2>Novidades</h2><div class="hint" id="feedHint"></div></div></div>
+        <ul class="feed" id="feed"></ul>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card c6">
+        <div class="card-head">
+          <div><h2 id="trTitle">Mediana do R$/m²</h2><div class="hint" id="trHint"></div></div>
+          <div class="legend" id="trLegend"></div>
+        </div>
+        <div class="chart" id="trend"></div>
+        <details class="data"><summary>Ver dados</summary><div id="trendTable"></div></details>
+      </div>
+      <div class="card c6">
+        <div class="card-head">
+          <div><h2>Anúncios ativos ao longo do tempo</h2><div class="hint">Oferta disponível — estoque subindo tende a dar mais poder de negociação</div></div>
+          <div class="legend" id="stLegend"></div>
+        </div>
+        <div class="chart" id="stock"></div>
+        <details class="data"><summary>Ver dados</summary><div id="stockTable"></div></details>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card c7">
+        <div class="card-head"><div><h2>Comprar ou alugar?</h2><div class="hint">Comparação pelos anúncios ativos de cada bairro (independe do filtro de negócio)</div></div></div>
+        <div class="calc"><label for="calcArea">Para um apartamento de</label><input id="calcArea" type="number" min="50" step="10" value="150"><span>m²</span></div>
+        <div class="bvr" id="bvr"></div>
+        <p class="note">O <b>rendimento bruto</b> é quanto o aluguel de um ano representa do preço de compra. Se o seu dinheiro rende mais do que isso aplicado (já descontado o IR), alugar tende a sair mais em conta; se rende menos, comprar tende a compensar. Não inclui ITBI, escritura, manutenção nem valorização do imóvel.</p>
+      </div>
+      <div class="card c5">
+        <div class="card-head"><div><h2>Leilões</h2><div class="hint">Portal Zuk · desconto do lance em relação à mediana de venda do bairro</div></div></div>
+        <div id="auctions"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <div><h2>Todos os anúncios</h2><div class="hint" id="tblHint"></div></div>
+        <div class="tools">
+          <input type="search" id="search" placeholder="Buscar rua, título…" aria-label="Buscar">
+          <label><input type="checkbox" id="showGone"> Incluir os que saíram do ar</label>
+        </div>
+      </div>
+      <div class="tablewrap"><table id="tbl"></table></div>
+      <div class="pager" id="pager"></div>
+    </section>
+  </main>
+
+  <footer>
+    Dados coletados automaticamente de ZAP Imóveis, Viva Real, QuintoAndar e Portal Zuk a cada 2 horas (7h–23h).
+    R$/m² usa o preço de venda, o lance mínimo ou o aluguel sem condomínio. “vs. mediana” compara com os anúncios ativos do mesmo bairro e tipo de negócio.
+    Os valores são os anunciados — confirme sempre no anúncio original.
+  </footer>
+</div>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+// ---------- helpers ----------
+const $ = (s, r = document) => r.querySelector(s);
+const SVGNS = "http://www.w3.org/2000/svg";
+function h(tag, attrs = {}, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k === "style") el.style.cssText = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat()) if (c != null && c !== false) el.append(c instanceof Node ? c : document.createTextNode(String(c)));
+  return el;
+}
+function s(tag, attrs = {}) {
+  const el = document.createElementNS(SVGNS, tag);
+  for (const [k, v] of Object.entries(attrs)) if (v != null) el.setAttribute(k, v);
+  return el;
+}
+const safeUrl = u => (typeof u === "string" && /^https?:\/\//i.test(u)) ? u : null;
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("radar:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("radar:" + k, JSON.stringify(v)); } catch {} },
+};
+
+const nf0 = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
+const nf1 = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+function brl(v) { return v == null ? "—" : "R$ " + nf0.format(v); }
+function brlc(v) {
+  if (v == null) return "—";
+  const a = Math.abs(v);
+  if (a >= 1e6) return "R$ " + (a >= 1e7 ? nf0 : nf1).format(v / 1e6).replace(/,0$/, "") + " mi";
+  if (a >= 1e4) return "R$ " + nf0.format(v / 1e3) + " mil";
+  return "R$ " + nf0.format(v);
+}
+function axisMoney(v) {
+  const a = Math.abs(v);
+  if (a >= 1e6) return (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mi";
+  if (a >= 1e3) return (v / 1e3).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mil";
+  return nf0.format(v);
+}
+const pct = (v, d = 0) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v * 100).toLocaleString("pt-BR", { maximumFractionDigits: d, minimumFractionDigits: d }) + "%";
+const DAY = 864e5;
+function ago(iso) {
+  const ms = Date.now() - new Date(iso).getTime();
+  if (ms < 36e5) return "há " + Math.max(1, Math.round(ms / 6e4)) + " min";
+  if (ms < DAY) return "há " + Math.round(ms / 36e5) + " h";
+  const d = Math.round(ms / DAY);
+  return d === 1 ? "ontem" : "há " + d + " dias";
+}
+const fmtDate = d => new Date(d).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" }).replace(".", "");
+function median(a) { a = a.filter(x => x != null && isFinite(x)).sort((x, y) => x - y); if (!a.length) return null; const m = a.length >> 1; return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2; }
+function niceTicks(min, max, n = 5) {
+  if (min === max) { max = min + 1; }
+  const span = max - min, step0 = span / n, mag = 10 ** Math.floor(Math.log10(step0));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(st => span / st <= n) || 10 * mag;
+  const lo = Math.floor(min / step) * step, hi = Math.ceil(max / step) * step, t = [];
+  for (let v = lo; v <= hi + step / 2; v += step) t.push(+v.toFixed(10));
+  return t;
+}
+const SOURCE = { zap: "ZAP", vivareal: "Viva Real", quintoandar: "QuintoAndar", zuk: "Portal Zuk" };
+const BUSINESS = { venda: "Venda", aluguel: "Aluguel", leilao: "Leilão" };
+const SHORT = { "Vila Nova Conceição": "V. N. Conceição" };
+
+// ---------- state ----------
+let DATA = null, NBS = [], COLOR = {};
+const F = Object.assign({ period: "30", business: "venda", bairro: "todos", quartos: 0, precoMax: null }, store.get("filters", {}));
+let SORT = store.get("sort", { col: "first_seen", dir: -1 });
+let PAGE = 0, PAGE_SIZE = 25;
+
+const tip = $("#tip");
+function showTip(el, x, y, host) {
+  tip.replaceChildren(el);
+  tip.classList.add("on");
+  const r = host.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+  let left = r.left + window.scrollX + x + 14, top = r.top + window.scrollY + y - th - 10;
+  if (left + tw > window.scrollX + document.documentElement.clientWidth - 8) left = r.left + window.scrollX + x - tw - 14;
+  if (top < window.scrollY + 8) top = r.top + window.scrollY + y + 14;
+  tip.style.left = Math.max(8, left) + "px"; tip.style.top = top + "px";
+}
+const hideTip = () => tip.classList.remove("on");
+
+// ---------- derived data ----------
+const refPrice = r => r.business === "aluguel" ? (r.total_monthly || r.price) : r.price;
+const periodMs = () => +F.period ? +F.period * DAY : Infinity;
+const inPeriod = iso => iso && (Date.now() - new Date(iso).getTime()) <= periodMs();
+const isNew = r => !r.initial && inPeriod(r.first_seen);
+function lastDrop(r) {
+  const hst = r.hist || [];
+  for (let i = hst.length - 1; i > 0; i--) {
+    if (hst[i][1] < hst[i - 1][1]) return { at: hst[i][0], from: hst[i - 1][1], to: hst[i][1], pct: hst[i][1] / hst[i - 1][1] - 1 };
+  }
+  return null;
+}
+const recentDrop = r => { const d = lastDrop(r); return d && inPeriod(d.at) ? d : null; };
+
+function baseFilter(r, { business = F.business, ignoreBairro = false } = {}) {
+  if (business && r.business !== business) return false;
+  if (!ignoreBairro && F.bairro !== "todos" && r.neighborhood !== F.bairro) return false;
+  if (F.quartos && (r.bedrooms || 0) < F.quartos) return false;
+  if (F.precoMax && refPrice(r) > F.precoMax) return false;
+  return true;
+}
+let MED = {};
+function computeMedians() {
+  MED = {};
+  for (const r of DATA.listings) {
+    if (!r.active || !r.ppm2) continue;
+    ((MED[r.business] ||= {})[r.neighborhood] ||= []).push(r.ppm2);
+  }
+  for (const b in MED) for (const n in MED[b]) MED[b][n] = median(MED[b][n]);
+}
+function vsMedian(r) {
+  const ref = MED[r.business === "leilao" ? "venda" : r.business]?.[r.neighborhood];
+  return r.ppm2 && ref ? r.ppm2 / ref - 1 : null;
+}
+function histSeries(business, metric) {
+  const nbs = F.bairro === "todos" ? NBS : [F.bairro];
+  const cutoff = +F.period ? Date.now() - +F.period * DAY : -Infinity;
+  return nbs.map(nb => ({
+    name: nb, color: COLOR[nb],
+    points: DATA.history
+      .filter(hh => new Date(hh.date + "T12:00:00").getTime() >= cutoff)
+      .map(hh => ({ x: new Date(hh.date + "T12:00:00"), y: hh.groups[business + "|" + nb]?.[metric] ?? null }))
+      .filter(p => p.y != null),
+  }));
+}
+
+// ---------- charts ----------
+function lineChart(host, series, { yFmt = axisMoney, tipFmt = brl, height = 240, zeroBase = false } = {}) {
+  host.replaceChildren();
+  const pts = series.flatMap(se => se.points);
+  const days = new Set(pts.map(p => +p.x));
+  if (days.size < 2) {
+    host.append(h("div", { class: "empty" }, pts.length ? "O histórico começa a se formar hoje — a linha aparece a partir do segundo dia de coleta." : "Sem dados para este filtro ainda."));
+    return;
+  }
+  const W = host.clientWidth || 600, H = height, m = { t: 12, r: 16, b: 26, l: 52 };
+  const xs = pts.map(p => +p.x), ys = pts.map(p => p.y);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs);
+  let y0 = Math.min(...ys), y1 = Math.max(...ys);
+  if (zeroBase) y0 = 0; else { const pad = (y1 - y0) * 0.15 || y1 * 0.05; y0 -= pad; y1 += pad; }
+  const ticks = niceTicks(y0, y1, 4); y0 = ticks[0]; y1 = ticks[ticks.length - 1];
+  const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
+  const Y = v => m.t + (1 - (v - y0) / (y1 - y0)) * (H - m.t - m.b);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": series.map(se => se.name).join(" e ") });
+  for (const t of ticks) {
+    svg.append(s("line", { class: t === ticks[0] ? "base" : "gridl", x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t) }));
+    const tx = s("text", { x: m.l - 8, y: Y(t) + 4, "text-anchor": "end" }); tx.textContent = yFmt(t); svg.append(tx);
+  }
+  const nX = Math.max(2, Math.min(6, Math.floor((W - m.l) / 90)));
+  for (let i = 0; i < nX; i++) {
+    const v = x0 + (x1 - x0) * i / (nX - 1);
+    const tx = s("text", { x: X(v), y: H - 6, "text-anchor": i === 0 ? "start" : i === nX - 1 ? "end" : "middle" }); tx.textContent = fmtDate(v); svg.append(tx);
+  }
+  for (const se of series) {
+    if (!se.points.length) continue;
+    const d = se.points.map((p, i) => (i ? "L" : "M") + X(+p.x).toFixed(1) + " " + Y(p.y).toFixed(1)).join("");
+    svg.append(s("path", { d, fill: "none", stroke: se.color, "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }));
+    const last = se.points[se.points.length - 1];
+    svg.append(s("circle", { cx: X(+last.x), cy: Y(last.y), r: 4, fill: se.color, stroke: "var(--surface)", "stroke-width": 2 }));
+  }
+  const cross = s("line", { y1: m.t, y2: H - m.b, stroke: "var(--axis)", "stroke-width": 1, opacity: 0 });
+  const dots = series.map(se => { const c = s("circle", { r: 4, fill: se.color, stroke: "var(--surface)", "stroke-width": 2, opacity: 0 }); svg.append(c); return c; });
+  svg.append(cross);
+  const sorted = [...days].sort((a, b) => a - b);
+  const hit = s("rect", { x: m.l, y: 0, width: W - m.l - m.r, height: H, fill: "transparent", tabindex: 0 });
+  let idx = sorted.length - 1;
+  const show = () => {
+    const xv = sorted[idx];
+    cross.setAttribute("x1", X(xv)); cross.setAttribute("x2", X(xv)); cross.setAttribute("opacity", 1);
+    const body = h("div", {}, h("div", { class: "tl", style: "margin-bottom:4px" }, new Date(xv).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" })));
+    series.forEach((se, i) => {
+      const p = se.points.find(pp => +pp.x === xv);
+      if (p) { dots[i].setAttribute("cx", X(xv)); dots[i].setAttribute("cy", Y(p.y)); dots[i].setAttribute("opacity", 1); }
+      else dots[i].setAttribute("opacity", 0);
+      body.append(h("div", { class: "row" }, h("span", { class: "tl" }, h("span", { class: "swl", style: `background:${se.color};margin-right:6px;vertical-align:3px` }), SHORT[se.name] || se.name), h("span", { class: "tv" }, p ? tipFmt(p.y) : "—")));
+    });
+    showTip(body, X(xv), m.t + 10, host);
+  };
+  const hide = () => { cross.setAttribute("opacity", 0); dots.forEach(d => d.setAttribute("opacity", 0)); hideTip(); };
+  hit.addEventListener("pointermove", e => {
+    const r = svg.getBoundingClientRect(), px = (e.clientX - r.left) * (W / r.width);
+    const xv = x0 + (px - m.l) / (W - m.l - m.r) * (x1 - x0);
+    idx = sorted.reduce((bi, v, i) => Math.abs(v - xv) < Math.abs(sorted[bi] - xv) ? i : bi, 0);
+    show();
+  });
+  hit.addEventListener("pointerleave", hide);
+  hit.addEventListener("focus", show); hit.addEventListener("blur", hide);
+  hit.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") { idx = Math.max(0, idx - 1); show(); e.preventDefault(); }
+    if (e.key === "ArrowRight") { idx = Math.min(sorted.length - 1, idx + 1); show(); e.preventDefault(); }
+  });
+  svg.append(hit);
+  host.append(svg);
+}
+
+function sparkline(values, color) {
+  const W = 96, H = 28;
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, "aria-hidden": "true" });
+  if (values.length < 2) return svg;
+  const max = Math.max(1, ...values);
+  const bw = W / values.length;
+  values.forEach((v, i) => {
+    const hgt = Math.max(v ? 3 : 1, v / max * (H - 2));
+    const last = i === values.length - 1;
+    svg.append(s("rect", { x: i * bw + 1, y: H - hgt, width: Math.max(1, bw - 2), height: hgt, rx: Math.min(2, bw / 4), fill: last ? color : "var(--neutral-mark)" }));
+  });
+  return svg;
+}
+
+function scatter(host, rows) {
+  host.replaceChildren();
+  const pts = rows.filter(r => r.area && refPrice(r));
+  if (!pts.length) { host.append(h("div", { class: "empty" }, "Nenhum anúncio ativo com esses filtros.")); return; }
+  const W = host.clientWidth || 700, H = Math.max(300, Math.min(400, W * 0.5)), m = { t: 14, r: 18, b: 34, l: 60 };
+  const ax = pts.map(r => r.area), ay = pts.map(refPrice);
+  const xt = niceTicks(Math.min(...ax) * 0.95, Math.max(...ax) * 1.03, 6), yt = niceTicks(0, Math.max(...ay) * 1.05, 5);
+  const x0 = xt[0], x1 = xt[xt.length - 1], y0 = 0, y1 = yt[yt.length - 1];
+  const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
+  const Y = v => m.t + (1 - (v - y0) / (y1 - y0)) * (H - m.t - m.b);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": `Gráfico de dispersão de ${pts.length} anúncios: área por preço` });
+  for (const t of yt) {
+    svg.append(s("line", { class: t === 0 ? "base" : "gridl", x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t) }));
+    const tx = s("text", { x: m.l - 8, y: Y(t) + 4, "text-anchor": "end" }); tx.textContent = axisMoney(t); svg.append(tx);
+  }
+  for (const t of xt) {
+    const tx = s("text", { x: X(t), y: H - 14, "text-anchor": "middle" }); tx.textContent = nf0.format(t); svg.append(tx);
+  }
+  const xl = s("text", { x: W - m.r, y: H - 1, "text-anchor": "end" }); xl.textContent = "área (m²)"; svg.append(xl);
+
+  // Linhas de referência: mediana de R$/m² de cada bairro (abaixo dela = mais barato por m² que o bairro)
+  const byNb = {};
+  for (const r of pts) (byNb[r.neighborhood] ||= []).push(refPrice(r) / r.area);
+  const labels = [];
+  for (const [nb, arr] of Object.entries(byNb)) {
+    const medP = median(arr);
+    if (!medP) continue;
+    const xb = Math.min(x1, y1 / medP);
+    svg.append(s("line", { x1: X(x0), y1: Y(medP * x0), x2: X(xb), y2: Y(medP * xb), stroke: COLOR[nb], "stroke-width": 1.5, "stroke-opacity": .45 }));
+    labels.push({ x: X(xb), y: Y(medP * xb), txt: "mediana " + (SHORT[nb] || nb) + " " + brlc(medP) + "/m²" });
+  }
+  labels.sort((a, b) => a.y - b.y).forEach((l, i, arr) => {
+    if (i && l.y - arr[i - 1].y < 14) l.y = arr[i - 1].y + 14;
+    const lb = s("text", { x: l.x - 4, y: l.y + (l.y < m.t + 20 ? 14 : -6), "text-anchor": "end", class: "halo" });
+    lb.textContent = l.txt; svg.append(lb);
+  });
+  const marks = pts.map(r => {
+    const cx = X(r.area), cy = Y(refPrice(r)), nw = isNew(r);
+    const g = s("g", {});
+    g.append(s("circle", { cx, cy, r: nw ? 6 : 4.5, fill: COLOR[r.neighborhood] || "var(--neutral-mark)", stroke: "var(--surface)", "stroke-width": 2, "fill-opacity": .9 }));
+    if (nw) g.append(s("circle", { cx, cy, r: 9, fill: "none", stroke: "var(--ink)", "stroke-width": 1.5 }));
+    svg.append(g);
+    return { r, cx, cy, g };
+  });
+  svg.querySelectorAll("text.halo").forEach(t => svg.append(t));
+  const ring = s("circle", { r: 11, fill: "none", stroke: "var(--ink)", "stroke-width": 2, opacity: 0, "pointer-events": "none" });
+  svg.append(ring);
+  const hit = s("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent", tabindex: 0, style: "cursor:pointer" });
+  let cur = null;
+  const pick = mk => {
+    cur = mk;
+    if (!mk) { ring.setAttribute("opacity", 0); hideTip(); return; }
+    ring.setAttribute("cx", mk.cx); ring.setAttribute("cy", mk.cy); ring.setAttribute("opacity", 1);
+    showTip(listingTip(mk.r), mk.cx, mk.cy, host);
+  };
+  hit.addEventListener("pointermove", e => {
+    const rc = svg.getBoundingClientRect(), k = W / rc.width;
+    const px = (e.clientX - rc.left) * k, py = (e.clientY - rc.top) * k;
+    let best = null, bd = 24 * k;
+    for (const mk of marks) { const d = Math.hypot(mk.cx - px, mk.cy - py); if (d < bd) { bd = d; best = mk; } }
+    pick(best);
+  });
+  hit.addEventListener("pointerleave", () => pick(null));
+  hit.addEventListener("click", () => { const u = cur && safeUrl(cur.r.url); if (u) window.open(u, "_blank", "noopener"); });
+  const order = [...marks].sort((a, b) => a.cx - b.cx);
+  let ki = -1;
+  hit.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { ki = Math.max(0, Math.min(order.length - 1, ki + (e.key === "ArrowRight" ? 1 : -1))); pick(order[ki]); e.preventDefault(); }
+    if (e.key === "Enter" && cur) { const u = safeUrl(cur.r.url); if (u) window.open(u, "_blank", "noopener"); }
+  });
+  hit.addEventListener("blur", () => pick(null));
+  svg.append(hit);
+  host.append(svg);
+}
+
+function listingTip(r) {
+  const vs = vsMedian(r), drop = lastDrop(r);
+  return h("div", {},
+    h("div", { class: "tv" }, brl(refPrice(r)), r.business === "aluguel" ? h("span", { class: "tl", style: "font-weight:400" }, " /mês total") : null),
+    h("div", { class: "tl" }, [r.area && nf0.format(r.area) + " m²", r.bedrooms && r.bedrooms + " quartos", r.parking && r.parking + " vagas"].filter(Boolean).join(" · ")),
+    h("div", { class: "tl" }, (r.ppm2 ? brl(r.ppm2) + "/m²" : "") + (vs != null ? " · " + pct(vs) + " vs. mediana" : "")),
+    h("div", { class: "row", style: "margin-top:6px" }, h("span", {}, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:6px;vertical-align:-1px` }), r.neighborhood), h("span", { class: "tl" }, SOURCE[r.source] || r.source)),
+    r.address ? h("div", { class: "tl" }, r.address) : null,
+    drop ? h("div", { style: "color:var(--good-ink);margin-top:4px" }, "▼ " + pct(drop.pct, 1) + " em " + fmtDate(drop.at)) : null,
+    h("div", { class: "tl", style: "margin-top:4px" }, "No ar desde " + fmtDate(r.first_seen) + (isNew(r) ? " · novo" : ""))
+  );
+}
+
+// ---------- sections ----------
+function renderHeader() {
+  const c = DATA.criteria;
+  $("#criteria").textContent = `${c.neighborhoods.join(" e ")} · a partir de ${nf0.format(c.min_area)} m² · compra, aluguel e leilão`;
+  $("#updated").textContent = DATA.updated_at ? "Atualizado " + ago(DATA.updated_at) : "";
+  const box = $("#sources"); box.replaceChildren();
+  for (const [k, v] of Object.entries(DATA.sources || {})) {
+    const title = v.ok ? `Funcionando · última coleta ${v.last_ok ? ago(v.last_ok) : "—"}` : `Com erro há ${v.failures} ciclo(s): ${v.error || ""}`;
+    box.append(h("span", { class: "chip " + (v.ok ? "ok" : "bad"), title }, h("span", { class: "ico", "aria-hidden": "true" }, v.ok ? "✓" : "!"), SOURCE[k] || k, v.ok ? null : h("span", { class: "sr" }, " com erro")));
+  }
+  $("#banner").replaceChildren(DATA.demo ? h("div", { class: "banner" }, h("b", {}, "Dados de demonstração. "), "Estes anúncios são fictícios, gerados só para mostrar o layout. Os dados reais aparecem após a primeira execução do monitor.") : "");
+}
+
+function renderFilters() {
+  const bseg = $("#bairroSeg"); bseg.replaceChildren(
+    h("button", { "data-v": "todos" }, "Ambos"),
+    ...NBS.map(nb => h("button", { "data-v": nb }, h("span", { class: "dot", style: `background:${COLOR[nb]}` }), SHORT[nb] || nb)));
+  document.querySelectorAll(".seg").forEach(seg => {
+    const key = seg.dataset.f;
+    seg.querySelectorAll("button").forEach(b => {
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(b.dataset.v === String(F[key])));
+      b.onclick = () => { F[key] = b.dataset.v; PAGE = 0; update(); };
+    });
+  });
+  $("#fq").value = String(F.quartos);
+  $("#fp").value = F.precoMax || "";
+  $("#fp").step = F.business === "aluguel" ? 1000 : 50000;
+}
+
+function kpiTile(label, value, foot, opts = {}) {
+  return h("div", { class: "card kpi c3" },
+    h("div", { class: "label" }, label),
+    h("div", { class: "value" }, value, opts.unit ? h("small", {}, " " + opts.unit) : null),
+    h("div", { class: "foot" }, h("span", {}, foot), opts.spark || null));
+}
+
+function renderKPIs() {
+  const act = DATA.listings.filter(r => r.active && baseFilter(r));
+  const news = DATA.listings.filter(r => baseFilter(r) && isNew(r));
+  const drops = DATA.listings.filter(r => r.active && baseFilter(r)).map(r => [r, recentDrop(r)]).filter(x => x[1]);
+  const per = +F.period ? `últimos ${F.period} dias` : "desde o início";
+  // novos por dia (sparkline)
+  const nDays = Math.min(+F.period || 60, 60);
+  const bins = Array(nDays).fill(0);
+  for (const r of news) { const d = Math.floor((Date.now() - new Date(r.first_seen)) / DAY); if (d < nDays) bins[nDays - 1 - d]++; }
+  // mediana R$/m² e variação no período
+  const med = median(act.map(r => r.ppm2));
+  const series = histSeries(F.business === "leilao" ? "venda" : F.business, "ppm2");
+  let delta = null;
+  const first = series.map(se => se.points[0]?.y).filter(Boolean), last = series.map(se => se.points.at(-1)?.y).filter(Boolean);
+  if (first.length && last.length && series.every(se => se.points.length > 1)) delta = median(last) / median(first) - 1;
+  const unit = F.business === "aluguel" ? "/m² ao mês" : "/m²";
+  const deltaEl = delta == null ? "sem histórico suficiente" :
+    h("span", { class: "delta " + (delta < -0.001 ? "good" : delta > 0.001 ? "bad" : "") }, (delta < 0 ? "▼ " : delta > 0 ? "▲ " : "") + pct(delta, 1) + " no período");
+  const bigDrop = drops.length ? Math.min(...drops.map(x => x[1].pct)) : null;
+
+  $("#kpis").replaceChildren(
+    kpiTile("Anúncios ativos", nf0.format(act.length), `${news.filter(r => r.active).length} novos · ${BUSINESS[F.business].toLowerCase()}`),
+    kpiTile("Novos", nf0.format(news.length), per, { spark: sparkline(bins, "var(--s1)") }),
+    kpiTile(F.business === "leilao" ? "Mediana do lance" : "Mediana do R$/m²", med ? brlc(med) : "—", deltaEl, { unit: med ? unit : null }),
+    kpiTile("Quedas de preço", nf0.format(drops.length), bigDrop != null ? h("span", { class: "delta good" }, "maior: ▼ " + pct(bigDrop, 1)) : per),
+  );
+}
+
+function legendFor(host, kind = "dot", extra = []) {
+  const nbs = F.bairro === "todos" ? NBS : [F.bairro];
+  host.replaceChildren(...nbs.map(nb => h("span", {}, h("span", { class: kind === "line" ? "swl" : "sw", style: `background:${COLOR[nb]}` }), nb)), ...extra);
+}
+
+function renderScatter() {
+  const rows = DATA.listings.filter(r => r.active && baseFilter(r));
+  $("#scTitle").textContent = F.business === "aluguel" ? "Aluguel total × área" : F.business === "leilao" ? "Lance × área" : "Preço × área";
+  $("#scHint").textContent = "Cada ponto é um anúncio ativo. Abaixo da linha do bairro = mais barato por m² que a mediana dele. Clique para abrir.";
+  legendFor($("#scLegend"), "dot", [h("span", {}, h("span", { class: "swring" }), "novo no período")]);
+  scatter($("#scatter"), rows);
+}
+
+function renderFeed() {
+  const ev = [];
+  for (const r of DATA.listings) {
+    if (!baseFilter(r)) continue;
+    if (isNew(r)) ev.push({ r, at: r.first_seen, kind: "new" });
+    const d = recentDrop(r); if (d && r.active) ev.push({ r, at: d.at, kind: "drop", d });
+    if (!r.active && inPeriod(r.last_seen)) ev.push({ r, at: r.last_seen, kind: "gone" });
+  }
+  ev.sort((a, b) => new Date(b.at) - new Date(a.at));
+  $("#feedHint").textContent = `${ev.length} eventos · ${+F.period ? "últimos " + F.period + " dias" : "todo o período"}`;
+  const ul = $("#feed"); ul.replaceChildren();
+  if (!ev.length) { ul.append(h("li", {}, h("div", { class: "empty" }, "Nada novo neste período. Você será avisado assim que algo entrar."))); return; }
+  for (const e of ev.slice(0, 40)) {
+    const r = e.r, u = safeUrl(r.url);
+    const badge = e.kind === "new" ? h("span", { class: "badge new" }, "Novo") : e.kind === "drop" ? h("span", { class: "badge drop" }, "▼ " + pct(e.d.pct, 1)) : h("span", { class: "badge gone" }, "Saiu");
+    const vs = vsMedian(r);
+    const priceTxt = e.kind === "drop" ? `${brlc(e.d.from)} → ${brlc(e.d.to)}` : brlc(refPrice(r)) + (r.business === "aluguel" ? "/mês" : "");
+    ul.append(h("li", {}, h(u ? "a" : "div", u ? { href: u, target: "_blank", rel: "noopener" } : { style: "display:grid;grid-template-columns:auto 1fr auto;gap:2px 10px;padding:10px 6px" },
+      badge,
+      h("span", { class: "t" }, priceTxt, " · ", r.area ? nf0.format(r.area) + " m²" : "área ?"),
+      h("span", { class: "when" }, ago(e.at)),
+      h("span", { class: "d" }, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:6px;width:8px;height:8px` }),
+        [r.neighborhood, r.bedrooms && r.bedrooms + " qts", vs != null && pct(vs) + " vs. mediana", SOURCE[r.source]].filter(Boolean).join(" · ")))));
+  }
+}
+
+function dataTable(series, fmt) {
+  const dates = [...new Set(series.flatMap(se => se.points.map(p => +p.x)))].sort((a, b) => b - a).slice(0, 60);
+  if (!dates.length) return h("p", {}, "Sem dados.");
+  return h("table", {}, h("thead", {}, h("tr", {}, h("th", {}, "Data"), ...series.map(se => h("th", { class: "num" }, se.name)))),
+    h("tbody", {}, dates.map(d => h("tr", {}, h("td", {}, new Date(d).toLocaleDateString("pt-BR")),
+      ...series.map(se => { const p = se.points.find(pp => +pp.x === d); return h("td", { class: "num" }, p ? fmt(p.y) : "—"); })))));
+}
+
+function renderTrends() {
+  const b = F.business === "leilao" ? "venda" : F.business;
+  $("#trTitle").textContent = b === "aluguel" ? "Mediana do aluguel por m²" : "Mediana do R$/m² de venda";
+  $("#trHint").textContent = (b === "aluguel" ? "Aluguel sem condomínio, por m² ao mês" : "Preço pedido por m²") + (F.business === "leilao" ? " · referência de mercado para os leilões" : "");
+  const tr = histSeries(b, "ppm2");
+  legendFor($("#trLegend"), "line");
+  lineChart($("#trend"), tr, { yFmt: b === "aluguel" ? v => nf0.format(v) : axisMoney, tipFmt: v => brl(v) + "/m²" });
+  $("#trendTable").replaceChildren(dataTable(tr, v => brl(v)));
+  const st = histSeries(F.business, "n");
+  legendFor($("#stLegend"), "line");
+  lineChart($("#stock"), st, { yFmt: v => nf0.format(v), tipFmt: v => nf0.format(v) + " anúncios", zeroBase: true, height: 240 });
+  $("#stockTable").replaceChildren(dataTable(st, v => nf0.format(v)));
+}
+
+function renderBuyVsRent() {
+  const area = Math.max(1, +$("#calcArea").value || 150);
+  const box = $("#bvr"); box.replaceChildren();
+  const nbs = F.bairro === "todos" ? NBS : [F.bairro];
+  for (const nb of nbs) {
+    const pick = b => median(DATA.listings.filter(r => r.active && r.business === b && r.neighborhood === nb && r.ppm2).map(r => r.ppm2));
+    const sale = pick("venda"), rent = pick("aluguel");
+    const yieldA = sale && rent ? rent * 12 / sale : null;
+    const condo = median(DATA.listings.filter(r => r.active && r.neighborhood === nb && r.condo && r.area).map(r => r.condo / r.area));
+    box.append(h("div", { class: "nb" },
+      h("h3", {}, h("span", { class: "sw", style: `background:${COLOR[nb]}` }), nb),
+      h("div", { class: "big" }, yieldA ? nf1.format(yieldA * 100) + "% a.a." : "—"),
+      h("div", { class: "hint", style: "margin-bottom:10px" }, yieldA ? `rendimento bruto · ${nf1.format(1 / yieldA)} anos de aluguel pagam a compra` : "faltam anúncios de venda e aluguel para comparar"),
+      h("dl", {},
+        h("dt", {}, `Comprar ${nf0.format(area)} m²`), h("dd", {}, sale ? brlc(sale * area) : "—"),
+        h("dt", {}, "Alugar (sem condomínio)"), h("dd", {}, rent ? brl(rent * area) + "/mês" : "—"),
+        h("dt", {}, "Condomínio estimado"), h("dd", {}, condo ? brl(condo * area) + "/mês" : "—"),
+        h("dt", {}, "R$/m² venda · aluguel"), h("dd", {}, (sale ? brlc(sale) : "—") + " · " + (rent ? "R$ " + nf0.format(rent) : "—")))));
+  }
+}
+
+function renderAuctions() {
+  const rows = DATA.listings.filter(r => r.business === "leilao" && r.active && baseFilter(r, { business: null }));
+  const box = $("#auctions"); box.replaceChildren();
+  if (!rows.length) { box.append(h("div", { class: "empty" }, "Nenhum leilão aberto nesses bairros agora. O Portal Zuk é verificado a cada ciclo.")); return; }
+  const parseDate = r => { const m = /(\d{2})\/(\d{2})\/(\d{4})/.exec(r.extra || ""); return m ? new Date(+m[3], m[2] - 1, +m[1]) : null; };
+  rows.sort((a, b) => (parseDate(a) || 9e15) - (parseDate(b) || 9e15));
+  box.append(h("div", { class: "tablewrap", style: "margin:0;border:0" }, h("table", {},
+    h("thead", {}, h("tr", {}, h("th", {}, "Data"), h("th", {}, "Bairro"), h("th", { class: "num" }, "Área"), h("th", { class: "num" }, "Lance"), h("th", { class: "num" }, "vs. mercado"))),
+    h("tbody", {}, rows.map(r => {
+      const d = parseDate(r), u = safeUrl(r.url), vs = vsMedian(r);
+      return h("tr", {},
+        h("td", {}, d ? d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" }) : "—"),
+        h("td", {}, u ? h("a", { href: u, target: "_blank", rel: "noopener" }, SHORT[r.neighborhood] || r.neighborhood) : r.neighborhood),
+        h("td", { class: "num" }, r.area ? nf0.format(r.area) + " m²" : "?"),
+        h("td", { class: "num" }, brlc(r.price)),
+        h("td", { class: "num" }, vsCell(vs)));
+    })))));
+}
+
+function vsCell(vs) {
+  if (vs == null) return "—";
+  const c = Math.max(-0.4, Math.min(0.4, vs)), w = Math.abs(c) / 0.4 * 28;
+  return h("span", { class: "vs" },
+    h("span", { class: "vsbar", "aria-hidden": "true" }, h("i", { style: `${c < 0 ? `right:28px` : `left:28px`};width:${w}px;background:${c < 0 ? "var(--div-lo)" : "var(--div-hi)"}` })),
+    h("span", {}, pct(vs)));
+}
+
+const COLS = [
+  { k: "status", t: "", sort: r => isNew(r) ? 0 : recentDrop(r) ? 1 : 2 },
+  { k: "neighborhood", t: "Bairro", sort: r => r.neighborhood },
+  { k: "title", t: "Anúncio", sort: r => r.address || r.title },
+  { k: "area", t: "Área", num: 1, sort: r => r.area || 0 },
+  { k: "bedrooms", t: "Qts", num: 1, sort: r => r.bedrooms || 0 },
+  { k: "parking", t: "Vagas", num: 1, sort: r => r.parking || 0 },
+  { k: "price", t: "Preço", num: 1, sort: r => refPrice(r) || 0 },
+  { k: "ppm2", t: "R$/m²", num: 1, sort: r => r.ppm2 || 0 },
+  { k: "vs", t: "vs. mediana", num: 1, sort: r => vsMedian(r) ?? 99 },
+  { k: "first_seen", t: "No ar", num: 1, sort: r => new Date(r.first_seen).getTime() },
+  { k: "source", t: "Fonte", sort: r => r.source },
+];
+
+function renderTable() {
+  const q = ($("#search").value || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  const showGone = $("#showGone").checked;
+  let rows = DATA.listings.filter(r => (showGone || r.active) && baseFilter(r));
+  if (q) rows = rows.filter(r => [r.title, r.address, r.neighborhood, SOURCE[r.source]].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").includes(q));
+  const col = COLS.find(c => c.k === SORT.col) || COLS[9];
+  rows.sort((a, b) => { const x = col.sort(a), y = col.sort(b); return (x < y ? -1 : x > y ? 1 : 0) * SORT.dir; });
+  const pages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE)); PAGE = Math.min(PAGE, pages - 1);
+  const view = rows.slice(PAGE * PAGE_SIZE, (PAGE + 1) * PAGE_SIZE);
+  $("#tblHint").textContent = `${rows.length} anúncios · ${BUSINESS[F.business].toLowerCase()}${F.bairro !== "todos" ? " · " + F.bairro : ""}`;
+
+  const thead = h("thead", {}, h("tr", {}, COLS.map(c => h("th", {
+    class: c.num ? "num" : null, scope: "col",
+    "aria-sort": c.t ? (SORT.col === c.k ? (SORT.dir > 0 ? "ascending" : "descending") : "none") : null,
+  }, c.t ? h("button", { type: "button", onclick: () => { SORT = { col: c.k, dir: SORT.col === c.k ? -SORT.dir : (c.num ? -1 : 1) }; store.set("sort", SORT); renderTable(); } }, c.t) : h("span", { class: "sr" }, "Situação")))));
+  const tbody = h("tbody", {}, view.length ? view.map(r => {
+    const u = safeUrl(r.url), d = recentDrop(r);
+    const st = !r.active ? h("span", { class: "badge gone" }, "Saiu") : isNew(r) ? h("span", { class: "badge new" }, "Novo") : d ? h("span", { class: "badge drop" }, "▼ " + pct(d.pct, 1)) : r.business === "leilao" ? h("span", { class: "badge auction" }, "Leilão") : "";
+    const tr = h("tr", { class: r.active ? null : "inactive" },
+      h("td", {}, st),
+      h("td", {}, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:6px;width:8px;height:8px` }), SHORT[r.neighborhood] || r.neighborhood),
+      h("td", {}, u ? h("a", { href: u, target: "_blank", rel: "noopener", class: "ttl" }, r.address || r.title || "Abrir anúncio") : h("span", { class: "ttl" }, r.address || r.title), r.address && r.title ? h("span", { class: "addr" }, r.title) : null),
+      h("td", { class: "num" }, r.area ? nf0.format(r.area) + " m²" : "?"),
+      h("td", { class: "num" }, r.bedrooms ?? "—"),
+      h("td", { class: "num" }, r.parking ?? "—"),
+      h("td", { class: "num" }, brl(refPrice(r)), r.business === "aluguel" ? h("span", { class: "addr" }, "total/mês") : null),
+      h("td", { class: "num" }, r.ppm2 ? brl(r.ppm2) : "—"),
+      h("td", { class: "num" }, vsCell(vsMedian(r))),
+      h("td", { class: "num", title: new Date(r.first_seen).toLocaleString("pt-BR") }, r.initial ? "antes de " + fmtDate(r.first_seen) : ago(r.first_seen).replace("há ", "")),
+      h("td", {}, SOURCE[r.source] || r.source));
+    [...tr.children].forEach((td, i) => td.classList.add("c-" + COLS[i].k));
+    return tr;
+  }) : h("tr", {}, h("td", { colspan: COLS.length }, h("div", { class: "empty" }, "Nenhum anúncio com esses filtros."))));
+  $("#tbl").replaceChildren(thead, tbody);
+  $("#pager").replaceChildren(
+    h("span", {}, rows.length ? `${PAGE * PAGE_SIZE + 1}–${Math.min(rows.length, (PAGE + 1) * PAGE_SIZE)} de ${rows.length}` : ""),
+    h("span", { class: "tools" },
+      h("button", { class: "iconbtn", type: "button", disabled: PAGE === 0 || null, onclick: () => { PAGE--; renderTable(); } }, "← Anterior"),
+      h("button", { class: "iconbtn", type: "button", disabled: PAGE >= pages - 1 || null, onclick: () => { PAGE++; renderTable(); } }, "Próxima →")));
+}
+
+function update() {
+  store.set("filters", F);
+  renderFilters(); renderKPIs(); renderScatter(); renderFeed(); renderTrends(); renderBuyVsRent(); renderAuctions(); renderTable();
+}
+
+// ---------- boot ----------
+$("#fq").onchange = e => { F.quartos = +e.target.value; PAGE = 0; update(); };
+let fpT; $("#fp").oninput = e => { clearTimeout(fpT); fpT = setTimeout(() => { F.precoMax = +e.target.value || null; PAGE = 0; update(); }, 300); };
+$("#search").oninput = () => { PAGE = 0; renderTable(); };
+$("#showGone").onchange = () => { PAGE = 0; renderTable(); };
+$("#calcArea").oninput = renderBuyVsRent;
+$("#theme").onclick = () => {
+  const root = document.documentElement;
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark"; store.set("theme", root.dataset.theme);
+  if (DATA) update();
+};
+{ const t = store.get("theme", null); if (t) document.documentElement.dataset.theme = t; }
+let rzT, lastW = 0;
+new ResizeObserver(() => { const w = $("#main").clientWidth; if (!DATA || w === lastW) return; lastW = w; clearTimeout(rzT); rzT = setTimeout(() => { renderScatter(); renderTrends(); }, 120); }).observe($("#main"));
+
+(async function load() {
+  const param = new URLSearchParams(location.search).get("dados");
+  const file = param && /^[\w.-]+\.json$/.test(param) ? param : "dados.json";
+  try {
+    const r = await fetch(file + "?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    DATA = await r.json();
+  } catch (e) {
+    $("#criteria").textContent = "Ainda não há dados. Eles aparecem aqui após a primeira execução do monitor no GitHub Actions.";
+    $("#main").replaceChildren(h("div", { class: "card" }, h("div", { class: "empty" }, "Sem dados (" + e.message + "). Para ver um exemplo, abra esta página com ?dados=demo.json")));
+    return;
+  }
+  NBS = DATA.criteria.neighborhoods;
+  const palette = ["var(--s1)", "var(--s2)", "var(--s3)"];
+  NBS.forEach((nb, i) => COLOR[nb] = palette[i] || "var(--neutral-mark)");
+  if (F.bairro !== "todos" && !NBS.includes(F.bairro)) F.bairro = "todos";
+  computeMedians();
+  renderHeader();
+  update();
+  setInterval(() => { if (document.visibilityState === "visible") $("#updated").textContent = "Atualizado " + ago(DATA.updated_at); }, 60000);
+})();
+</script>
+</body>
+</html>
