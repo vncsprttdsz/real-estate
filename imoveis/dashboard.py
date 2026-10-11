@@ -72,6 +72,9 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
             "initial": bool(s.get("initial")),
             "hist": s.get("hist", []),
             "active": active,
+            "in_budget": cfg.within_cap(
+                d["business"], (d.get("total_monthly") or d.get("price")) if d["business"] == "aluguel" else d.get("price")
+            ),
         })
 
     today = datetime.now(timezone.utc).date().isoformat()

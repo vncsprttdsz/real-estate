@@ -20,6 +20,7 @@ def iso(d):
 
 
 rows = []
+CAP = {"venda": 2_250_000, "leilao": 2_250_000, "aluguel": 10_000}
 for i in range(150):
     nb = random.choice(list(NB))
     business = random.choices(["venda", "aluguel", "leilao"], [0.58, 0.38, 0.04])[0]
@@ -61,6 +62,7 @@ for i in range(150):
         "extra": f"Datas: {(NOW + timedelta(days=random.randint(5, 40))):%d/%m/%Y} 10:00" if business == "leilao" else "",
         "ppm2": round(price / area, 2), "first_seen": iso(first), "last_seen": iso(last),
         "initial": initial, "hist": hist, "active": active,
+        "in_budget": ((total or price) if business == "aluguel" else price) <= CAP[business],
     })
 
 history = []
@@ -79,7 +81,7 @@ for d in range(60, -1, -1):
 data = {
     "demo": True,
     "updated_at": iso(NOW),
-    "criteria": {"neighborhoods": list(NB), "min_area": 100, "businesses": ["venda", "aluguel"], "max_sale": None, "max_rent": None},
+    "criteria": {"neighborhoods": list(NB), "min_area": 100, "businesses": ["venda", "aluguel"], "max_sale": 2250000, "max_rent": 10000},
     "sources": {
         "zap": {"ok": True, "last_ok": iso(NOW), "error": None, "failures": 0},
         "vivareal": {"ok": True, "last_ok": iso(NOW), "error": None, "failures": 0},

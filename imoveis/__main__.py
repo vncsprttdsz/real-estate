@@ -70,7 +70,7 @@ def collect(cfg: Config, state: dict) -> tuple[dict[str, list[Listing]], dict[st
     return results, errors
 
 
-def write_report(listings: list[Listing]) -> None:
+def write_report(listings: list[Listing], cfg: Config) -> None:
     order = {"leilao": 0, "venda": 1, "aluguel": 2}
     listings = sorted(listings, key=lambda l: (order.get(l.business, 9), l.ref_price or 0))
     CURRENT.write_text(json.dumps([l.to_dict() for l in listings], ensure_ascii=False, indent=1))
@@ -78,6 +78,8 @@ def write_report(listings: list[Listing]) -> None:
         "# Anúncios atuais dentro dos critérios",
         "",
         f"Atualizado em {datetime.now(timezone.utc):%d/%m/%Y %H:%M} UTC · {len(listings)} anúncios. "
+        f"Orçamento: compra até {brl(cfg.max_sale) if cfg.max_sale else 'sem limite'}, "
+        f"aluguel até {brl(cfg.max_rent) + '/mês' if cfg.max_rent else 'sem limite'}. "
         "Critérios em [`config.yaml`](config.yaml).",
         "",
     ]
@@ -113,7 +115,7 @@ def run(dry_run: bool = False) -> int:
                 if initializing:
                     first_load.setdefault(source, 0)
                     first_load[source] += 1
-                else:
+                elif cfg.in_budget(l):
                     new_items.append(l)
                 state["seen"][l.key] = {
                     "first_seen": ts, "last_seen": ts, "price": l.ref_price,
@@ -122,11 +124,11 @@ def run(dry_run: bool = False) -> int:
                 }
                 continue
             old_price = prev.get("price")
-            if (
-                cfg.price_drop_pct and old_price and l.ref_price
-                and l.ref_price <= old_price * (1 - cfg.price_drop_pct / 100)
-            ):
-                drops.append((l, old_price))
+            if cfg.in_budget(l) and old_price and l.ref_price and l.ref_price < old_price:
+                if not cfg.within_cap(l.business, old_price):
+                    drops.append((l, old_price, "Baixou e entrou no seu orçamento"))
+                elif cfg.price_drop_pct and l.ref_price <= old_price * (1 - cfg.price_drop_pct / 100):
+                    drops.append((l, old_price, "Queda de preço"))
             prev["last_seen"] = ts
             if l.ref_price and l.ref_price != old_price:
                 prev["price"] = l.ref_price
@@ -166,7 +168,7 @@ def run(dry_run: bool = False) -> int:
         subject = f"🏠 {n} anúncio{'s' if n > 1 else ''} novo{'s' if n > 1 else ''} nos seus critérios"
         notifier.send(subject, [describe(l) for l in new_items])
     if drops:
-        items = [describe(l, f"Queda de preço: {brl(old)} → {brl(l.ref_price)}") for l, old in drops]
+        items = [describe(l, f"{why}: {brl(old)} → {brl(l.ref_price)}") for l, old, why in drops]
         notifier.send(f"📉 {len(drops)} anúncio(s) baixaram de preço", items)
     if first_load:
         summary = ", ".join(f"{k}: {v}" for k, v in first_load.items())
@@ -189,7 +191,7 @@ def run(dry_run: bool = False) -> int:
             all_current += [l for l in old if l.source in errors]
         except Exception:
             pass
-    write_report(all_current)
+    write_report([l for l in all_current if cfg.in_budget(l)], cfg)
     dashboard.build(cfg, state, results, errors)
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1, sort_keys=True))
     print(f"novos={len(new_items)} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")

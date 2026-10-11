@@ -13,10 +13,11 @@ tipos: [apartamento]
 # Comprar e/ou alugar
 negocios: [venda, aluguel]
 
-# Limites opcionais de preço (deixe null para sem limite).
+# Orçamento (deixe null para sem limite). Vale para os AVISOS; o painel continua
+# mostrando o mercado inteiro para as medianas não ficarem distorcidas.
 # Aluguel: valor total mensal (aluguel + condomínio + IPTU quando disponível).
-preco_max_venda: null
-preco_max_aluguel: null
+preco_max_venda: 2250000
+preco_max_aluguel: 10000
 
 # Sites monitorados (desligue algum colocando false)
 fontes:

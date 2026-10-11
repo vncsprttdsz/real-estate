@@ -128,7 +128,7 @@ class Config:
         return True
 
     def matches(self, l: Listing) -> bool:
-        """Filtro final aplicado a todas as fontes (as APIs nem sempre respeitam os filtros)."""
+        """Bairro, área e tipo — o mercado que o monitor acompanha (sem o teto de preço)."""
         if norm(l.neighborhood) not in self.neighborhoods_norm:
             return False
         # Leilões frequentemente não informam área na listagem: só descarta se souber que é menor.
@@ -138,11 +138,18 @@ class Config:
             return False
         if not self.plausible(l):
             return False
-        if l.business == "venda" and self.max_sale and l.price and l.price > self.max_sale:
-            return False
-        if l.business == "aluguel" and self.max_rent and l.ref_price and l.ref_price > self.max_rent:
-            return False
         return True
+
+    def cap(self, business: str) -> float | None:
+        """Teto de preço do negócio. Leilão usa o teto de compra."""
+        return self.max_rent if business == "aluguel" else self.max_sale
+
+    def within_cap(self, business: str, price: float | None) -> bool:
+        cap = self.cap(business)
+        return not cap or price is None or price <= cap
+
+    def in_budget(self, l: Listing) -> bool:
+        return self.within_cap(l.business, l.ref_price)
 
 
 def dump_debug(name: str, content: str | bytes) -> None:

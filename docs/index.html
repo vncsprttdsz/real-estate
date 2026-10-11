@@ -88,6 +88,8 @@ h1 { font-size: 22px; line-height: 1.2; margin: 0; font-weight: 650; letter-spac
 .seg button:hover { color: var(--ink); }
 .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
 .seg .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.budget { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+.budget input { width: 16px; height: 16px; accent-color: var(--s1); }
 select, input[type="number"], input[type="search"] { height: 32px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); padding: 0 10px; }
 input[type="number"] { width: 130px; }
 :focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
@@ -234,8 +236,7 @@ footer { color: var(--muted); font-size: 12.5px; margin-top: 28px; line-height: 
       <div class="seg" data-f="bairro" id="bairroSeg"></div></div>
     <div class="fgroup"><label class="flabel" for="fq">Quartos</label>
       <select id="fq"><option value="0">Qualquer</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></div>
-    <div class="fgroup"><label class="flabel" for="fp">Preço máx.</label>
-      <input id="fp" type="number" inputmode="numeric" min="0" step="50000" placeholder="sem limite"></div>
+    <div class="fgroup"><label class="budget"><input type="checkbox" id="fb"> <span>Só no meu orçamento</span> <span class="flabel" id="fbCap"></span></label></div>
   </div>
 
   <main id="main">
@@ -343,7 +344,7 @@ function brl(v) { return v == null ? "—" : "R$ " + nf0.format(v); }
 function brlc(v) {
   if (v == null) return "—";
   const a = Math.abs(v);
-  if (a >= 1e6) return "R$ " + (a >= 1e7 ? nf0 : nf1).format(v / 1e6).replace(/,0$/, "") + " mi";
+  if (a >= 1e6) return "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: a >= 1e7 ? 1 : 2 }) + " mi";
   if (a >= 1e4) return "R$ " + nf0.format(v / 1e3) + " mil";
   return "R$ " + nf0.format(v);
 }
@@ -378,7 +379,8 @@ const SHORT = { "Vila Nova Conceição": "V. N. Conceição" };
 
 // ---------- state ----------
 let DATA = null, NBS = [], COLOR = {};
-const F = Object.assign({ period: "30", business: "venda", bairro: "todos", quartos: 0, precoMax: null }, store.get("filters", {}));
+const F = Object.assign({ period: "30", business: "venda", bairro: "todos", quartos: 0, budget: true }, store.get("filters", {}));
+delete F.precoMax;
 let SORT = store.get("sort", { col: "first_seen", dir: -1 });
 let PAGE = 0, PAGE_SIZE = 25;
 
@@ -408,11 +410,11 @@ function lastDrop(r) {
 }
 const recentDrop = r => { const d = lastDrop(r); return d && inPeriod(d.at) ? d : null; };
 
-function baseFilter(r, { business = F.business, ignoreBairro = false } = {}) {
+function baseFilter(r, { business = F.business, ignoreBairro = false, ignoreBudget = false } = {}) {
   if (business && r.business !== business) return false;
   if (!ignoreBairro && F.bairro !== "todos" && r.neighborhood !== F.bairro) return false;
   if (F.quartos && (r.bedrooms || 0) < F.quartos) return false;
-  if (F.precoMax && refPrice(r) > F.precoMax) return false;
+  if (F.budget && !ignoreBudget && r.in_budget === false) return false;
   return true;
 }
 let MED = {};
@@ -523,7 +525,7 @@ function sparkline(values, color) {
   return svg;
 }
 
-function scatter(host, rows) {
+function scatter(host, rows, market = rows) {
   host.replaceChildren();
   const pts = rows.filter(r => r.area && refPrice(r));
   if (!pts.length) { host.append(h("div", { class: "empty" }, "Nenhum anúncio ativo com esses filtros.")); return; }
@@ -545,18 +547,20 @@ function scatter(host, rows) {
 
   // Linhas de referência: mediana de R$/m² de cada bairro (abaixo dela = mais barato por m² que o bairro)
   const byNb = {};
-  for (const r of pts) (byNb[r.neighborhood] ||= []).push(refPrice(r) / r.area);
+  for (const r of market) if (r.area && refPrice(r)) (byNb[r.neighborhood] ||= []).push(refPrice(r) / r.area);
   const labels = [];
   for (const [nb, arr] of Object.entries(byNb)) {
     const medP = median(arr);
     if (!medP) continue;
     const xb = Math.min(x1, y1 / medP);
+    if (xb <= x0) continue;
     svg.append(s("line", { x1: X(x0), y1: Y(medP * x0), x2: X(xb), y2: Y(medP * xb), stroke: COLOR[nb], "stroke-width": 1.5, "stroke-opacity": .45 }));
     labels.push({ x: X(xb), y: Y(medP * xb), txt: "mediana " + (SHORT[nb] || nb) + " " + brlc(medP) + "/m²" });
   }
   labels.sort((a, b) => a.y - b.y).forEach((l, i, arr) => {
     if (i && l.y - arr[i - 1].y < 14) l.y = arr[i - 1].y + 14;
-    const lb = s("text", { x: l.x - 4, y: l.y + (l.y < m.t + 20 ? 14 : -6), "text-anchor": "end", class: "halo" });
+    const nearAxis = l.x < m.l + 220;
+    const lb = s("text", { x: nearAxis ? l.x + 6 : l.x - 4, y: l.y + (l.y < m.t + 20 ? 14 : -6), "text-anchor": nearAxis ? "start" : "end", class: "halo" });
     lb.textContent = l.txt; svg.append(lb);
   });
   const marks = pts.map(r => {
@@ -614,7 +618,8 @@ function listingTip(r) {
 // ---------- sections ----------
 function renderHeader() {
   const c = DATA.criteria;
-  $("#criteria").textContent = `${c.neighborhoods.join(" e ")} · a partir de ${nf0.format(c.min_area)} m² · compra, aluguel e leilão`;
+  const budget = [c.max_sale && "compra até " + brlc(c.max_sale), c.max_rent && "aluguel até " + brlc(c.max_rent) + "/mês"].filter(Boolean).join(", ");
+  $("#criteria").textContent = `${c.neighborhoods.join(" e ")} · a partir de ${nf0.format(c.min_area)} m²` + (budget ? ` · ${budget}` : " · compra, aluguel e leilão");
   $("#updated").textContent = DATA.updated_at ? "Atualizado " + ago(DATA.updated_at) : "";
   const box = $("#sources"); box.replaceChildren();
   for (const [k, v] of Object.entries(DATA.sources || {})) {
@@ -637,8 +642,9 @@ function renderFilters() {
     });
   });
   $("#fq").value = String(F.quartos);
-  $("#fp").value = F.precoMax || "";
-  $("#fp").step = F.business === "aluguel" ? 1000 : 50000;
+  $("#fb").checked = !!F.budget;
+  const c = DATA.criteria, cap = F.business === "aluguel" ? c.max_rent : c.max_sale;
+  $("#fbCap").textContent = cap ? "até " + brlc(cap) + (F.business === "aluguel" ? "/mês" : "") : "sem limite";
 }
 
 function kpiTile(label, value, foot, opts = {}) {
@@ -658,7 +664,7 @@ function renderKPIs() {
   const bins = Array(nDays).fill(0);
   for (const r of news) { const d = Math.floor((Date.now() - new Date(r.first_seen)) / DAY); if (d < nDays) bins[nDays - 1 - d]++; }
   // mediana R$/m² e variação no período
-  const med = median(act.map(r => r.ppm2));
+  const med = median(DATA.listings.filter(r => r.active && baseFilter(r, { ignoreBudget: true })).map(r => r.ppm2));
   const series = histSeries(F.business === "leilao" ? "venda" : F.business, "ppm2");
   let delta = null;
   const first = series.map(se => se.points[0]?.y).filter(Boolean), last = series.map(se => se.points.at(-1)?.y).filter(Boolean);
@@ -671,7 +677,7 @@ function renderKPIs() {
   $("#kpis").replaceChildren(
     kpiTile("Anúncios ativos", nf0.format(act.length), `${news.filter(r => r.active).length} novos · ${BUSINESS[F.business].toLowerCase()}`),
     kpiTile("Novos", nf0.format(news.length), per, { spark: sparkline(bins, "var(--s1)") }),
-    kpiTile(F.business === "leilao" ? "Mediana do lance" : "Mediana do R$/m²", med ? brlc(med) : "—", deltaEl, { unit: med ? unit : null }),
+    kpiTile(F.business === "leilao" ? "Mediana do lance" : "Mediana do R$/m² do mercado", med ? brlc(med) : "—", deltaEl, { unit: med ? unit : null }),
     kpiTile("Quedas de preço", nf0.format(drops.length), bigDrop != null ? h("span", { class: "delta good" }, "maior: ▼ " + pct(bigDrop, 1)) : per),
   );
 }
@@ -684,9 +690,9 @@ function legendFor(host, kind = "dot", extra = []) {
 function renderScatter() {
   const rows = DATA.listings.filter(r => r.active && baseFilter(r));
   $("#scTitle").textContent = F.business === "aluguel" ? "Aluguel total × área" : F.business === "leilao" ? "Lance × área" : "Preço × área";
-  $("#scHint").textContent = "Cada ponto é um anúncio ativo. Abaixo da linha do bairro = mais barato por m² que a mediana dele. Clique para abrir.";
+  $("#scHint").textContent = "Cada ponto é um anúncio ativo. Linhas: mediana de R$/m² do mercado de cada bairro — abaixo dela = mais barato. Clique para abrir.";
   legendFor($("#scLegend"), "dot", [h("span", {}, h("span", { class: "swring" }), "novo no período")]);
-  scatter($("#scatter"), rows);
+  scatter($("#scatter"), rows, DATA.listings.filter(r => r.active && baseFilter(r, { ignoreBudget: true })));
 }
 
 function renderFeed() {
@@ -847,7 +853,7 @@ function update() {
 
 // ---------- boot ----------
 $("#fq").onchange = e => { F.quartos = +e.target.value; PAGE = 0; update(); };
-let fpT; $("#fp").oninput = e => { clearTimeout(fpT); fpT = setTimeout(() => { F.precoMax = +e.target.value || null; PAGE = 0; update(); }, 300); };
+$("#fb").onchange = e => { F.budget = e.target.checked; PAGE = 0; update(); };
 $("#search").oninput = () => { PAGE = 0; renderTable(); };
 $("#showGone").onchange = () => { PAGE = 0; renderTable(); };
 $("#calcArea").oninput = renderBuyVsRent;

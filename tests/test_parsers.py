@@ -164,3 +164,38 @@ def test_plausibility(cfg):
     text = describe(Listing("quintoandar", "4", "u", "aluguel", neighborhood="Itaim Bibi", area=108,
                             total_monthly=13941, bedrooms=1, parking=1))[0]
     assert "Aluguel ?" not in text and "1 quarto ·" in text and "1 vaga" in text
+
+
+def test_budget_alerts(tmp_path, monkeypatch):
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_sale=2_250_000, max_rent=10_000)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def L(id_, business, price=None, total=None):
+        return Listing("zap", id_, f"https://z/{id_}", business, neighborhood="Itaim Bibi", area=120,
+                       price=price, total_monthly=total)
+
+    base = [L("1", "venda", 2_000_000)]
+    batches = iter([
+        {"zap": base},
+        {"zap": base + [L("2", "venda", 3_000_000), L("3", "aluguel", 7_000, 9_500), L("4", "aluguel", 9_000, 12_000)]},
+        {"zap": base + [L("2", "venda", 2_200_000), L("3", "aluguel", 7_000, 9_500), L("4", "aluguel", 9_000, 12_000)]},
+    ])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear()
+    app.run()  # 2 (R$ 3 mi) e 4 (R$ 12 mil/mês) estão acima do orçamento: só 3 avisa
+    assert len(sent) == 1 and [t for t, _ in sent[0][1]][0].endswith("https://z/3")
+    sent.clear()
+    app.run()  # 2 baixou para R$ 2,2 mi e entrou no orçamento
+    assert len(sent) == 1 and "entrou no seu orçamento" in sent[0][1][0][0]
+    rows = {r["id"]: r for r in json.loads((tmp_path / "dados.json").read_text())["listings"]}
+    assert rows["2"]["in_budget"] and not rows["4"]["in_budget"]
+    assert "https://z/4" not in (tmp_path / "ANUNCIOS.md").read_text()
