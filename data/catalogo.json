@@ -1,4 +1,20 @@
 {
+ "quintoandar:aluguel:892806113": {
+  "address": "",
+  "area": 167.0,
+  "bedrooms": 4,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "892806113",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": 16170.0,
+  "url": "https://www.quintoandar.com.br/imovel/892806113"
+ },
  "quintoandar:aluguel:893210967": {
   "address": "",
   "area": 226.0,
@@ -14,6 +30,22 @@
   "title": "Apartamento em Itaim Bibi",
   "total_monthly": 11777.0,
   "url": "https://www.quintoandar.com.br/imovel/893210967"
+ },
+ "quintoandar:aluguel:893878811": {
+  "address": "",
+  "area": 108.0,
+  "bedrooms": 1,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "893878811",
+  "neighborhood": "Itaim Bibi",
+  "parking": 1,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": 13941.0,
+  "url": "https://www.quintoandar.com.br/imovel/893878811"
  },
  "quintoandar:aluguel:894862192": {
   "address": "",
@@ -79,6 +111,22 @@
   "total_monthly": 23313.0,
   "url": "https://www.quintoandar.com.br/imovel/895532639"
  },
+ "quintoandar:aluguel:895540097": {
+  "address": "",
+  "area": 120.0,
+  "bedrooms": 3,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "895540097",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": 21169.0,
+  "url": "https://www.quintoandar.com.br/imovel/895540097"
+ },
  "quintoandar:aluguel:895599274": {
   "address": "",
   "area": 120.0,
@@ -94,6 +142,70 @@
   "title": "Apartamento em Itaim Bibi",
   "total_monthly": 10908.0,
   "url": "https://www.quintoandar.com.br/imovel/895599274"
+ },
+ "quintoandar:aluguel:895617547": {
+  "address": "",
+  "area": 150.0,
+  "bedrooms": 3,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "895617547",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": 30189.0,
+  "url": "https://www.quintoandar.com.br/imovel/895617547"
+ },
+ "quintoandar:aluguel:895633749": {
+  "address": "",
+  "area": 240.0,
+  "bedrooms": 3,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "895633749",
+  "neighborhood": "Itaim Bibi",
+  "parking": 3,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": 17127.0,
+  "url": "https://www.quintoandar.com.br/imovel/895633749"
+ },
+ "quintoandar:aluguel:895633752": {
+  "address": "",
+  "area": 125.0,
+  "bedrooms": 2,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "895633752",
+  "neighborhood": "Itaim Bibi",
+  "parking": 2,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": 29901.0,
+  "url": "https://www.quintoandar.com.br/imovel/895633752"
+ },
+ "quintoandar:aluguel:895668434": {
+  "address": "",
+  "area": 120.0,
+  "bedrooms": 2,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "895668434",
+  "neighborhood": "Itaim Bibi",
+  "parking": 1,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": 9959.0,
+  "url": "https://www.quintoandar.com.br/imovel/895668434"
  },
  "quintoandar:aluguel:895714221": {
   "address": "",
@@ -126,6 +238,22 @@
   "title": "Apartamento em Vila Nova Conceição",
   "total_monthly": 25788.0,
   "url": "https://www.quintoandar.com.br/imovel/895716924"
+ },
+ "quintoandar:aluguel:895734794": {
+  "address": "",
+  "area": 100.0,
+  "bedrooms": 1,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "895734794",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 1,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": 5071.0,
+  "url": "https://www.quintoandar.com.br/imovel/895734794"
  },
  "quintoandar:venda:893060793": {
   "address": "",
@@ -174,6 +302,22 @@
   "title": "Apartamento em Vila Nova Conceição",
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/894449882/comprar"
+ },
+ "quintoandar:venda:894486854": {
+  "address": "",
+  "area": 140.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "894486854",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": 4322012.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/894486854/comprar"
  },
  "quintoandar:venda:894615869": {
   "address": "",
@@ -239,6 +383,22 @@
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/894902180/comprar"
  },
+ "quintoandar:venda:894988010": {
+  "address": "",
+  "area": 209.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "894988010",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 3,
+  "price": 7505000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/894988010/comprar"
+ },
  "quintoandar:venda:895012052": {
   "address": "",
   "area": 170.0,
@@ -270,6 +430,22 @@
   "title": "Apartamento em Itaim Bibi",
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895105832/comprar"
+ },
+ "quintoandar:venda:895410869": {
+  "address": "",
+  "area": 649.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895410869",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 8,
+  "price": 30000000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895410869/comprar"
  },
  "quintoandar:venda:895464641": {
   "address": "",
@@ -319,6 +495,38 @@
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895501000/comprar"
  },
+ "quintoandar:venda:895518348": {
+  "address": "",
+  "area": 3000.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895518348",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 3,
+  "price": 5800000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895518348/comprar"
+ },
+ "quintoandar:venda:895545589": {
+  "address": "",
+  "area": 151.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895545589",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": 2500000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895545589/comprar"
+ },
  "quintoandar:venda:895566009": {
   "address": "",
   "area": 247.0,
@@ -350,6 +558,22 @@
   "title": "Apartamento em Vila Nova Conceição",
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895606386/comprar"
+ },
+ "quintoandar:venda:895615969": {
+  "address": "",
+  "area": 190.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895615969",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 3,
+  "price": 5700000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895615969/comprar"
  },
  "quintoandar:venda:895627507": {
   "address": "",
@@ -415,6 +639,22 @@
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895658230/comprar"
  },
+ "quintoandar:venda:895668859": {
+  "address": "",
+  "area": 358.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895668859",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 4,
+  "price": 13900000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895668859/comprar"
+ },
  "quintoandar:venda:895669952": {
   "address": "",
   "area": 128.0,
@@ -430,6 +670,22 @@
   "title": "Apartamento em Vila Nova Conceição",
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895669952/comprar"
+ },
+ "quintoandar:venda:895673134": {
+  "address": "",
+  "area": 116.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895673134",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": 2490000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895673134/comprar"
  },
  "quintoandar:venda:895686218": {
   "address": "",
