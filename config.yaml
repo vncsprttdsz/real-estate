@@ -17,7 +17,7 @@ negocios: [venda, aluguel]
 # mostrando o mercado inteiro para as medianas não ficarem distorcidas.
 # Aluguel: valor total mensal (aluguel + condomínio + IPTU quando disponível).
 preco_max_venda: 2250000
-preco_max_aluguel: 10000
+preco_max_aluguel: 13000
 
 # Sites monitorados (desligue algum colocando false)
 fontes:
