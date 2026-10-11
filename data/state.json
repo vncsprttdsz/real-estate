@@ -1,1 +1,384 @@
-{}
+{
+ "failures": {
+  "quintoandar": 0,
+  "vivareal": 1,
+  "zap": 1,
+  "zuk": 0
+ },
+ "initialized": [
+  "quintoandar",
+  "zuk"
+ ],
+ "last_errors": {
+  "vivareal": "_fetch_api(venda, Vila Nova Conceição): vivareal API HTTP 400; _fetch_html(venda, Vila Nova Conceição): vivareal página HTTP 404; _fetch_api(venda, Itaim Bibi): vivareal API HTTP 400; _fetch_html(venda, Itaim Bibi): vivareal página HTTP 404; _fetch_api(aluguel, Vila Nova Conceição): vivareal API HTTP 400; _fetch_html(aluguel, Vila Nova Conceição): vivareal página HTTP 404; _fetch_api(aluguel, Itaim Bibi): vivareal API HTTP 400; _fetch_html(aluguel, Itaim Bibi): vivareal página HTTP 404",
+  "zap": "_fetch_api(venda, Vila Nova Conceição): zap API HTTP 400; _fetch_html(venda, Vila Nova Conceição): zap página HTTP 404; _fetch_api(venda, Itaim Bibi): zap API HTTP 400; _fetch_html(venda, Itaim Bibi): zap página HTTP 404; _fetch_api(aluguel, Vila Nova Conceição): zap API HTTP 400; _fetch_html(aluguel, Vila Nova Conceição): zap página HTTP 404; _fetch_api(aluguel, Itaim Bibi): zap API HTTP 400; _fetch_html(aluguel, Itaim Bibi): zap página HTTP 404"
+ },
+ "last_ok": {
+  "quintoandar": "2026-10-11T08:54:55+00:00",
+  "zuk": "2026-10-11T08:54:55+00:00"
+ },
+ "last_run": "2026-10-11T08:54:55+00:00",
+ "seen": {
+  "quintoandar:aluguel:893210967": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     11777.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 11777.0
+  },
+  "quintoandar:aluguel:894862192": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     14419.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 14419.0
+  },
+  "quintoandar:aluguel:894969313": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     23327.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 23327.0
+  },
+  "quintoandar:aluguel:895291020": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     12444.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 12444.0
+  },
+  "quintoandar:aluguel:895532639": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     23313.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 23313.0
+  },
+  "quintoandar:aluguel:895599274": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     10908.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 10908.0
+  },
+  "quintoandar:aluguel:895714221": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     14291.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 14291.0
+  },
+  "quintoandar:aluguel:895716924": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     25788.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 25788.0
+  },
+  "quintoandar:venda:893060793": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     3098560.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 3098560.0
+  },
+  "quintoandar:venda:893786597": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     6400000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 6400000.0
+  },
+  "quintoandar:venda:894449882": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     16000000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 16000000.0
+  },
+  "quintoandar:venda:894615869": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     4500000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 4500000.0
+  },
+  "quintoandar:venda:894643940": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     6360000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 6360000.0
+  },
+  "quintoandar:venda:894901356": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     3350000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 3350000.0
+  },
+  "quintoandar:venda:894902180": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     6650000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 6650000.0
+  },
+  "quintoandar:venda:895012052": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     4500000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 4500000.0
+  },
+  "quintoandar:venda:895105832": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     12000000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 12000000.0
+  },
+  "quintoandar:venda:895464641": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     2400000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 2400000.0
+  },
+  "quintoandar:venda:895492748": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     6800000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 6800000.0
+  },
+  "quintoandar:venda:895501000": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     4310000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 4310000.0
+  },
+  "quintoandar:venda:895566009": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     4500000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 4500000.0
+  },
+  "quintoandar:venda:895606386": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     3099000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 3099000.0
+  },
+  "quintoandar:venda:895627507": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     1500000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 1500000.0
+  },
+  "quintoandar:venda:895634708": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     4900000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 4900000.0
+  },
+  "quintoandar:venda:895635219": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     1499000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 1499000.0
+  },
+  "quintoandar:venda:895658230": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     14500000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 14500000.0
+  },
+  "quintoandar:venda:895669952": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     2900000.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 2900000.0
+  },
+  "quintoandar:venda:895686218": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     7480600.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 7480600.0
+  },
+  "quintoandar:venda:895686916": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     7303100.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 7303100.0
+  },
+  "quintoandar:venda:895721564": {
+   "first_seen": "2026-10-11T08:54:55+00:00",
+   "hist": [
+    [
+     "2026-10-11T08:54:55+00:00",
+     7998600.0
+    ]
+   ],
+   "initial": true,
+   "last_seen": "2026-10-11T08:54:55+00:00",
+   "price": 7998600.0
+  }
+ },
+ "zuk_rejected": []
+}
