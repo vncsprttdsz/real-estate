@@ -24,8 +24,7 @@ SITES = {
 BUSINESS = {"venda": "SALE", "aluguel": "RENTAL"}
 SITE_PATH = {"venda": "venda", "aluguel": "aluguel"}
 APARTMENT_TYPES = {"APARTMENT", "PENTHOUSE", "FLAT", "DUPLEX", "TRIPLEX", "LOFT", "STUDIO"}
-PAGE_SIZE = 100
-MAX_RESULTS = 1000  # a API não pagina além disso
+MAX_RESULTS = 600  # por bairro e negócio; com filtro de área/tipo raramente passa disso
 
 
 def parse_listing(item: dict, source: str, business: str) -> Listing | None:
@@ -100,19 +99,22 @@ def parse_listing(item: dict, source: str, business: str) -> Listing | None:
 # então tentamos em ordem e guardamos o primeiro conjunto que funcionou.
 PARAM_LADDER = [
     ("full", {"listingType": "USED", "unitTypes": "APARTMENT", "usableAreasMin": True,
-              "addressZone": "Zona Sul", "addressLocationId": True, "size": 100}),
-    ("area+tipo", {"listingType": "USED", "unitTypes": "APARTMENT", "usableAreasMin": True, "size": 100}),
-    ("area", {"usableAreasMin": True, "size": 100}),
-    ("minimo", {"size": 50}),
+              "addressZone": "Zona Sul", "addressLocationId": True}),
+    ("area+tipo", {"listingType": "USED", "unitTypes": "APARTMENT", "usableAreasMin": True}),
+    ("area", {"usableAreasMin": True}),
+    ("minimo", {}),
 ]
 _working_rung: dict[str, int] = {}
+# A API limita o tamanho da página ("Size is above acceptable limit"); reduz até aceitar.
+PAGE_SIZES = [24, 15, 10, 5]
+_page_size: dict[str, int] = {}
 
 
 def _ascii(text: str) -> str:
     return "".join(c for c in unicodedata.normalize("NFKD", text) if not unicodedata.combining(c))
 
 
-def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung: int) -> dict:
+def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung: int, size: int) -> dict:
     params = {
         "business": BUSINESS[business],
         "categoryPage": "RESULT",
@@ -120,6 +122,7 @@ def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung
         "addressState": "São Paulo",
         "addressNeighborhood": neighborhood,
         "from": offset,
+        "size": size,
     }
     for k, v in PARAM_LADDER[rung][1].items():
         if k == "usableAreasMin":
@@ -134,17 +137,23 @@ def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung
 def _get_page(http: Http, source: str, params_for, headers) -> dict:
     site = SITES[source]
     last = None
-    for rung in range(_working_rung.get(source, 0), len(PARAM_LADDER)):
-        params = params_for(rung)
+    rung = _working_rung.get(source, 0)
+    size_i = PAGE_SIZES.index(_page_size.get(source, PAGE_SIZES[0]))
+    while rung < len(PARAM_LADDER):
+        params = params_for(rung, PAGE_SIZES[size_i])
         r = http.get(site["api"], params=params, headers=headers)
         dump_debug(f"{source}-{params['business']}-{slug(params['addressNeighborhood'])}-{params['from']}.json "
-                   f"[HTTP {r.status_code}] rung={PARAM_LADDER[rung][0]}", r.text)
+                   f"[HTTP {r.status_code}] rung={PARAM_LADDER[rung][0]} size={params['size']}", r.text)
         if r.status_code == 200:
-            _working_rung[source] = rung
+            _working_rung[source], _page_size[source] = rung, PAGE_SIZES[size_i]
             return r.json()
-        last = f"{source} API HTTP {r.status_code} ({PARAM_LADDER[rung][0]}): {r.text[:200]}"
+        last = f"{source} API HTTP {r.status_code} ({PARAM_LADDER[rung][0]}, size={params['size']}): {r.text[:200]}"
         if r.status_code != 400:
             break
+        if "size" in r.text.lower() and size_i + 1 < len(PAGE_SIZES):
+            size_i += 1          # página grande demais: tenta menor com os mesmos filtros
+        else:
+            rung += 1            # outro parâmetro recusado: simplifica a consulta
     raise RuntimeError(last)
 
 
@@ -158,7 +167,8 @@ def _fetch_api(http: Http, cfg: Config, source: str, business: str, neighborhood
     }
     items, offset = [], 0
     while offset < MAX_RESULTS:
-        data = _get_page(http, source, lambda rung: _api_params(cfg, business, neighborhood, offset, rung), headers)
+        data = _get_page(http, source,
+                         lambda rung, size: _api_params(cfg, business, neighborhood, offset, rung, size), headers)
         search = data.get("search") or {}
         page = (search.get("result") or {}).get("listings") or []
         items.extend(page)

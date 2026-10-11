@@ -30,13 +30,10 @@ TAG_RE = re.compile(r"<[^>]+>")
 
 
 def listing_pages(cfg: Config) -> list[str]:
-    city = slug(cfg.city)
+    """Listagem da capital (o site não filtra por bairro na URL); o bairro sai do link de cada imóvel."""
     st = cfg.state.lower()
-    pages = [f"{SITE}/leilao-de-imoveis/c/todos-imoveis/{st}/{city}"]
-    for nb in cfg.neighborhoods:
-        pages.append(f"{SITE}/leilao-de-imoveis/c/todos-imoveis/{st}/{city}/{slug(nb)}")
-        pages.append(f"{SITE}/leilao-de-imoveis/c/apartamento/{st}/{city}/{slug(nb)}")
-    return pages
+    base = f"{SITE}/leilao-de-imoveis/c/todos-imoveis/{st}/capital/{slug(cfg.city)}"
+    return [base] + [f"{base}?pagina={n}" for n in range(2, 8)]
 
 
 def extract_links(text: str, cfg: Config) -> dict[str, str]:
@@ -52,6 +49,10 @@ def extract_links(text: str, cfg: Config) -> dict[str, str]:
         lid = path.rsplit("/", 1)[-1]
         found[lid] = SITE + path
     return found
+
+
+def extract_all_links(text: str) -> set[str]:
+    return {m.group(1) for m in LINK_RE.finditer(text)}
 
 
 def page_text(html: str) -> str:
@@ -113,14 +114,21 @@ def _sitemaps(http: Http) -> list[str]:
 def fetch(http: Http, cfg: Config, known_ids: set[str], rejected: set[str]) -> list[Listing]:
     """`rejected` é atualizado com ids descartados (ex.: casas), para não reabrir sempre."""
     candidates: dict[str, str] = {}
+    seen_links: set[str] = set()
+    new_on_last_page = True
     ok_pages = 0
     errors = []
     for url in listing_pages(cfg):
         try:
+            if "pagina=" in url and not new_on_last_page:
+                break
             r = http.get(url)
             dump_debug(f"zuk-{slug(url[-60:])}.html [HTTP {r.status_code}] links={len(LINK_RE.findall(r.text))}", r.text)
             if r.status_code == 200:
                 ok_pages += 1
+                found = extract_all_links(r.text)
+                new_on_last_page = bool(found - seen_links)
+                seen_links |= found
                 candidates.update(extract_links(r.text, cfg))
             elif r.status_code != 404:
                 errors.append(f"{url}: HTTP {r.status_code}")

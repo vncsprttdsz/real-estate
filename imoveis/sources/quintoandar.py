@@ -12,16 +12,15 @@ SITE = "https://www.quintoandar.com.br"
 BUSINESS = {"aluguel": "RENT", "venda": "SALE"}
 SITE_PATH = {"aluguel": "alugar", "venda": "comprar"}
 APARTMENT_TYPES = {"apartamento", "cobertura", "flat", "kitnet", "studio", "apartment"}
-PAGE_SIZE = 60
+PAGE_SIZE = 36
 
 # Retângulo que cobre Itaim Bibi + Vila Nova Conceição (com folga).
 # O filtro fino por bairro é feito depois, pelo nome do bairro de cada anúncio.
 VIEWPORT = {"north": -23.565, "south": -23.605, "east": -46.655, "west": -46.700}
 
 FIELDS = [
-    "id", "coverImage", "rent", "totalCost", "salePrice", "iptuPlusCondominium",
-    "area", "imageList", "address", "regionName", "city", "type", "forRent",
-    "forSale", "bedrooms", "parkingSpots", "neighbourhood", "condoPrice", "iptu",
+    "id", "area", "rentPrice", "totalCost", "salePrice", "condoIptu", "address", "regionName",
+    "type", "forRent", "forSale", "bedrooms", "parkingSpaces", "neighbourhood",
 ]
 
 
@@ -38,7 +37,7 @@ def parse_house(h: dict, business: str) -> Listing | None:
         return None
 
     if business == "aluguel":
-        price = to_float(h.get("rent") or h.get("rentPrice"))
+        price = to_float(h.get("rentPrice") or h.get("rent"))
         total = to_float(h.get("totalCost"))
         fees = to_float(h.get("condoIptu") or h.get("iptuPlusCondominium"))
         if price is None and total and fees is not None and fees < total:
@@ -68,45 +67,24 @@ def parse_house(h: dict, business: str) -> Listing | None:
         total_monthly=total,
         condo=to_float(h.get("condoPrice") or h.get("condoIptu") or h.get("iptuPlusCondominium")),
         bedrooms=h.get("bedrooms"),
-        parking=h.get("parkingSpots"),
+        parking=h.get("parkingSpots") or h.get("parkingSpaces"),
     )
 
 
-def _body(cfg: Config, business: str, offset: int) -> dict:
+def _body(cfg: Config, business: str, offset: int, page_size: int) -> dict:
+    """Corpo enxuto: a API recusa ("Invalid parameter type") alguns filtros opcionais vazios."""
     lat = (VIEWPORT["north"] + VIEWPORT["south"]) / 2
     lng = (VIEWPORT["east"] + VIEWPORT["west"]) / 2
     return {
         "context": {"mapShowing": True, "listShowing": True, "numPhotos": 1, "isSSR": False},
         "filters": {
             "businessContext": BUSINESS[business],
-            "blocklist": [],
-            "selectedHouses": [],
-            "location": {
-                "coordinate": {"lat": lat, "lng": lng},
-                "viewport": VIEWPORT,
-                "neighborhoods": [],
-                "countryCode": "BR",
-            },
-            "priceRange": [],
-            "specialConditions": [],
-            "excludedSpecialConditions": [],
-            "houseSpecs": {
-                "area": {"range": {"min": int(cfg.min_area)}},
-                "houseTypes": ["APARTMENT", "PENTHOUSE", "FLAT"],
-                "amenities": [],
-                "installations": [],
-                "bathrooms": {"range": {}},
-                "bedrooms": {"range": {}},
-                "parkingSpace": {"range": {}},
-                "suites": {"range": {}},
-            },
-            "availability": "ANY",
-            "occupancy": "ANY",
-            "partnerIds": [],
-            "categories": [],
+            "location": {"coordinate": {"lat": lat, "lng": lng}, "viewport": VIEWPORT,
+                         "neighborhoods": [], "countryCode": "BR"},
+            "houseSpecs": {"area": {"range": {"min": int(cfg.min_area)}}, "houseTypes": ["APARTMENT"]},
         },
         "sorting": {"criteria": "MOST_RECENT", "order": "DESC"},
-        "pagination": {"pageSize": PAGE_SIZE, "offset": offset},
+        "pagination": {"pageSize": page_size, "offset": offset},
         "slug": "itaim-bibi-sao-paulo-sp-brasil",
         "fields": FIELDS,
     }
@@ -115,8 +93,8 @@ def _body(cfg: Config, business: str, offset: int) -> dict:
 def _fetch_api(http: Http, cfg: Config, business: str) -> list[dict]:
     headers = {"Origin": SITE, "Referer": SITE + "/", "Content-Type": "application/json"}
     houses, offset = [], 0
-    while offset < 1000:
-        r = http.post(API, json=_body(cfg, business, offset), headers=headers)
+    while offset < 1500:
+        r = http.post(API, json=_body(cfg, business, offset, PAGE_SIZE), headers=headers)
         dump_debug(f"quintoandar-{business}-{offset}.json [HTTP {r.status_code}]", r.text)
         if r.status_code != 200:
             raise RuntimeError(f"quintoandar API HTTP {r.status_code}")
@@ -139,7 +117,8 @@ def _fetch_html(http: Http, cfg: Config, business: str) -> list[dict]:
     """Plano B: páginas de busca por bairro, lendo o JSON do Next.js."""
     houses = []
     for nb in cfg.neighborhoods:
-        url = f"{SITE}/{SITE_PATH[business]}/imovel/{slug(nb)}-{slug(cfg.city)}-{cfg.state.lower()}-brasil/apartamento"
+        url = (f"{SITE}/{SITE_PATH[business]}/imovel/{slug(nb)}-{slug(cfg.city)}-{cfg.state.lower()}-brasil"
+               f"/apartamento/de-{int(cfg.min_area)}-a-1000-m2")
         r = http.get(url)
         dump_debug(f"quintoandar-{business}-{slug(nb)}.html", r.text)
         if r.status_code != 200:

@@ -259,3 +259,26 @@ def test_vivareal_dedup(monkeypatch, cfg):
     monkeypatch.setattr(zuk, "fetch", lambda *a, **k: [])
     results, errors = app.collect(cfg, {"seen": {}, "zuk_rejected": []})
     assert [l.id for l in results["vivareal"]] == ["2"]
+
+
+def test_grupozap_page_size_fallback(cfg):
+    """Mensagem real da API: 'Size is above acceptable limit' → reduz a página, mantém os filtros."""
+    grupozap._working_rung.clear(); grupozap._page_size.clear()
+    sizes = []
+
+    class R:
+        def __init__(self, code, body):
+            self.status_code, self._body, self.text = code, body, json.dumps(body)
+
+        def json(self):
+            return self._body
+
+    class FakeHttp:
+        def get(self, url, params=None, headers=None):
+            sizes.append((params["size"], "addressZone" in params))
+            if params["size"] > 15:
+                return R(400, {"err": "{ details: { message: 'Size is above acceptable limit' } }"})
+            return R(200, {"search": {"totalCount": 1, "result": {"listings": [ZAP_ITEM]}}})
+
+    assert len(grupozap._fetch_api(FakeHttp(), cfg, "zap", "venda", "Itaim Bibi")) == 1
+    assert sizes == [(24, True), (15, True)]
