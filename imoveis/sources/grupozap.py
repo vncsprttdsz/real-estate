@@ -24,7 +24,9 @@ SITES = {
 BUSINESS = {"venda": "SALE", "aluguel": "RENTAL"}
 SITE_PATH = {"venda": "venda", "aluguel": "aluguel"}
 APARTMENT_TYPES = {"APARTMENT", "PENTHOUSE", "FLAT", "DUPLEX", "TRIPLEX", "LOFT", "STUDIO"}
-MAX_RESULTS = 600  # por bairro e negócio; com filtro de área/tipo raramente passa disso
+# Janela lida por bairro e negócio (mais recentes primeiro). O Viva Real repete o estoque do ZAP,
+# então basta olhar as novidades dele.
+MAX_RESULTS = {"zap": 1200, "vivareal": 240}
 
 
 def parse_listing(item: dict, source: str, business: str) -> Listing | None:
@@ -108,13 +110,18 @@ _working_rung: dict[str, int] = {}
 # A API limita o tamanho da página ("Size is above acceptable limit"); reduz até aceitar.
 PAGE_SIZES = [24, 15, 10, 5]
 _page_size: dict[str, int] = {}
+# Mais recentes primeiro: a busca devolve milhares de resultados e só lemos uma janela,
+# então a ordem precisa ser estável para a janela conter sempre as novidades.
+SORTS = ["createdAt DESC", "updatedAt DESC", None]
+_sort: dict[str, int] = {}
 
 
 def _ascii(text: str) -> str:
     return "".join(c for c in unicodedata.normalize("NFKD", text) if not unicodedata.combining(c))
 
 
-def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung: int, size: int) -> dict:
+def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung: int, size: int,
+                sort: str | None = None) -> dict:
     params = {
         "business": BUSINESS[business],
         "categoryPage": "RESULT",
@@ -124,6 +131,8 @@ def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung
         "from": offset,
         "size": size,
     }
+    if sort:
+        params["sort"] = sort
     for k, v in PARAM_LADDER[rung][1].items():
         if k == "usableAreasMin":
             params[k] = int(cfg.min_area)
@@ -139,21 +148,25 @@ def _get_page(http: Http, source: str, params_for, headers) -> dict:
     last = None
     rung = _working_rung.get(source, 0)
     size_i = PAGE_SIZES.index(_page_size.get(source, PAGE_SIZES[0]))
+    sort_i = _sort.get(source, 0)
     while rung < len(PARAM_LADDER):
-        params = params_for(rung, PAGE_SIZES[size_i])
+        params = params_for(rung, PAGE_SIZES[size_i], SORTS[sort_i])
         r = http.get(site["api"], params=params, headers=headers)
         dump_debug(f"{source}-{params['business']}-{slug(params['addressNeighborhood'])}-{params['from']}.json "
-                   f"[HTTP {r.status_code}] rung={PARAM_LADDER[rung][0]} size={params['size']}", r.text)
+                   f"[HTTP {r.status_code}] rung={PARAM_LADDER[rung][0]} size={params['size']} "
+                   f"sort={params.get('sort')}", r.text)
         if r.status_code == 200:
-            _working_rung[source], _page_size[source] = rung, PAGE_SIZES[size_i]
+            _working_rung[source], _page_size[source], _sort[source] = rung, PAGE_SIZES[size_i], sort_i
             return r.json()
         last = f"{source} API HTTP {r.status_code} ({PARAM_LADDER[rung][0]}, size={params['size']}): {r.text[:200]}"
         if r.status_code != 400:
             break
         if "size" in r.text.lower() and size_i + 1 < len(PAGE_SIZES):
             size_i += 1          # página grande demais: tenta menor com os mesmos filtros
+        elif sort_i + 1 < len(SORTS):
+            sort_i += 1          # ordenação recusada: tenta a próxima (ou nenhuma)
         else:
-            rung += 1            # outro parâmetro recusado: simplifica a consulta
+            rung, sort_i = rung + 1, 0   # outro parâmetro recusado: simplifica a consulta
     raise RuntimeError(last)
 
 
@@ -166,9 +179,10 @@ def _fetch_api(http: Http, cfg: Config, source: str, business: str, neighborhood
         "Accept": "application/json",
     }
     items, offset = [], 0
-    while offset < MAX_RESULTS:
+    while offset < MAX_RESULTS.get(source, 600):
         data = _get_page(http, source,
-                         lambda rung, size: _api_params(cfg, business, neighborhood, offset, rung, size), headers)
+                         lambda rung, size, sort: _api_params(cfg, business, neighborhood, offset, rung, size, sort),
+                         headers)
         search = data.get("search") or {}
         page = (search.get("result") or {}).get("listings") or []
         items.extend(page)

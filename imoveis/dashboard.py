@@ -12,6 +12,9 @@ HISTORY = ROOT / "data" / "historico.json"    # um retrato agregado por dia
 OUTPUT = ROOT / "docs" / "dados.json"
 KEEP_HISTORY_DAYS = 730
 GONE_AFTER_SECONDS = 24 * 3600
+# ZAP/Viva Real: só lemos as novidades de uma busca com milhares de resultados, então
+# ausência não prova que saiu do ar; espera mais antes de marcar.
+GONE_AFTER_BY_SOURCE = {"zap": 7 * 86400, "vivareal": 7 * 86400}
 
 
 def _ts(iso: str) -> float:
@@ -62,7 +65,8 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
         s = state["seen"][key]
         # Ausente numa coleta isolada não significa que saiu do ar: tolera 24 h.
         ok = last_ok.get(d["source"])
-        active = bool(ok) and _ts(ok) - _ts(s["last_seen"]) <= GONE_AFTER_SECONDS
+        limit = GONE_AFTER_BY_SOURCE.get(d["source"], GONE_AFTER_SECONDS)
+        active = bool(ok) and _ts(ok) - _ts(s["last_seen"]) <= limit
         rows.append({
             **d,
             "key": key,

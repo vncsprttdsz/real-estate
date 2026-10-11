@@ -210,7 +210,7 @@ def test_quintoandar_rent_from_total():
 
 def test_grupozap_param_ladder(cfg, monkeypatch):
     """Se a API recusar os parâmetros (400), recua para um conjunto mais simples e lembra dele."""
-    grupozap._working_rung.clear()
+    grupozap._working_rung.clear(); grupozap._page_size.clear(); grupozap._sort.clear()
     calls = []
 
     class R:
@@ -229,8 +229,10 @@ def test_grupozap_param_ladder(cfg, monkeypatch):
             return R(200, {"search": {"totalCount": 1, "result": {"listings": [ZAP_ITEM]}}})
 
     items = grupozap._fetch_api(FakeHttp(), cfg, "zap", "venda", "Itaim Bibi")
-    assert len(items) == 1 and "addressZone" in calls[0] and "addressZone" not in calls[1]
-    assert calls[1]["usableAreasMin"] == 100 and calls[1]["unitTypes"] == "APARTMENT"
+    # tenta as ordenações com todos os filtros, depois simplifica voltando à ordenação preferida
+    assert [("addressZone" in c, c.get("sort")) for c in calls] == [
+        (True, "createdAt DESC"), (True, "updatedAt DESC"), (True, None), (False, "createdAt DESC")]
+    assert len(items) == 1 and calls[3]["usableAreasMin"] == 100 and calls[3]["unitTypes"] == "APARTMENT"
     calls.clear()
     grupozap._fetch_api(FakeHttp(), cfg, "zap", "aluguel", "Itaim Bibi")
     assert len(calls) == 1  # já começa pelo conjunto que funcionou
@@ -263,7 +265,7 @@ def test_vivareal_dedup(monkeypatch, cfg):
 
 def test_grupozap_page_size_fallback(cfg):
     """Mensagem real da API: 'Size is above acceptable limit' → reduz a página, mantém os filtros."""
-    grupozap._working_rung.clear(); grupozap._page_size.clear()
+    grupozap._working_rung.clear(); grupozap._page_size.clear(); grupozap._sort.clear()
     sizes = []
 
     class R:
