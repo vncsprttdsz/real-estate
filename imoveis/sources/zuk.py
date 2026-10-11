@@ -29,11 +29,13 @@ DATE_RE = re.compile(r"(\d{2}/\d{2}/\d{4})(?:\s*(?:às|-)?\s*(\d{1,2}[:h]\d{2}))
 TAG_RE = re.compile(r"<[^>]+>")
 
 
-def listing_pages(cfg: Config) -> list[str]:
+PAGE_PARAMS = ["page", "pagina", "p", "pg"]
+MAX_PAGES = 15
+
+
+def capital_url(cfg: Config) -> str:
     """Listagem da capital (o site não filtra por bairro na URL); o bairro sai do link de cada imóvel."""
-    st = cfg.state.lower()
-    base = f"{SITE}/leilao-de-imoveis/c/todos-imoveis/{st}/capital/{slug(cfg.city)}"
-    return [base] + [f"{base}?pagina={n}" for n in range(2, 8)]
+    return f"{SITE}/leilao-de-imoveis/c/todos-imoveis/{cfg.state.lower()}/capital/{slug(cfg.city)}"
 
 
 def extract_links(text: str, cfg: Config) -> dict[str, str]:
@@ -114,26 +116,39 @@ def _sitemaps(http: Http) -> list[str]:
 def fetch(http: Http, cfg: Config, known_ids: set[str], rejected: set[str]) -> list[Listing]:
     """`rejected` é atualizado com ids descartados (ex.: casas), para não reabrir sempre."""
     candidates: dict[str, str] = {}
-    seen_links: set[str] = set()
-    new_on_last_page = True
     ok_pages = 0
     errors = []
-    for url in listing_pages(cfg):
-        try:
-            if "pagina=" in url and not new_on_last_page:
+    base = capital_url(cfg)
+
+    def load(url):
+        nonlocal ok_pages
+        r = http.get(url)
+        found = extract_all_links(r.text) if r.status_code == 200 else set()
+        dump_debug(f"zuk-lista-{slug(url[-40:])}.html [HTTP {r.status_code}] links={len(found)}", r.text)
+        if r.status_code == 200:
+            ok_pages += 1
+            candidates.update(extract_links(r.text, cfg))
+        elif r.status_code != 404:
+            errors.append(f"{url}: HTTP {r.status_code}")
+        return found
+
+    try:
+        seen = load(base)
+        # Descobre qual parâmetro de página o site aceita (o primeiro que trouxer links novos).
+        param = None
+        for name in PAGE_PARAMS:
+            found = load(f"{base}?{name}=2")
+            if found - seen:
+                param, seen = name, seen | found
                 break
-            r = http.get(url)
-            dump_debug(f"zuk-{slug(url[-60:])}.html [HTTP {r.status_code}] links={len(LINK_RE.findall(r.text))}", r.text)
-            if r.status_code == 200:
-                ok_pages += 1
-                found = extract_all_links(r.text)
-                new_on_last_page = bool(found - seen_links)
-                seen_links |= found
-                candidates.update(extract_links(r.text, cfg))
-            elif r.status_code != 404:
-                errors.append(f"{url}: HTTP {r.status_code}")
-        except Exception as e:
-            errors.append(f"{url}: {e}")
+        if param:
+            for n in range(3, MAX_PAGES + 1):
+                found = load(f"{base}?{param}={n}")
+                if not found - seen:
+                    break
+                seen |= found
+    except Exception as e:
+        errors.append(f"{base}: {e}")
 
     # Sitemap (inclusive índices de sitemap), limitado para não demorar demais.
     queue, seen_maps = _sitemaps(http), set()
@@ -144,6 +159,7 @@ def fetch(http: Http, cfg: Config, known_ids: set[str], rejected: set[str]) -> l
         seen_maps.add(sm)
         try:
             r = http.get(sm, retries=1)
+            dump_debug(f"zuk-sitemap-{slug(sm[-40:])}.xml [HTTP {r.status_code}] links={len(LINK_RE.findall(r.text))}", r.text)
             if r.status_code != 200:
                 continue
             ok_pages += 1

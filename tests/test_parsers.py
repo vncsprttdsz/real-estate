@@ -282,3 +282,47 @@ def test_grupozap_page_size_fallback(cfg):
 
     assert len(grupozap._fetch_api(FakeHttp(), cfg, "zap", "venda", "Itaim Bibi")) == 1
     assert sizes == [(24, True), (15, True)]
+
+
+class _R:
+    def __init__(self, code, text):
+        self.status_code, self.text = code, text
+
+    def json(self):
+        return json.loads(self.text)
+
+
+def test_quintoandar_keeps_partial_on_pagination_limit(cfg):
+    """Mensagem real: 'Pagination exceeds the maximum limit' — mantém o que já veio."""
+    class FakeHttp:
+        def post(self, url, json=None, headers=None):
+            off = json["pagination"]["offset"]
+            if off >= 72:
+                return _R(400, '{"code":400,"message":"Validation failed: [searchCriteria.pagination: '
+                               'Pagination exceeds the maximum limit]"}')
+            hits = [{"_source": {"id": off + i, "area": 120}} for i in range(36)]
+            return _R(200, __import__("json").dumps({"hits": {"hits": hits, "total": {"value": 5000}}}))
+
+    houses = quintoandar._fetch_api(FakeHttp(), cfg, "venda")
+    assert len(houses) == 72 * len(cfg.neighborhoods)
+
+
+def test_zuk_discovers_page_param(cfg):
+    page1 = '<a href="/imovel/sp/sao-paulo/moema/rua-a-1/1-1">x</a>'
+    page2 = '<a href="/imovel/sp/sao-paulo/itaim-bibi/rua-b-2/2-2">y</a>'
+    detail = '<meta property="og:title" content="Apartamento 120 m²"><p>Área útil: 120 m²</p>'
+
+    class FakeHttp:
+        def get(self, url, **kw):
+            if "/imovel/" in url:
+                return _R(200, detail)
+            if "robots" in url or "sitemap" in url:
+                return _R(404, "")
+            if url.endswith("?pagina=2"):
+                return _R(200, page2)
+            if "?pagina=3" in url:
+                return _R(200, page2)  # nada novo: para
+            return _R(200, page1)      # base e parâmetros ignorados
+
+    found = zuk.fetch(FakeHttp(), cfg, set(), set())
+    assert [l.id for l in found] == ["2-2"] and found[0].neighborhood == "Itaim Bibi"
