@@ -239,6 +239,22 @@
   "total_monthly": 25788.0,
   "url": "https://www.quintoandar.com.br/imovel/895716924"
  },
+ "quintoandar:aluguel:895731350": {
+  "address": "",
+  "area": 135.0,
+  "bedrooms": 3,
+  "business": "aluguel",
+  "condo": null,
+  "extra": "",
+  "id": "895731350",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": null,
+  "source": "quintoandar",
+  "title": "Apartamento em Vila Nova Conceição",
+  "total_monthly": 22936.0,
+  "url": "https://www.quintoandar.com.br/imovel/895731350"
+ },
  "quintoandar:aluguel:895734794": {
   "address": "",
   "area": 100.0,
@@ -286,6 +302,22 @@
   "title": "Apartamento em Vila Nova Conceição",
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/893786597/comprar"
+ },
+ "quintoandar:venda:893959864": {
+  "address": "",
+  "area": 105.0,
+  "bedrooms": 2,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "893959864",
+  "neighborhood": "Itaim Bibi",
+  "parking": 1,
+  "price": 1150000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/893959864/comprar"
  },
  "quintoandar:venda:894449882": {
   "address": "",
@@ -350,6 +382,38 @@
   "title": "Apartamento em Vila Nova Conceição",
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/894643940/comprar"
+ },
+ "quintoandar:venda:894796347": {
+  "address": "",
+  "area": 147.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "894796347",
+  "neighborhood": "Itaim Bibi",
+  "parking": 1,
+  "price": 2272000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/894796347/comprar"
+ },
+ "quintoandar:venda:894847232": {
+  "address": "",
+  "area": 225.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "894847232",
+  "neighborhood": "Itaim Bibi",
+  "parking": 1,
+  "price": 3250000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/894847232/comprar"
  },
  "quintoandar:venda:894901356": {
   "address": "",
@@ -431,6 +495,22 @@
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895105832/comprar"
  },
+ "quintoandar:venda:895271813": {
+  "address": "",
+  "area": 186.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895271813",
+  "neighborhood": "Itaim Bibi",
+  "parking": 2,
+  "price": 3699000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895271813/comprar"
+ },
  "quintoandar:venda:895410869": {
   "address": "",
   "area": 649.0,
@@ -495,6 +575,22 @@
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895501000/comprar"
  },
+ "quintoandar:venda:895518145": {
+  "address": "",
+  "area": 125.0,
+  "bedrooms": 2,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895518145",
+  "neighborhood": "Itaim Bibi",
+  "parking": 1,
+  "price": 1650000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895518145/comprar"
+ },
  "quintoandar:venda:895518348": {
   "address": "",
   "area": 3000.0,
@@ -510,6 +606,22 @@
   "title": "Apartamento em Vila Nova Conceição",
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895518348/comprar"
+ },
+ "quintoandar:venda:895543177": {
+  "address": "",
+  "area": 120.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895543177",
+  "neighborhood": "Itaim Bibi",
+  "parking": 1,
+  "price": 2250000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895543177/comprar"
  },
  "quintoandar:venda:895545589": {
   "address": "",
@@ -734,5 +846,21 @@
   "title": "Apartamento em Itaim Bibi",
   "total_monthly": null,
   "url": "https://www.quintoandar.com.br/imovel/895721564/comprar"
+ },
+ "quintoandar:venda:895724307": {
+  "address": "",
+  "area": 162.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "id": "895724307",
+  "neighborhood": "Itaim Bibi",
+  "parking": 3,
+  "price": 3500000.0,
+  "source": "quintoandar",
+  "title": "Apartamento em Itaim Bibi",
+  "total_monthly": null,
+  "url": "https://www.quintoandar.com.br/imovel/895724307/comprar"
  }
 }
