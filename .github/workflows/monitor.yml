@@ -59,10 +59,11 @@ jobs:
           git config user.email "monitor-imoveis@users.noreply.github.com"
           git add data/ docs/ ANUNCIOS.md
           git diff --cached --quiet || git commit -m "Atualiza anúncios $(date -u +'%Y-%m-%d %H:%M')"
+          git pull --rebase -X theirs origin "$GITHUB_REF_NAME" || true
           git push
 
       - name: Respostas brutas (debug)
-        if: ${{ inputs.debug }}
+        if: ${{ always() && inputs.debug }}
         uses: actions/upload-artifact@v4
         with:
           name: debug

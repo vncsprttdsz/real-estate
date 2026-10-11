@@ -131,7 +131,7 @@ def _fetch_api(http: Http, cfg: Config, source: str, business: str, neighborhood
     items, offset = [], 0
     while offset < MAX_RESULTS:
         r = http.get(site["api"], params=_api_params(cfg, business, neighborhood, offset), headers=headers)
-        dump_debug(f"{source}-{business}-{slug(neighborhood)}-{offset}.json", r.text)
+        dump_debug(f"{source}-{business}-{slug(neighborhood)}-{offset}.json [HTTP {r.status_code}] {r.url}", r.text)
         if r.status_code != 200:
             raise RuntimeError(f"{source} API HTTP {r.status_code}")
         data = r.json()
@@ -153,7 +153,7 @@ def _fetch_html(http: Http, cfg: Config, source: str, business: str, neighborhoo
         f"{cfg.state.lower()}+{slug(cfg.city)}++{slug(neighborhood)}/"
     )
     r = http.get(url, params={"areaMinima": int(cfg.min_area)})
-    dump_debug(f"{source}-{business}-{slug(neighborhood)}.html", r.text)
+    dump_debug(f"{source}-{business}-{slug(neighborhood)}.html [HTTP {r.status_code}] {r.url}", r.text)
     if r.status_code != 200:
         raise RuntimeError(f"{source} página HTTP {r.status_code}")
     data = next_data(r.text)

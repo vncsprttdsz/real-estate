@@ -151,3 +151,16 @@ def test_whatsapp_callmebot(monkeypatch):
     calls.clear()
     n.send("muitos", [notify.describe(l)] * 200)
     assert len(calls) == 6 and "mais" in calls[-1]["text"]
+
+
+def test_plausibility(cfg):
+    typo = Listing("quintoandar", "1", "u", "venda", neighborhood="Itaim Bibi", area=3000, price=5_800_000)
+    assert not cfg.matches(typo)
+    cheap = Listing("quintoandar", "2", "u", "venda", neighborhood="Itaim Bibi", area=150, price=150_000)
+    assert not cfg.matches(cheap)
+    ok = Listing("quintoandar", "3", "u", "aluguel", neighborhood="Itaim Bibi", area=120, price=None, total_monthly=9959)
+    assert cfg.matches(ok)
+    from imoveis.notify import describe
+    text = describe(Listing("quintoandar", "4", "u", "aluguel", neighborhood="Itaim Bibi", area=108,
+                            total_monthly=13941, bedrooms=1, parking=1))[0]
+    assert "Aluguel ?" not in text and "1 quarto ·" in text and "1 vaga" in text

@@ -11,6 +11,11 @@ CATALOG = ROOT / "data" / "catalogo.json"     # último retrato conhecido de cad
 HISTORY = ROOT / "data" / "historico.json"    # um retrato agregado por dia
 OUTPUT = ROOT / "docs" / "dados.json"
 KEEP_HISTORY_DAYS = 730
+GONE_AFTER_SECONDS = 24 * 3600
+
+
+def _ts(iso: str) -> float:
+    return datetime.fromisoformat(iso).timestamp()
 
 
 def _load(path, default):
@@ -55,7 +60,9 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
     rows = []
     for key, d in catalog.items():
         s = state["seen"][key]
-        active = s["last_seen"] == last_ok.get(d["source"])
+        # Ausente numa coleta isolada não significa que saiu do ar: tolera 24 h.
+        ok = last_ok.get(d["source"])
+        active = bool(ok) and _ts(ok) - _ts(s["last_seen"]) <= GONE_AFTER_SECONDS
         rows.append({
             **d,
             "key": key,

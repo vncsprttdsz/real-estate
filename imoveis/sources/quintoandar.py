@@ -1,6 +1,9 @@
 """QuintoAndar (aluguel e venda)."""
 from __future__ import annotations
 
+import os
+import sys
+
 from ..common import Config, Listing, dump_debug, iter_dicts, next_data, norm, slug, to_float
 from ..http import Http
 
@@ -111,7 +114,7 @@ def _fetch_api(http: Http, cfg: Config, business: str) -> list[dict]:
     houses, offset = [], 0
     while offset < 1000:
         r = http.post(API, json=_body(cfg, business, offset), headers=headers)
-        dump_debug(f"quintoandar-{business}-{offset}.json", r.text)
+        dump_debug(f"quintoandar-{business}-{offset}.json [HTTP {r.status_code}]", r.text)
         if r.status_code != 200:
             raise RuntimeError(f"quintoandar API HTTP {r.status_code}")
         data = r.json()
@@ -120,6 +123,9 @@ def _fetch_api(http: Http, cfg: Config, business: str) -> list[dict]:
         houses.extend(page)
         total = (data.get("hits") or {}).get("total") or {}
         total = total.get("value", 0) if isinstance(total, dict) else total
+        if os.environ.get("DEBUG"):
+            print(f"[debug] quintoandar {business} offset={offset} page={len(page)} total={total} "
+                  f"keys={list(data)[:8]}", file=sys.stderr)
         offset += PAGE_SIZE
         if not page or offset >= (total or 0):
             break

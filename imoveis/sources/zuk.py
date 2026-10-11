@@ -118,7 +118,7 @@ def fetch(http: Http, cfg: Config, known_ids: set[str], rejected: set[str]) -> l
     for url in listing_pages(cfg):
         try:
             r = http.get(url)
-            dump_debug(f"zuk-{slug(url[-60:])}.html", r.text)
+            dump_debug(f"zuk-{slug(url[-60:])}.html [HTTP {r.status_code}] links={len(LINK_RE.findall(r.text))}", r.text)
             if r.status_code == 200:
                 ok_pages += 1
                 candidates.update(extract_links(r.text, cfg))

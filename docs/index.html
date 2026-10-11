@@ -115,7 +115,6 @@ input[type="number"] { width: 130px; }
   #tbl td.c-first_seen { order: 4; text-align: right; color: var(--muted); } #tbl td.c-first_seen::before { content: "no ar: "; }
   #tbl td.c-price { order: 5; font-weight: 600; text-align: left; } #tbl td.c-vs { order: 6; text-align: right; }
 }
-}
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); min-width: 0; }
 .card h2 { font-size: 15px; margin: 0; font-weight: 620; }
 .card .hint { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
@@ -603,7 +602,7 @@ function listingTip(r) {
   const vs = vsMedian(r), drop = lastDrop(r);
   return h("div", {},
     h("div", { class: "tv" }, brl(refPrice(r)), r.business === "aluguel" ? h("span", { class: "tl", style: "font-weight:400" }, " /mês total") : null),
-    h("div", { class: "tl" }, [r.area && nf0.format(r.area) + " m²", r.bedrooms && r.bedrooms + " quartos", r.parking && r.parking + " vagas"].filter(Boolean).join(" · ")),
+    h("div", { class: "tl" }, [r.area && nf0.format(r.area) + " m²", r.bedrooms && r.bedrooms + (r.bedrooms > 1 ? " quartos" : " quarto"), r.parking && r.parking + (r.parking > 1 ? " vagas" : " vaga")].filter(Boolean).join(" · ")),
     h("div", { class: "tl" }, (r.ppm2 ? brl(r.ppm2) + "/m²" : "") + (vs != null ? " · " + pct(vs) + " vs. mediana" : "")),
     h("div", { class: "row", style: "margin-top:6px" }, h("span", {}, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:6px;vertical-align:-1px` }), r.neighborhood), h("span", { class: "tl" }, SOURCE[r.source] || r.source)),
     r.address ? h("div", { class: "tl" }, r.address) : null,

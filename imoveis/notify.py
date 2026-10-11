@@ -35,12 +35,13 @@ def describe(l: Listing, note: str = "") -> tuple[str, str]:
     if l.area:
         line2.append(f"{l.area:.0f} m²")
     if l.bedrooms:
-        line2.append(f"{l.bedrooms} quartos")
+        line2.append(f"{l.bedrooms} quarto{'s' if l.bedrooms > 1 else ''}")
     if l.parking:
-        line2.append(f"{l.parking} vagas")
+        line2.append(f"{l.parking} vaga{'s' if l.parking > 1 else ''}")
     price_parts = []
     if l.business == "aluguel":
-        price_parts.append(f"Aluguel {brl(l.price)}")
+        if l.price:
+            price_parts.append(f"Aluguel {brl(l.price)}")
         if l.total_monthly:
             price_parts.append(f"total {brl(l.total_monthly)}/mês")
     elif l.business == "leilao":

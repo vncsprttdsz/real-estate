@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 import unicodedata
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
@@ -113,6 +114,19 @@ class Config:
             price_drop_pct=float(raw.get("alerta_queda_preco_pct") or 0),
         )
 
+    @staticmethod
+    def plausible(l: Listing) -> bool:
+        """Descarta anúncios com área ou R$/m² impossíveis (erros de digitação do anunciante)."""
+        if l.area is not None and l.area > 1500:
+            return False
+        if l.area and l.price:
+            ppm2 = l.price / l.area
+            if l.business == "venda" and not 4_000 <= ppm2 <= 150_000:
+                return False
+            if l.business == "aluguel" and not 15 <= ppm2 <= 1_000:
+                return False
+        return True
+
     def matches(self, l: Listing) -> bool:
         """Filtro final aplicado a todas as fontes (as APIs nem sempre respeitam os filtros)."""
         if norm(l.neighborhood) not in self.neighborhoods_norm:
@@ -121,6 +135,8 @@ class Config:
         if l.area is not None and l.area < self.min_area:
             return False
         if l.area is None and l.business != "leilao":
+            return False
+        if not self.plausible(l):
             return False
         if l.business == "venda" and self.max_sale and l.price and l.price > self.max_sale:
             return False
@@ -134,8 +150,12 @@ def dump_debug(name: str, content: str | bytes) -> None:
     if not os.environ.get("DEBUG"):
         return
     DEBUG_DIR.mkdir(exist_ok=True)
+    text = content.decode("utf-8", "replace") if isinstance(content, bytes) else content
+    head = re.sub(r"\s+", " ", text[:600])
+    print(f"[debug] {name} ({len(text)} chars): {head}", file=sys.stderr)
     mode = "wb" if isinstance(content, bytes) else "w"
-    with open(DEBUG_DIR / name, mode) as f:
+    fname = re.sub(r"[^\w.-]+", "_", name.split(" ")[0])
+    with open(DEBUG_DIR / fname, mode) as f:
         f.write(content)
 
 
