@@ -1,0 +1,29 @@
+# Critérios de busca — edite aqui e faça commit; o próximo ciclo já usa os novos valores.
+bairros:
+  - Vila Nova Conceição
+  - Itaim Bibi
+cidade: São Paulo
+estado: SP
+
+area_minima_m2: 100
+
+# Tipos aceitos (apartamento inclui cobertura, duplex, flat etc.)
+tipos: [apartamento]
+
+# Comprar e/ou alugar
+negocios: [venda, aluguel]
+
+# Limites opcionais de preço (deixe null para sem limite).
+# Aluguel: valor total mensal (aluguel + condomínio + IPTU quando disponível).
+preco_max_venda: null
+preco_max_aluguel: null
+
+# Sites monitorados (desligue algum colocando false)
+fontes:
+  zap: true
+  vivareal: true
+  quintoandar: true
+  zuk: true
+
+# Avisar também quando o preço de um anúncio já visto cair pelo menos X%
+alerta_queda_preco_pct: 3

@@ -1,0 +1,67 @@
+name: Monitor de imóveis
+
+on:
+  schedule:
+    # A cada 2 horas, das 7h às 23h de Brasília (UTC-3). Minuto 17 evita a fila do minuto 0.
+    - cron: "17 10-23/2,0,2 * * *"
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: "Salvar respostas brutas dos sites (para diagnóstico)"
+        type: boolean
+        default: false
+      test_notify:
+        description: "Só enviar uma mensagem de teste"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      EMAIL_TO: ${{ secrets.EMAIL_TO }}
+      DEBUG: ${{ inputs.debug && '1' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Teste de notificação
+        if: ${{ inputs.test_notify }}
+        run: python -m imoveis --test-notify
+
+      - name: Verificar anúncios
+        if: ${{ !inputs.test_notify }}
+        run: python -m imoveis
+
+      - name: Salvar estado
+        if: ${{ !inputs.test_notify }}
+        run: |
+          git config user.name "monitor-imoveis[bot]"
+          git config user.email "monitor-imoveis@users.noreply.github.com"
+          git add data/ ANUNCIOS.md
+          git diff --cached --quiet || git commit -m "Atualiza anúncios $(date -u +'%Y-%m-%d %H:%M')"
+          git push
+
+      - name: Respostas brutas (debug)
+        if: ${{ inputs.debug }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug
+          path: debug/
