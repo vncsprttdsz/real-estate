@@ -3,6 +3,8 @@
 - Telegram: TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID
 - E-mail:   SMTP_USER, SMTP_PASSWORD, EMAIL_TO (opcional SMTP_HOST, SMTP_PORT; padrão Gmail)
 - ntfy.sh:  NTFY_TOPIC (app gratuito de push no celular, sem cadastro)
+- WhatsApp: CALLMEBOT_PHONE e CALLMEBOT_APIKEY (via callmebot.com). Para vários números,
+            separe por vírgula nas duas variáveis, na mesma ordem.
 """
 from __future__ import annotations
 
@@ -69,6 +71,9 @@ class Notifier:
         self.tg_token = os.environ.get("TELEGRAM_BOT_TOKEN")
         self.tg_chat = os.environ.get("TELEGRAM_CHAT_ID")
         self.ntfy = os.environ.get("NTFY_TOPIC")
+        phones = [p.strip() for p in os.environ.get("CALLMEBOT_PHONE", "").split(",") if p.strip()]
+        keys = [k.strip() for k in os.environ.get("CALLMEBOT_APIKEY", "").split(",") if k.strip()]
+        self.whatsapp = list(zip(phones, keys))
         self.smtp_user = os.environ.get("SMTP_USER")
         self.smtp_pass = os.environ.get("SMTP_PASSWORD")
         self.email_to = os.environ.get("EMAIL_TO")
@@ -77,7 +82,10 @@ class Notifier:
 
     @property
     def configured(self) -> bool:
-        return bool((self.tg_token and self.tg_chat) or self.ntfy or (self.smtp_user and self.email_to))
+        return bool(
+            (self.tg_token and self.tg_chat) or self.ntfy or self.whatsapp
+            or (self.smtp_user and self.email_to)
+        )
 
     def send(self, subject: str, items: list[tuple[str, str]], footer: str = "") -> None:
         """items: lista de (texto, html) — cada um vira uma mensagem/bloco."""
@@ -87,6 +95,8 @@ class Notifier:
             for t, _ in items:
                 print("---\n" + t)
             return
+        if self.whatsapp:
+            self._whatsapp(subject, items, footer)
         if self.tg_token and self.tg_chat:
             self._telegram(subject, items, footer)
         if self.ntfy:
@@ -112,6 +122,37 @@ class Notifier:
             })
             if r.status_code != 200:
                 print(f"[erro] Telegram: {r.status_code} {r.text[:300]}", file=sys.stderr)
+
+    def _whatsapp(self, subject, items, footer):
+        """CallMeBot: GET simples; limita o tamanho e espaça as mensagens para não ser bloqueado."""
+        msgs, cur, sent = [], f"*{subject}*", 0
+        for text, _ in items:
+            if len(cur) + len(text) > 1500:
+                if len(msgs) == 4:  # evita enxurrada: até 5 mensagens + 1 aviso
+                    msgs.append(cur)
+                    cur = None
+                    break
+                msgs.append(cur)
+                cur = ""
+            cur += "\n\n" + text
+            sent += 1
+        if cur is None:
+            msgs.append(f"... e mais {len(items) - sent} anúncio(s). "
+                        "Veja a lista completa em ANUNCIOS.md no repositório.")
+        else:
+            if footer:
+                cur += "\n\n" + footer
+            msgs.append(cur.strip())
+        http = Http(3, 5)
+        for phone, key in self.whatsapp:
+            for m in msgs:
+                try:
+                    r = http.get("https://api.callmebot.com/whatsapp.php",
+                                 params={"phone": phone, "text": m, "apikey": key}, retries=2)
+                    if r.status_code != 200 or "error" in r.text.lower()[:500]:
+                        print(f"[erro] WhatsApp/CallMeBot: {r.status_code} {r.text[:300]}", file=sys.stderr)
+                except Exception as e:
+                    print(f"[erro] WhatsApp/CallMeBot: {e}", file=sys.stderr)
 
     def _ntfy(self, subject, items, footer):
         server = os.environ.get("NTFY_SERVER", "https://ntfy.sh")

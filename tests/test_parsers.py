@@ -115,3 +115,29 @@ def test_full_cycle(tmp_path, monkeypatch, cfg):
     app.run()  # a caiu de preço 6,7%
     assert "baixaram" in sent[2][0]
     assert "Itaim Bibi" in (tmp_path / "ANUNCIOS.md").read_text()
+
+
+def test_whatsapp_callmebot(monkeypatch):
+    from imoveis import notify
+    monkeypatch.setenv("CALLMEBOT_PHONE", "+5511999998888")
+    monkeypatch.setenv("CALLMEBOT_APIKEY", "123456")
+    for var in ("TELEGRAM_BOT_TOKEN", "NTFY_TOPIC", "SMTP_USER"):
+        monkeypatch.delenv(var, raising=False)
+    calls = []
+
+    class Resp:
+        status_code, text = 200, "Message queued."
+
+    monkeypatch.setattr(notify.Http, "get", lambda self, url, **kw: calls.append(kw["params"]) or Resp())
+    monkeypatch.setattr(notify.Http, "_wait", lambda self: None)
+    l = Listing("zap", "1", "https://z/1", "venda", neighborhood="Itaim Bibi", area=120, price=3_000_000)
+    n = notify.Notifier()
+    assert n.configured
+    n.send("🏠 1 anúncio novo", [notify.describe(l)])
+    assert len(calls) == 1
+    assert calls[0]["phone"] == "+5511999998888" and calls[0]["apikey"] == "123456"
+    assert "*🏠 1 anúncio novo*" in calls[0]["text"] and "https://z/1" in calls[0]["text"]
+    # muitos anúncios: no máximo 6 mensagens
+    calls.clear()
+    n.send("muitos", [notify.describe(l)] * 200)
+    assert len(calls) == 6 and "mais" in calls[-1]["text"]

@@ -23,6 +23,20 @@ A lista completa do que está anunciado hoje fica em [`ANUNCIOS.md`](ANUNCIOS.md
 
 Configure **pelo menos um** canal em *Settings → Secrets and variables → Actions → New repository secret*:
 
+**Opção WhatsApp — CallMeBot**
+1. Salve nos contatos do celular o número do CallMeBot que aparece em
+   [callmebot.com → WhatsApp API](https://www.callmebot.com/blog/free-api-whatsapp-messages/)
+   (o número muda de tempos em tempos; use sempre o que está na página).
+2. Envie para esse contato, pelo WhatsApp, a mensagem: `I allow callmebot to send me messages`
+3. Você recebe de volta uma *apikey*. Crie os secrets:
+   - `CALLMEBOT_PHONE`: seu número com DDI e DDD, ex.: `+5511999998888`
+   - `CALLMEBOT_APIKEY`: a apikey recebida
+   - Para avisar mais de uma pessoa, cada uma faz os passos 1–3 e você coloca os números e as
+     apikeys separados por vírgula, na mesma ordem (`+5511...,+5511...` / `123456,654321`).
+
+O CallMeBot é gratuito e limita o volume de mensagens, então cada alerta agrupa vários anúncios e no
+máximo 6 mensagens são enviadas por ciclo; o restante fica em `ANUNCIOS.md`.
+
 **Opção A — ntfy (mais simples, push no celular, sem cadastro)**
 1. Instale o app **ntfy** (Android/iOS).
 2. Invente um nome de tópico difícil de adivinhar, ex.: `imoveis-vnc-8f3k2q`, e assine esse tópico no app.
