@@ -199,3 +199,10 @@ def test_budget_alerts(tmp_path, monkeypatch):
     rows = {r["id"]: r for r in json.loads((tmp_path / "dados.json").read_text())["listings"]}
     assert rows["2"]["in_budget"] and not rows["4"]["in_budget"]
     assert "https://z/4" not in (tmp_path / "ANUNCIOS.md").read_text()
+
+
+def test_quintoandar_rent_from_total():
+    h = {"id": 1, "area": 120, "totalCost": 12500, "iptuPlusCondominium": 2500, "type": "Apartamento",
+         "neighbourhood": "Itaim Bibi"}
+    l = quintoandar.parse_house(h, "aluguel")
+    assert l.price == 10000 and l.total_monthly == 12500

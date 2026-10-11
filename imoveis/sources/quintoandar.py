@@ -38,8 +38,11 @@ def parse_house(h: dict, business: str) -> Listing | None:
         return None
 
     if business == "aluguel":
-        price = to_float(h.get("rent"))
+        price = to_float(h.get("rent") or h.get("rentPrice"))
         total = to_float(h.get("totalCost"))
+        fees = to_float(h.get("iptuPlusCondominium"))
+        if price is None and total and fees is not None and fees < total:
+            price = total - fees  # aluguel puro = total − (condomínio + IPTU)
     else:
         price = to_float(h.get("salePrice"))
         total = None
