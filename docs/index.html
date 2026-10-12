@@ -416,7 +416,7 @@ footer { color: var(--muted); font-size: 12px; margin-top: 20px; }
           <dt>Queda de preço</dt><dd>Redução do preço pedido entre duas coletas (no aluguel, do valor total).</dd>
           <dt>Saiu do ar</dt><dd>Anúncio ausente das coletas por 24 h (ZAP e Viva Real: 7 dias, porque só a janela mais recente é lida). Pode ser venda, locação, retirada ou saída da janela coletada — não é confirmação de negócio fechado.</dd>
           <dt>No orçamento</dt><dd id="defBudget"></dd>
-          <dt>Variação no período</dt><dd>Comparação com o retrato diário mais próximo do início do período selecionado. Quando o histórico não cobre o período, aparece como indisponível. Com dois bairros, a mediana combinada do retrato é a média das medianas ponderada pelo nº de anúncios (aproximação).</dd>
+          <dt>Variação no período</dt><dd>Sempre retrato a retrato: o retrato diário mais recente contra o mais próximo do início do período (mesma regra de cálculo nas duas pontas). Indisponível quando o histórico não cobre o período ou com filtro de quartos (o histórico não guarda essa abertura). Com os dois bairros, a mediana combinada é a média das medianas ponderada pelo nº de anúncios — uma aproximação, por isso pode diferir levemente da mediana exibida no indicador.</dd>
         </dl>
       </section>
     </div>
@@ -953,7 +953,8 @@ function deltaText(cur, base, bd, kind) {
   if (cur == null || base == null || !bd) return null;
   const warn = notesBetween(bd, histDates().at(-1)).length ? " · ⚠ cobertura mudou no intervalo" : "";
   const v = kind === "pct" ? FMT.pct(cur / base - 1) : (cur >= base ? "+" : "−") + FMT.int(Math.abs(cur - base)) + (Math.abs(cur - base) === 1 ? " anúncio" : " anúncios");
-  return `${cur > base ? "▲" : cur < base ? "▼" : "="} ${v} vs. retrato de ${FMT.date(dayISO(bd))}${warn}`;
+  const agg = F.bairro === "todos" && kind === "pct" ? " (média das medianas dos bairros, ponderada por n)" : "";
+  return `${cur > base ? "▲" : cur < base ? "▼" : "="} ${v} · retrato de ${FMT.date(dayISO(histDates().at(-1)))} vs. ${FMT.date(dayISO(bd))}${agg}${warn}`;
 }
 function renderKPIs() {
   const L = DATA.listings;
@@ -966,13 +967,16 @@ function renderKPIs() {
   const med = median(medRows.map(ppm2Hist));
   const market = L.filter(r => r.active && baseFilter(r, { ignoreBudget: true }));
   const inBud = market.filter(r => r.in_budget !== false).length;
-  const noBase = `sem base de comparação (histórico desde ${FMT.date(dayISO(histDates()[0]))})`;
+  const last = histDates().at(-1);
+  // Variação sempre retrato a retrato (mesma regra de cálculo nas duas pontas). O histórico não abre por quartos.
+  const noBase = F.quartos ? "variação indisponível com filtro de quartos (histórico não guarda essa abertura)" : `sem base de comparação (histórico desde ${FMT.date(dayISO(histDates()[0]))})`;
+  const cmpOk = bd && !F.quartos;
   $("#kpis").replaceChildren(
     kpi("Novos anúncios", FMT.int(filt.filter(r => !r.initial && sinceRef(r.first_seen)).length), "", prevTxt, `${FMT.int(filt.filter(isNew).length)} nos ${periodLabel()}`),
     kpi("Quedas de preço", FMT.int(drops.length), "", periodLabel() + " · anúncios ativos", drops.length ? `mediana ${FMT.pct(median(drops.map(d => d.pct)))} · maior ${FMT.pct(Math.min(...drops.map(d => d.pct)))}` : "nenhuma queda registrada no período"),
     kpi("Saíram do ar", FMT.int(filt.filter(isGone).length), "", periodLabel(), "ausentes ≥ 24 h (ZAP/Viva Real: 7 dias)"),
-    kpi("Anúncios monitorados", FMT.int(market.length), "ativos", `amostra em ${FMT.dateTime(DATA.updated_at)} · sem filtro de orçamento`, deltaText(market.length, bd ? histAgg(F.business, "n", bd) : null, bd, "abs") || noBase, !bd),
-    kpi(hb === "aluguel" ? "Mediana aluguel s/ cond./m²" : "Mediana preço pedido/m²", FMT.brlc(med), hb === "aluguel" ? "R$/m²·mês" : "R$/m²", `n = ${FMT.int(medRows.length)} ativos${F.business === "leilao" ? " de venda (referência)" : ""} · sem filtro de orçamento`, deltaText(med, bd ? histAgg(hb, "ppm2", bd) : null, bd, "pct") || noBase, !bd),
+    kpi("Anúncios monitorados", FMT.int(market.length), "ativos", `amostra em ${FMT.dateTime(DATA.updated_at)} · sem filtro de orçamento`, (cmpOk && deltaText(histAgg(F.business, "n", last), histAgg(F.business, "n", bd), bd, "abs")) || noBase, !cmpOk),
+    kpi(hb === "aluguel" ? "Mediana aluguel s/ cond./m²" : "Mediana preço pedido/m²", FMT.brlc(med), hb === "aluguel" ? "R$/m²·mês" : "R$/m²", `n = ${FMT.int(medRows.length)} ativos${F.business === "leilao" ? " de venda (referência)" : ""} · sem filtro de orçamento`, (cmpOk && deltaText(histAgg(hb, "ppm2", last), histAgg(hb, "ppm2", bd), bd, "pct")) || noBase, !cmpOk),
     kpi("Dentro do orçamento", FMT.int(inBud), `de ${FMT.int(market.length)}`, `anúncios ativos · ${BUSINESS[F.business].toLowerCase()}`, market.length ? FMT.share(inBud / market.length) + " do recorte (participação na amostra)" : "—"),
   );
 }
