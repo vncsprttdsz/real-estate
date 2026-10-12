@@ -158,6 +158,7 @@ def run(dry_run: bool = False) -> int:
         elif name in results:
             state["failures"][name] = 0
             state.setdefault("last_ok", {})[name] = ts
+    state["prev_run"] = state.get("last_run")
     state["last_run"] = ts
     state["last_errors"] = errors
 

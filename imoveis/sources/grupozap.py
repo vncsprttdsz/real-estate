@@ -86,7 +86,7 @@ def parse_listing(item: dict, source: str, business: str) -> Listing | None:
         url=url,
         business=business,
         title=lst.get("title") or "",
-        neighborhood=addr.get("neighborhood") or "",
+        neighborhood=(addr.get("neighborhood") or "").strip(),
         address=street,
         area=area,
         price=price,

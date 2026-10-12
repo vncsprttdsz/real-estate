@@ -55,7 +55,7 @@ def parse_house(h: dict, business: str) -> Listing | None:
     addr = h.get("address")
     if isinstance(addr, dict):
         addr = addr.get("address") or " ".join(str(x) for x in (addr.get("street"), addr.get("number")) if x)
-    neighborhood = h.get("neighbourhood") or h.get("neighborhood") or h.get("regionName") or ""
+    neighborhood = (h.get("neighbourhood") or h.get("neighborhood") or h.get("regionName") or "").strip()
 
     path = f"/imovel/{hid}" + ("/comprar" if business == "venda" else "")
     return Listing(

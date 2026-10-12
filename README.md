@@ -59,26 +59,30 @@ máximo 6 mensagens são enviadas por ciclo; o restante fica em `ANUNCIOS.md`.
 
 ## Dashboard
 
-Um painel em `docs/index.html`, atualizado automaticamente a cada ciclo, mostra:
+Painel em `docs/index.html` (publicado pelo GitHub Pages), atualizado a cada coleta. Filtros globais no topo
+(negócio, bairro, quartos, orçamento, período) valem para todas as abas; o painel mostra os filtros ativos e
+oferece "Restaurar padrão".
 
-- **Indicadores do período**: anúncios ativos, novos (com barrinhas por dia), mediana do R$/m² e sua variação, quedas de preço;
-- **Preço × área**: cada anúncio é um ponto, com a linha da mediana de R$/m² de cada bairro (ponto abaixo da linha = barato para o bairro); clique para abrir o anúncio;
-- **Novidades**: linha do tempo de anúncios novos, quedas de preço e anúncios que saíram do ar;
-- **Tendências**: mediana do R$/m² e quantidade de anúncios ativos ao longo do tempo, por bairro;
-- **Comprar ou alugar?**: rendimento bruto do aluguel em cada bairro e simulação de compra × aluguel para a metragem que você escolher;
-- **Leilões**: próximos leilões e o desconto do lance em relação ao preço de mercado do bairro;
-- **Tabela completa** com busca, ordenação e comparação de cada anúncio com a mediana do bairro.
+- **Resumo** — o que mudou desde a última coleta: alertas de qualidade (dados atrasados, fonte com erro,
+  mudança de cobertura, histórico curto); seis indicadores com período e base de comparação explícitos;
+  gráfico preço × área (tocar/clicar abre o anúncio) com a mediana de R$/m² de cada bairro; lista de
+  novos / quedas / saídas; evolução da mediana por bairro (linha ou tabela).
+- **Explorar** — comparação entre bairros (barras a partir de zero com intervalo interquartil e n),
+  mapa de calor R$/m² por bairro × quartos (amostras pequenas sinalizadas), pequenos múltiplos por bairro,
+  composição da amostra por fonte, comprar × alugar e leilões.
+- **Anúncios** — tabela com ordenação, busca, colunas opcionais, cabeçalho e coluna de identificação fixos,
+  linha de medianas do filtro inteiro (todas as páginas) e exportação CSV do filtro atual.
+- **Qualidade e metodologia** — status e cobertura de cada fonte, mudanças de cobertura e definições.
 
-Filtros no topo (período, comprar/alugar/leilão, bairro, quartos, preço máximo) valem para a página inteira.
-Funciona no celular e tem modo escuro.
+Exportações: PNG dos gráficos e CSV (formato brasileiro: `;` e vírgula decimal) incluem título, filtros,
+data dos dados e notas metodológicas.
 
-**Para publicar** (uma vez): *Settings → Pages → Build and deployment → Source: Deploy from a branch*,
-escolha a branch principal e a pasta **`/docs`**, salve. O painel fica em
-`https://<seu-usuário>.github.io/<repositório>/`. Como o repositório é público, o painel também é — ele mostra
-só anúncios públicos e os critérios de busca.
+**Leitura correta dos números:** são preços *pedidos*, não fechados; "anúncios monitorados" é a amostra
+coletada (não o estoque do mercado); o mesmo imóvel pode aparecer em mais de um portal ou em mais de um
+anúncio. Detalhes na aba de metodologia.
 
-Para ver o visual antes de existirem dados reais, abra o painel com `?dados=demo.json` no final do endereço
-(dados fictícios gerados por `scripts/demo_data.py`).
+Para ver o visual com histórico fictício, abra o painel com `?dados=demo.json` (dados gerados por
+`scripts/demo_data.py`).
 
 ## Ajustando os critérios
 

@@ -28,6 +28,22 @@ def _load(path, default):
         return default
 
 
+# Cobertura de cada fonte (o que o monitor efetivamente lê) — exibido na aba de metodologia.
+SOURCE_INFO = {
+    "zap": "API do portal; por bairro e negócio, os 1.200 anúncios mais recentes (≥ área mínima, apartamentos).",
+    "vivareal": "Mesma base do ZAP (Grupo OLX); lê os 240 mais recentes e descarta ids já vistos no ZAP.",
+    "quintoandar": "API do portal; todos os resultados de cada bairro (≥ área mínima), mais recentes primeiro.",
+    "zuk": "Listagem de leilões da capital; só a 1ª página (30 leilões) — o site não expõe paginação.",
+}
+
+# Mudanças de cobertura/metodologia que afetam séries e contagens (data ISO, texto).
+METHOD_NOTES = [
+    ("2026-10-11", "Cobertura ampliada ao longo do dia: QuintoAndar passou a ler todos os resultados, "
+                   "ZAP/Viva Real passaram a ler os mais recentes primeiro. Contagens e medianas de 11/10 "
+                   "não são comparáveis com dias anteriores; anúncios já existentes foram marcados como carga inicial."),
+]
+
+
 def ppm2(d: dict) -> float | None:
     """R$/m²: preço de venda/lance, ou aluguel (sem condomínio) por m² ao mês."""
     if d.get("price") and d.get("area"):
@@ -38,7 +54,7 @@ def ppm2(d: dict) -> float | None:
 def snapshot(active: list[dict]) -> dict:
     groups: dict[str, list[dict]] = {}
     for d in active:
-        groups.setdefault(f"{d['business']}|{d['neighborhood']}", []).append(d)
+        groups.setdefault(f"{d['business']}|{d['neighborhood'].strip()}", []).append(d)
     out = {}
     for key, items in groups.items():
         p = [x["ppm2"] for x in items if x.get("ppm2")]
@@ -67,6 +83,7 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
         ok = last_ok.get(d["source"])
         limit = GONE_AFTER_BY_SOURCE.get(d["source"], GONE_AFTER_SECONDS)
         active = bool(ok) and _ts(ok) - _ts(s["last_seen"]) <= limit
+        d = {**d, "neighborhood": (d.get("neighborhood") or "").strip()}
         rows.append({
             **d,
             "key": key,
@@ -99,6 +116,9 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
 
     data = {
         "updated_at": state.get("last_run"),
+        "prev_run": state.get("prev_run"),
+        "source_info": SOURCE_INFO,
+        "notes": [{"date": a, "text": b} for a, b in METHOD_NOTES],
         "criteria": {
             "neighborhoods": cfg.neighborhoods,
             "min_area": cfg.min_area,
