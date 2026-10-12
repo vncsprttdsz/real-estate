@@ -108,7 +108,7 @@ input[type="number"] { width: 130px; }
   #tbl thead { display: none; }
   #tbl tbody tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
   #tbl td { border: 0; padding: 0; white-space: normal; text-align: left; }
-  #tbl td.c-parking, #tbl td.c-source, #tbl td.c-ppm2 { display: none; }
+  #tbl td.c-parking, #tbl td.c-source { display: none; }
   #tbl td.c-title { grid-column: 1 / 3; order: -2; font-weight: 600; }
   #tbl td.c-status { grid-column: 1 / 3; order: -1; } #tbl td.c-status:empty { display: none; }
   #tbl td.c-title .ttl, #tbl td .addr { max-width: none; white-space: normal; }
@@ -116,6 +116,7 @@ input[type="number"] { width: 130px; }
   #tbl td.c-bedrooms { order: 3; color: var(--ink-2); } #tbl td.c-bedrooms::after { content: " quartos"; }
   #tbl td.c-first_seen { order: 4; text-align: right; color: var(--muted); } #tbl td.c-first_seen::before { content: "no ar: "; }
   #tbl td.c-price { order: 5; font-weight: 600; text-align: left; } #tbl td.c-vs { order: 6; text-align: right; }
+  #tbl td.c-ppm2 { order: 7; text-align: left; color: var(--ink-2); } #tbl td.c-ppm2::after { content: " por m²"; }
 }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); min-width: 0; }
 .card h2 { font-size: 15px; margin: 0; font-weight: 620; }
@@ -185,6 +186,8 @@ section { margin-top: 16px; }
 
 /* Table */
 .tools { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.sortlbl { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+@media (max-width: 640px) { .tools { width: 100%; } .tools > * { flex: 1 1 100%; } .sortlbl select { flex: 1; } }
 .tablewrap { overflow-x: auto; margin: 0 -20px -18px; border-top: 1px solid var(--border); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th, td { padding: 9px 12px; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--border); }
@@ -297,6 +300,7 @@ footer { color: var(--muted); font-size: 12.5px; margin-top: 28px; line-height: 
       <div class="card-head">
         <div><h2>Todos os anúncios</h2><div class="hint" id="tblHint"></div></div>
         <div class="tools">
+          <label class="sortlbl"><span class="flabel">Ordenar por</span> <select id="sortSel" aria-label="Ordenar por"></select></label>
           <input type="search" id="search" placeholder="Buscar rua, título…" aria-label="Buscar">
           <label><input type="checkbox" id="showGone"> Incluir os que saíram do ar</label>
         </div>
@@ -419,6 +423,8 @@ function unpinTip() {
 
 // ---------- derived data ----------
 const refPrice = r => r.business === "aluguel" ? (r.total_monthly || r.price) : r.price;
+// R$/m² na mesma base da coluna de preço: valor total no aluguel, preço/lance na venda e no leilão.
+const m2 = r => { const p = refPrice(r); return p && r.area ? p / r.area : null; };
 const periodMs = () => +F.period ? +F.period * DAY : Infinity;
 const inPeriod = iso => iso && (Date.now() - new Date(iso).getTime()) <= periodMs();
 const isNew = r => !r.initial && inPeriod(r.first_seen);
@@ -442,14 +448,14 @@ let MED = {};
 function computeMedians() {
   MED = {};
   for (const r of DATA.listings) {
-    if (!r.active || !r.ppm2) continue;
-    ((MED[r.business] ||= {})[r.neighborhood] ||= []).push(r.ppm2);
+    if (!r.active || !m2(r)) continue;
+    ((MED[r.business] ||= {})[r.neighborhood] ||= []).push(m2(r));
   }
   for (const b in MED) for (const n in MED[b]) MED[b][n] = median(MED[b][n]);
 }
 function vsMedian(r) {
   const ref = MED[r.business === "leilao" ? "venda" : r.business]?.[r.neighborhood];
-  return r.ppm2 && ref ? r.ppm2 / ref - 1 : null;
+  return m2(r) && ref ? m2(r) / ref - 1 : null;
 }
 function histSeries(business, metric) {
   const nbs = F.bairro === "todos" ? NBS : [F.bairro];
@@ -833,19 +839,35 @@ function vsCell(vs) {
     h("span", {}, pct(vs)));
 }
 
+const priceLabel = () => F.business === "aluguel" ? "Valor total" : F.business === "leilao" ? "Lance" : "Preço";
 const COLS = [
   { k: "status", t: "", sort: r => isNew(r) ? 0 : recentDrop(r) ? 1 : 2 },
   { k: "neighborhood", t: "Bairro", sort: r => r.neighborhood },
   { k: "title", t: "Anúncio", sort: r => r.address || r.title },
-  { k: "area", t: "Área", num: 1, sort: r => r.area || 0 },
-  { k: "bedrooms", t: "Qts", num: 1, sort: r => r.bedrooms || 0 },
-  { k: "parking", t: "Vagas", num: 1, sort: r => r.parking || 0 },
-  { k: "price", t: "Preço", num: 1, sort: r => refPrice(r) || 0 },
-  { k: "ppm2", t: "R$/m²", num: 1, sort: r => r.ppm2 || 0 },
-  { k: "vs", t: "vs. mediana", num: 1, sort: r => vsMedian(r) ?? 99 },
+  { k: "area", t: "Área", num: 1, sort: r => r.area || null },
+  { k: "bedrooms", t: "Qts", num: 1, sort: r => r.bedrooms || null },
+  { k: "parking", t: "Vagas", num: 1, sort: r => r.parking || null },
+  { k: "price", t: priceLabel, num: 1, sort: r => refPrice(r) || null },
+  { k: "ppm2", t: () => F.business === "aluguel" ? "Total/m²" : "R$/m²", num: 1, sort: r => m2(r) },
+  { k: "vs", t: "vs. mediana", num: 1, sort: r => vsMedian(r) },
   { k: "first_seen", t: "No ar", num: 1, sort: r => new Date(r.first_seen).getTime() },
   { k: "source", t: "Fonte", sort: r => r.source },
 ];
+const colTitle = c => typeof c.t === "function" ? c.t() : c.t;
+// Opções do seletor "Ordenar por" (o mesmo estado da ordenação pelos títulos das colunas).
+const SORT_OPTIONS = () => {
+  const v = F.business === "aluguel" ? "valor total" : F.business === "leilao" ? "lance" : "preço";
+  return [
+    ["first_seen:-1", "Mais recentes"],
+    ["price:1", `Menor ${v}`], ["price:-1", `Maior ${v}`],
+    ["area:-1", "Maior área"], ["area:1", "Menor área"],
+    ["ppm2:1", "Menor R$/m²"], ["ppm2:-1", "Maior R$/m²"],
+    ["vs:1", "Mais abaixo da mediana"],
+  ];
+};
+function setSort(col, dir) {
+  SORT = { col, dir }; store.set("sort", SORT); PAGE = 0; renderTable();
+}
 
 function renderTable() {
   const q = ($("#search").value || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -853,15 +875,23 @@ function renderTable() {
   let rows = DATA.listings.filter(r => (showGone || r.active) && baseFilter(r));
   if (q) rows = rows.filter(r => [r.title, r.address, r.neighborhood, SOURCE[r.source]].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").includes(q));
   const col = COLS.find(c => c.k === SORT.col) || COLS[9];
-  rows.sort((a, b) => { const x = col.sort(a), y = col.sort(b); return (x < y ? -1 : x > y ? 1 : 0) * SORT.dir; });
+  rows.sort((a, b) => {
+    const x = col.sort(a), y = col.sort(b);
+    if (x == null || y == null) return (x == null) - (y == null);   // sem valor: sempre no fim
+    return (x < y ? -1 : x > y ? 1 : 0) * SORT.dir;
+  });
+  const sel = $("#sortSel"), key = `${SORT.col}:${SORT.dir}`, opts = SORT_OPTIONS();
+  sel.replaceChildren(...opts.map(([v, t]) => h("option", { value: v }, t)),
+    ...(opts.some(o => o[0] === key) ? [] : [h("option", { value: key }, "Coluna: " + colTitle(col) + (SORT.dir > 0 ? " ↑" : " ↓"))]));
+  sel.value = key;
   const pages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE)); PAGE = Math.min(PAGE, pages - 1);
   const view = rows.slice(PAGE * PAGE_SIZE, (PAGE + 1) * PAGE_SIZE);
   $("#tblHint").textContent = `${rows.length} anúncios · ${BUSINESS[F.business].toLowerCase()}${F.bairro !== "todos" ? " · " + F.bairro : ""}`;
 
   const thead = h("thead", {}, h("tr", {}, COLS.map(c => h("th", {
     class: c.num ? "num" : null, scope: "col",
-    "aria-sort": c.t ? (SORT.col === c.k ? (SORT.dir > 0 ? "ascending" : "descending") : "none") : null,
-  }, c.t ? h("button", { type: "button", onclick: () => { SORT = { col: c.k, dir: SORT.col === c.k ? -SORT.dir : (c.num ? -1 : 1) }; store.set("sort", SORT); renderTable(); } }, c.t) : h("span", { class: "sr" }, "Situação")))));
+    "aria-sort": colTitle(c) ? (SORT.col === c.k ? (SORT.dir > 0 ? "ascending" : "descending") : "none") : null,
+  }, c.t ? h("button", { type: "button", onclick: () => setSort(c.k, SORT.col === c.k ? -SORT.dir : 1) }, colTitle(c)) : h("span", { class: "sr" }, "Situação")))));
   const tbody = h("tbody", {}, view.length ? view.map(r => {
     const u = safeUrl(r.url), d = recentDrop(r);
     const st = !r.active ? h("span", { class: "badge gone" }, "Saiu") : isNew(r) ? h("span", { class: "badge new" }, "Novo") : d ? h("span", { class: "badge drop" }, "▼ " + pct(d.pct, 1)) : r.business === "leilao" ? h("span", { class: "badge auction" }, "Leilão") : "";
@@ -873,7 +903,7 @@ function renderTable() {
       h("td", { class: "num" }, r.bedrooms ?? "—"),
       h("td", { class: "num" }, r.parking ?? "—"),
       h("td", { class: "num" }, brl(refPrice(r)), r.business === "aluguel" ? h("span", { class: "addr" }, "total/mês") : null),
-      h("td", { class: "num" }, r.ppm2 ? brl(r.ppm2) : "—"),
+      h("td", { class: "num" }, m2(r) ? brl(m2(r)) : "—"),
       h("td", { class: "num" }, vsCell(vsMedian(r))),
       h("td", { class: "num", title: new Date(r.first_seen).toLocaleString("pt-BR") }, r.initial ? "antes de " + fmtDate(r.first_seen) : ago(r.first_seen).replace("há ", "")),
       h("td", {}, SOURCE[r.source] || r.source));
@@ -897,6 +927,7 @@ function update() {
 $("#fq").onchange = e => { F.quartos = +e.target.value; PAGE = 0; update(); };
 $("#fb").onchange = e => { F.budget = e.target.checked; PAGE = 0; update(); };
 $("#search").oninput = () => { PAGE = 0; renderTable(); };
+$("#sortSel").onchange = e => { const [c, d] = e.target.value.split(":"); setSort(c, +d); };
 $("#showGone").onchange = () => { PAGE = 0; renderTable(); };
 $("#calcArea").oninput = renderBuyVsRent;
 $("#theme").onclick = () => {
