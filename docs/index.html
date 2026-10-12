@@ -145,6 +145,11 @@ section { margin-top: 16px; }
 .chart .base { stroke: var(--axis); stroke-width: 1; }
 .tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,.14); padding: 9px 11px; font-size: 12.5px; min-width: 160px; max-width: 260px; z-index: 10; opacity: 0; transition: opacity .08s; }
 .tip.on { opacity: 1; }
+.tip.pinned { pointer-events: auto; }
+.chart svg [tabindex]:focus { outline: none; }
+.chart:has(svg [tabindex]:focus-visible) { outline: 2px solid var(--s1); outline-offset: 4px; border-radius: 6px; }
+.tipbtn { display: block; margin-top: 10px; padding: 9px 12px; border-radius: 8px; background: var(--s1); color: #fff; text-align: center; font-weight: 600; text-decoration: none; }
+.tipbtn:active { opacity: .85; }
 .tip .tv { font-weight: 650; font-size: 14px; color: var(--ink); }
 .tip .tl { color: var(--ink-2); }
 .tip .row { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
@@ -395,6 +400,22 @@ function showTip(el, x, y, host) {
   tip.style.left = Math.max(8, left) + "px"; tip.style.top = top + "px";
 }
 const hideTip = () => tip.classList.remove("on");
+// Cartão fixo (toque): aceita toques no botão e fecha ao tocar fora dele e do gráfico.
+let tipCloser = null;
+function pinTip(onClose) {
+  unpinTip();
+  tip.classList.add("pinned");
+  tipCloser = e => {
+    if (tip.contains(e.target) || e.target.closest?.(".chart")) return;
+    const close = onClose; unpinTip(); close();
+  };
+  setTimeout(() => document.addEventListener("pointerdown", tipCloser), 0);
+}
+function unpinTip() {
+  tip.classList.remove("pinned");
+  if (tipCloser) document.removeEventListener("pointerdown", tipCloser);
+  tipCloser = null;
+}
 
 // ---------- derived data ----------
 const refPrice = r => r.business === "aluguel" ? (r.total_monthly || r.price) : r.price;
@@ -575,29 +596,49 @@ function scatter(host, rows, market = rows) {
   const ring = s("circle", { r: 11, fill: "none", stroke: "var(--ink)", "stroke-width": 2, opacity: 0, "pointer-events": "none" });
   svg.append(ring);
   const hit = s("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent", tabindex: 0, style: "cursor:pointer" });
-  let cur = null;
-  const pick = mk => {
+  let cur = null, pinned = null;
+  const open = mk => { const u = mk && safeUrl(mk.r.url); if (u) window.open(u, "_blank", "noopener"); };
+  const pick = (mk, pin = false) => {
     cur = mk;
-    if (!mk) { ring.setAttribute("opacity", 0); hideTip(); return; }
+    if (!mk) { ring.setAttribute("opacity", 0); unpinTip(); hideTip(); return; }
     ring.setAttribute("cx", mk.cx); ring.setAttribute("cy", mk.cy); ring.setAttribute("opacity", 1);
-    showTip(listingTip(mk.r), mk.cx, mk.cy, host);
+    const body = listingTip(mk.r);
+    if (pin) {
+      const u = safeUrl(mk.r.url);
+      if (u) body.append(h("a", { class: "tipbtn", href: u, target: "_blank", rel: "noopener" }, "Abrir anúncio ↗"));
+      pinTip(() => { pinned = null; pick(null); });
+    }
+    showTip(body, mk.cx, mk.cy, host);
   };
-  hit.addEventListener("pointermove", e => {
+  // Ponto mais próximo do toque/cursor; no toque o alvo é maior (dedo é menos preciso que o mouse).
+  const nearest = (e, radius) => {
     const rc = svg.getBoundingClientRect(), k = W / rc.width;
     const px = (e.clientX - rc.left) * k, py = (e.clientY - rc.top) * k;
-    let best = null, bd = 24 * k;
+    let best = null, bd = radius * k;
     for (const mk of marks) { const d = Math.hypot(mk.cx - px, mk.cy - py); if (d < bd) { bd = d; best = mk; } }
-    pick(best);
+    return best;
+  };
+  hit.addEventListener("pointermove", e => { if (e.pointerType === "mouse" && !pinned) pick(nearest(e, 24)); });
+  hit.addEventListener("pointerleave", e => { if (e.pointerType === "mouse" && !pinned) pick(null); });
+  hit.addEventListener("click", e => {
+    // Mouse: clique abre direto. Toque/caneta: 1º toque fixa o cartão com o botão "Abrir anúncio";
+    // tocar de novo no mesmo ponto também abre.
+    if (e.pointerType === "mouse" || (!e.pointerType && matchMedia("(hover: hover)").matches)) {
+      open(nearest(e, 24) || cur);
+      return;
+    }
+    const mk = nearest(e, 36);
+    if (mk && mk === pinned) { open(mk); return; }
+    pinned = mk;
+    pick(mk, true);
   });
-  hit.addEventListener("pointerleave", () => pick(null));
-  hit.addEventListener("click", () => { const u = cur && safeUrl(cur.r.url); if (u) window.open(u, "_blank", "noopener"); });
   const order = [...marks].sort((a, b) => a.cx - b.cx);
   let ki = -1;
   hit.addEventListener("keydown", e => {
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") { ki = Math.max(0, Math.min(order.length - 1, ki + (e.key === "ArrowRight" ? 1 : -1))); pick(order[ki]); e.preventDefault(); }
     if (e.key === "Enter" && cur) { const u = safeUrl(cur.r.url); if (u) window.open(u, "_blank", "noopener"); }
   });
-  hit.addEventListener("blur", () => pick(null));
+  hit.addEventListener("blur", () => { if (!pinned) pick(null); });
   svg.append(hit);
   host.append(svg);
 }
@@ -690,7 +731,8 @@ function legendFor(host, kind = "dot", extra = []) {
 function renderScatter() {
   const rows = DATA.listings.filter(r => r.active && baseFilter(r));
   $("#scTitle").textContent = F.business === "aluguel" ? "Aluguel total × área" : F.business === "leilao" ? "Lance × área" : "Preço × área";
-  $("#scHint").textContent = "Cada ponto é um anúncio ativo. Linhas: mediana de R$/m² do mercado de cada bairro — abaixo dela = mais barato. Clique para abrir.";
+  $("#scHint").textContent = "Cada ponto é um anúncio ativo. Linhas: mediana de R$/m² do mercado de cada bairro — abaixo dela = mais barato. " +
+    (matchMedia("(hover: hover)").matches ? "Clique num ponto para abrir o anúncio." : "Toque num ponto para ver e abrir o anúncio.");
   legendFor($("#scLegend"), "dot", [h("span", {}, h("span", { class: "swring" }), "novo no período")]);
   scatter($("#scatter"), rows, DATA.listings.filter(r => r.active && baseFilter(r, { ignoreBudget: true })));
 }
