@@ -128,24 +128,24 @@
   "date": "2026-10-16",
   "groups": {
    "aluguel|Itaim Bibi": {
-    "n": 617,
-    "ppm2": 93.72,
-    "price": 14000
+    "n": 662,
+    "ppm2": 92.23,
+    "price": 13900
    },
    "aluguel|Vila Nova Conceição": {
-    "n": 998,
-    "ppm2": 133.59,
+    "n": 1046,
+    "ppm2": 133.65,
     "price": 20000
    },
    "venda|Vila Nova Conceição": {
-    "n": 2553,
-    "ppm2": 27220.58,
+    "n": 2618,
+    "ppm2": 27222.22,
     "price": 4600000
    },
    "venda|Itaim Bibi": {
-    "n": 2573,
-    "ppm2": 19213.48,
-    "price": 2990000
+    "n": 2648,
+    "ppm2": 19200.0,
+    "price": 2997000
    }
   }
  }
