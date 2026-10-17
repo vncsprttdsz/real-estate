@@ -158,17 +158,17 @@
     "price": 13900
    },
    "aluguel|Vila Nova Conceição": {
-    "n": 1297,
+    "n": 1298,
     "ppm2": 134.31,
     "price": 20365
    },
    "venda|Vila Nova Conceição": {
-    "n": 2931,
-    "ppm2": 26695.6,
-    "price": 4465000
+    "n": 2937,
+    "ppm2": 26690.39,
+    "price": 4450000
    },
    "venda|Itaim Bibi": {
-    "n": 3117,
+    "n": 3121,
     "ppm2": 19117.65,
     "price": 2950000
    }
