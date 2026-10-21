@@ -5849,7 +5849,7 @@
   "id": "894822222",
   "neighborhood": "Itaim Bibi",
   "parking": 2,
-  "price": 5000000.0,
+  "price": 4999999.0,
   "source": "quintoandar",
   "title": "Apartamento em Itaim Bibi",
   "total_monthly": null,
@@ -37149,7 +37149,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 8883.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2915906725/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-sala-grande-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2915906725/"
  },
  "zap:aluguel:2915910719": {
   "address": "Rua Comendador Miguel Calfat 400",
@@ -37181,7 +37181,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 9368.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-armario-embutido-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2915911078/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-sala-grande-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2915911078/"
  },
  "zap:aluguel:2915911102": {
   "address": "Rua Tabapuã 317",
@@ -42445,7 +42445,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 8500.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2917302738/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2917302738/"
  },
  "zap:aluguel:2917331436": {
   "address": "Rua Leopoldo Couto Magalhães Júnior 1098",
@@ -43037,7 +43037,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 32440.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-varanda-gourmet-vila-nova-conceicao-zona-sul-sao-paulo-sp-220m2-id-2917537833/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-deposito-privativo-vila-nova-conceicao-zona-sul-sao-paulo-sp-220m2-id-2917537833/"
  },
  "zap:aluguel:2917550764": {
   "address": "Rua Pedroso Alvarenga 104",
@@ -60061,7 +60061,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 9034.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-fogao-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2918332290/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2918332290/"
  },
  "zap:aluguel:2918341541": {
   "address": "Rua Viradouro",
@@ -60073,10 +60073,10 @@
   "id": "2918341541",
   "neighborhood": "Itaim Bibi",
   "parking": 4,
-  "price": 50000.0,
+  "price": 51000.0,
   "source": "zap",
   "title": "",
-  "total_monthly": 56000.0,
+  "total_monthly": 57000.0,
   "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-223m2-id-2918341541/"
  },
  "zap:aluguel:2918350415": {
@@ -60777,10 +60777,10 @@
   "id": "2918530377",
   "neighborhood": "Itaim Bibi",
   "parking": 2,
-  "price": 20000.0,
+  "price": 21800.0,
   "source": "zap",
   "title": "",
-  "total_monthly": 22000.0,
+  "total_monthly": 23800.0,
   "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-132m2-id-2918530377/"
  },
  "zap:aluguel:2918537732": {
@@ -77533,7 +77533,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-espaco-gourmet-vila-nova-conceicao-zona-sul-sao-paulo-sp-128m2-id-2915386702/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-salao-de-festas-vila-nova-conceicao-zona-sul-sao-paulo-sp-128m2-id-2915386702/"
  },
  "zap:venda:2915390552": {
   "address": "Rua Doutor Sodré 232",
@@ -98032,7 +98032,7 @@
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2916044527/"
  },
  "zap:venda:2916047869": {
-  "address": "Avenida Horácio Lafer 651",
+  "address": "Avenida Horácio Lafer",
   "area": 220.0,
   "bedrooms": 3,
   "business": "venda",
@@ -98048,7 +98048,7 @@
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-220m2-id-2916047869/"
  },
  "zap:venda:2916048775": {
-  "address": "Avenida Horácio Lafer 651",
+  "address": "Avenida Horácio Lafer",
   "area": 190.0,
   "bedrooms": 3,
   "business": "venda",
@@ -104797,7 +104797,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-lavanderia-coletiva-vila-nova-conceicao-zona-sul-sao-paulo-sp-400m2-id-2916742764/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-varanda-vila-nova-conceicao-zona-sul-sao-paulo-sp-400m2-id-2916742764/"
  },
  "zap:venda:2916744280": {
   "address": "Rua Leopoldo Couto Magalhães Júnior 1493",
@@ -164029,7 +164029,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-acesso-24-horas-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2918402761/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2918402761/"
  },
  "zap:venda:2918402882": {
   "address": "Rua Domingos Leme 769",
@@ -164665,7 +164665,7 @@
   "id": "2918452452",
   "neighborhood": "Vila Nova Conceição",
   "parking": 4,
-  "price": 6349830.0,
+  "price": 6349250.0,
   "source": "zap",
   "title": "",
   "total_monthly": null,
@@ -166621,7 +166621,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-sala-fitness-itaim-bibi-zona-sul-sao-paulo-sp-142m2-id-2918595939/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-142m2-id-2918595939/"
  },
  "zap:venda:2918596409": {
   "address": "Rua Urimonduba 225",
@@ -166637,7 +166637,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-sala-fitness-itaim-bibi-zona-sul-sao-paulo-sp-185m2-id-2918596409/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-185m2-id-2918596409/"
  },
  "zap:venda:2918597189": {
   "address": "Rua Comendador Miguel Calfat 460",
@@ -166840,7 +166840,7 @@
   "extra": "",
   "id": "2918609533",
   "neighborhood": "Itaim Bibi",
-  "parking": 2,
+  "parking": 1,
   "price": 3600000.0,
   "source": "zap",
   "title": "",
@@ -167471,6 +167471,22 @@
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-235m2-id-2918665075/"
  },
+ "zap:venda:2918672776": {
+  "address": "Rua Visconde da Luz 132",
+  "area": 157.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": 4377.0,
+  "extra": "",
+  "id": "2918672776",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": 2586500.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-157m2-id-2918672776/"
+ },
  "zap:venda:2918677658": {
   "address": "Rua Japão 41",
   "area": 112.0,
@@ -167502,6 +167518,22 @@
   "title": "",
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-cobertura-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-200m2-id-2918678241/"
+ },
+ "zap:venda:2918680364": {
+  "address": "Rua Pais de Araújo 90",
+  "area": 115.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": 2359.0,
+  "extra": "",
+  "id": "2918680364",
+  "neighborhood": "Itaim Bibi",
+  "parking": 1,
+  "price": 2000000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2918680364/"
  },
  "zap:venda:2918680372": {
   "address": "Rua Bandeira Paulista 700",
@@ -167567,6 +167599,22 @@
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-202m2-id-2918682542/"
  },
+ "zap:venda:2918682634": {
+  "address": "Rua Bandeira Paulista 700",
+  "area": 244.0,
+  "bedrooms": 2,
+  "business": "venda",
+  "condo": 0.0,
+  "extra": "",
+  "id": "2918682634",
+  "neighborhood": "Itaim Bibi",
+  "parking": null,
+  "price": 9720441.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-244m2-id-2918682634/"
+ },
  "zap:venda:2918682635": {
   "address": "Rua Bandeira Paulista 700",
   "area": 253.0,
@@ -167582,6 +167630,86 @@
   "title": "",
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-253m2-id-2918682635/"
+ },
+ "zap:venda:2918684292": {
+  "address": "Rua Doutor Renato Paes de Barros 56",
+  "area": 187.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": 2288.0,
+  "extra": "",
+  "id": "2918684292",
+  "neighborhood": "Itaim Bibi",
+  "parking": 2,
+  "price": 2590000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-187m2-id-2918684292/"
+ },
+ "zap:venda:2918687404": {
+  "address": "Rua Marcos Lopes",
+  "area": 166.0,
+  "bedrooms": 2,
+  "business": "venda",
+  "condo": 2800.0,
+  "extra": "",
+  "id": "2918687404",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 3,
+  "price": 4798300.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-166m2-id-2918687404/"
+ },
+ "zap:venda:2918694435": {
+  "address": "Rua Bandeira Paulista 142",
+  "area": 149.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": 3510.0,
+  "extra": "",
+  "id": "2918694435",
+  "neighborhood": "Itaim Bibi",
+  "parking": 2,
+  "price": 2830000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-149m2-id-2918694435/"
+ },
+ "zap:venda:2918698849": {
+  "address": "Rua João Cachoeira 1325",
+  "area": 128.0,
+  "bedrooms": 2,
+  "business": "venda",
+  "condo": 2300.0,
+  "extra": "",
+  "id": "2918698849",
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 2,
+  "price": 2850000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-128m2-id-2918698849/"
+ },
+ "zap:venda:2918703744": {
+  "address": "Avenida Horácio Lafer",
+  "area": 506.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": 8239.0,
+  "extra": "",
+  "id": "2918703744",
+  "neighborhood": "Itaim Bibi",
+  "parking": 4,
+  "price": 26900000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-cobertura-4-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-506m2-id-2918703744/"
  },
  "zap:venda:43281601": {
   "address": "",
