@@ -1,12 +1,13 @@
 # Anúncios atuais dentro dos critérios
 
-Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 2.250.000, aluguel até R$ 13.000/mês. Critérios em [`config.yaml`](config.yaml).
+Atualizado em 28/10/2026 08:43 UTC · 592 anúncios. Orçamento: compra até R$ 2.250.000, aluguel até R$ 13.000/mês. Critérios em [`config.yaml`](config.yaml).
 
-## Venda (423)
+## Venda (420)
 
 | Bairro | Área | Preço | Quartos | Fonte | Link |
 |---|---|---|---|---|---|
 | Vila Nova Conceição | 744 m² | ? | 4 | zap | [abrir](https://www.zapimoveis.com.br/lancamentos/atilio-870-id-2916739484/) |
+| Itaim Bibi | 101 m² | R$ 715.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-101m2-id-2916886342/) |
 | Itaim Bibi | 101 m² | R$ 715.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894899499/comprar) |
 | Vila Nova Conceição | 108 m² | R$ 785.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895769257/comprar) |
 | Itaim Bibi | 123 m² | R$ 800.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895513531/comprar) |
@@ -29,13 +30,12 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Vila Nova Conceição | 107 m² | R$ 1.079.340 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-107m2-id-2919143514/) |
 | Vila Nova Conceição | 108 m² | R$ 1.090.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-108m2-id-2916527465/) |
 | Itaim Bibi | 105 m² | R$ 1.099.010 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2918630235/) |
-| Vila Nova Conceição | 127 m² | R$ 1.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2919115933/) |
+| Vila Nova Conceição | 127 m² | R$ 1.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-hall-de-servico-independente-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2919115933/) |
 | Vila Nova Conceição | 114 m² | R$ 1.100.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635289/comprar) |
 | Vila Nova Conceição | 100 m² | R$ 1.100.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894072831/comprar) |
 | Vila Nova Conceição | 127 m² | R$ 1.101.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893894621/comprar) |
 | Itaim Bibi | 121 m² | R$ 1.130.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893572989/comprar) |
 | Itaim Bibi | 105 m² | R$ 1.139.360 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2919061616/) |
-| Itaim Bibi | 105 m² | R$ 1.140.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2919647054/) |
 | Vila Nova Conceição | 109 m² | R$ 1.149.700 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-vila-olimpia-zona-sul-sao-paulo-sp-109m2-id-2919280317/) |
 | Vila Nova Conceição | 109 m² | R$ 1.149.700 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-109m2-id-2917407037/) |
 | Vila Nova Conceição | 109 m² | R$ 1.149.700 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894600348/comprar) |
@@ -46,27 +46,27 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Vila Nova Conceição | 105 m² | R$ 1.190.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893554370/comprar) |
 | Itaim Bibi | 135 m² | R$ 1.199.450 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2919143332/) |
 | Vila Nova Conceição | 109 m² | R$ 1.199.950 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895539087/comprar) |
+| Vila Nova Conceição | 109 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-vila-nova-conceicao-zona-sul-sao-paulo-sp-109m2-id-2919660781/) |
 | Vila Nova Conceição | 116 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-embutido-vila-nova-conceicao-zona-sul-sao-paulo-sp-116m2-id-2919625859/) |
-| Vila Nova Conceição | 105 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2919506378/) |
+| Vila Nova Conceição | 105 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2919506378/) |
 | Vila Nova Conceição | 100 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2918403285/) |
+| Vila Nova Conceição | 109 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-closet-itaim-bibi-zona-sul-sao-paulo-sp-109m2-id-2911166362/) |
 | Vila Nova Conceição | 100 m² | R$ 1.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894674147/comprar) |
 | Itaim Bibi | 107 m² | R$ 1.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895311311/comprar) |
 | Itaim Bibi | 102 m² | R$ 1.205.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894534070/comprar) |
 | Itaim Bibi | 100 m² | R$ 1.240.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2919433845/) |
+| Itaim Bibi | 108 m² | R$ 1.250.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2918553534/) |
 | Itaim Bibi | 101 m² | R$ 1.255.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894751471/comprar) |
 | Itaim Bibi | 108 m² | R$ 1.280.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919409456/) |
 | Vila Nova Conceição | 100 m² | R$ 1.285.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2919276941/) |
 | Itaim Bibi | 130 m² | R$ 1.285.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894504030/comprar) |
+| Itaim Bibi | 116 m² | R$ 1.289.200 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2919145731/) |
 | Itaim Bibi | 108 m² | R$ 1.289.790 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2918981405/) |
-| Itaim Bibi | 116 m² | R$ 1.289.850 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2919145731/) |
 | Itaim Bibi | 105 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2918502573/) |
 | Itaim Bibi | 105 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2918314044/) |
-| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-playground-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2917003470/) |
+| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2917003470/) |
 | Itaim Bibi | 105 m² | R$ 1.290.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895781696/comprar) |
-| Itaim Bibi | 108 m² | R$ 1.290.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919391446/) |
 | Itaim Bibi | 103 m² | R$ 1.296.800 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2919145516/) |
-| Itaim Bibi | 127 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-127m2-id-2919649334/) |
-| Itaim Bibi | 127 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-127m2-id-2919507252/) |
 | Itaim Bibi | 104 m² | R$ 1.300.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895634271/comprar) |
 | Itaim Bibi | 135 m² | R$ 1.300.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895141919/comprar) |
 | Itaim Bibi | 106 m² | R$ 1.300.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893427524/comprar) |
@@ -76,7 +76,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 107 m² | R$ 1.346.310 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2919430383/) |
 | Vila Nova Conceição | 104 m² | R$ 1.350.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-churrasqueira-vila-nova-conceicao-zona-sul-sao-paulo-sp-104m2-id-2917336964/) |
 | Itaim Bibi | 112 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2919650558/) |
-| Itaim Bibi | 105 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2919646988/) |
+| Itaim Bibi | 108 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919646988/) |
 | Itaim Bibi | 100 m² | R$ 1.350.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2918096436/) |
 | Itaim Bibi | 106 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-106m2-id-2918006636/) |
 | Itaim Bibi | 100 m² | R$ 1.350.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2917907135/) |
@@ -99,15 +99,15 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 128 m² | R$ 1.377.860 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2919148604/) |
 | Itaim Bibi | 110 m² | R$ 1.380.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2918255757/) |
 | Itaim Bibi | 135 m² | R$ 1.380.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2918052266/) |
+| Itaim Bibi | 101 m² | R$ 1.380.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-itaim-bibi-zona-sul-sao-paulo-sp-101m2-id-2916802673/) |
 | Itaim Bibi | 135 m² | R$ 1.380.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894848948/comprar) |
 | Itaim Bibi | 130 m² | R$ 1.390.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895807044/comprar) |
 | Itaim Bibi | 105 m² | R$ 1.394.290 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2919147864/) |
 | Vila Nova Conceição | 116 m² | R$ 1.399.020 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-nova-conceicao-zona-sul-sao-paulo-sp-116m2-id-2919265481/) |
 | Vila Nova Conceição | 142 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-142m2-id-2916191250/) |
-| Itaim Bibi | 100 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2919643029/) |
+| Itaim Bibi | 100 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-embutido-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2919643029/) |
 | Itaim Bibi | 122 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-122m2-id-2919465656/) |
 | Itaim Bibi | 100 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2919230144/) |
-| Itaim Bibi | 100 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2918745248/) |
 | Itaim Bibi | 112 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2917941583/) |
 | Itaim Bibi | 105 m² | R$ 1.400.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895785251/comprar) |
 | Itaim Bibi | 128 m² | R$ 1.400.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895627349/comprar) |
@@ -119,10 +119,8 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 105 m² | R$ 1.420.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2919114782/) |
 | Itaim Bibi | 135 m² | R$ 1.435.120 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2919140191/) |
 | Vila Nova Conceição | 116 m² | R$ 1.435.500 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895593026/comprar) |
-| Itaim Bibi | 103 m² | R$ 1.440.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2918010002/) |
 | Itaim Bibi | 136 m² | R$ 1.449.200 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-136m2-id-2918821445/) |
 | Vila Nova Conceição | 142 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-vila-nova-conceicao-zona-sul-sao-paulo-sp-142m2-id-2919558166/) |
-| Itaim Bibi | 107 m² | R$ 1.450.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2919502966/) |
 | Itaim Bibi | 119 m² | R$ 1.450.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-119m2-id-2919378030/) |
 | Itaim Bibi | 100 m² | R$ 1.450.100 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2919380317/) |
 | Itaim Bibi | 134 m² | R$ 1.460.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894428680/comprar) |
@@ -167,8 +165,9 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 117 m² | R$ 1.594.480 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-117m2-id-2919150647/) |
 | Itaim Bibi | 130 m² | R$ 1.595.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2919493713/) |
 | Itaim Bibi | 126 m² | R$ 1.597.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-126m2-id-2919494501/) |
-| Itaim Bibi | 146 m² | R$ 1.597.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-quadra-poliesportiva-itaim-bibi-zona-sul-sao-paulo-sp-146m2-id-2919428690/) |
 | Itaim Bibi | 126 m² | R$ 1.597.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895431773/comprar) |
+| Itaim Bibi | 126 m² | R$ 1.597.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-126m2-id-2919682257/) |
+| Vila Nova Conceição | 117 m² | R$ 1.599.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-117m2-id-2915910096/) |
 | Itaim Bibi | 137 m² | R$ 1.599.430 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2919335108/) |
 | Vila Nova Conceição | 117 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-vila-nova-conceicao-zona-sul-sao-paulo-sp-117m2-id-2918941269/) |
 | Itaim Bibi | 103 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2919181576/) |
@@ -210,7 +209,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 106 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-106m2-id-2918875355/) |
 | Itaim Bibi | 112 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2918677658/) |
 | Itaim Bibi | 134 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2917488972/) |
-| Itaim Bibi | 115 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2917110736/) |
+| Itaim Bibi | 115 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2917110736/) |
 | Itaim Bibi | 132 m² | R$ 1.700.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895519240/comprar) |
 | Itaim Bibi | 136 m² | R$ 1.700.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895384556/comprar) |
 | Itaim Bibi | 112 m² | R$ 1.700.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895360742/comprar) |
@@ -220,18 +219,18 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 155 m² | R$ 1.700.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-155m2-id-2919380575/) |
 | Itaim Bibi | 155 m² | R$ 1.700.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-155m2-id-2919330997/) |
 | Itaim Bibi | 136 m² | R$ 1.718.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893753182/comprar) |
+| Itaim Bibi | 119 m² | R$ 1.730.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-119m2-id-2916872343/) |
 | Itaim Bibi | 130 m² | R$ 1.740.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2918044269/) |
 | Itaim Bibi | 130 m² | R$ 1.740.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-americana-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2917900632/) |
 | Itaim Bibi | 130 m² | R$ 1.740.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-lavabo-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2917875993/) |
 | Vila Nova Conceição | 102 m² | R$ 1.750.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-vila-nova-conceicao-zona-sul-sao-paulo-sp-102m2-id-2919471662/) |
-| Itaim Bibi | 137 m² | R$ 1.750.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2918824012/) |
+| Itaim Bibi | 137 m² | R$ 1.750.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2918824012/) |
 | Itaim Bibi | 129 m² | R$ 1.750.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895578473/comprar) |
 | Itaim Bibi | 144 m² | R$ 1.750.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894641649/comprar) |
 | Itaim Bibi | 135 m² | R$ 1.750.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893536669/comprar) |
 | Itaim Bibi | 111 m² | R$ 1.750.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-111m2-id-2919375283/) |
 | Itaim Bibi | 111 m² | R$ 1.750.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-111m2-id-2919332875/) |
 | Itaim Bibi | 116 m² | R$ 1.755.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2919236959/) |
-| Itaim Bibi | 116 m² | R$ 1.765.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-flat-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2919492744/) |
 | Itaim Bibi | 111 m² | R$ 1.765.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895484330/comprar) |
 | Itaim Bibi | 123 m² | R$ 1.780.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895583959/comprar) |
 | Itaim Bibi | 128 m² | R$ 1.780.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2919380888/) |
@@ -253,6 +252,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Vila Nova Conceição | 103 m² | R$ 1.800.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-embutido-vila-olimpia-zona-sul-sao-paulo-sp-103m2-id-2919389789/) |
 | Itaim Bibi | 115 m² | R$ 1.800.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2919375297/) |
 | Itaim Bibi | 105 m² | R$ 1.800.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2919376709/) |
+| Itaim Bibi | 103 m² | R$ 1.800.100 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2919682754/) |
 | Itaim Bibi | 106 m² | R$ 1.800.100 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-106m2-id-2919385112/) |
 | Itaim Bibi | 140 m² | R$ 1.805.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-churrasqueira-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2919067500/) |
 | Itaim Bibi | 129 m² | R$ 1.810.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895494825/comprar) |
@@ -267,19 +267,17 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 113 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895681556/comprar) |
 | Itaim Bibi | 123 m² | R$ 1.850.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894369629/comprar) |
 | Itaim Bibi | 136 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894056430/comprar) |
-| Vila Nova Conceição | 157 m² | R$ 1.880.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-157m2-id-2918891145/) |
 | Itaim Bibi | 130 m² | R$ 1.890.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895324199/comprar) |
 | Vila Nova Conceição | 120 m² | R$ 1.895.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2918011056/) |
-| Itaim Bibi | 187 m² | R$ 1.899.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-embutido-itaim-bibi-zona-sul-sao-paulo-sp-187m2-id-2919503181/) |
 | Itaim Bibi | 187 m² | R$ 1.899.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-187m2-id-2919381150/) |
 | Vila Nova Conceição | 128 m² | R$ 1.899.470 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-128m2-id-2919062740/) |
-| Itaim Bibi | 139 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-139m2-id-2919647083/) |
+| Itaim Bibi | 110 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2919676859/) |
 | Itaim Bibi | 108 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919511463/) |
 | Itaim Bibi | 108 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919390670/) |
 | Itaim Bibi | 108 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919379117/) |
+| Itaim Bibi | 146 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-146m2-id-2919647083/) |
 | Itaim Bibi | 108 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919322369/) |
 | Itaim Bibi | 115 m² | R$ 1.900.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2919231436/) |
-| Itaim Bibi | 142 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-142m2-id-2918885987/) |
 | Vila Nova Conceição | 100 m² | R$ 1.900.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893229495/comprar) |
 | Vila Nova Conceição | 120 m² | R$ 1.900.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895406357/comprar) |
 | Itaim Bibi | 108 m² | R$ 1.900.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893572228/comprar) |
@@ -292,7 +290,6 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 112 m² | R$ 1.915.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2919468934/) |
 | Itaim Bibi | 112 m² | R$ 1.915.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2919041347/) |
 | Itaim Bibi | 112 m² | R$ 1.915.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-varanda-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2919030441/) |
-| Itaim Bibi | 108 m² | R$ 1.915.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2917920038/) |
 | Itaim Bibi | 112 m² | R$ 1.915.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2917635574/) |
 | Itaim Bibi | 108 m² | R$ 1.915.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895495186/comprar) |
 | Itaim Bibi | 140 m² | R$ 1.920.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2919101356/) |
@@ -309,6 +306,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Vila Nova Conceição | 156 m² | R$ 1.955.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-156m2-id-2916427356/) |
 | Itaim Bibi | 120 m² | R$ 1.964.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2918943639/) |
 | Itaim Bibi | 138 m² | R$ 1.970.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895802507/comprar) |
+| Itaim Bibi | 102 m² | R$ 1.975.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-102m2-id-2916869940/) |
 | Itaim Bibi | 127 m² | R$ 1.975.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894474280/comprar) |
 | Itaim Bibi | 163 m² | R$ 1.975.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893632332/comprar) |
 | Itaim Bibi | 200 m² | R$ 1.980.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-itaim-bibi-zona-sul-sao-paulo-sp-200m2-id-2919114361/) |
@@ -322,12 +320,11 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 148 m² | R$ 1.999.880 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-148m2-id-2919142265/) |
 | Vila Nova Conceição | 104 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-104m2-id-2918710841/) |
 | Itaim Bibi | 137 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-escritorio-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2919459113/) |
-| Itaim Bibi | 108 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919110950/) |
 | Itaim Bibi | 162 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-162m2-id-2918767625/) |
 | Itaim Bibi | 116 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2918515968/) |
 | Itaim Bibi | 115 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2918680364/) |
+| Itaim Bibi | 135 m² | R$ 2.000.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2918046250/) |
 | Itaim Bibi | 163 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-163m2-id-2917892035/) |
-| Itaim Bibi | 135 m² | R$ 2.000.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2918046250/) |
 | Itaim Bibi | 118 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2904041249/) |
 | Vila Nova Conceição | 100 m² | R$ 2.000.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895438683/comprar) |
 | Itaim Bibi | 105 m² | R$ 2.000.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895472645/comprar) |
@@ -339,11 +336,12 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 118 m² | R$ 2.000.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895491276/comprar) |
 | Itaim Bibi | 100 m² | R$ 2.000.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895058594/comprar) |
 | Itaim Bibi | 135 m² | R$ 2.000.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895322563/comprar) |
+| Itaim Bibi | 107 m² | R$ 2.014.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2919660037/) |
 | Itaim Bibi | 108 m² | R$ 2.022.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894293051/comprar) |
 | Itaim Bibi | 115 m² | R$ 2.050.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2919233238/) |
 | Itaim Bibi | 101 m² | R$ 2.050.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895634566/comprar) |
 | Itaim Bibi | 120 m² | R$ 2.050.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895599274/comprar) |
-| Vila Nova Conceição | 100 m² | R$ 2.065.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2919276534/) |
+| Vila Nova Conceição | 100 m² | R$ 2.060.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2919276534/) |
 | Vila Nova Conceição | 100 m² | R$ 2.070.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893448629/comprar) |
 | Itaim Bibi | 118 m² | R$ 2.075.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2918582308/) |
 | Itaim Bibi | 108 m² | R$ 2.080.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2918004949/) |
@@ -351,7 +349,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 180 m² | R$ 2.090.100 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-despensa-itaim-bibi-zona-sul-sao-paulo-sp-180m2-id-2919380216/) |
 | Itaim Bibi | 149 m² | R$ 2.097.750 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-149m2-id-2919144531/) |
 | Vila Nova Conceição | 191 m² | R$ 2.099.620 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-191m2-id-2919064267/) |
-| Itaim Bibi | 180 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-180m2-id-2919503441/) |
+| Vila Nova Conceição | 127 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-moema-zona-sul-sao-paulo-sp-127m2-id-2919683453/) |
 | Itaim Bibi | 120 m² | R$ 2.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-lavabo-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2919438852/) |
 | Itaim Bibi | 140 m² | R$ 2.100.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2918769261/) |
 | Itaim Bibi | 163 m² | R$ 2.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-163m2-id-2918606095/) |
@@ -390,10 +388,10 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 150 m² | R$ 2.199.840 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2919341972/) |
 | Vila Nova Conceição | 104 m² | R$ 2.200.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-104m2-id-2918966645/) |
 | Vila Nova Conceição | 151 m² | R$ 2.200.000 | 7 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-7-quartos-com-jardim-vila-olimpia-zona-sul-sao-paulo-sp-151m2-id-2918708565/) |
-| Vila Nova Conceição | 151 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-deposito-privativo-vila-nova-conceicao-zona-sul-sao-paulo-sp-151m2-id-2918547942/) |
 | Vila Nova Conceição | 142 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-142m2-id-2918471232/) |
 | Vila Nova Conceição | 127 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-127m2-id-2918727363/) |
 | Vila Nova Conceição | 103 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-103m2-id-2917945936/) |
+| Itaim Bibi | 140 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2919693952/) |
 | Itaim Bibi | 130 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2919598459/) |
 | Itaim Bibi | 160 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-itaim-bibi-zona-sul-sao-paulo-sp-160m2-id-2918969022/) |
 | Itaim Bibi | 192 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-192m2-id-2918352951/) |
@@ -414,8 +412,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 187 m² | R$ 2.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893694665/comprar) |
 | Vila Nova Conceição | 116 m² | R$ 2.200.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-116m2-id-2919380729/) |
 | Itaim Bibi | 138 m² | R$ 2.200.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2919380368/) |
-| Itaim Bibi | 112 m² | R$ 2.220.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2919649141/) |
-| Itaim Bibi | 112 m² | R$ 2.220.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2919507334/) |
+| Itaim Bibi | 112 m² | R$ 2.220.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2919649141/) |
 | Itaim Bibi | 113 m² | R$ 2.220.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-113m2-id-2918741061/) |
 | Itaim Bibi | 115 m² | R$ 2.220.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894493326/comprar) |
 | Itaim Bibi | 108 m² | R$ 2.228.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895663147/comprar) |
@@ -430,7 +427,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 133 m² | R$ 2.250.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895339688/comprar) |
 | Itaim Bibi | 121 m² | R$ 2.250.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894154050/comprar) |
 
-## Aluguel (170)
+## Aluguel (172)
 
 | Bairro | Área | Preço | Quartos | Fonte | Link |
 |---|---|---|---|---|---|
@@ -441,6 +438,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 110 m² | R$ 6.457/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894527082) |
 | Vila Nova Conceição | 100 m² | R$ 6.466/mês | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-1-quarto-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2918388005/) |
 | Itaim Bibi | 102 m² | R$ 6.613/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-acesso-24-horas-itaim-bibi-zona-sul-sao-paulo-sp-102m2-id-2919561244/) |
+| Itaim Bibi | 110 m² | R$ 6.680/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-flat-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2919662643/) |
 | Itaim Bibi | 105 m² | R$ 6.684/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2917886168/) |
 | Itaim Bibi | 105 m² | R$ 6.684/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2917881879/) |
 | Itaim Bibi | 105 m² | R$ 6.684/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2917738893/) |
@@ -465,8 +463,8 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 110 m² | R$ 8.400/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2917706543/) |
 | Vila Nova Conceição | 120 m² | R$ 8.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2919561441/) |
 | Itaim Bibi | 115 m² | R$ 8.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2918115166/) |
-| Itaim Bibi | 115 m² | R$ 8.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2918066838/) |
 | Itaim Bibi | 120 m² | R$ 8.500/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2918076960/) |
+| Itaim Bibi | 115 m² | R$ 8.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2918066838/) |
 | Itaim Bibi | 110 m² | R$ 8.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2917954893/) |
 | Itaim Bibi | 110 m² | R$ 8.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2917902014/) |
 | Itaim Bibi | 110 m² | R$ 8.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2917902770/) |
@@ -487,7 +485,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 130 m² | R$ 8.668/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2919562209/) |
 | Itaim Bibi | 100 m² | R$ 8.690/mês | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893132737) |
 | Itaim Bibi | 102 m² | R$ 8.704/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892828030) |
-| Itaim Bibi | 137 m² | R$ 8.740/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2918824012/) |
+| Itaim Bibi | 137 m² | R$ 8.740/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2918824012/) |
 | Itaim Bibi | 103 m² | R$ 8.834/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2919607064/) |
 | Itaim Bibi | 100 m² | R$ 8.834/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2918332290/) |
 | Itaim Bibi | 130 m² | R$ 8.877/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2917818332/) |
@@ -532,7 +530,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 112 m² | R$ 10.490/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895782132) |
 | Itaim Bibi | 100 m² | R$ 10.528/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895593674) |
 | Vila Nova Conceição | 103 m² | R$ 10.540/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-varanda-vila-nova-conceicao-zona-sul-sao-paulo-sp-103m2-id-2919016540/) |
-| Vila Nova Conceição | 103 m² | R$ 10.541/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-103m2-id-2918407177/) |
+| Vila Nova Conceição | 103 m² | R$ 10.541/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-103m2-id-2919673236/) |
 | Vila Nova Conceição | 106 m² | R$ 10.600/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-vila-nova-conceicao-zona-sul-sao-paulo-sp-106m2-id-2919512352/) |
 | Itaim Bibi | 135 m² | R$ 10.718/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2919374001/) |
 | Vila Nova Conceição | 105 m² | R$ 10.740/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-105m2-id-2919390109/) |
@@ -554,16 +552,17 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 174 m² | R$ 11.138/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-174m2-id-2919390640/) |
 | Itaim Bibi | 136 m² | R$ 11.177/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-136m2-id-2919385626/) |
 | Vila Nova Conceição | 116 m² | R$ 11.251/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-116m2-id-2919522048/) |
+| Itaim Bibi | 115 m² | R$ 11.312/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895786861) |
 | Vila Nova Conceição | 105 m² | R$ 11.321/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-105m2-id-2919018858/) |
 | Itaim Bibi | 136 m² | R$ 11.387/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892842933) |
 | Vila Nova Conceição | 112 m² | R$ 11.500/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-flat-2-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-112m2-id-2919515575/) |
 | Itaim Bibi | 192 m² | R$ 11.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-192m2-id-2918352951/) |
 | Itaim Bibi | 163 m² | R$ 11.500/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-interfone-itaim-bibi-zona-sul-sao-paulo-sp-163m2-id-2916326851/) |
 | Vila Nova Conceição | 102 m² | R$ 11.565/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895500984) |
-| Itaim Bibi | 115 m² | R$ 11.604/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895786861) |
 | Vila Nova Conceição | 100 m² | R$ 11.631/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893229495) |
 | Itaim Bibi | 167 m² | R$ 11.635/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895531487) |
-| Itaim Bibi | 108 m² | R$ 11.652/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-acesso-24-horas-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919646038/) |
+| Itaim Bibi | 107 m² | R$ 11.652/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2919660037/) |
+| Itaim Bibi | 108 m² | R$ 11.652/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919646038/) |
 | Itaim Bibi | 108 m² | R$ 11.652/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919566733/) |
 | Itaim Bibi | 187 m² | R$ 11.697/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-187m2-id-2919562444/) |
 | Vila Nova Conceição | 126 m² | R$ 11.700/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-126m2-id-2919388373/) |
@@ -573,7 +572,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 226 m² | R$ 11.777/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893210967) |
 | Vila Nova Conceição | 142 m² | R$ 11.780/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-142m2-id-2916421597/) |
 | Vila Nova Conceição | 127 m² | R$ 11.800/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2918161552/) |
-| Vila Nova Conceição | 127 m² | R$ 11.800/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-area-de-servico-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2918053235/) |
+| Vila Nova Conceição | 127 m² | R$ 11.800/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2918053235/) |
 | Itaim Bibi | 134 m² | R$ 11.862/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895693095) |
 | Vila Nova Conceição | 109 m² | R$ 11.894/mês | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-109m2-id-2919566259/) |
 | Itaim Bibi | 136 m² | R$ 11.907/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894298893) |
@@ -588,7 +587,7 @@ Atualizado em 28/10/2026 01:32 UTC · 593 anúncios. Orçamento: compra até R$ 
 | Itaim Bibi | 108 m² | R$ 12.339/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894293051) |
 | Itaim Bibi | 187 m² | R$ 12.444/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895291020) |
 | Vila Nova Conceição | 100 m² | R$ 12.465/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895777997) |
-| Vila Nova Conceição | 115 m² | R$ 12.470/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-varanda-vila-nova-conceicao-zona-sul-sao-paulo-sp-115m2-id-2918787989/) |
+| Vila Nova Conceição | 115 m² | R$ 12.470/mês | 3 | vivareal | [abrir](https://www.vivareal.com.br/imovel/apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-com-garagem-115m2-aluguel-RS11270-id-2918787989/) |
 | Itaim Bibi | 130 m² | R$ 12.553/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895730167) |
 | Vila Nova Conceição | 111 m² | R$ 12.558/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2918321857/) |
 | Itaim Bibi | 190 m² | R$ 12.570/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-190m2-id-2919563071/) |
