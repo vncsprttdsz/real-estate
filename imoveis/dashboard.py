@@ -69,7 +69,7 @@ def snapshot(active: list[dict]) -> dict:
     return out
 
 
-def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: dict[str, str]) -> dict:
+def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: dict[str, str], macro: dict | None = None) -> dict:
     catalog: dict = _load(CATALOG, {})
     for listings in results.values():
         for l in listings:
@@ -119,6 +119,7 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
     data = {
         "updated_at": state.get("last_run"),
         "prev_run": state.get("prev_run"),
+        "macro": macro if macro is not None else _load(ROOT / "data" / "macro.json", None),
         "source_info": SOURCE_INFO,
         "notes": [{"date": a, "text": b} for a, b in METHOD_NOTES],
         "criteria": {

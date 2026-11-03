@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from .common import ROOT, Config, Listing, norm
 from .http import Http
 from .notify import Notifier, brl, describe
-from . import dashboard
+from . import dashboard, macro
 from .sources import grupozap, quintoandar, zuk
 
 STATE = ROOT / "data" / "state.json"
@@ -208,7 +208,12 @@ def run(dry_run: bool = False) -> int:
         except Exception:
             pass
     write_report([l for l in all_current if cfg.in_budget(l)], cfg)
-    dashboard.build(cfg, state, results, errors)
+    try:
+        macro_data = macro.update()
+    except Exception as e:   # o painel segue sem o simulador atualizado
+        print(f"[aviso] Focus: {e}", file=sys.stderr)
+        macro_data = None
+    dashboard.build(cfg, state, results, errors, macro_data)
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1, sort_keys=True))
     print(f"novos={len(new_items)} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
     return 0

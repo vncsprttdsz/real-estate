@@ -394,3 +394,28 @@ def test_quintoandar_tiles_large_neighborhood():
     houses = quintoandar._fetch_api(FakeHttp(), cfg3, "venda")
     assert len(set(seen_vps)) == 3 and len(houses) == 3
     assert len([l for l in quintoandar.fetch(FakeHttp(), cfg3) if l.business == "venda"]) == 1
+
+
+def test_focus_parse_latest_snapshot():
+    from imoveis import macro
+    rows = [
+        {"Indicador": "Selic", "Data": "2026-10-24", "DataReferencia": "2026", "Mediana": 15.0, "numeroRespondentes": 80},
+        {"Indicador": "Selic", "Data": "2026-10-31", "DataReferencia": "2026", "Mediana": 15.0, "numeroRespondentes": 90},
+        {"Indicador": "Selic", "Data": "2026-10-31", "DataReferencia": "2027", "Mediana": 12.25, "numeroRespondentes": 88},
+        {"Indicador": "Selic", "Data": "2026-10-31", "DataReferencia": "2028", "Mediana": 10.5, "numeroRespondentes": 70},
+    ]
+    out = macro.parse_focus(rows)
+    assert out["data"] == "2026-10-31" and out["anos"] == {2026: 15.0, 2027: 12.25, 2028: 10.5} and out["respondentes"] == 90
+
+
+def test_focus_update_keeps_previous_on_failure(tmp_path, monkeypatch):
+    from imoveis import macro
+    monkeypatch.setattr(macro, "MACRO", tmp_path / "macro.json")
+    (tmp_path / "macro.json").write_text(json.dumps({"atualizado": "2026-10-31T10:00:00+00:00", "selic": {"data": "2026-10-31", "anos": {"2026": 15.0}}}))
+
+    class Down:
+        def get(self, *a, **k):
+            return _R(503, "fora do ar")
+
+    out = macro.update(Down())
+    assert out["selic"]["anos"] == {"2026": 15.0} and out["erro"] and out["atualizado"] == "2026-10-31T10:00:00+00:00"
