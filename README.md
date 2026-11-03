@@ -79,7 +79,9 @@ oferece "Restaurar padrão".
   atualizadas a cada coleta) para o rendimento do caixa no Tesouro Selic, o reajuste do aluguel e, por padrão,
   a valorização do imóvel. Compara o patrimônio nos dois cenários com o mesmo desembolso mensal, mostra a
   valorização de empate, a evolução ano a ano e uma tabela de sensibilidade (valorização × Selic). Botão
-  "Simular" em cada anúncio da tabela e no cartão do gráfico. Motor em `docs/sim.js`
+  "Simular" em cada anúncio da tabela e no cartão do gráfico. Considera o FGTS: saldo na entrada e depósitos
+  mensais pagando até 80% das parcelas (ciclos de 12 meses) ou amortizando a cada 2 anos, só para imóvel até o
+  teto do SFH (editável); quem aluga mantém o saldo no FGTS (rendimento com piso no IPCA do Focus). Motor em `docs/sim.js`
   (testes: `node tests/js/sim.test.mjs`).
 - **Qualidade e metodologia** — status e cobertura de cada fonte, mudanças de cobertura e definições.
 

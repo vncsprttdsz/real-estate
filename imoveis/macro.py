@@ -15,7 +15,7 @@ from .http import Http
 
 FOCUS = "https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/odata/ExpectativasMercadoAnuais"
 MACRO = ROOT / "data" / "macro.json"
-INDICADORES = {"selic": "Selic", "igpm": "IGP-M"}
+INDICADORES = {"selic": "Selic", "igpm": "IGP-M", "ipca": "IPCA"}
 
 
 def parse_focus(rows: list[dict]) -> dict:

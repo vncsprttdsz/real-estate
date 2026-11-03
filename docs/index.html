@@ -452,6 +452,14 @@ table.sens td.cell { text-align: right; min-width: 70px; }
               <label>Prazo <span class="u">anos</span><input id="sTerm" inputmode="numeric"></label>
               <label>Sistema de amortização <span class="u">SAC: parcelas decrescentes · Price: fixas</span><select id="sSystem"><option value="SAC">SAC</option><option value="PRICE">Price</option></select></label>
             </fieldset>
+            <fieldset><legend>FGTS</legend>
+              <label>Saldo atual do FGTS <span class="u">R$ (0 = não usar)</span><input id="sFgtsBal" inputmode="decimal"></label>
+              <label>Depósito mensal <span class="u">R$, 8% do salário bruto</span><input id="sFgtsDep" inputmode="decimal"></label>
+              <label>Usar o saldo na entrada <span class="u">limitado ao valor da entrada</span><select id="sFgtsDown"><option value="sim">Sim</option><option value="nao">Não</option></select></label>
+              <label>Uso dos depósitos <span class="u">regras do FGTS para imóvel financiado</span><select id="sFgtsMode"><option value="parcelas">Até 80% da parcela</option><option value="amortizacao">Amortizar (2 anos)</option><option value="nenhum">Não usar</option></select></label>
+              <label>Rendimento do FGTS <span class="u">% a.a. (TR + 3% + lucros); piso: IPCA</span><input id="sFgtsYield" inputmode="decimal"></label>
+              <label>Teto do SFH <span class="u">R$, valor máximo do imóvel para usar FGTS</span><input id="sSfhCap" inputmode="decimal"></label>
+            </fieldset>
             <fieldset><legend>Cenário</legend>
               <label>Horizonte <span class="u">anos</span><input id="sHorizon" inputmode="numeric"></label>
               <label>Valorização do imóvel <span class="u">padrão: IGP-M projetado</span><select id="sApprMode"><option value="igpm">IGP-M (Focus)</option><option value="custom">Taxa fixa</option></select></label>
@@ -501,6 +509,7 @@ table.sens td.cell { text-align: right; min-width: 70px; }
               <li><b>Patrimônio comprando</b> = valor do imóvel (− custo de venda, se informado) − saldo devedor + aplicações. <b>Alugando</b> = aplicações. Ambos líquidos de IR no resgate.</li>
               <li><b>Selic:</b> mediana do Focus para o fim de cada ano, interpolada mês a mês; o Tesouro rende o percentual informado da Selic, menos a custódia. <b>IR</b> regressivo (15% acima de 2 anos) sobre o ganho total no fim — aproximação, pois aportes mais recentes ficam menos tempo aplicados.</li>
               <li><b>IGP-M:</b> variação anual do Focus; reajusta o aluguel a cada 12 meses e, se escolhido, valoriza o imóvel. Anos além do último projetado repetem o último valor. "R$ de hoje" deflaciona pelo IGP-M projetado.</li>
+              <li><b>FGTS:</b> os depósitos mensais (8% do salário, reajustados pelo IPCA a cada ano) entram nos dois cenários. Alugando, o saldo fica no FGTS rendendo a taxa informada (TR + 3% + distribuição de lucros), com piso no IPCA do Focus. Comprando imóvel até o teto do SFH, o saldo pode compor a entrada (não paga ITBI nem cartório) e os depósitos podem <b>pagar até 80% das parcelas</b> — ciclos de 12 meses, usando o saldo existente no início de cada ciclo — ou <b>amortizar o saldo devedor</b> a cada 2 anos (o uso na entrada conta como o primeiro; a amortização reduz a parcela e mantém o prazo). O saldo de FGTS entra no patrimônio dos dois lados, sem IR, embora só possa ser sacado em situações previstas em lei.</li>
               <li><b>Fora do cálculo:</b> condomínio e IPTU (pagos nos dois cenários), seguros obrigatórios do financiamento e TR, taxas do banco, vacância, reformas e o valor de morar no imóvel próprio. É uma simulação com premissas — não é recomendação.</li>
             </ul>
           </div>
@@ -1500,18 +1509,20 @@ function renderQuality() {
    Simulador comprar × alugar (motor em sim.js)
    ===================================================================== */
 const SIM_DEF = { sPrice: 2000000, sRent: 9000, sDown: 30, sAcq: 4, sRate: 11.5, sTerm: 30, sSystem: "SAC", sHorizon: 10,
-  sApprMode: "igpm", sAppr: 4, sRentMode: "igpm", sRentAdj: 4, sTesouro: 100, sCustody: 0.2, sMaint: 0, sSell: 0, sSelicFb: 12, sIgpmFb: 4 };
-const SIM_NUM = ["sPrice", "sRent", "sDown", "sAcq", "sRate", "sTerm", "sHorizon", "sAppr", "sRentAdj", "sTesouro", "sCustody", "sMaint", "sSell", "sSelicFb", "sIgpmFb"];
+  sApprMode: "igpm", sAppr: 4, sRentMode: "igpm", sRentAdj: 4, sTesouro: 100, sCustody: 0.2, sMaint: 0, sSell: 0, sSelicFb: 12, sIgpmFb: 4,
+  sFgtsBal: 0, sFgtsDep: 0, sFgtsDown: "sim", sFgtsMode: "parcelas", sFgtsYield: 4.5, sSfhCap: 2250000 };
+const SIM_NUM = ["sPrice", "sRent", "sDown", "sAcq", "sRate", "sTerm", "sHorizon", "sAppr", "sRentAdj", "sTesouro", "sCustody", "sMaint", "sSell", "sSelicFb", "sIgpmFb", "sFgtsBal", "sFgtsDep", "sFgtsYield", "sSfhCap"];
 const SIM_LIMITS = { sPrice: [10000, 1e9], sRent: [0, 1e7], sDown: [0, 100], sAcq: [0, 30], sRate: [0, 60], sTerm: [1, 40], sHorizon: [1, 40],
-  sAppr: [-20, 50], sRentAdj: [-20, 50], sTesouro: [0, 200], sCustody: [0, 5], sMaint: [0, 10], sSell: [0, 20], sSelicFb: [0, 60], sIgpmFb: [-20, 50] };
+  sAppr: [-20, 50], sRentAdj: [-20, 50], sTesouro: [0, 200], sCustody: [0, 5], sMaint: [0, 10], sSell: [0, 20], sSelicFb: [0, 60], sIgpmFb: [-20, 50],
+  sFgtsBal: [0, 1e8], sFgtsDep: [0, 1e6], sFgtsYield: [0, 30], sSfhCap: [0, 1e9] };
 let SIM_STATE = Object.assign({}, SIM_DEF, store.get("sim", {}));
 let SIM_UNIT = "nom", SIM_TABLE = false, SIM_NOTE = store.get("simNote", "");
 const parseBR = v => { if (typeof v === "number") return v; const t = String(v).trim().replace(/\s|R\$|%/g, ""); if (!t) return NaN;
   return Number(/,/.test(t) ? t.replace(/\./g, "").replace(",", ".") : /^\d{1,3}(\.\d{3})+$/.test(t) ? t.replace(/\./g, "") : t); };
-const fmtIn = (k, v) => ["sPrice", "sRent"].includes(k) ? nf0.format(v) : String(v).replace(".", ",");
+const fmtIn = (k, v) => ["sPrice", "sRent", "sFgtsBal", "sFgtsDep", "sSfhCap"].includes(k) ? nf0.format(v) : String(v).replace(".", ",");
 function focusPaths() {
   const mc = DATA.macro || {}, get = k => mc[k]?.anos && Object.keys(mc[k].anos).length ? mc[k].anos : null;
-  return { selic: get("selic"), igpm: get("igpm"), mc };
+  return { selic: get("selic"), igpm: get("igpm"), ipca: get("ipca"), mc };
 }
 function simInputs() {
   const st = {}, bad = [];
@@ -1534,7 +1545,9 @@ function simParams(st) {
     termYears: st.sTerm, system: st.sSystem, horizonYears: st.sHorizon,
     apprAA: st.sApprMode === "custom" ? st.sAppr / 100 : null, rentAdjAA: st.sRentMode === "custom" ? st.sRentAdj / 100 : null,
     tesouroPct: st.sTesouro / 100, custodyAA: st.sCustody / 100, maintAA: st.sMaint / 100, sellCostPct: st.sSell / 100,
-    selicPath: fp.selic || {}, igpmPath: fp.igpm || {}, selicFallback: st.sSelicFb / 100, igpmFallback: st.sIgpmFb / 100,
+    selicPath: fp.selic || {}, igpmPath: fp.igpm || {}, ipcaPath: fp.ipca || {}, selicFallback: st.sSelicFb / 100, igpmFallback: st.sIgpmFb / 100,
+    fgtsBalance: st.sFgtsBal, fgtsMonthly: st.sFgtsDep, fgtsUseDown: st.sFgtsDown === "sim", fgtsMode: st.sFgtsMode,
+    fgtsYieldAA: st.sFgtsYield / 100, sfhCap: st.sSfhCap,
     startYear: now.getFullYear(), startMonth: now.getMonth() + 1,
   };
 }
@@ -1626,6 +1639,11 @@ function renderSim() {
   if (!fp.selic || !fp.igpm) al.push(["warn", `Projeções do Focus indisponíveis${fp.mc?.erro ? " (" + fp.mc.erro + ")" : ""}: usando Selic e IGP-M médios informados abaixo. Elas são atualizadas a cada coleta.`]);
   else if (fp.mc.erro) al.push(["warn", `Última atualização do Focus falhou (${fp.mc.erro}); usando o boletim de ${FMT.date(dayISO(fp.mc.selic.data))}.`]);
   if (bad.length) al.push(["crit", `Valor inválido em: ${bad.join(", ")}. Mantido o último valor válido.`]);
+  const fg = res.fgts, hasF = st.sFgtsBal > 0 || st.sFgtsDep > 0;
+  if (hasF && st.sPrice > st.sSfhCap) al.push(["warn", `Imóvel de ${FMT.brlc(st.sPrice)} acima do teto do SFH (${FMT.brlc(st.sSfhCap)}): o FGTS não pode ser usado na compra. Nos dois cenários o saldo fica no FGTS.`]);
+  else if (hasF && fg.mode === "nenhum" && st.sFgtsMode !== "nenhum" && !res.loan0 && st.sFgtsDep > 0) al.push(["info", "Compra à vista: sem parcelas a abater; os depósitos mensais ficam no FGTS nos dois cenários."]);
+  if (hasF && fg.ok) al.push(["info", "Uso do FGTS pressupõe: imóvel residencial urbano no SFH, 3 anos de trabalho sob FGTS (somando empregos), não ter outro imóvel no município de residência ou trabalho nem financiamento ativo no SFH. Confirme as regras vigentes com a Caixa e o banco."]);
+  if (!fp.ipca && hasF) al.push(["info", `IPCA do Focus ainda não coletado: o piso de rendimento do FGTS usa ${String(p.ipcaFallback * 100).replace(".", ",")}% a.a. até a próxima coleta.`]);
   if (st.sTerm < st.sHorizon) al.push(["info", `O financiamento termina antes do horizonte (${st.sTerm} anos): depois disso, quem comprou investe o aluguel que deixaria de pagar.`]);
   $("#simAlerts").replaceChildren(...al.map(([lvl, t]) => h("div", { class: "alert " + lvl }, h("span", { class: "ico " + (lvl === "info" ? "" : lvl), style: lvl === "info" ? "background:var(--accent)" : null }, lvl === "info" ? "i" : "!"), h("span", {}, t))));
   // veredito
@@ -1635,6 +1653,9 @@ function renderSim() {
     h("div", {}, `Em ${N} anos, `, h("b", {}, better), ` deixa um patrimônio `, h("b", {}, `${FMT.brlc(d)} maior`), ` (${FMT.brlc(dReal)} em R$ de hoje), com estas premissas.`),
     h("div", { class: "muted", style: "font-size:12.5px;margin-top:4px" },
       be != null ? `Comprar passa a compensar se o imóvel valorizar acima de ${FMT.pct(be, 1).replace("+", "")} a.a. (premissa atual: ${FMT.pct(apprBase, 1).replace("+", "")} a.a.${p.apprAA == null ? ", IGP-M do Focus" : ""}).` : "Não há valorização entre −20% e +50% a.a. que empate os cenários."),
+    ...(hasF ? [h("div", { class: "muted", style: "font-size:12.5px;margin-top:4px" }, fg.ok
+      ? `FGTS na compra: ${FMT.brlc(fg.down)} na entrada${fg.usedInst ? `, ${FMT.brlc(fg.usedInst)} em parcelas` : ""}${fg.usedAmort ? `, ${FMT.brlc(fg.usedAmort)} em amortizações` : ""}. Saldo de FGTS no fim: ${FMT.brlc(fg.finalB)} comprando, ${FMT.brlc(fg.finalR)} alugando (incluído no patrimônio).`
+      : `FGTS fora da compra; saldo no fim de ${FMT.brlc(fg.finalR)} nos dois cenários (incluído no patrimônio).`)] : []),
     ...(SIM_NOTE ? [h("div", { class: "muted", style: "font-size:12px;margin-top:4px" }, SIM_NOTE)] : []));
   const kp = (label, value, unit, per, cmp) => h("div", { class: "card kpi" }, h("div", { class: "label" }, label), h("div", { class: "value" }, value, unit ? h("span", { class: "unit" }, " " + unit) : null), h("div", { class: "per" }, per), cmp ? h("div", { class: "cmp" }, cmp) : null);
   const ratio = res.firstInst ? res.firstInst / st.sRent : null;
@@ -1642,16 +1663,16 @@ function renderSim() {
     kp("Patrimônio comprando", FMT.brlc(f.buy), "", `em ${N} anos · nominal`, `${FMT.brlc(f.buyReal)} em R$ de hoje`),
     kp("Patrimônio alugando", FMT.brlc(f.rent), "", `em ${N} anos · nominal, líquido de IR`, `${FMT.brlc(f.rentReal)} em R$ de hoje`),
     kp("Valorização de empate", be != null ? FMT.pct(be, 1).replace("+", "") : "—", "a.a.", "do imóvel, constante", `premissa: ${FMT.pct(apprBase, 1).replace("+", "")} a.a.`),
-    kp("Caixa inicial", FMT.brlc(res.cash0), "", `entrada ${nf0.format(st.sDown)}% + custos ${String(st.sAcq).replace(".", ",")}%`, res.loan0 ? `financiado: ${FMT.brlc(res.loan0)}` : "compra à vista"),
-    kp("1ª parcela", res.firstInst ? FMT.brl(res.firstInst) : "—", res.firstInst ? "/mês" : "", `${st.sSystem === "SAC" ? "SAC, decrescente" : "Price, fixa"} · ${String(st.sRate).replace(".", ",")}% a.a.`, ratio ? `${nf1.format(ratio)}× o aluguel inicial (${FMT.brl(st.sRent)})` : ""));
+    kp("Caixa inicial", FMT.brlc(res.cash0), "", `entrada ${nf0.format(st.sDown)}% + custos ${String(st.sAcq).replace(".", ",")}%${fg.down ? " − FGTS " + FMT.brlc(fg.down) : ""}`, res.loan0 ? `financiado: ${FMT.brlc(res.loan0)}` : "compra à vista"),
+    kp("1ª parcela", res.firstInst ? FMT.brl(res.firstInst) : "—", res.firstInst ? "/mês" : "", `${st.sSystem === "SAC" ? "SAC, decrescente" : "Price, fixa"} · ${String(st.sRate).replace(".", ",")}% a.a.`, res.firstPaid != null && res.firstPaid < res.firstInst - .5 ? `${FMT.brl(res.firstPaid)} em dinheiro após o FGTS (80%, por 12 meses)` : ratio ? `${nf1.format(ratio)}× o aluguel inicial (${FMT.brl(st.sRent)})` : ""));
   // gráfico / tabela
   $("#simChartSub").textContent = `${SIM_UNIT === "real" ? "R$ de hoje (deflacionado pelo IGP-M projetado)" : "R$ nominais"} · fim de cada ano · líquido de IR · horizonte ${N} anos`;
   document.querySelectorAll("#simUnit button").forEach(b => { b.setAttribute("aria-pressed", String(b.dataset.v === SIM_UNIT)); b.onclick = () => { SIM_UNIT = b.dataset.v; renderSim(); }; });
   simChart($("#simChart"), res.rows, SIM_UNIT);
   const kb = SIM_UNIT === "real" ? "buyReal" : "buy", kr = SIM_UNIT === "real" ? "rentReal" : "rent";
   $("#simTable").replaceChildren(h("div", { class: "tablewrap" }, h("table", { class: "data" },
-    h("thead", {}, h("tr", {}, ...["Ano", "Valor do imóvel", "Saldo devedor", "Patrimônio comprando", "Patrimônio alugando", "Diferença", "Aluguel mensal"].map((t, i) => h("th", { class: i ? "num" : null }, t, h("span", { class: "u" }, i === 0 ? "" : i === 6 ? "R$ nominais" : SIM_UNIT === "real" && i >= 3 ? "R$ de hoje" : "R$ nominais"))))),
-    h("tbody", {}, res.rows.map(r => h("tr", {}, h("td", {}, r.year === 0 ? "hoje" : r.year), ...[r.V, r.L, r[kb], r[kr], r[kb] - r[kr], r.R].map(v => h("td", { class: "num" }, nf0.format(v)))))))));
+    h("thead", {}, h("tr", {}, ...["Ano", "Valor do imóvel", "Saldo devedor", "Patrimônio comprando", "Patrimônio alugando", "Diferença", "Aluguel mensal", ...(hasF ? ["FGTS comprando", "FGTS alugando"] : [])].map((t, i) => h("th", { class: i ? "num" : null }, t, h("span", { class: "u" }, i === 0 ? "" : i >= 6 ? "R$ nominais" : SIM_UNIT === "real" && i >= 3 ? "R$ de hoje" : "R$ nominais"))))),
+    h("tbody", {}, res.rows.map(r => h("tr", {}, h("td", {}, r.year === 0 ? "hoje" : r.year), ...[r.V, r.L, r[kb], r[kr], r[kb] - r[kr], r.R, ...(hasF ? [r.fgtsB, r.fgtsR] : [])].map(v => h("td", { class: "num" }, nf0.format(v)))))))));
   $("#simChart").hidden = SIM_TABLE; $("#simTable").hidden = !SIM_TABLE;
   $("#simTblToggle").textContent = SIM_TABLE ? "Ver gráfico" : "Ver tabela"; $("#simTblToggle").setAttribute("aria-pressed", String(SIM_TABLE));
   // sensibilidade
@@ -1667,21 +1688,21 @@ function renderSim() {
         style: `background:color-mix(in srgb, ${col} ${Math.round(a * 70)}%, transparent);${a > .55 ? "color:#fff;" : ""}${i === 2 && k === 2 ? "outline:2px solid var(--ink);outline-offset:-2px;" : ""}` },
         (v >= 0 ? "+" : "−") + nf0.format(Math.abs(v) / 1000)); })))))));
   // Focus
-  const years = Array.from(new Set([...Object.keys(p.selicPath), ...Object.keys(p.igpmPath)])).sort();
+  const years = Array.from(new Set([...Object.keys(p.selicPath), ...Object.keys(p.igpmPath), ...Object.keys(p.ipcaPath)])).sort();
   $("#simFocusSub").textContent = fp.selic ? `Mediana · boletim de ${FMT.date(dayISO(fp.mc.selic.data))}${fp.mc.selic.respondentes ? " · " + fp.mc.selic.respondentes + " respondentes" : ""} · fonte: BCB` : "Indisponível — usando médias informadas";
   $("#simFocus").replaceChildren(years.length ? h("div", { class: "tablewrap" }, h("table", { class: "data" },
-    h("thead", {}, h("tr", {}, h("th", {}, "Ano"), h("th", { class: "num" }, "Selic", h("span", { class: "u" }, "% a.a., fim do ano")), h("th", { class: "num" }, "IGP-M", h("span", { class: "u" }, "% no ano")))),
-    h("tbody", {}, years.map(y => h("tr", {}, h("td", {}, y), h("td", { class: "num" }, p.selicPath[y] != null ? FMT.dec2(p.selicPath[y]) : "—"), h("td", { class: "num" }, p.igpmPath[y] != null ? FMT.dec2(p.igpmPath[y]) : "—"))))))
+    h("thead", {}, h("tr", {}, h("th", {}, "Ano"), h("th", { class: "num" }, "Selic", h("span", { class: "u" }, "% a.a., fim do ano")), h("th", { class: "num" }, "IGP-M", h("span", { class: "u" }, "% no ano")), h("th", { class: "num" }, "IPCA", h("span", { class: "u" }, "% no ano")))),
+    h("tbody", {}, years.map(y => h("tr", {}, h("td", {}, y), h("td", { class: "num" }, p.selicPath[y] != null ? FMT.dec2(p.selicPath[y]) : "—"), h("td", { class: "num" }, p.igpmPath[y] != null ? FMT.dec2(p.igpmPath[y]) : "—"), h("td", { class: "num" }, p.ipcaPath[y] != null ? FMT.dec2(p.ipcaPath[y]) : "—"))))))
     : h("div", { class: "empty" }, "Sem projeções do Focus ainda."),
     h("p", { class: "note" }, years.length ? `Depois de ${years.at(-1)}, repete o último valor projetado.` : ""));
 }
 function simCsv() {
   if (!SIM_LAST) return;
   const { res, st } = SIM_LAST, fp = focusPaths();
-  const rows = [["Ano", "Valor do imóvel (R$)", "Saldo devedor (R$)", "Patrimônio comprando (R$ nominais)", "Patrimônio alugando (R$ nominais)", "Comprando (R$ de hoje)", "Alugando (R$ de hoje)", "Aluguel mensal (R$)"],
-    ...res.rows.map(r => [r.year, Math.round(r.V), Math.round(r.L), Math.round(r.buy), Math.round(r.rent), Math.round(r.buyReal), Math.round(r.rentReal), Math.round(r.R)])];
+  const rows = [["Ano", "Valor do imóvel (R$)", "Saldo devedor (R$)", "Patrimônio comprando (R$ nominais)", "Patrimônio alugando (R$ nominais)", "Comprando (R$ de hoje)", "Alugando (R$ de hoje)", "Aluguel mensal (R$)", "FGTS comprando (R$)", "FGTS alugando (R$)"],
+    ...res.rows.map(r => [r.year, Math.round(r.V), Math.round(r.L), Math.round(r.buy), Math.round(r.rent), Math.round(r.buyReal), Math.round(r.rentReal), Math.round(r.R), Math.round(r.fgtsB), Math.round(r.fgtsR)])];
   const br = v => String(v).replace(".", ",");
-  const prem = `Premissas: preço ${FMT.brl(st.sPrice)}; aluguel ${FMT.brl(st.sRent)}/mês; entrada ${br(st.sDown)}%; custos ${br(st.sAcq)}%; financiamento ${br(st.sRate)}% a.a., ${st.sTerm} anos, ${st.sSystem}; valorização ${st.sApprMode === "custom" ? br(st.sAppr) + "% a.a." : "IGP-M Focus"}; reajuste ${st.sRentMode === "custom" ? br(st.sRentAdj) + "% a.a." : "IGP-M Focus"}; Tesouro ${br(st.sTesouro)}% da Selic, custódia ${br(st.sCustody)}%; manutenção ${br(st.sMaint)}%; venda ${br(st.sSell)}%. Focus: ${fp.selic ? "boletim de " + FMT.date(dayISO(fp.mc.selic.data)) : "indisponível (médias informadas)"}.`;
+  const prem = `Premissas: preço ${FMT.brl(st.sPrice)}; aluguel ${FMT.brl(st.sRent)}/mês; entrada ${br(st.sDown)}%; custos ${br(st.sAcq)}%; financiamento ${br(st.sRate)}% a.a., ${st.sTerm} anos, ${st.sSystem}; valorização ${st.sApprMode === "custom" ? br(st.sAppr) + "% a.a." : "IGP-M Focus"}; reajuste ${st.sRentMode === "custom" ? br(st.sRentAdj) + "% a.a." : "IGP-M Focus"}; Tesouro ${br(st.sTesouro)}% da Selic, custódia ${br(st.sCustody)}%; manutenção ${br(st.sMaint)}%; venda ${br(st.sSell)}%; FGTS saldo ${FMT.brl(st.sFgtsBal)}, depósito ${FMT.brl(st.sFgtsDep)}/mês, entrada ${st.sFgtsDown}, uso ${st.sFgtsMode}, rende ${br(st.sFgtsYield)}% a.a., teto SFH ${FMT.brl(st.sSfhCap)}. Focus: ${fp.selic ? "boletim de " + FMT.date(dayISO(fp.mc.selic.data)) : "indisponível (médias informadas)"}.`;
   rows.unshift([prem]);
   csvDownload(rows, `Simulação comprar × alugar — ${st.sHorizon} anos`, "radar-simulacao");
 }
