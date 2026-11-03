@@ -471,3 +471,27 @@ def test_duplicates_grouped_and_not_alerted(tmp_path, monkeypatch):
     assert {c["url"] for c in unit["also"]} == {"https://zap/2", "https://quintoandar/8"}
     assert unit["initial"] and "zap:venda:2" not in rows and len(rows) == 3
     assert data["dedupe"] == {"grupos": 1, "copias": 2, "por_fonte": {"zap": 1, "quintoandar": 1}}
+
+
+def test_rent_ppm2_uses_total_and_history_is_rebased():
+    from imoveis import dashboard
+    assert dashboard.ppm2({"business": "aluguel", "price": 8000, "total_monthly": 10_000, "area": 100}) == 100
+    assert dashboard.ppm2({"business": "aluguel", "price": None, "total_monthly": 9000, "area": 100}) == 90
+    assert dashboard.ppm2({"business": "venda", "price": 2_000_000, "total_monthly": None, "area": 100}) == 20_000
+    catalog = {
+        "zap:aluguel:1": {"source": "zap", "business": "aluguel", "neighborhood": "Itaim Bibi", "area": 100, "price": 8000, "total_monthly": 10_000},
+        "quintoandar:aluguel:2": {"source": "quintoandar", "business": "aluguel", "neighborhood": "Itaim Bibi", "area": 100, "price": None, "total_monthly": 12_000},
+    }
+    state = {"seen": {
+        "zap:aluguel:1": {"first_seen": "2026-10-11T10:00:00+00:00", "last_seen": "2026-11-03T10:00:00+00:00",
+                          "hist": [["2026-10-11T10:00:00+00:00", 11_000], ["2026-10-20T10:00:00+00:00", 10_000]]},
+        "quintoandar:aluguel:2": {"first_seen": "2026-10-15T10:00:00+00:00", "last_seen": "2026-11-03T10:00:00+00:00",
+                                  "hist": [["2026-10-15T10:00:00+00:00", 12_000]]},
+    }}
+    hist = [{"date": d, "groups": {"aluguel|Itaim Bibi": {"n": 1, "ppm2": 80.0}, "venda|Itaim Bibi": {"n": 1, "ppm2": 20_000}}}
+            for d in ("2026-10-12", "2026-10-16", "2026-10-21")]
+    out = dashboard.rebase_rent_history(hist, catalog, state)
+    assert [h["groups"]["aluguel|Itaim Bibi"]["ppm2"] for h in out] == [110, 115, 110]   # preço vigente em cada dia
+    assert all(h["groups"]["venda|Itaim Bibi"]["ppm2"] == 20_000 and h["rent_basis"] == "total" for h in out)
+    out[0]["groups"]["aluguel|Itaim Bibi"]["ppm2"] = 1.0
+    assert dashboard.rebase_rent_history(out, catalog, state)[0]["groups"]["aluguel|Itaim Bibi"]["ppm2"] == 1.0  # só uma vez

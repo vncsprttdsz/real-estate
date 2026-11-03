@@ -86,5 +86,9 @@ const tor = SIM.tornado(base, [["selic", .02], ["infl", .02], ["rent", .2]]);
 ok(tor.length === 3 && Math.abs(tor[0].hi - tor[0].lo) >= Math.abs(tor[2].hi - tor[2].lo), "tornado ordenado pela amplitude");
 const gr = SIM.grid(base, "infl", [-.01, 0, .01], "selic", [0]);
 ok(near(gr[1][0], b0.final.diff, 1e-6), "grade: célula central = premissa");
+
+// 14) Curva de empate: sem FGTS, o aluguel de empate cresce ~proporcionalmente ao preço
+const cv = SIM.breakevenCurve(base, [500_000, 1_000_000, 2_000_000]);
+ok(cv.every(c => c.rent > 0) && near(cv[2].rent / cv[1].rent, 2, .02) && near(cv[1].rent / cv[0].rent, 2, .02), `curva de empate proporcional: ${cv.map(c => Math.round(c.rent)).join(", ")}`);
 console.log(fails ? `\n${fails} falha(s)` : "\ntodos os testes passaram");
 process.exit(fails ? 1 : 0);

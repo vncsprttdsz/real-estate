@@ -42,6 +42,9 @@ METHOD_NOTES = [
     ("2026-10-11", "Cobertura ampliada ao longo do dia: QuintoAndar passou a ler todos os resultados, "
                    "ZAP/Viva Real passaram a ler os mais recentes primeiro. Contagens e medianas de 11/10 "
                    "não são comparáveis com dias anteriores; anúncios já existentes foram marcados como carga inicial."),
+    ("2026-11-03", "R$/m² do aluguel padronizado pelo valor total (aluguel + condomínio + IPTU) em todo o painel, inclusive "
+                   "no indicador e na evolução. A série desde 11/10 foi recalculada nessa base a partir do histórico de preço "
+                   "de cada anúncio; passa a incluir os anúncios do QuintoAndar que não separam o aluguel do condomínio."),
     ("2026-11-03", "Anúncios duplicados agrupados: a mesma unidade (rua, área, preço e negócio iguais) em mais de um portal "
                    "ou republicada no mesmo portal conta uma vez em contagens, medianas e novos. Contagens a partir desta data "
                    "ficam menores que as anteriores."),
@@ -51,10 +54,47 @@ METHOD_NOTES = [
 
 
 def ppm2(d: dict) -> float | None:
-    """R$/m²: preço de venda/lance, ou aluguel (sem condomínio) por m² ao mês."""
-    if d.get("price") and d.get("area"):
-        return round(d["price"] / d["area"], 2)
+    """R$/m²: preço de venda/lance, ou valor total do aluguel (aluguel + condomínio + IPTU) por m² ao mês."""
+    p = (d.get("total_monthly") or d.get("price")) if d.get("business") == "aluguel" else d.get("price")
+    if p and d.get("area"):
+        return round(p / d["area"], 2)
     return None
+
+
+def _price_at(hist: list, end_ts: float) -> float | None:
+    before = [p for t, p in hist if _ts(t) <= end_ts]
+    return before[-1] if before else (hist[0][1] if hist else None)
+
+
+def rebase_rent_history(history: list[dict], catalog: dict, state: dict) -> list[dict]:
+    """Recalcula, para dias antigos, a mediana de R$/m² do aluguel na base total (a série era registrada
+    sem condomínio). Usa o histórico de preço de cada anúncio ainda na memória do monitor; anúncios
+    vistos no dia (com a mesma tolerância de 'saiu do ar' do painel) entram na mediana do dia."""
+    seen = state.get("seen", {})
+    rents = []
+    for key, d in catalog.items():
+        s = seen.get(key)
+        if d.get("business") != "aluguel" or not s or not d.get("area"):
+            continue
+        rents.append((d, s, GONE_AFTER_BY_SOURCE.get(d["source"], GONE_AFTER_SECONDS)))
+    for h in history:
+        if h.get("rent_basis") == "total":
+            continue
+        end = datetime.fromisoformat(h["date"] + "T23:59:59+00:00").timestamp()
+        by_nb: dict[str, list[float]] = {}
+        for d, s, limit in rents:
+            if _ts(s["first_seen"]) > end or _ts(s["last_seen"]) < end - 86400 - limit:
+                continue
+            p = _price_at(s.get("hist") or [], end) or d.get("total_monthly") or d.get("price")
+            if p:
+                by_nb.setdefault((d.get("neighborhood") or "").strip(), []).append(p / d["area"])
+        for k, g in h["groups"].items():
+            biz, nb = k.split("|", 1)
+            if biz == "aluguel":
+                vals = by_nb.get(nb)
+                g["ppm2"] = round(median(vals), 2) if vals else None
+        h["rent_basis"] = "total"
+    return history
 
 
 def snapshot(active: list[dict]) -> dict:
@@ -137,8 +177,8 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
     rows, merged = group(rows)
 
     today = datetime.now(timezone.utc).date().isoformat()
-    history = [h for h in _load(HISTORY, []) if h["date"] != today]
-    history.append({"date": today, "groups": snapshot([r for r in rows if r["active"]])})
+    history = rebase_rent_history([h for h in _load(HISTORY, []) if h["date"] != today], catalog, state)
+    history.append({"date": today, "rent_basis": "total", "groups": snapshot([r for r in rows if r["active"]])})
     history = history[-KEEP_HISTORY_DAYS:]
 
     sources = {}

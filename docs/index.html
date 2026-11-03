@@ -516,6 +516,14 @@ table.sens td.cell { text-align: right; min-width: 70px; }
             <div class="chart" id="simChart"></div>
             <div id="simTable" hidden></div>
           </div>
+          <div class="card">
+            <div class="card-head">
+              <div><h2>Preço × aluguel: onde comprar empata</h2><div class="sub" id="simBeSub"></div></div>
+              <div class="card-tools"><div class="legend" id="simBeLegend"></div></div>
+            </div>
+            <div class="chart" id="simBe"></div>
+            <p class="note" id="simBeNote"></p>
+          </div>
           <div class="grid">
             <div class="card c7">
               <div class="card-head"><div><h2>Para onde vai o dinheiro</h2><div class="sub" id="simCostSub"></div></div></div>
@@ -582,8 +590,8 @@ table.sens td.cell { text-align: right; min-width: 70px; }
         <dl class="defs">
           <dt>Preço pedido</dt><dd>Valor anunciado no portal. Não é preço de fechamento. Na venda, preço do imóvel; no leilão, lance mínimo informado.</dd>
           <dt>Valor total (aluguel)</dt><dd>Aluguel + condomínio + IPTU mensal, como informado pelo portal (ou somado a partir dos componentes).</dd>
-          <dt>R$/m² (tabela, dispersão, comparação e mapa de calor)</dt><dd>Preço pedido ÷ área útil. No aluguel, valor total ÷ área (“Total/m²”).</dd>
-          <dt>Aluguel s/ cond. por m² (indicador e evolução)</dt><dd>Aluguel sem condomínio e IPTU ÷ área. Mantido nesta base porque é a série histórica registrada desde o início; exclui anúncios que não informam o aluguel separado (parte do QuintoAndar). Por isso difere do “Total/m²”.</dd>
+          <dt>R$/m²</dt><dd>Preço pedido ÷ área útil. No aluguel, valor total ÷ área (“Total/m²”), em todo o painel.</dd>
+          <dt>Total/m² do aluguel</dt><dd>Base única do painel (indicador, evolução, tabela, gráficos): aluguel + condomínio + IPTU ÷ área. A série anterior a 03/11, registrada sem condomínio, foi recalculada nesta base. Exceções: o rendimento bruto e a estimativa de aluguel do simulador usam o aluguel sem condomínio, porque comparam com o preço do imóvel.</dd>
           <dt>Mediana</dt><dd>Valor do meio entre os anúncios ativos do recorte. Menos sensível a extremos que a média.</dd>
           <dt>vs. mediana</dt><dd>R$/m² do anúncio ÷ mediana do mesmo bairro e negócio − 1 (todos os anúncios ativos, sem filtro de orçamento). Leilões comparam com a mediana de venda.</dd>
           <dt>Anúncios monitorados (ativos)</dt><dd>Anúncios vistos na amostra coletada. Não é o estoque total do mercado: depende da cobertura de cada fonte e pode ter o mesmo imóvel em mais de um portal.</dd>
@@ -705,7 +713,8 @@ const HIDDEN_COLS = new Set(store.get("hiddenCols", ["condo"]));
 
 const refPrice = r => r.business === "aluguel" ? (r.total_monthly || r.price) : r.price;   // preço pedido / valor total
 const m2 = r => { const p = refPrice(r); return p && r.area ? p / r.area : null; };         // base das tabelas/gráficos
-const ppm2Hist = r => r.ppm2 ?? null;                                                     // base da série histórica
+const ppm2Hist = r => r.ppm2 ?? null;                                                     // base da série histórica (= m2; aluguel pelo total)
+const rentOnlyM2 = r => r.business === "aluguel" && r.price && r.area ? r.price / r.area : null;  // aluguel sem condomínio/m² (rendimento e simulador)
 const periodDays = () => +F.period || null;
 const periodLabel = () => periodDays() ? `últimos ${F.period} dias` : "desde o início da coleta";
 const inPeriod = iso => iso && (!periodDays() || Date.now() - new Date(iso).getTime() <= periodDays() * DAY);
@@ -744,7 +753,7 @@ function vsMedian(r) {
 }
 const nbsSel = () => F.bairro === "todos" ? NBS : [F.bairro];
 const histBusiness = () => F.business === "leilao" ? "venda" : F.business;
-const histMetricLabel = b => b === "aluguel" ? "Aluguel s/ cond. por m²" : "Preço pedido por m²";
+const histMetricLabel = b => b === "aluguel" ? "Valor total do aluguel por m²" : "Preço pedido por m²";
 const m2Label = () => F.business === "aluguel" ? "Total/m²" : F.business === "leilao" ? "Lance/m²" : "R$/m²";
 const m2Unit = () => F.business === "aluguel" ? "R$/m²·mês" : "R$/m²";
 const priceLabel = () => F.business === "aluguel" ? "Valor total" : F.business === "leilao" ? "Lance mínimo" : "Preço pedido";
@@ -1262,7 +1271,7 @@ function renderKPIs() {
     kpi("Quedas de preço", FMT.int(drops.length), "", periodLabel() + " · anúncios ativos", drops.length ? `mediana ${FMT.pct(median(drops.map(d => d.pct)))} · maior ${FMT.pct(Math.min(...drops.map(d => d.pct)))}` : "nenhuma queda registrada no período"),
     kpi("Saíram do ar", FMT.int(filt.filter(isGone).length), "", periodLabel(), "ausentes ≥ 24 h (ZAP/Viva Real: 7 dias)"),
     kpi("Anúncios monitorados", FMT.int(market.length), "ativos", `amostra em ${FMT.dateTime(DATA.updated_at)} · sem filtro de orçamento`, (cmpOk && deltaText(histAgg(F.business, "n", last), histAgg(F.business, "n", bd), bd, "abs")) || noBase, !cmpOk),
-    kpi(hb === "aluguel" ? "Mediana aluguel s/ cond./m²" : "Mediana preço pedido/m²", FMT.brlc(med), hb === "aluguel" ? "R$/m²·mês" : "R$/m²", `n = ${FMT.int(medRows.length)} ativos${F.business === "leilao" ? " de venda (referência)" : ""} · sem filtro de orçamento`, (cmpOk && deltaText(histAgg(hb, "ppm2", last), histAgg(hb, "ppm2", bd), bd, "pct")) || noBase, !cmpOk),
+    kpi(hb === "aluguel" ? "Mediana total/m² (aluguel + cond. + IPTU)" : "Mediana preço pedido/m²", FMT.brlc(med), hb === "aluguel" ? "R$/m²·mês" : "R$/m²", `n = ${FMT.int(medRows.length)} ativos${F.business === "leilao" ? " de venda (referência)" : ""} · sem filtro de orçamento`, (cmpOk && deltaText(histAgg(hb, "ppm2", last), histAgg(hb, "ppm2", bd), bd, "pct")) || noBase, !cmpOk),
     kpi("Dentro do orçamento", FMT.int(inBud), `de ${FMT.int(market.length)}`, `anúncios ativos · ${BUSINESS[F.business].toLowerCase()}`, market.length ? FMT.share(inBud / market.length) + " do recorte (participação na amostra)" : "—"),
   );
 }
@@ -1415,8 +1424,8 @@ function renderBuyVsRent() {
   const area = Math.max(1, +$("#calcArea").value || 150), box = $("#bvr"); box.replaceChildren();
   for (const nb of nbsSel()) {
     const sale = DATA.listings.filter(r => r.active && r.business === "venda" && r.neighborhood === nb && r.ppm2);
-    const rent = DATA.listings.filter(r => r.active && r.business === "aluguel" && r.neighborhood === nb && r.ppm2);
-    const sM = median(sale.map(r => r.ppm2)), rM = median(rent.map(r => r.ppm2)), y = sM && rM ? rM * 12 / sM : null;
+    const rent = DATA.listings.filter(r => r.active && r.business === "aluguel" && r.neighborhood === nb && rentOnlyM2(r));
+    const sM = median(sale.map(r => r.ppm2)), rM = median(rent.map(rentOnlyM2)), y = sM && rM ? rM * 12 / sM : null;
     const condo = median(DATA.listings.filter(r => r.active && r.neighborhood === nb && r.condo && r.area).map(r => r.condo / r.area));
     box.append(h("div", { class: "nb" },
       h("h3", {}, h("span", { class: "sw", style: `background:${COLOR[nb]}` }), nb),
@@ -1635,7 +1644,9 @@ function simFill() {
   $("#sEstNote").textContent = SIM_NOTE;
 }
 function medianPpm2(business, nb) {
-  return median(DATA.listings.filter(r => r.active && r.business === business && r.neighborhood === nb && r.ppm2).map(r => r.ppm2));
+  // aluguel: sem condomínio e IPTU (o simulador compara só o aluguel; condomínio e IPTU são pagos nos dois cenários)
+  const f = business === "aluguel" ? rentOnlyM2 : r => r.ppm2;
+  return median(DATA.listings.filter(r => r.active && r.business === business && r.neighborhood === nb && f(r)).map(f));
 }
 function simEstimate(kind) {
   const nb = $("#sEstNb").value, area = parseBR($("#sEstArea").value);
@@ -1760,6 +1771,7 @@ function renderSim() {
   $("#simChart").hidden = SIM_TABLE; $("#simTable").hidden = !SIM_TABLE;
   $("#simTblToggle").textContent = SIM_TABLE ? "Ver gráfico" : "Ver tabela"; $("#simTblToggle").setAttribute("aria-pressed", String(SIM_TABLE));
   renderSimCost(res, N, hasF);
+  renderSimBe(p, st, ber);
   renderSimSens(p, N);
   // Focus
   const years = Array.from(new Set([...Object.keys(p.selicPath), ...Object.keys(p.igpmPath), ...Object.keys(p.ipcaPath)])).sort();
@@ -1808,6 +1820,73 @@ function renderSimCost(res, N, hasF) {
       h("tr", {}, h("td", { class: "muted" }, "por mês, em média"), h("td", { class: "num muted" }, sgnBrl(b.total / res.months)), h("td", {}, ""), h("td", { class: "num muted" }, sgnBrl(r.total / res.months)), h("td", {}, ""))))),
     h("p", { class: "note", style: "margin-top:4px" }, h("b", {}, `${cheaper ? "Comprar" : "Alugar"} custa ${FMT.brlc(Math.abs(r.total - b.total))} a menos no período`), " — é a diferença de patrimônio do resultado.",
       Math.min(b.total, r.total) < 0 ? ` Custo negativo: os ganhos (${r.total < 0 ? "rendimento do caixa" : "valorização e rendimentos"}) superaram tudo o que foi gasto para morar.` : ""));
+}
+function renderSimBe(p, st, ber) {
+  const host = $("#simBe"); host.replaceChildren();
+  const prices = Array.from({ length: 17 }, (_, i) => p.price * (0.2 + i * 0.1125));
+  const curve = SIM.breakevenCurve(p, prices).filter(c => c.rent != null);
+  // razão aluguel (sem condomínio) ÷ preço por bairro, pelas medianas por m² dos anúncios ativos
+  const rays = NBS.map(nb => { const sM = medianPpm2("venda", nb), rM = medianPpm2("aluguel", nb); return sM && rM ? { nb, k: rM / sM } : null; }).filter(Boolean);
+  const W = host.clientWidth || 640, H = 280, m = { t: 14, r: W < 520 ? 84 : 150, b: 30, l: 58 };
+  const x1 = prices.at(-1), yMax = Math.max(st.sRent, ...curve.map(c => c.rent), ...rays.map(r => r.k * x1)) * 1.08;
+  const xt = niceTicks(0, x1, 5), yt = niceTicks(0, yMax, 5), X1 = xt.at(-1), Y1 = yt.at(-1);
+  const X = v => m.l + v / X1 * (W - m.l - m.r), Y = v => m.t + (1 - v / Y1) * (H - m.t - m.b);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": "Aluguel de empate para cada preço de imóvel" });
+  const cpath = curve.map((c, i) => (i ? "L" : "M") + X(c.price).toFixed(1) + " " + Y(c.rent).toFixed(1)).join("");
+  if (curve.length > 1) {
+    const f = curve[0], l = curve.at(-1);
+    svg.append(s("path", { d: cpath + `L${X(l.price)} ${Y(Y1)}L${X(f.price)} ${Y(Y1)}Z`, fill: "var(--div-lo)", opacity: .13 }));
+    svg.append(s("path", { d: cpath + `L${X(l.price)} ${Y(0)}L${X(f.price)} ${Y(0)}Z`, fill: "var(--div-hi)", opacity: .10 }));
+  }
+  for (const t of yt) { svg.append(s("line", { class: t === 0 ? "base" : "gridl", x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t) })); svg.append(s("text", { x: m.l - 6, y: Y(t) + 4, "text-anchor": "end" }, FMT.axis(t))); }
+  for (const t of xt) svg.append(s("text", { x: X(t), y: H - 12, "text-anchor": "middle" }, t ? FMT.axis(t) : "0"));
+  svg.append(s("text", { x: W - m.r, y: H - 1, "text-anchor": "end", class: "lbl" }, "preço do imóvel (R$) →"));
+  svg.append(s("text", { x: m.l + 4, y: m.t + 10, class: "lbl" }, "aluguel/mês (R$) ↑"));
+  // retas dos bairros
+  const lbls = [];
+  for (const r of rays) {
+    const xe = Math.min(x1, Y1 / r.k);
+    svg.append(s("line", { x1: X(0), y1: Y(0), x2: X(xe), y2: Y(r.k * xe), stroke: COLOR[r.nb], "stroke-width": 1.5, "stroke-dasharray": "5 4" }));
+    const nm = W < 520 ? r.nb.split(/\s+/).filter(w => w.length > 2).map(w => w[0]).join("") : SHORT[r.nb] || r.nb;
+    lbls.push({ y: Y(r.k * xe), x: X(xe), t: `${nm} ${pctIn(r.k * 100)}%`, c: COLOR[r.nb] });
+  }
+  if (curve.length > 1) {
+    svg.append(s("path", { d: cpath, fill: "none", stroke: "var(--ink)", "stroke-width": 2.2 }));
+    const l = curve.at(-1); lbls.push({ y: Y(l.rent), x: X(l.price), t: "empate", c: "var(--ink)", b: 1 });
+  }
+  lbls.sort((a, b) => a.y - b.y); for (let i = 1; i < lbls.length; i++) if (lbls[i].y - lbls[i - 1].y < 13) lbls[i].y = lbls[i - 1].y + 13;
+  lbls.forEach(l => svg.append(s("text", { x: l.x + 6, y: l.y + 4, class: "lbl", fill: l.c, style: l.b ? "font-weight:600" : "" }, l.t)));
+  // regiões
+  if (curve.length > 1) {
+    svg.append(s("text", { x: m.l + 10, y: m.t + 28, class: "lbl", fill: "var(--div-lo)", style: "font-weight:600" }, "↖ comprar compensa"));
+    svg.append(s("text", { x: W - m.r - 10, y: H - m.b - 10, "text-anchor": "end", class: "lbl", fill: "var(--div-hi)", style: "font-weight:600" }, "alugar compensa ↘"));
+  }
+  // ponto atual
+  const cx = X(p.price), cy = Y(st.sRent);
+  svg.append(s("circle", { cx, cy, r: 5.5, fill: (SIM_LAST.res.final.diff >= 0 ? "var(--div-lo)" : "var(--div-hi)"), stroke: "var(--surface)", "stroke-width": 2 }));
+  svg.append(s("text", { x: cx + 9, y: cy + 16, class: "lbl", style: "font-weight:600;paint-order:stroke;stroke:var(--surface);stroke-width:4px" }, "sua simulação"));
+  if (ber) svg.append(s("line", { x1: cx, x2: cx, y1: cy, y2: Y(ber), stroke: "var(--ink-2)", "stroke-dasharray": "2 3" }));
+  // tooltip
+  const cross = s("line", { y1: m.t, y2: H - m.b, stroke: "var(--axis)", opacity: 0 }); svg.append(cross);
+  const hit = s("rect", { x: m.l, y: 0, width: W - m.l - m.r, height: H, fill: "transparent", tabindex: 0, "aria-label": "Setas percorrem os preços" });
+  let idx = curve.findIndex(c => Math.abs(c.price - p.price) < p.price * .04);
+  const show = () => { const c = curve[idx]; if (!c) return; cross.setAttribute("x1", X(c.price)); cross.setAttribute("x2", X(c.price)); cross.setAttribute("opacity", 1);
+    showTip(h("div", {}, h("div", { class: "tl" }, `Imóvel de ${FMT.brlc(c.price)}`),
+      h("div", { class: "row" }, h("span", { class: "tl" }, "Aluguel de empate"), h("span", { class: "tv" }, FMT.brl(Math.round(c.rent / 10) * 10) + "/mês")),
+      h("div", { class: "tl" }, `${pctIn(c.rent / c.price * 100)}% do preço ao mês · ${pctIn(c.rent * 12 / c.price * 100)}% ao ano`),
+      c.price > p.sfhCap && (p.fgtsBalance || p.fgtsMonthly) ? h("div", { class: "tl" }, "acima do teto do SFH: sem FGTS") : null), X(c.price), Y(c.rent), host); };
+  hit.addEventListener("pointermove", e => { const rc = svg.getBoundingClientRect(), xv = ((e.clientX - rc.left) * (W / rc.width) - m.l) / (W - m.l - m.r) * X1;
+    idx = curve.reduce((bi, c, i) => Math.abs(c.price - xv) < Math.abs(curve[bi].price - xv) ? i : bi, 0); show(); });
+  hit.addEventListener("pointerleave", () => { cross.setAttribute("opacity", 0); hideTip(); });
+  hit.addEventListener("focus", () => { if (idx < 0) idx = 0; show(); }); hit.addEventListener("blur", () => { cross.setAttribute("opacity", 0); hideTip(); });
+  hit.addEventListener("keydown", e => { if (e.key === "ArrowLeft") { idx = Math.max(0, idx - 1); show(); e.preventDefault(); } if (e.key === "ArrowRight") { idx = Math.min(curve.length - 1, idx + 1); show(); e.preventDefault(); } });
+  svg.append(hit); host.append(svg);
+  const k = ber ? ber / p.price : null;
+  $("#simBeSub").textContent = `Aluguel inicial (sem condomínio e IPTU) que empata os cenários em ${st.sHorizon} anos, para cada preço · demais premissas como estão`;
+  $("#simBeLegend").replaceChildren(h("span", {}, h("span", { class: "swl", style: "background:var(--ink)" }), "Empate"), h("span", {}, h("span", { class: "swd", style: "border-color:var(--ink-2)" }), "Razão aluguel ÷ preço nos bairros"));
+  $("#simBeNote").textContent = (k ? `Regra de bolso com estas premissas: comprar compensa se o aluguel passar de ${pctIn(k * 100)}% do valor do imóvel ao mês (${pctIn(k * 1200)}% ao ano) — um imóvel de R$ 1 milhão empata com aluguel de ${FMT.brl(Math.round(k * 1e6 / 10) * 10)}. ` : "") +
+    `A linha é quase reta porque entrada, custos e financiamento crescem junto com o preço${p.fgtsBalance || p.fgtsMonthly ? "; o FGTS, que não cresce com o preço e some acima do teto do SFH, cria a dobra" : ""}. ` +
+    (rays.length ? `Retas tracejadas: aluguel sem condomínio ÷ preço pedido, pelas medianas por m² de cada bairro (anúncios ativos, amostras diferentes de venda e aluguel); reta acima da linha de empate = bairro onde, tipicamente, comprar compensa.` : "");
 }
 const SHORT_LBL = { selic: "Selic", infl: "Inflação", appr: "Valorização", rate: "Taxa do financ.", rent: "Aluguel inicial", price: "Preço de compra" };
 const SENS_KEYS = ["selic", "infl", "appr", "rate", "rent", "price"];

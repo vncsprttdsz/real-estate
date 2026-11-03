@@ -158,11 +158,11 @@
       .sort((a, b) => Math.abs(b.hi - b.lo) - Math.abs(a.hi - a.lo));
   }
   // Aluguel inicial que empata os cenários (acima dele, comprar compensa).
-  function breakevenRent(p) {
+  function breakevenRent(p, iters = 50) {
     const f = r => simulate({ ...p, rent: r }).final.diff;
     let lo = 0, hi = Math.max(1, p.price * 0.03), flo = f(lo), fhi = f(hi);
     if (flo * fhi > 0) return null;
-    for (let k = 0; k < 50; k++) { const mid = (lo + hi) / 2, fm = f(mid); if (flo * fm <= 0) { hi = mid; fhi = fm; } else { lo = mid; flo = fm; } }
+    for (let k = 0; k < iters; k++) { const mid = (lo + hi) / 2, fm = f(mid); if (flo * fm <= 0) { hi = mid; fhi = fm; } else { lo = mid; flo = fm; } }
     return (lo + hi) / 2;
   }
 
@@ -172,6 +172,11 @@
     fgtsBalance: 0, fgtsMonthly: 0, fgtsUseDown: true, fgtsMode: "parcelas", fgtsYieldAA: .045, fgtsInstPct: .8,
     fgtsIntervalM: 24, fgtsDepAdj: true, sfhCap: 2250000 };
 
-  const api = { simulate, breakevenAppr, breakevenRent, sensitivity, grid, tornado, SHOCKS, pathValue, selicAt, irRate, DEFAULTS };
+  // Curva de empate: para cada preço, o aluguel inicial que empata (demais premissas fixas).
+  function breakevenCurve(p, prices) {
+    return prices.map(price => ({ price, rent: breakevenRent({ ...p, price }, 36) }));
+  }
+
+  const api = { simulate, breakevenAppr, breakevenRent, breakevenCurve, sensitivity, grid, tornado, SHOCKS, pathValue, selicAt, irRate, DEFAULTS };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.SIM = api;
 })(typeof window !== "undefined" ? window : globalThis);
