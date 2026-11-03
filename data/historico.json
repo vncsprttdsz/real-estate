@@ -578,24 +578,34 @@
   "date": "2026-11-03",
   "groups": {
    "aluguel|Itaim Bibi": {
-    "n": 895,
+    "n": 943,
     "ppm2": 101.85,
     "price": 15000
    },
    "aluguel|Vila Nova Conceição": {
-    "n": 954,
-    "ppm2": 133.65,
-    "price": 21500
+    "n": 1008,
+    "ppm2": 134.31,
+    "price": 21566
    },
    "venda|Vila Nova Conceição": {
-    "n": 2420,
-    "ppm2": 30000.0,
-    "price": 5240000
+    "n": 2494,
+    "ppm2": 29746.84,
+    "price": 5190000
    },
    "venda|Itaim Bibi": {
-    "n": 2756,
-    "ppm2": 19565.22,
-    "price": 3100000
+    "n": 2868,
+    "ppm2": 19392.76,
+    "price": 3000000
+   },
+   "venda|Jardim Paulista": {
+    "n": 1291,
+    "ppm2": 15465.84,
+    "price": 2952000
+   },
+   "aluguel|Jardim Paulista": {
+    "n": 682,
+    "ppm2": 73.08,
+    "price": 12000
    }
   }
  }
