@@ -4,12 +4,12 @@
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 449,
-    "ppm2": 88.03,
+    "ppm2": 105.88,
     "price": 12500
    },
    "aluguel|Vila Nova Conceição": {
     "n": 701,
-    "ppm2": 132.35,
+    "ppm2": 150.98,
     "price": 19000
    },
    "venda|Vila Nova Conceição": {
@@ -22,19 +22,20 @@
     "ppm2": 19320.68,
     "price": 2949145
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-12",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 491,
-    "ppm2": 93.19,
+    "ppm2": 110.87,
     "price": 13000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 765,
-    "ppm2": 132.35,
+    "ppm2": 151.4,
     "price": 19550
    },
    "venda|Vila Nova Conceição": {
@@ -47,19 +48,20 @@
     "ppm2": 19375.0,
     "price": 2985000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-13",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 520,
-    "ppm2": 93.19,
+    "ppm2": 109.51,
     "price": 13050
    },
    "aluguel|Vila Nova Conceição": {
     "n": 785,
-    "ppm2": 132.35,
+    "ppm2": 151.92,
     "price": 19600
    },
    "venda|Vila Nova Conceição": {
@@ -72,19 +74,20 @@
     "ppm2": 19375.0,
     "price": 2999000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-14",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 544,
-    "ppm2": 94.2,
+    "ppm2": 110.08,
     "price": 13900
    },
    "aluguel|Vila Nova Conceição": {
     "n": 818,
-    "ppm2": 132.35,
+    "ppm2": 152.5,
     "price": 20000
    },
    "venda|Vila Nova Conceição": {
@@ -97,19 +100,20 @@
     "ppm2": 19375.0,
     "price": 2999050
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-15",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 566,
-    "ppm2": 96.03,
+    "ppm2": 110.87,
     "price": 14500
    },
    "aluguel|Vila Nova Conceição": {
     "n": 844,
-    "ppm2": 132.81,
+    "ppm2": 153.13,
     "price": 20000
    },
    "venda|Vila Nova Conceição": {
@@ -122,19 +126,20 @@
     "ppm2": 19362.75,
     "price": 2999690
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-16",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 663,
-    "ppm2": 91.43,
+    "ppm2": 109.43,
     "price": 13700
    },
    "aluguel|Vila Nova Conceição": {
     "n": 1047,
-    "ppm2": 133.65,
+    "ppm2": 154.27,
     "price": 20000
    },
    "venda|Vila Nova Conceição": {
@@ -147,19 +152,20 @@
     "ppm2": 19213.48,
     "price": 2999000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-17",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 914,
-    "ppm2": 87.63,
+    "ppm2": 105.12,
     "price": 13900
    },
    "aluguel|Vila Nova Conceição": {
     "n": 1299,
-    "ppm2": 134.31,
+    "ppm2": 157.69,
     "price": 20100
    },
    "venda|Vila Nova Conceição": {
@@ -172,19 +178,20 @@
     "ppm2": 19121.74,
     "price": 2950000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-18",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 833,
-    "ppm2": 87.63,
+    "ppm2": 104.17,
     "price": 14500
    },
    "aluguel|Vila Nova Conceição": {
     "n": 1090,
-    "ppm2": 138.46,
+    "ppm2": 157.69,
     "price": 22000
    },
    "venda|Vila Nova Conceição": {
@@ -197,19 +204,20 @@
     "ppm2": 19042.86,
     "price": 3000000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-19",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 869,
-    "ppm2": 87.63,
+    "ppm2": 108.04,
     "price": 14950
    },
    "aluguel|Vila Nova Conceição": {
     "n": 1161,
-    "ppm2": 138.46,
+    "ppm2": 159.22,
     "price": 22000
    },
    "venda|Vila Nova Conceição": {
@@ -222,19 +230,20 @@
     "ppm2": 19090.1,
     "price": 3000000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-20",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 876,
-    "ppm2": 87.63,
+    "ppm2": 105.14,
     "price": 15000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 1280,
-    "ppm2": 135.29,
+    "ppm2": 159.22,
     "price": 21500
    },
    "venda|Vila Nova Conceição": {
@@ -247,19 +256,20 @@
     "ppm2": 19047.62,
     "price": 3000000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-21",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 860,
-    "ppm2": 87.63,
+    "ppm2": 105.14,
     "price": 15000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 1270,
-    "ppm2": 134.31,
+    "ppm2": 159.13,
     "price": 21500
    },
    "venda|Vila Nova Conceição": {
@@ -272,19 +282,20 @@
     "ppm2": 19047.62,
     "price": 3000000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-22",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 866,
-    "ppm2": 88.03,
+    "ppm2": 106.51,
     "price": 15000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 1213,
-    "ppm2": 133.65,
+    "ppm2": 158.39,
     "price": 21000
    },
    "venda|Vila Nova Conceição": {
@@ -297,19 +308,20 @@
     "ppm2": 19213.48,
     "price": 3000000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-23",
   "groups": {
    "aluguel|Vila Nova Conceição": {
     "n": 1044,
-    "ppm2": 133.33,
+    "ppm2": 157.69,
     "price": 21000
    },
    "aluguel|Itaim Bibi": {
     "n": 781,
-    "ppm2": 97.06,
+    "ppm2": 107.03,
     "price": 15000
    },
    "venda|Vila Nova Conceição": {
@@ -322,19 +334,20 @@
     "ppm2": 19420.29,
     "price": 3000000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-24",
   "groups": {
    "aluguel|Vila Nova Conceição": {
     "n": 866,
-    "ppm2": 133.33,
+    "ppm2": 156.63,
     "price": 21153
    },
    "aluguel|Itaim Bibi": {
     "n": 622,
-    "ppm2": 100.0,
+    "ppm2": 110.87,
     "price": 15100
    },
    "venda|Vila Nova Conceição": {
@@ -347,19 +360,20 @@
     "ppm2": 19681.46,
     "price": 3200100
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-25",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 564,
-    "ppm2": 104.15,
+    "ppm2": 114.41,
     "price": 16000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 773,
-    "ppm2": 132.53,
+    "ppm2": 155.09,
     "price": 20100
    },
    "venda|Vila Nova Conceição": {
@@ -372,19 +386,20 @@
     "ppm2": 19829.64,
     "price": 3220000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-26",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 562,
-    "ppm2": 100.5,
+    "ppm2": 119.73,
     "price": 15800
    },
    "aluguel|Vila Nova Conceição": {
     "n": 738,
-    "ppm2": 132.95,
+    "ppm2": 153.38,
     "price": 20750
    },
    "venda|Vila Nova Conceição": {
@@ -397,19 +412,20 @@
     "ppm2": 19837.84,
     "price": 3220000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-27",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 591,
-    "ppm2": 100.0,
+    "ppm2": 114.06,
     "price": 15000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 670,
-    "ppm2": 132.95,
+    "ppm2": 153.85,
     "price": 21000
    },
    "venda|Vila Nova Conceição": {
@@ -422,19 +438,20 @@
     "ppm2": 19736.84,
     "price": 3220000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-28",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 618,
-    "ppm2": 100.91,
+    "ppm2": 115.29,
     "price": 15000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 698,
-    "ppm2": 132.44,
+    "ppm2": 153.38,
     "price": 20875
    },
    "venda|Vila Nova Conceição": {
@@ -447,19 +464,20 @@
     "ppm2": 19791.67,
     "price": 3220000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-29",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 630,
-    "ppm2": 100.91,
+    "ppm2": 118.51,
     "price": 15000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 697,
-    "ppm2": 132.54,
+    "ppm2": 153.14,
     "price": 21000
    },
    "venda|Vila Nova Conceição": {
@@ -472,19 +490,20 @@
     "ppm2": 19705.88,
     "price": 3200100
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-30",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 651,
-    "ppm2": 104.62,
+    "ppm2": 119.03,
     "price": 15100
    },
    "aluguel|Vila Nova Conceição": {
     "n": 711,
-    "ppm2": 132.95,
+    "ppm2": 153.16,
     "price": 21000
    },
    "venda|Vila Nova Conceição": {
@@ -497,19 +516,20 @@
     "ppm2": 19700.6,
     "price": 3200000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-10-31",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 661,
-    "ppm2": 105.0,
+    "ppm2": 120.28,
     "price": 15500
    },
    "aluguel|Vila Nova Conceição": {
     "n": 724,
-    "ppm2": 132.95,
+    "ppm2": 153.16,
     "price": 21000
    },
    "venda|Vila Nova Conceição": {
@@ -522,19 +542,20 @@
     "ppm2": 19705.88,
     "price": 3200100
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-11-01",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 684,
-    "ppm2": 105.26,
+    "ppm2": 121.78,
     "price": 16000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 736,
-    "ppm2": 132.95,
+    "ppm2": 153.27,
     "price": 21000
    },
    "venda|Vila Nova Conceição": {
@@ -547,19 +568,20 @@
     "ppm2": 19700.6,
     "price": 3200000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-11-02",
   "groups": {
    "aluguel|Itaim Bibi": {
     "n": 892,
-    "ppm2": 101.85,
+    "ppm2": 121.78,
     "price": 15000
    },
    "aluguel|Vila Nova Conceição": {
     "n": 904,
-    "ppm2": 133.33,
+    "ppm2": 154.27,
     "price": 21000
    },
    "venda|Vila Nova Conceição": {
@@ -572,40 +594,42 @@
     "ppm2": 19583.33,
     "price": 3150000
    }
-  }
+  },
+  "rent_basis": "total"
  },
  {
   "date": "2026-11-03",
+  "rent_basis": "total",
   "groups": {
-   "aluguel|Jardim Paulista": {
-    "n": 705,
-    "ppm2": 72.73,
-    "price": 12000
-   },
-   "aluguel|Itaim Bibi": {
-    "n": 954,
-    "ppm2": 101.85,
-    "price": 15100
+   "venda|Jardim Paulista": {
+    "n": 1327,
+    "ppm2": 15345.42,
+    "price": 2790000
    },
    "aluguel|Vila Nova Conceição": {
-    "n": 1026,
-    "ppm2": 133.98,
-    "price": 22000
+    "n": 497,
+    "ppm2": 158.33,
+    "price": 23000
    },
-   "venda|Vila Nova Conceição": {
-    "n": 2533,
-    "ppm2": 29539.72,
-    "price": 5100000
+   "aluguel|Itaim Bibi": {
+    "n": 523,
+    "ppm2": 121.43,
+    "price": 16000
+   },
+   "aluguel|Jardim Paulista": {
+    "n": 589,
+    "ppm2": 89.8,
+    "price": 11000
    },
    "venda|Itaim Bibi": {
-    "n": 2909,
-    "ppm2": 19375.0,
-    "price": 3000000
+    "n": 1609,
+    "ppm2": 19702.92,
+    "price": 3200000
    },
-   "venda|Jardim Paulista": {
-    "n": 1809,
-    "ppm2": 15343.92,
-    "price": 2750000
+   "venda|Vila Nova Conceição": {
+    "n": 1342,
+    "ppm2": 30546.62,
+    "price": 5500000
    }
   }
  }
