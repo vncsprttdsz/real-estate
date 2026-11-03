@@ -19,6 +19,7 @@ PAGE_SIZE = 36
 VIEWPORTS = {
     "itaim bibi": {"north": -23.574, "south": -23.593, "east": -46.667, "west": -46.692},
     "vila nova conceicao": {"north": -23.583, "south": -23.598, "east": -46.660, "west": -46.678},
+    "jardim paulista": {"north": -23.556, "south": -23.586, "east": -46.648, "west": -46.682},
 }
 DEFAULT_VIEWPORT = {"north": -23.565, "south": -23.605, "east": -46.655, "west": -46.700}
 

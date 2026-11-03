@@ -41,6 +41,8 @@ METHOD_NOTES = [
     ("2026-10-11", "Cobertura ampliada ao longo do dia: QuintoAndar passou a ler todos os resultados, "
                    "ZAP/Viva Real passaram a ler os mais recentes primeiro. Contagens e medianas de 11/10 "
                    "não são comparáveis com dias anteriores; anúncios já existentes foram marcados como carga inicial."),
+    ("2026-11-03", "Inclusão do bairro Jardim Paulista. Os anúncios dele entram como carga inicial (não contam como novos) "
+                   "e as somas que combinam bairros (ex.: anúncios monitorados) passam a incluí-lo a partir desta data."),
 ]
 
 

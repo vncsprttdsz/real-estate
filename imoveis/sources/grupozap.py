@@ -106,7 +106,7 @@ PARAM_LADDER = [
     ("area", {"usableAreasMin": True}),
     ("minimo", {}),
 ]
-_working_rung: dict[str, int] = {}
+_working_rung: dict[tuple, int] = {}   # (fonte, bairro) -> degrau que funcionou
 # A API limita o tamanho da página ("Size is above acceptable limit"); reduz até aceitar.
 PAGE_SIZES = [24, 15, 10, 5]
 _page_size: dict[str, int] = {}
@@ -146,7 +146,9 @@ def _api_params(cfg: Config, business: str, neighborhood: str, offset: int, rung
 def _get_page(http: Http, source: str, params_for, headers) -> dict:
     site = SITES[source]
     last = None
-    rung = _working_rung.get(source, 0)
+    nb = params_for(0, PAGE_SIZES[0], None)["addressNeighborhood"]
+    key = (source, nb)
+    rung = _working_rung.get(key, 0)
     size_i = PAGE_SIZES.index(_page_size.get(source, PAGE_SIZES[0]))
     sort_i = _sort.get(source, 0)
     while rung < len(PARAM_LADDER):
@@ -156,8 +158,15 @@ def _get_page(http: Http, source: str, params_for, headers) -> dict:
                    f"[HTTP {r.status_code}] rung={PARAM_LADDER[rung][0]} size={params['size']} "
                    f"sort={params.get('sort')}", r.text)
         if r.status_code == 200:
-            _working_rung[source], _page_size[source], _sort[source] = rung, PAGE_SIZES[size_i], sort_i
-            return r.json()
+            data = r.json()
+            total = (data.get("search") or {}).get("totalCount") or 0
+            # Zona/locationId fixos podem não bater com a classificação do portal para o bairro:
+            # 0 resultados na 1ª página com esses filtros -> tenta sem eles antes de aceitar o vazio.
+            if not total and params["from"] == 0 and "addressZone" in params and rung + 1 < len(PARAM_LADDER):
+                rung += 1
+                continue
+            _working_rung[key], _page_size[source], _sort[source] = rung, PAGE_SIZES[size_i], sort_i
+            return data
         last = f"{source} API HTTP {r.status_code} ({PARAM_LADDER[rung][0]}, size={params['size']}): {r.text[:200]}"
         if r.status_code != 400:
             break

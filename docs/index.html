@@ -13,7 +13,7 @@
   --page: #f6f6f4; --surface: #fcfcfb; --surface-2: #f1f0ec; --surface-3: #e9e8e3;
   --ink: #0b0b0b; --ink-2: #52514e; --muted: #6f6d68;
   --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,.12); --hover: rgba(11,11,11,.045);
-  --s1: #2a78d6; --s2: #eb6834;               /* bairros (fixos) */
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;   /* bairros (fixos, ordem do config.yaml) */
   --neutral-mark: #a8a69e; --accent: #2a78d6; --accent-wash: #e8f1fc;
   --div-lo: #2a78d6; --div-hi: #e34948;        /* divergente: abaixo / acima da mediana */
   --seq-0: #e6eefa; --seq-1: #b7d3f6; --seq-2: #86b6ef; --seq-3: #3987e5; --seq-4: #1c5cab; --seq-5: #0d366b;
@@ -27,7 +27,7 @@
     --page: #0d0d0d; --surface: #1a1a19; --surface-2: #232321; --surface-3: #2c2c2a;
     --ink: #f0efec; --ink-2: #c3c2b7; --muted: #98968f;
     --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,.11); --hover: rgba(255,255,255,.05);
-    --s1: #3987e5; --s2: #d95926; --neutral-mark: #5f5e59; --accent: #3987e5; --accent-wash: #16263b;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --neutral-mark: #5f5e59; --accent: #3987e5; --accent-wash: #16263b;
     --div-lo: #3987e5; --div-hi: #e66767;
     --seq-0: #18263a; --seq-1: #184f95; --seq-2: #1c5cab; --seq-3: #2a78d6; --seq-4: #5598e7; --seq-5: #9ec5f4;
     --warn-wash: #3a2f12; --crit-wash: #3a1a1a;
@@ -38,7 +38,7 @@
   --page: #0d0d0d; --surface: #1a1a19; --surface-2: #232321; --surface-3: #2c2c2a;
   --ink: #f0efec; --ink-2: #c3c2b7; --muted: #98968f;
   --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,.11); --hover: rgba(255,255,255,.05);
-  --s1: #3987e5; --s2: #d95926; --neutral-mark: #5f5e59; --accent: #3987e5; --accent-wash: #16263b;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --neutral-mark: #5f5e59; --accent: #3987e5; --accent-wash: #16263b;
   --div-lo: #3987e5; --div-hi: #e66767;
   --seq-0: #18263a; --seq-1: #184f95; --seq-2: #1c5cab; --seq-3: #2a78d6; --seq-4: #5598e7; --seq-5: #9ec5f4;
   --warn-wash: #3a2f12; --crit-wash: #3a1a1a;
@@ -155,6 +155,12 @@ section + section { margin-top: var(--gap); }
 .tip .tv { font-weight: 650; font-size: 13.5px; color: var(--ink); }
 .tip .tl { color: var(--ink-2); }
 .tip .row { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.zoombar { min-height: 16px; font-size: 12px; color: var(--ink-2); margin-bottom: 2px; }
+.btn[aria-pressed="true"] { background: var(--accent-wash); border-color: var(--accent); }
+.tip .cluster ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 2px; max-height: 240px; overflow: auto; }
+.tip .cluster li a { display: block; padding: 4px 6px; border-radius: 5px; text-decoration: none; }
+.tip .cluster li a:hover, .tip .cluster li a:focus-visible { background: var(--hover); }
+.tip { max-width: 320px; }
 .tipbtn { display: block; margin-top: 8px; padding: 8px 10px; border-radius: 6px; background: var(--accent); color: #fff; text-align: center; font-weight: 600; text-decoration: none; }
 
 /* ===================== Feed ===================== */
@@ -233,7 +239,7 @@ dl.defs { display: grid; grid-template-columns: minmax(160px, 260px) 1fr; gap: 6
 dl.defs dt { font-weight: 600; } dl.defs dd { margin: 0; color: var(--ink-2); }
 @media (max-width: 640px) { dl.defs { grid-template-columns: 1fr; } dl.defs dd { margin-bottom: 6px; } }
 /* Buy vs rent */
-.bvr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.bvr { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
 @media (max-width: 560px) { .bvr { grid-template-columns: 1fr; } }
 .bvr .nb { border: 1px solid var(--border); border-radius: var(--r); padding: 10px 12px; background: var(--surface-2); }
 .bvr h3 { margin: 0 0 6px; font-size: 13px; display: flex; align-items: center; gap: 6px; }
@@ -291,10 +297,14 @@ footer { color: var(--muted); font-size: 12px; margin-top: 20px; }
           <div class="card-head">
             <div><h2 id="scTitle">Preço pedido × área</h2><div class="sub" id="scSub"></div></div>
             <div class="card-tools">
-              <div class="legend" id="scLegend"></div>
+              <button class="btn sm" type="button" id="zoomMode" aria-pressed="false" title="Arraste um retângulo sobre o gráfico para ampliar">⬚ Ampliar área</button>
+              <button class="btn sm" type="button" id="zoomOutBtn" title="Reduzir o zoom">− Reduzir</button>
+              <button class="btn sm" type="button" id="zoomReset" title="Voltar à visão completa">Restaurar</button>
               <button class="btn sm" type="button" data-export="scatter">Baixar PNG</button>
             </div>
           </div>
+          <div class="legend" id="scLegend" style="margin-bottom:4px"></div>
+          <div class="zoombar" id="zoomBar" aria-live="polite"></div>
           <div class="chart" id="scatter"></div>
           <p class="note" id="scNote"></p>
         </div>
@@ -693,88 +703,184 @@ function lineChart(host, series, { yFmt = FMT.axis, tipFmt = FMT.brl, height = 2
   svg.append(hit); host.append(svg);
 }
 
+/* Dispersão preço × área com zoom (seleção por arraste, duplo clique, reduzir/restaurar)
+   e lista de anúncios quando vários pontos estão sob o cursor/dedo. */
+let ZOOM = null, ZOOM_MODE = false, ZOOM_BIZ = null;
 function scatter(host, rows, market) {
   host.replaceChildren();
-  const pts = rows.filter(r => r.area && refPrice(r));
-  if (!pts.length) { host.append(h("div", { class: "empty" }, "Nenhum anúncio ativo com esses filtros.")); return { n: 0, clipped: 0, medians: [] }; }
-  const W = host.clientWidth || 700, H = Math.max(300, Math.min(440, W * .48)), m = { t: 24, r: 16, b: 32, l: 58 };
-  const ax = pts.map(r => r.area);
-  // eixo x até o percentil 99 da área, para poucos imóveis gigantes não espremerem a nuvem
-  const xMax = Math.max(quantile(ax, .99) * 1.05, Math.min(...ax) + 10);
-  const yMax = Math.max(...pts.filter(r => r.area <= xMax).map(refPrice));
-  const xt = niceTicks(Math.min(...ax) * .95, xMax, 6), yt = niceTicks(0, yMax * 1.05, 5);
-  const x0 = xt[0], x1 = xt[xt.length - 1], y1 = yt[yt.length - 1];
-  const X = v => m.l + (Math.min(v, x1) - x0) / (x1 - x0) * (W - m.l - m.r);
-  const Y = v => m.t + (1 - Math.min(v, y1) / y1) * (H - m.t - m.b);
-  const clipped = pts.filter(r => r.area > x1 || refPrice(r) > y1).length;
+  const all = rows.filter(r => r.area && refPrice(r));
+  if (!all.length) { host.append(h("div", { class: "empty" }, "Nenhum anúncio ativo com esses filtros.")); return { n: 0, visible: 0, clipped: 0, total: rows.length, medians: [] }; }
+  const W = host.clientWidth || 700, H = Math.max(300, Math.min(460, W * .5)), m = { t: 24, r: 16, b: 32, l: 58 };
+  // Domínio automático: eixo x até o percentil 99 da área (poucos imóveis gigantes não espremem a nuvem)
+  const ax = all.map(r => r.area);
+  const xMaxAuto = Math.max(quantile(ax, .99) * 1.05, Math.min(...ax) + 10);
+  const yMaxAuto = Math.max(...all.filter(r => r.area <= xMaxAuto).map(refPrice));
+  const xtA = niceTicks(Math.min(...ax) * .95, xMaxAuto, 6), ytA = niceTicks(0, yMaxAuto * 1.05, 5);
+  const auto = { x0: xtA[0], x1: xtA.at(-1), y0: 0, y1: ytA.at(-1) };
+  const D = ZOOM || auto;
+  const inD = r => r.area >= D.x0 && r.area <= D.x1 && refPrice(r) >= D.y0 && refPrice(r) <= D.y1;
+  const pts = ZOOM ? all.filter(inD) : all;
+  const xt = ZOOM ? niceTicks(D.x0, D.x1, 6).filter(t => t >= D.x0 && t <= D.x1) : xtA;
+  const yt = ZOOM ? niceTicks(D.y0, D.y1, 5).filter(t => t >= D.y0 && t <= D.y1) : ytA;
+  const X = v => m.l + (Math.min(Math.max(v, D.x0), D.x1) - D.x0) / (D.x1 - D.x0) * (W - m.l - m.r);
+  const Y = v => m.t + (1 - (Math.min(Math.max(v, D.y0), D.y1) - D.y0) / (D.y1 - D.y0)) * (H - m.t - m.b);
+  const invX = px => D.x0 + (px - m.l) / (W - m.l - m.r) * (D.x1 - D.x0);
+  const invY = py => D.y0 + (1 - (py - m.t) / (H - m.t - m.b)) * (D.y1 - D.y0);
+  const clipped = ZOOM ? 0 : all.filter(r => r.area > D.x1 || refPrice(r) > D.y1).length;
   const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": `Dispersão de ${pts.length} anúncios: ${priceLabel().toLowerCase()} por área` });
+  const cid = "clip" + Math.random().toString(36).slice(2, 8);
+  const defs = s("defs"); const cp = s("clipPath", { id: cid }); cp.append(s("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b })); defs.append(cp); svg.append(defs);
   for (const t of yt) {
     svg.append(s("line", { class: t === 0 ? "base" : "gridl", x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t) }));
     svg.append(s("text", { x: m.l - 6, y: Y(t) + 4, "text-anchor": "end" }, FMT.axis(t)));
   }
+  if (D.y0 > 0) svg.append(s("line", { class: "base", x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b }));
   for (const t of xt) svg.append(s("text", { x: X(t), y: H - 14, "text-anchor": "middle" }, nf0.format(t)));
   svg.append(s("text", { x: W - m.r, y: H - 1, "text-anchor": "end" }, "área útil (m²)"));
   svg.append(s("text", { x: m.l - 6, y: m.t - 12, "text-anchor": "end" }, priceUnit()));
+  if (ZOOM) svg.append(s("text", { x: W - m.r, y: m.t - 12, "text-anchor": "end" }, D.y0 > 0 ? "ampliado · eixo não começa em zero" : "ampliado"));
+  const plot = s("g", { "clip-path": `url(#${cid})` }); svg.append(plot);
   const byNb = {};
   for (const r of market) if (m2(r)) (byNb[r.neighborhood] ||= []).push(m2(r));
-  const labels = [];
+  const medians = [];
   for (const [nb, arr] of Object.entries(byNb)) {
     const med = median(arr); if (!med || !COLOR[nb]) continue;
-    const xb = Math.min(x1, y1 / med); if (xb <= x0) continue;
-    svg.append(s("line", { x1: X(x0), y1: Y(med * x0), x2: X(xb), y2: Y(med * xb), stroke: COLOR[nb], "stroke-width": 1.5, "stroke-opacity": .6, "stroke-dasharray": "6 4" }));
-    labels.push({ nb, med });
+    medians.push({ nb, med });
+    // reta preço = mediana × área, desenhada no domínio visível (o recorte corta o excesso)
+    plot.append(s("line", { x1: X(D.x0), y1: m.t + (1 - (med * D.x0 - D.y0) / (D.y1 - D.y0)) * (H - m.t - m.b), x2: X(D.x1), y2: m.t + (1 - (med * D.x1 - D.y0) / (D.y1 - D.y0)) * (H - m.t - m.b),
+      stroke: COLOR[nb], "stroke-width": 1.5, "stroke-opacity": .6, "stroke-dasharray": "6 4" }));
   }
+  const rad = ZOOM ? 5 : 4;
   const marks = pts.map(r => {
     const cx = X(r.area), cy = Y(refPrice(r)), nw = isNew(r);
-    const g = s("g", {});
-    g.append(s("circle", { cx, cy, r: nw ? 5.5 : 4, fill: COLOR[r.neighborhood] || "var(--neutral-mark)", stroke: "var(--surface)", "stroke-width": 1.5, "fill-opacity": .85 }));
-    if (nw) g.append(s("circle", { cx, cy, r: 8.5, fill: "none", stroke: "var(--ink)", "stroke-width": 1.5 }));
-    svg.append(g);
+    plot.append(s("circle", { cx, cy, r: nw ? rad + 1.5 : rad, fill: COLOR[r.neighborhood] || "var(--neutral-mark)", stroke: "var(--surface)", "stroke-width": 1.5, "fill-opacity": .85 }));
+    if (nw) plot.append(s("circle", { cx, cy, r: rad + 2.5, fill: "none", stroke: "var(--ink)", "stroke-width": 1, "stroke-opacity": .75 }));
     return { r, cx, cy };
   });
   const ring = s("circle", { r: 10, fill: "none", stroke: "var(--ink)", "stroke-width": 2, opacity: 0, "pointer-events": "none" });
-  svg.append(ring);
-  const hit = s("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent", tabindex: 0, style: "cursor:pointer", "aria-label": "Setas percorrem os anúncios; Enter abre" });
+  const brushRect = s("rect", { fill: "var(--accent)", "fill-opacity": .12, stroke: "var(--accent)", "stroke-width": 1, opacity: 0, "pointer-events": "none" });
+  svg.append(ring, brushRect);
+  const hit = s("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent", tabindex: 0,
+    style: `cursor:${ZOOM_MODE ? "crosshair" : "pointer"};${ZOOM_MODE ? "touch-action:none" : ""}`,
+    "aria-label": "Setas percorrem os anúncios; Enter abre; + e − ampliam e reduzem" });
+  const toSvg = e => { const rc = svg.getBoundingClientRect(), k = W / rc.width; return { x: (e.clientX - rc.left) * k, y: (e.clientY - rc.top) * k, k }; };
+  const near = (e, radius) => {   // anúncios sob o cursor/dedo, do mais próximo ao mais distante
+    const p = toSvg(e);
+    return marks.map(mk => ({ mk, d: Math.hypot(mk.cx - p.x, mk.cy - p.y) })).filter(o => o.d < radius * p.k).sort((a, b) => a.d - b.d).map(o => o.mk);
+  };
   let cur = null, pinned = null;
   const open = mk => { const u = mk && safeUrl(mk.r.url); if (u) window.open(u, "_blank", "noopener"); };
-  const pick = (mk, pin = false) => {
+  const showOne = (mk, pin, extra = 0) => {
     cur = mk;
     if (!mk) { ring.setAttribute("opacity", 0); unpinTip(); hideTip(); return; }
-    ring.setAttribute("cx", mk.cx); ring.setAttribute("cy", mk.cy); ring.setAttribute("opacity", 1);
+    ring.setAttribute("cx", mk.cx); ring.setAttribute("cy", mk.cy); ring.setAttribute("r", 10); ring.setAttribute("opacity", 1);
     const body = listingTip(mk.r);
+    if (extra) body.append(h("div", { class: "tl", style: "margin-top:4px" }, `+${extra} anúncio(s) no mesmo ponto — clique para listar`));
     if (pin) {
       const u = safeUrl(mk.r.url);
       if (u) body.append(h("a", { class: "tipbtn", href: u, target: "_blank", rel: "noopener" }, "Abrir anúncio ↗"));
-      pinTip(() => { pinned = null; pick(null); });
+      pinTip(() => { pinned = null; showOne(null); });
     }
     showTip(body, mk.cx, mk.cy, host);
   };
-  const nearest = (e, radius) => {
-    const rc = svg.getBoundingClientRect(), k = W / rc.width;
-    const px = (e.clientX - rc.left) * k, py = (e.clientY - rc.top) * k;
-    let best = null, bd = radius * k;
-    for (const mk of marks) { const d = Math.hypot(mk.cx - px, mk.cy - py); if (d < bd) { bd = d; best = mk; } }
-    return best;
+  const zoomTo = (x0, x1, y0, y1) => {
+    const minW = 4, minH = Math.max(20000, (auto.y1 - auto.y0) * .01);   // não amplia além de 4 m² × 1% da faixa de preço
+    if (x1 - x0 < minW) { const c = (x0 + x1) / 2; x0 = c - minW / 2; x1 = c + minW / 2; }
+    if (y1 - y0 < minH) { const c = (y0 + y1) / 2; y0 = c - minH / 2; y1 = c + minH / 2; }
+    ZOOM = { x0: Math.max(auto.x0, x0), x1: Math.min(auto.x1 * 1.5, x1), y0: Math.max(0, y0), y1 };
+    ZOOM_MODE = false; ZOOM_BIZ = F.business; unpinTip(); hideTip(); renderScatter();
   };
-  hit.addEventListener("pointermove", e => { if (e.pointerType === "mouse" && !pinned) pick(nearest(e, 24)); });
-  hit.addEventListener("pointerleave", e => { if (e.pointerType === "mouse" && !pinned) pick(null); });
+  const showList = (list, pin) => {
+    cur = list[0];
+    const xs = list.map(o => o.r.area), ys = list.map(o => refPrice(o.r));
+    ring.setAttribute("cx", (Math.min(...list.map(o => o.cx)) + Math.max(...list.map(o => o.cx))) / 2);
+    ring.setAttribute("cy", (Math.min(...list.map(o => o.cy)) + Math.max(...list.map(o => o.cy))) / 2);
+    ring.setAttribute("r", 18); ring.setAttribute("opacity", 1);
+    const items = list.slice(0, 8).map(o => { const r = o.r, u = safeUrl(r.url);
+      const txt = [h("b", {}, FMT.brlc(refPrice(r)) + (r.business === "aluguel" ? "/mês" : "")), ` · ${FMT.m2(r.area)}${r.bedrooms ? " · " + r.bedrooms + " qts" : ""}`,
+        h("span", { class: "tl" }, ` · ${SHORT[r.neighborhood] || r.neighborhood} · ${SOURCE[r.source] || r.source}${isNew(r) ? " · novo" : ""}`)];
+      return h("li", {}, u ? h("a", { href: u, target: "_blank", rel: "noopener" }, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:6px` }), ...txt, " ↗") : h("span", {}, ...txt)); });
+    const same = new Set(list.map(o => `${o.r.area}|${refPrice(o.r)}`)).size === 1;
+    const body = h("div", { class: "cluster" },
+      h("div", { class: "tv" }, `${list.length} anúncios neste ponto`),
+      same ? h("div", { class: "tl" }, "Mesma área e mesmo preço — provável mesmo imóvel em anúncios diferentes.") : null,
+      h("ul", {}, items),
+      list.length > 8 ? h("div", { class: "tl" }, `e mais ${list.length - 8}. Amplie para separar.`) : null,
+      same ? null : h("button", { class: "btn sm", type: "button", style: "margin-top:6px", onclick: () => {
+        const dx = Math.max(...xs) - Math.min(...xs), dy = Math.max(...ys) - Math.min(...ys);
+        zoomTo(Math.min(...xs) - Math.max(2, dx), Math.max(...xs) + Math.max(2, dx), Math.min(...ys) - Math.max(dy, 30000), Math.max(...ys) + Math.max(dy, 30000));
+      } }, "Ampliar aqui"));
+    if (pin) pinTip(() => { pinned = null; showOne(null); });
+    showTip(body, list[0].cx, list[0].cy, host);
+  };
+  // ---- seleção por arraste (modo "Ampliar área") ----
+  let brush = null, justBrushed = false;
+  hit.addEventListener("pointerdown", e => {
+    if (!ZOOM_MODE) return;
+    const p = toSvg(e); brush = { x: p.x, y: p.y, x2: p.x, y2: p.y };
+    try { hit.setPointerCapture(e.pointerId); } catch {}
+    e.preventDefault();
+  });
+  hit.addEventListener("pointermove", e => {
+    if (brush) {
+      const p = toSvg(e); brush.x2 = p.x; brush.y2 = p.y;
+      const x = Math.max(m.l, Math.min(brush.x, brush.x2)), y = Math.max(m.t, Math.min(brush.y, brush.y2));
+      brushRect.setAttribute("x", x); brushRect.setAttribute("y", y);
+      brushRect.setAttribute("width", Math.min(W - m.r, Math.max(brush.x, brush.x2)) - x); brushRect.setAttribute("height", Math.min(H - m.b, Math.max(brush.y, brush.y2)) - y);
+      brushRect.setAttribute("opacity", 1); return;
+    }
+    if (e.pointerType === "mouse" && !pinned && !ZOOM_MODE) { const l = near(e, 24); showOne(l[0], false, l.length ? l.filter(mk => Math.hypot(mk.cx - l[0].cx, mk.cy - l[0].cy) <= 7).length - 1 : 0); }
+  });
+  hit.addEventListener("pointerup", () => {
+    if (!brush) return;
+    const b = brush; brush = null; brushRect.setAttribute("opacity", 0); justBrushed = true;
+    if (Math.abs(b.x2 - b.x) < 12 || Math.abs(b.y2 - b.y) < 12) return;   // arraste curto demais: ignora
+    zoomTo(invX(Math.min(b.x, b.x2)), invX(Math.max(b.x, b.x2)), invY(Math.max(b.y, b.y2)), invY(Math.min(b.y, b.y2)));
+  });
+  hit.addEventListener("pointerleave", e => { if (e.pointerType === "mouse" && !pinned && !brush) showOne(null); });
   hit.addEventListener("click", e => {
-    // mouse: clique abre; toque: 1º toque fixa o cartão com "Abrir anúncio", 2º toque no mesmo ponto abre
-    if (e.pointerType === "mouse" || (!e.pointerType && matchMedia("(hover: hover)").matches)) { open(nearest(e, 24) || cur); return; }
-    const mk = nearest(e, 36);
-    if (mk && mk === pinned) { open(mk); return; }
-    pinned = mk; pick(mk, true);
+    if (justBrushed || ZOOM_MODE) { justBrushed = false; return; }
+    const mouse = e.pointerType === "mouse" || (!e.pointerType && matchMedia("(hover: hover)").matches);
+    const cand = near(e, mouse ? 24 : 36);
+    // lista só os pontos praticamente sobrepostos ao mais próximo (centros a até ~1,5 raio)
+    const list = cand.length ? cand.filter(mk => Math.hypot(mk.cx - cand[0].cx, mk.cy - cand[0].cy) <= (mouse ? 7 : 11)) : cand;
+    if (list.length > 1) {   // vários pontos sob o cursor/dedo: lista para escolher
+      const sameAsPinned = pinned && pinned.length === list.length && pinned.every((o, i) => o === list[i]);
+      if (sameAsPinned) return;
+      pinned = list; showList(list, true); return;
+    }
+    if (mouse) { open(list[0] || cur); return; }
+    const mk = list[0];
+    if (mk && pinned === mk) { open(mk); return; }
+    pinned = mk || null; showOne(mk, true);
+  });
+  hit.addEventListener("dblclick", e => {   // computador: duplo clique amplia 2× em torno do ponto
+    const p = toSvg(e), cx = invX(p.x), cy = invY(p.y), hw = (D.x1 - D.x0) / 4, hh = (D.y1 - D.y0) / 4;
+    zoomTo(cx - hw, cx + hw, cy - hh, cy + hh);
   });
   const order = [...marks].sort((a, b) => a.cx - b.cx);
   let ki = -1;
   hit.addEventListener("keydown", e => {
-    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { ki = Math.max(0, Math.min(order.length - 1, ki + (e.key === "ArrowRight" ? 1 : -1))); pick(order[ki]); e.preventDefault(); }
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { ki = Math.max(0, Math.min(order.length - 1, ki + (e.key === "ArrowRight" ? 1 : -1))); showOne(order[ki]); e.preventDefault(); }
     if (e.key === "Enter" && cur) open(cur);
+    if (e.key === "+" || e.key === "=") { const cx = (D.x0 + D.x1) / 2, cy = (D.y0 + D.y1) / 2; zoomTo(cx - (D.x1 - D.x0) / 4, cx + (D.x1 - D.x0) / 4, cy - (D.y1 - D.y0) / 4, cy + (D.y1 - D.y0) / 4); }
+    if (e.key === "-") zoomOut();
+    if (e.key === "Escape" && ZOOM) resetZoom();
   });
-  hit.addEventListener("blur", () => { if (!pinned) pick(null); });
+  hit.addEventListener("blur", () => { if (!pinned) showOne(null); });
   svg.append(hit); host.append(svg);
-  return { clipped, n: pts.length, total: rows.length, medians: labels };
+  scatter.auto = auto;
+  return { clipped, n: all.length, visible: pts.length, total: rows.length, medians };
 }
+function zoomOut() {
+  if (!ZOOM) return;
+  const a = scatter.auto, D = ZOOM, cx = (D.x0 + D.x1) / 2, cy = (D.y0 + D.y1) / 2, w = (D.x1 - D.x0), hgt = (D.y1 - D.y0);
+  const n = { x0: cx - w, x1: cx + w, y0: cy - hgt, y1: cy + hgt };
+  ZOOM = (n.x0 <= a.x0 && n.x1 >= a.x1 && n.y0 <= a.y0 && n.y1 >= a.y1) ? null
+    : { x0: Math.max(a.x0, n.x0), x1: Math.min(a.x1, n.x1), y0: Math.max(0, n.y0), y1: Math.min(a.y1, n.y1) };
+  unpinTip(); hideTip(); renderScatter();
+}
+function resetZoom() { ZOOM = null; ZOOM_MODE = false; unpinTip(); hideTip(); renderScatter(); }
 
 function listingTip(r) {
   const vs = vsMedian(r), drop = lastDrop(r);
@@ -916,11 +1022,11 @@ function renderAlerts() {
 }
 function activeFilterText() {
   const c = DATA.criteria, cap = F.business === "aluguel" ? c.max_rent : c.max_sale;
-  return [BUSINESS[F.business], F.bairro === "todos" ? "ambos os bairros" : F.bairro, F.quartos ? F.quartos + "+ quartos" : "qualquer nº de quartos",
+  return [BUSINESS[F.business], F.bairro === "todos" ? "todos os bairros" : F.bairro, F.quartos ? F.quartos + "+ quartos" : "qualquer nº de quartos",
     F.budget ? `só orçamento (≤ ${FMT.brlc(cap)}${F.business === "aluguel" ? "/mês" : ""})` : "sem filtro de orçamento", periodLabel()].join(" · ");
 }
 function renderFilters() {
-  $("#bairroSeg").replaceChildren(h("button", { "data-v": "todos" }, "Ambos"),
+  $("#bairroSeg").replaceChildren(h("button", { "data-v": "todos" }, "Todos"),
     ...NBS.map(nb => h("button", { "data-v": nb }, h("span", { class: "dot", style: `background:${COLOR[nb]}` }), SHORT[nb] || nb)));
   document.querySelectorAll(".filters .seg").forEach(seg => {
     const key = seg.dataset.f;
@@ -981,11 +1087,14 @@ function renderKPIs() {
   );
 }
 function renderScatter() {
+  if (ZOOM && ZOOM_BIZ !== F.business) ZOOM = null;   // escala muda entre compra, aluguel e leilão
+  const hadFocus = document.activeElement?.closest?.("#scatter");
   const rows = DATA.listings.filter(r => r.active && baseFilter(r));
   const market = DATA.listings.filter(r => r.active && baseFilter(r, { ignoreBudget: true }));
   $("#scTitle").textContent = `${priceLabel()} × área útil`;
-  $("#scSub").textContent = `${priceUnit()} × m² · anúncios ativos em ${FMT.dateTime(DATA.updated_at)} · ${BUSINESS[F.business]} · ${F.bairro === "todos" ? "ambos os bairros" : F.bairro}${F.budget ? " · só orçamento" : ""}`;
+  $("#scSub").textContent = `${priceUnit()} × m² · anúncios ativos em ${FMT.dateTime(DATA.updated_at)} · ${BUSINESS[F.business]} · ${F.bairro === "todos" ? "todos os bairros" : F.bairro}${F.budget ? " · só orçamento" : ""}`;
   const r = scatter($("#scatter"), rows, market);
+  if (hadFocus) $("#scatter svg rect[tabindex]")?.focus();
   $("#scLegend").replaceChildren(...nbsSel().map(nb => h("span", {}, h("span", { class: "sw", style: `background:${COLOR[nb]}` }), SHORT[nb] || nb)),
     h("span", {}, h("span", { class: "swring" }), "novo no período"),
     ...r.medians.map(md => h("span", {}, h("span", { class: "swd", style: `border-color:${COLOR[md.nb]}` }), `mediana ${SHORT[md.nb] || md.nb}: ${FMT.brlc(md.med)}/m²`)));
@@ -993,9 +1102,16 @@ function renderScatter() {
     ...r.medians.map(md => ({ kind: "dash", color: COLOR[md.nb], text: `mediana ${SHORT[md.nb] || md.nb}: ${FMT.brlc(md.med)}/m²` }))];
   const touch = !matchMedia("(hover: hover)").matches;
   const miss = (r.total || 0) - r.n;
+  $("#zoomMode").setAttribute("aria-pressed", String(ZOOM_MODE));
+  $("#zoomMode").textContent = ZOOM_MODE ? (touch ? "⬚ Arraste o dedo…" : "⬚ Arraste no gráfico…") : "⬚ Ampliar área";
+  $("#zoomOutBtn").disabled = !ZOOM; $("#zoomReset").disabled = !ZOOM;
+  const zText = ZOOM ? `Zoom: ${FMT.int(ZOOM.x0)}–${FMT.int(ZOOM.x1)} m² · ${FMT.brlc(ZOOM.y0)}–${FMT.brlc(ZOOM.y1)}${F.business === "aluguel" ? "/mês" : ""} · ${FMT.int(r.visible)} de ${FMT.int(r.n)} anúncios visíveis` : "";
+  $("#zoomBar").textContent = ZOOM_MODE ? (touch ? "Arraste o dedo sobre a região que quer ampliar." : "Arraste sobre a região que quer ampliar (Esc cancela).") : zText;
+  $("#scSub").textContent += ZOOM ? " · " + zText.toLowerCase() : "";
   $("#scNote").textContent = `${FMT.int(r.n)} anúncios${miss > 0 ? ` (${FMT.int(miss)} sem área ou preço ficam só na tabela)` : ""}. Tracejado: mediana de ${m2Label()} de todos os anúncios ativos do bairro (sem filtro de orçamento) — ponto abaixo da linha = mais barato por m² que a mediana. ` +
     (r.clipped ? `${FMT.int(r.clipped)} anúncio(s) acima do percentil 99 de área ou do teto do eixo aparecem na borda. ` : "") +
-    (touch ? "Toque num ponto para ver e abrir o anúncio." : "Clique num ponto para abrir o anúncio.");
+    (touch ? "Toque num ponto para ver e abrir o anúncio; onde houver vários juntos, aparece a lista. Use “Ampliar área” e arraste o dedo para separar pontos próximos."
+           : "Clique num ponto para abrir o anúncio; onde houver vários juntos, aparece a lista. Para separar pontos próximos: “Ampliar área” e arraste, ou duplo clique.");
 }
 function renderFeed() {
   const ev = [];
@@ -1097,7 +1213,7 @@ function renderSmallMultiples() {
     const domain = NBS.flatMap(nb => histPoints(b, mk, nb).map(p => p.y).filter(v => v != null));   // escala comum aos bairros
     for (const nb of NBS) {
       const ch = h("div", { class: "chart" });
-      grid.append(h("div", { class: "c6" }, h("div", { class: "ink2", style: "font-size:12px" }, h("span", { class: "sw", style: `background:${COLOR[nb]};margin-right:5px` }), SHORT[nb] || nb), ch));
+      grid.append(h("div", { class: NBS.length >= 3 ? "c4" : "c6" }, h("div", { class: "ink2", style: "font-size:12px" }, h("span", { class: "sw", style: `background:${COLOR[nb]};margin-right:5px` }), SHORT[nb] || nb), ch));
       lineChart(ch, [{ name: nb, color: COLOR[nb], points: histPoints(b, mk, nb) }], { yFmt: yf, tipFmt: tf, height: 130, zeroBase: zero, domain, title: `${lbl} · ${nb}` });
     }
   }
@@ -1299,6 +1415,10 @@ $("#search").oninput = () => { PAGE = 0; renderTable(); };
 $("#showGone").onchange = () => { PAGE = 0; renderTable(); };
 $("#sortSel").onchange = e => { const [c, d] = e.target.value.split(":"); setSort(c, +d); };
 $("#calcArea").oninput = renderBuyVsRent;
+$("#zoomMode").onclick = () => { ZOOM_MODE = !ZOOM_MODE; unpinTip(); hideTip(); renderScatter(); };
+$("#zoomOutBtn").onclick = zoomOut;
+$("#zoomReset").onclick = resetZoom;
+addEventListener("keydown", e => { if (e.key === "Escape" && ZOOM_MODE) { ZOOM_MODE = false; renderScatter(); } });
 $("#csvBtn").onclick = exportTableCsv;
 $("#heatCsv").onclick = heatCsv;
 $("#trToggle").onclick = () => { TREND_TABLE = !TREND_TABLE; renderTrend(); };
@@ -1330,8 +1450,8 @@ new ResizeObserver(() => { const w = $("#main").clientWidth; if (!DATA || w === 
   DATA.history ||= []; DATA.notes ||= [];
   for (const r of DATA.listings) r.neighborhood = (r.neighborhood || "").trim();
   NBS = DATA.criteria.neighborhoods;
-  ["var(--s1)", "var(--s2)"].forEach((c, i) => { if (NBS[i]) COLOR[NBS[i]] = c; });
-  NBS.slice(2).forEach(nb => COLOR[nb] = "var(--neutral-mark)");
+  ["var(--s1)", "var(--s2)", "var(--s3)"].forEach((c, i) => { if (NBS[i]) COLOR[NBS[i]] = c; });
+  NBS.slice(3).forEach(nb => COLOR[nb] = "var(--neutral-mark)");   // paleta validada para até 3 bairros
   if (F.bairro !== "todos" && !NBS.includes(F.bairro)) F.bairro = "todos";
   computeMedians();
   $("#loading").remove();

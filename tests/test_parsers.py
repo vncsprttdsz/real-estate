@@ -328,3 +328,53 @@ def test_zuk_discovers_page_param(cfg):
 
     found = zuk.fetch(FakeHttp(), cfg, set(), set())
     assert [l.id for l in found] == ["2-2"] and found[0].neighborhood == "Itaim Bibi"
+
+
+def test_new_neighborhood_is_initial_load(tmp_path, monkeypatch):
+    """Bairro incluído depois: anúncios dele entram como carga inicial, sem aviso; os seguintes avisam."""
+    cfg = Config(neighborhoods=["Itaim Bibi", "Jardim Paulista"], min_area=100)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    (tmp_path / "state.json").write_text(json.dumps({"seen": {}, "initialized": ["zap"], "initialized_nbs": {"zap": ["itaim bibi"]}}))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def L(i, nb):
+        return Listing("zap", i, f"https://z/{i}", "venda", neighborhood=nb, area=120, price=2_000_000)
+
+    batches = iter([{"zap": [L("1", "Itaim Bibi"), L("2", "Jardim Paulista")]},
+                    {"zap": [L("1", "Itaim Bibi"), L("2", "Jardim Paulista"), L("3", "Jardim Paulista")]}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run()
+    news = [t for subj, items in sent if "novo" in subj for t, _ in items]
+    assert news and all("https://z/2" not in t for t in news) and any("https://z/1" in t for t in news)
+    st = json.loads((tmp_path / "state.json").read_text())
+    assert st["seen"]["zap:venda:2"]["initial"] and "jardim paulista" in st["initialized_nbs"]["zap"]
+    sent.clear(); app.run()
+    news = [t for subj, items in sent if "novo" in subj for t, _ in items]
+    assert len(news) == 1 and "https://z/3" in news[0]
+
+
+def test_grupozap_zero_results_drops_zone(cfg):
+    """Zona/locationId fixos podem não bater com o bairro: 0 resultados -> tenta sem eles."""
+    grupozap._working_rung.clear(); grupozap._page_size.clear(); grupozap._sort.clear()
+    calls = []
+
+    class FakeHttp:
+        def get(self, url, params=None, headers=None):
+            calls.append("addressZone" in params)
+            body = {"search": {"totalCount": 0, "result": {"listings": []}}} if "addressZone" in params else \
+                   {"search": {"totalCount": 1, "result": {"listings": [ZAP_ITEM]}}}
+            return _R(200, json.dumps(body))
+
+    assert len(grupozap._fetch_api(FakeHttp(), cfg, "zap", "venda", "Jardim Paulista")) == 1
+    assert calls == [True, False]
+    calls.clear()
+    grupozap._fetch_api(FakeHttp(), cfg, "zap", "venda", "Itaim Bibi")
+    assert calls[0] is True   # memória é por bairro: outro bairro volta a tentar com zona

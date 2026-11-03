@@ -13,7 +13,7 @@ import sys
 import traceback
 from datetime import datetime, timezone
 
-from .common import ROOT, Config, Listing
+from .common import ROOT, Config, Listing, norm
 from .http import Http
 from .notify import Notifier, brl, describe
 from . import dashboard
@@ -110,15 +110,22 @@ def run(dry_run: bool = False) -> int:
     notifier = Notifier()
     ts = now()
 
+    # Carga inicial por fonte E por bairro: um bairro incluído depois não gera enxurrada de "novos".
+    if "initialized_nbs" not in state:
+        known = {norm(v.get("neighborhood", "")) for v in dashboard._load(dashboard.CATALOG, {}).values()}
+        state["initialized_nbs"] = {s: sorted(known & cfg.neighborhoods_norm) for s in state["initialized"]}
+
     new_items, drops, first_load = [], [], {}
     for source, listings in results.items():
-        initializing = source not in state["initialized"]
+        src_new = source not in state["initialized"]
+        nbs_done = set(state["initialized_nbs"].get(source, []))
         for l in listings:
             prev = state["seen"].get(l.key)
             if prev is None:
+                initializing = src_new or norm(l.neighborhood) not in nbs_done
                 if initializing:
-                    first_load.setdefault(source, 0)
-                    first_load[source] += 1
+                    label = source if src_new else f"{source} ({l.neighborhood})"
+                    first_load[label] = first_load.get(label, 0) + 1
                 elif cfg.in_budget(l):
                     new_items.append(l)
                 state["seen"][l.key] = {
@@ -138,8 +145,12 @@ def run(dry_run: bool = False) -> int:
                 prev["price"] = l.ref_price
                 prev.setdefault("hist", []).append([ts, l.ref_price])
                 prev["hist"] = prev["hist"][-30:]
-        if initializing:
+        if src_new:
             state["initialized"].append(source)
+        # Marca como inicializados os bairros que trouxeram anúncios (ou todos, no Zuk, onde vazio é normal).
+        seen_nbs = {norm(l.neighborhood) for l in listings}
+        done = nbs_done | (cfg.neighborhoods_norm if source == "zuk" else seen_nbs & cfg.neighborhoods_norm)
+        state["initialized_nbs"][source] = sorted(done)
 
     # Esquece anúncios sumidos há muito tempo (só de fontes que funcionaram neste ciclo).
     cutoff = datetime.now(timezone.utc).timestamp() - REMOVE_AFTER_DAYS * 86400

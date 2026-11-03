@@ -1,4 +1,4 @@
-# Monitor de imóveis — Vila Nova Conceição e Itaim Bibi
+# Monitor de imóveis — Vila Nova Conceição, Itaim Bibi e Jardim Paulista
 
 Verifica automaticamente, a cada 2 horas (das 7h às 23h), novos anúncios de
 **apartamentos com 100 m² ou mais**, para **compra, aluguel e leilão**, em:
@@ -65,7 +65,9 @@ oferece "Restaurar padrão".
 
 - **Resumo** — o que mudou desde a última coleta: alertas de qualidade (dados atrasados, fonte com erro,
   mudança de cobertura, histórico curto); seis indicadores com período e base de comparação explícitos;
-  gráfico preço × área (tocar/clicar abre o anúncio) com a mediana de R$/m² de cada bairro; lista de
+  gráfico preço × área (tocar/clicar abre o anúncio; onde há vários pontos juntos, abre a lista deles;
+  zoom por seleção com "Ampliar área", duplo clique, "Reduzir"/"Restaurar" e teclas +/−/Esc) com a mediana
+  de R$/m² de cada bairro; lista de
   novos / quedas / saídas; evolução da mediana por bairro (linha ou tabela).
 - **Explorar** — comparação entre bairros (barras a partir de zero com intervalo interquartil e n),
   mapa de calor R$/m² por bairro × quartos (amostras pequenas sinalizadas), pequenos múltiplos por bairro,
