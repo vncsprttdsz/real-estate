@@ -266,8 +266,31 @@ footer { color: var(--muted); font-size: 12px; margin-top: 20px; }
 .sim-kpis { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-bottom: 0; }
 @media (max-width: 1200px) { .sim-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .sim-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .simform label { grid-template-columns: 1fr 138px; } }
-@media (max-width: 1100px) { #p-simulador section > .c8 { order: -1; } }   /* telas estreitas: resultado antes das premissas */
+@media (max-width: 1100px) { #p-simulador section > .c8, #simSensCard { order: -1; } }   /* telas estreitas: resultado antes das premissas */
 #simVerdict { font-size: 14px; }
+.simform details.grp { border-top: 1px solid var(--border); padding: 2px 0 6px; }
+.simform details.grp > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 10px; align-items: baseline; padding: 8px 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.simform details.grp > summary::-webkit-details-marker { display: none; }
+.simform details.grp > summary > span:first-child::before { content: "▸"; display: inline-block; width: 14px; transition: transform .15s; }
+.simform details.grp[open] > summary > span:first-child::before { transform: rotate(90deg); }
+.simform details.grp > summary:hover, .simform details.grp > summary:focus-visible { color: var(--ink); }
+.simform .gsum { text-transform: none; letter-spacing: 0; font-size: 11.5px; color: var(--ink-2); text-align: right; }
+.simform details.grp > label { margin-bottom: 6px; }
+.simform .calc { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.simform .calc:not(:empty)::before { content: "· "; color: var(--muted); }
+.verdict { border-left: 4px solid var(--ink-2); }
+.verdict.buy { border-left-color: var(--div-lo); } .verdict.rent { border-left-color: var(--div-hi); }
+.verdict .vhead { font-size: 16px; line-height: 1.4; }
+.verdict .vchip { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }
+.verdict .vlines { display: grid; gap: 2px; margin-top: 6px; font-size: 12.5px; color: var(--ink-2); }
+.h3 { font-size: 12.5px; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+.sensctl { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; margin-bottom: 6px; }
+.sensctl .h3 { margin: 0 auto 0 0; width: 100%; }
+.sensctl label { font-size: 12px; color: var(--ink-2); display: inline-flex; gap: 6px; align-items: center; }
+.sensctl select { height: 26px; }
+.costtbl td.bar { width: 34%; }
+@media (max-width: 640px) { .costtbl .bar { display: none; } .costtbl td:first-child { white-space: normal; min-width: 0; } }
+.costtbl .cb { display: block; height: 8px; border-radius: 2px; }
 #simVerdict b { font-weight: 650; }
 table.sens td.cell { text-align: right; min-width: 70px; }
 .simbtn { height: 22px; padding: 0 7px; font-size: 11.5px; }
@@ -429,13 +452,13 @@ table.sens td.cell { text-align: right; min-width: 70px; }
     <div role="tabpanel" id="p-simulador" aria-labelledby="tab-simulador" hidden>
       <div class="alerts" id="simAlerts"></div>
       <section class="grid">
-        <div class="card c4">
-          <div class="card-head"><div><h2>Premissas</h2><div class="sub">Valores em R$; percentuais ao ano, salvo indicação</div></div>
-            <div class="card-tools"><button class="btn sm" type="button" id="simReset">Restaurar padrões</button></div></div>
+        <div class="card c4 simside">
+          <div class="card-head"><div><h2>Premissas</h2><div class="sub">Os resultados se atualizam enquanto você digita</div></div>
+            <div class="card-tools"><button class="btn sm" type="button" id="simShare" title="Copia um link com estas premissas">Copiar link</button><button class="btn sm" type="button" id="simReset">Restaurar padrões</button></div></div>
           <form id="simForm" class="simform" onsubmit="return false">
             <fieldset><legend>Imóvel</legend>
-              <label>Preço de compra <span class="u">R$</span><input id="sPrice" inputmode="decimal"></label>
-              <label>Aluguel mensal <span class="u">R$, sem condomínio e IPTU</span><input id="sRent" inputmode="decimal"></label>
+              <label>Preço de compra <span class="u">R$ <span class="calc" id="cPrice"></span></span><input id="sPrice" inputmode="decimal"></label>
+              <label>Aluguel mensal <span class="u">R$, sem condomínio e IPTU <span class="calc" id="cRent"></span></span><input id="sRent" inputmode="decimal"></label>
               <div class="est">
                 <span class="muted">Estimar pela mediana do bairro:</span>
                 <select id="sEstNb" aria-label="Bairro para estimativa"></select>
@@ -444,39 +467,41 @@ table.sens td.cell { text-align: right; min-width: 70px; }
                 <button class="btn sm" type="button" id="sEstPrice">Preço</button>
               </div>
               <div class="muted" id="sEstNote" style="font-size:11.5px"></div>
+              <label>Horizonte da comparação <span class="u">anos <span class="calc" id="cHorizon"></span></span><input id="sHorizon" inputmode="numeric"></label>
             </fieldset>
-            <fieldset><legend>Compra e financiamento</legend>
-              <label>Entrada <span class="u">% do preço</span><input id="sDown" inputmode="decimal"></label>
-              <label>Custos de aquisição <span class="u">% do preço (ITBI SP 3% + cartório)</span><input id="sAcq" inputmode="decimal"></label>
-              <label>Taxa do financiamento <span class="u">% a.a., efetiva (use o CET)</span><input id="sRate" inputmode="decimal"></label>
+            <details class="grp" id="gFin" open><summary><span>Compra e financiamento</span><span class="gsum" id="sumFin"></span></summary>
+              <label>Entrada <span class="u">% do preço <span class="calc" id="cDown"></span></span><input id="sDown" inputmode="decimal"></label>
+              <label>Custos de aquisição <span class="u">% do preço (ITBI SP 3% + cartório) <span class="calc" id="cAcq"></span></span><input id="sAcq" inputmode="decimal"></label>
+              <label>Taxa do financiamento <span class="u">% a.a., efetiva (use o CET) <span class="calc" id="cRate"></span></span><input id="sRate" inputmode="decimal"></label>
               <label>Prazo <span class="u">anos</span><input id="sTerm" inputmode="numeric"></label>
               <label>Sistema de amortização <span class="u">SAC: parcelas decrescentes · Price: fixas</span><select id="sSystem"><option value="SAC">SAC</option><option value="PRICE">Price</option></select></label>
-            </fieldset>
-            <fieldset><legend>FGTS</legend>
+            </details>
+            <details class="grp" id="gFgts"><summary><span>FGTS</span><span class="gsum" id="sumFgts"></span></summary>
               <label>Saldo atual do FGTS <span class="u">R$ (0 = não usar)</span><input id="sFgtsBal" inputmode="decimal"></label>
-              <label>Depósito mensal <span class="u">R$, 8% do salário bruto</span><input id="sFgtsDep" inputmode="decimal"></label>
+              <label>Depósito mensal <span class="u">R$, 8% do salário bruto <span class="calc" id="cFgtsDep"></span></span><input id="sFgtsDep" inputmode="decimal"></label>
               <label>Usar o saldo na entrada <span class="u">limitado ao valor da entrada</span><select id="sFgtsDown"><option value="sim">Sim</option><option value="nao">Não</option></select></label>
               <label>Uso dos depósitos <span class="u">regras do FGTS para imóvel financiado</span><select id="sFgtsMode"><option value="parcelas">Até 80% da parcela</option><option value="amortizacao">Amortizar (2 anos)</option><option value="nenhum">Não usar</option></select></label>
               <label>Rendimento do FGTS <span class="u">% a.a. (TR + 3% + lucros); piso: IPCA</span><input id="sFgtsYield" inputmode="decimal"></label>
               <label>Teto do SFH <span class="u">R$, valor máximo do imóvel para usar FGTS</span><input id="sSfhCap" inputmode="decimal"></label>
-            </fieldset>
-            <fieldset><legend>Cenário</legend>
-              <label>Horizonte <span class="u">anos</span><input id="sHorizon" inputmode="numeric"></label>
+            </details>
+            <details class="grp" id="gProj"><summary><span>Valorização, aluguel e Focus</span><span class="gsum" id="sumProj"></span></summary>
               <label>Valorização do imóvel <span class="u">padrão: IGP-M projetado</span><select id="sApprMode"><option value="igpm">IGP-M (Focus)</option><option value="custom">Taxa fixa</option></select></label>
               <label class="dep" data-dep="sApprMode">Valorização fixa <span class="u">% a.a.</span><input id="sAppr" inputmode="decimal"></label>
               <label>Reajuste do aluguel <span class="u">padrão: IGP-M projetado</span><select id="sRentMode"><option value="igpm">IGP-M (Focus)</option><option value="custom">Taxa fixa</option></select></label>
               <label class="dep" data-dep="sRentMode">Reajuste fixo <span class="u">% a.a.</span><input id="sRentAdj" inputmode="decimal"></label>
-              <label>Tesouro Selic rende <span class="u">% da Selic</span><input id="sTesouro" inputmode="decimal"></label>
-              <label>Taxa de custódia B3 <span class="u">% a.a. sobre o saldo</span><input id="sCustody" inputmode="decimal"></label>
-              <label>Manutenção do imóvel próprio <span class="u">% a.a. do valor</span><input id="sMaint" inputmode="decimal"></label>
-              <label>Custo de venda no fim <span class="u">% (corretagem; 0 = não vende)</span><input id="sSell" inputmode="decimal"></label>
               <label class="nofocus">Selic média (sem Focus) <span class="u">% a.a.</span><input id="sSelicFb" inputmode="decimal"></label>
               <label class="nofocus">IGP-M médio (sem Focus) <span class="u">% a.a.</span><input id="sIgpmFb" inputmode="decimal"></label>
-            </fieldset>
+            </details>
+            <details class="grp" id="gInv"><summary><span>Investimento e custos do imóvel</span><span class="gsum" id="sumInv"></span></summary>
+              <label>Tesouro Selic rende <span class="u">% da Selic</span><input id="sTesouro" inputmode="decimal"></label>
+              <label>Taxa de custódia B3 <span class="u">% a.a. sobre o saldo</span><input id="sCustody" inputmode="decimal"></label>
+              <label>Manutenção do imóvel próprio <span class="u">% a.a. do valor <span class="calc" id="cMaint"></span></span><input id="sMaint" inputmode="decimal"></label>
+              <label>Custo de venda no fim <span class="u">% (corretagem; 0 = não vende)</span><input id="sSell" inputmode="decimal"></label>
+            </details>
           </form>
         </div>
         <div class="c8 stack">
-          <div class="card" id="simVerdict" aria-live="polite"></div>
+          <div class="card verdict" id="simVerdict" aria-live="polite"></div>
           <div class="kpis sim-kpis" id="simKpis"></div>
           <div class="card">
             <div class="card-head">
@@ -493,17 +518,41 @@ table.sens td.cell { text-align: right; min-width: 70px; }
           </div>
           <div class="grid">
             <div class="card c7">
-              <div class="card-head"><div><h2>Sensibilidade</h2><div class="sub" id="simSensSub"></div></div></div>
-              <div id="simSens"></div>
-              <p class="note">Valor = patrimônio comprando − alugando, em R$ mil nominais. Azul: comprar fica melhor; vermelho: alugar fica melhor. Variações em pontos percentuais (p.p.) somadas às premissas de cada ano.</p>
+              <div class="card-head"><div><h2>Para onde vai o dinheiro</h2><div class="sub" id="simCostSub"></div></div></div>
+              <div id="simCost"></div>
+              <p class="note">Custo de morar = tudo o que saiu do bolso no período (igual nos dois cenários) − patrimônio final. Ganhos aparecem com sinal −. A diferença entre os custos é exatamente a diferença de patrimônio.</p>
             </div>
             <div class="card c5">
               <div class="card-head"><div><h2>Projeções do Focus</h2><div class="sub" id="simFocusSub"></div></div></div>
               <div id="simFocus"></div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-head"><div><h2>Como o cálculo funciona</h2></div></div>
+        </div>
+        <div class="card c12" id="simSensCard">
+          <div class="card-head">
+            <div><h2>Sensibilidade: o que muda a decisão</h2><div class="sub" id="simSensSub"></div></div>
+            <div class="card-tools"><div class="seg" id="sensUnit" role="group" aria-label="Unidade da sensibilidade"><button type="button" data-v="real">R$ de hoje</button><button type="button" data-v="nom">Nominal</button></div></div>
+          </div>
+          <div class="grid">
+            <div class="c6">
+              <h3 class="h3">Uma premissa de cada vez</h3>
+              <div class="chart" id="simTornado"></div>
+              <p class="note" id="simTornadoNote"></p>
+            </div>
+            <div class="c6">
+              <div class="sensctl">
+                <h3 class="h3">Duas premissas combinadas</h3>
+                <label>Linhas <select id="sensRow"></select></label>
+                <label>Colunas <select id="sensCol"></select></label>
+                <label>Passo <select id="sensStep"><option value="1">1 p.p. / 10%</option><option value="0.5">0,5 p.p. / 5%</option><option value="2">2 p.p. / 20%</option></select></label>
+              </div>
+              <div id="simSens"></div>
+              <p class="note" id="simSensNote"></p>
+            </div>
+          </div>
+        </div>
+        <div class="card c12">
+          <div class="card-head"><div><h2>Como o cálculo funciona</h2></div></div>
             <ul class="note" style="margin:0;padding-left:18px;display:grid;gap:4px">
               <li><b>Mesmo desembolso nos dois cenários.</b> Quem aluga começa com o caixa que iria para entrada + custos de aquisição aplicado no Tesouro Selic. Todo mês, quem gasta menos (aluguel × parcela + manutenção) investe a diferença no Tesouro Selic.</li>
               <li><b>Patrimônio comprando</b> = valor do imóvel (− custo de venda, se informado) − saldo devedor + aplicações. <b>Alugando</b> = aplicações. Ambos líquidos de IR no resgate.</li>
@@ -512,7 +561,6 @@ table.sens td.cell { text-align: right; min-width: 70px; }
               <li><b>FGTS:</b> os depósitos mensais (8% do salário, reajustados pelo IPCA a cada ano) entram nos dois cenários. Alugando, o saldo fica no FGTS rendendo a taxa informada (TR + 3% + distribuição de lucros), com piso no IPCA do Focus. Comprando imóvel até o teto do SFH, o saldo pode compor a entrada (não paga ITBI nem cartório) e os depósitos podem <b>pagar até 80% das parcelas</b> — ciclos de 12 meses, usando o saldo existente no início de cada ciclo — ou <b>amortizar o saldo devedor</b> a cada 2 anos (o uso na entrada conta como o primeiro; a amortização reduz a parcela e mantém o prazo). O saldo de FGTS entra no patrimônio dos dois lados, sem IR, embora só possa ser sacado em situações previstas em lei.</li>
               <li><b>Fora do cálculo:</b> condomínio e IPTU (pagos nos dois cenários), seguros obrigatórios do financiamento e TR, taxas do banco, vacância, reformas e o valor de morar no imóvel próprio. É uma simulação com premissas — não é recomendação.</li>
             </ul>
-          </div>
         </div>
       </section>
     </div>
@@ -652,7 +700,7 @@ delete F.precoMax;
 let SORT = store.get("sort", { col: "first_seen", dir: -1 });
 let PAGE = 0, PAGE_SIZE = store.get("pageSize", 50), FEED = "all", TREND_TABLE = false;
 const LEGENDS = {};   // itens de legenda por gráfico, reaproveitados na exportação PNG
-let TAB = (location.hash || "").replace("#", "") || store.get("tab", "resumo");
+let TAB = (location.hash || "").replace("#", "").split("?")[0] || store.get("tab", "resumo");
 const HIDDEN_COLS = new Set(store.get("hiddenCols", ["condo"]));
 
 const refPrice = r => r.business === "aluguel" ? (r.total_monthly || r.price) : r.price;   // preço pedido / valor total
@@ -1530,7 +1578,23 @@ const SIM_LIMITS = { sPrice: [10000, 1e9], sRent: [0, 1e7], sDown: [0, 100], sAc
   sAppr: [-20, 50], sRentAdj: [-20, 50], sTesouro: [0, 200], sCustody: [0, 5], sMaint: [0, 10], sSell: [0, 20], sSelicFb: [0, 60], sIgpmFb: [-20, 50],
   sFgtsBal: [0, 1e8], sFgtsDep: [0, 1e6], sFgtsYield: [0, 30], sSfhCap: [0, 1e9] };
 let SIM_STATE = Object.assign({}, SIM_DEF, store.get("sim", {}));
+let SIM_SENS = Object.assign({ row: "infl", col: "selic", step: 1, unit: "real" }, store.get("simSens", {}));
+// Link compartilhável: #simulador?sPrice=...&sRent=... (só o que difere do padrão)
+function simFromHash() {
+  const q = (location.hash.split("?")[1] || ""); if (!q) return false;
+  const u = new URLSearchParams(q), st = { ...SIM_DEF };
+  for (const k of Object.keys(SIM_DEF)) if (u.has(k)) { const v = u.get(k); st[k] = SIM_NUM.includes(k) ? (isFinite(Number(v)) ? Number(v) : SIM_DEF[k]) : v; }
+  SIM_STATE = st; SIM_NOTE = ""; store.set("sim", st); store.set("simNote", "");
+  if (typeof simFill === "function" && DATA) { simFill(); renderSim(); }
+  return true;
+}
+function simShareUrl() {
+  const u = new URLSearchParams();
+  for (const k of Object.keys(SIM_DEF)) if (SIM_STATE[k] !== SIM_DEF[k]) u.set(k, SIM_STATE[k]);
+  return location.origin + location.pathname + "#simulador" + (u.toString() ? "?" + u : "");
+}
 let SIM_UNIT = "nom", SIM_TABLE = false, SIM_NOTE = store.get("simNote", "");
+simFromHash();
 const parseBR = v => { if (typeof v === "number") return v; const t = String(v).trim().replace(/\s|R\$|%/g, ""); if (!t) return NaN;
   return Number(/,/.test(t) ? t.replace(/\./g, "").replace(",", ".") : /^\d{1,3}(\.\d{3})+$/.test(t) ? t.replace(/\./g, "") : t); };
 const fmtIn = (k, v) => ["sPrice", "sRent", "sFgtsBal", "sFgtsDep", "sSfhCap"].includes(k) ? nf0.format(v) : String(v).replace(".", ",");
@@ -1615,8 +1679,8 @@ function simChart(host, rows, unit) {
   const X = v => m.l + v / xN * (W - m.l - m.r), Y = v => m.t + (1 - (v - y0) / (y1 - y0)) * (H - m.t - m.b);
   const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": "Patrimônio comprando e alugando ao longo do horizonte" });
   for (const t of yt) { svg.append(s("line", { class: t === 0 ? "base" : "gridl", x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t) })); svg.append(s("text", { x: m.l - 6, y: Y(t) + 4, "text-anchor": "end" }, FMT.axis(t))); }
-  const step = xN <= 12 ? 1 : xN <= 24 ? 2 : 5;
-  for (let yv = 0; yv <= xN; yv += step) svg.append(s("text", { x: X(yv), y: H - 6, "text-anchor": "middle" }, yv === 0 ? "hoje" : `ano ${yv}`));
+  const px = (W - m.l - m.r) / Math.max(1, xN), step = [1, 2, 5, 10].find(k => k * px >= 44) || 10;
+  for (let yv = 0; yv <= xN; yv += step) svg.append(s("text", { x: X(yv), y: H - 6, "text-anchor": "middle" }, yv === 0 ? "hoje" : px * step < 60 ? String(yv) : `ano ${yv}`));
   const path = k => rows.map((r, i) => (i ? "L" : "M") + X(r.year).toFixed(1) + " " + Y(r[k]).toFixed(1)).join("");
   svg.append(s("path", { d: path(key[0]), fill: "none", stroke: "var(--ink)", "stroke-width": 2 }));
   svg.append(s("path", { d: path(key[1]), fill: "none", stroke: "var(--ink-2)", "stroke-width": 2, "stroke-dasharray": "6 4" }));
@@ -1648,6 +1712,7 @@ function renderSim() {
   SIM_STATE = st; store.set("sim", st);
   const p = simParams(st), res = SIM.simulate(p), f = res.final, N = st.sHorizon;
   SIM_LAST = { p, res, st };
+  simHints(st, res, p);
   // alertas de dados
   const al = [];
   if (!fp.selic || !fp.igpm) al.push(["warn", `Projeções do Focus indisponíveis${fp.mc?.erro ? " (" + fp.mc.erro + ")" : ""}: usando Selic e IGP-M médios informados abaixo. Elas são atualizadas a cada coleta.`]);
@@ -1661,16 +1726,21 @@ function renderSim() {
   if (st.sTerm < st.sHorizon) al.push(["info", `O financiamento termina antes do horizonte (${st.sTerm} anos): depois disso, quem comprou investe o aluguel que deixaria de pagar.`]);
   $("#simAlerts").replaceChildren(...al.map(([lvl, t]) => h("div", { class: "alert " + lvl }, h("span", { class: "ico " + (lvl === "info" ? "" : lvl), style: lvl === "info" ? "background:var(--accent)" : null }, lvl === "info" ? "i" : "!"), h("span", {}, t))));
   // veredito
-  const better = f.diff >= 0 ? "comprar" : "alugar e investir", d = Math.abs(f.diff), dReal = Math.abs(f.buyReal - f.rentReal);
+  const buyWins = f.diff >= 0, d = Math.abs(f.diff), dReal = Math.abs(f.buyReal - f.rentReal);
   const be = SIM.breakevenAppr(p), apprBase = p.apprAA != null ? p.apprAA : median(Array.from({ length: N }, (_, i) => SIM.pathValue(p.igpmPath, p.startYear + i) ?? p.igpmFallback));
-  $("#simVerdict").replaceChildren(
-    h("div", {}, `Em ${N} anos, `, h("b", {}, better), ` deixa um patrimônio `, h("b", {}, `${FMT.brlc(d)} maior`), ` (${FMT.brlc(dReal)} em R$ de hoje), com estas premissas.`),
-    h("div", { class: "muted", style: "font-size:12.5px;margin-top:4px" },
-      be != null ? `Comprar passa a compensar se o imóvel valorizar acima de ${FMT.pct(be, 1).replace("+", "")} a.a. (premissa atual: ${FMT.pct(apprBase, 1).replace("+", "")} a.a.${p.apprAA == null ? ", IGP-M do Focus" : ""}).` : "Não há valorização entre −20% e +50% a.a. que empate os cenários."),
-    ...(hasF ? [h("div", { class: "muted", style: "font-size:12.5px;margin-top:4px" }, fg.ok
-      ? `FGTS na compra: ${FMT.brlc(fg.down)} na entrada${fg.usedInst ? `, ${FMT.brlc(fg.usedInst)} em parcelas` : ""}${fg.usedAmort ? `, ${FMT.brlc(fg.usedAmort)} em amortizações` : ""}. Saldo de FGTS no fim: ${FMT.brlc(fg.finalB)} comprando, ${FMT.brlc(fg.finalR)} alugando (incluído no patrimônio).`
-      : `FGTS fora da compra; saldo no fim de ${FMT.brlc(fg.finalR)} nos dois cenários (incluído no patrimônio).`)] : []),
-    ...(SIM_NOTE ? [h("div", { class: "muted", style: "font-size:12px;margin-top:4px" }, SIM_NOTE)] : []));
+  const ber = SIM.breakevenRent(p), pctS = v => FMT.pct(v, 1).replace("+", "");
+  const v = $("#simVerdict"); v.className = "card verdict " + (buyWins ? "buy" : "rent");
+  v.replaceChildren(
+    h("div", { class: "vchip" }, `Resultado em ${N} anos, com estas premissas`),
+    h("div", { class: "vhead" }, h("b", {}, buyWins ? "Comprar" : "Alugar e investir"), ` deixa um patrimônio `, h("b", {}, `${FMT.brlc(d)} maior`), h("span", { class: "muted" }, ` (${FMT.brlc(dReal)} em R$ de hoje)`)),
+    h("div", { class: "vlines" },
+      h("div", {}, be != null ? `▸ Comprar empata se o imóvel valorizar ${pctS(be)} a.a. — a premissa é ${pctS(apprBase)} a.a.${p.apprAA == null ? " (IGP-M do Focus)" : ""}.` : "▸ Nenhuma valorização entre −20% e +50% a.a. empata os cenários."),
+      h("div", {}, ber != null ? `▸ Ou se o aluguel de um imóvel equivalente fosse ${FMT.brl(Math.round(ber / 10) * 10)}/mês — hoje: ${FMT.brl(st.sRent)} (${ber > st.sRent ? "+" : "−"}${nf0.format(Math.abs(ber / st.sRent - 1) * 100)}%).` : ""),
+      h("div", {}, `▸ Custo de morar no período: ${sgnBrlc(res.cost.buy.total)} comprando × ${sgnBrlc(res.cost.rent.total)} alugando${Math.min(res.cost.buy.total, res.cost.rent.total) < 0 ? " (negativo: os ganhos superaram os gastos)" : ""} — detalhes em “Para onde vai o dinheiro”.`),
+      hasF ? h("div", {}, "▸ " + (fg.ok
+        ? `FGTS na compra: ${FMT.brlc(fg.down)} na entrada${fg.usedInst ? `, ${FMT.brlc(fg.usedInst)} em parcelas` : ""}${fg.usedAmort ? `, ${FMT.brlc(fg.usedAmort)} em amortizações` : ""}. Saldo no fim: ${FMT.brlc(fg.finalB)} comprando, ${FMT.brlc(fg.finalR)} alugando (incluído no patrimônio).`
+        : `FGTS fora da compra; saldo no fim de ${FMT.brlc(fg.finalR)} nos dois cenários (incluído no patrimônio).`)) : null,
+      SIM_NOTE ? h("div", { class: "muted", style: "font-size:12px" }, SIM_NOTE) : null));
   const kp = (label, value, unit, per, cmp) => h("div", { class: "card kpi" }, h("div", { class: "label" }, label), h("div", { class: "value" }, value, unit ? h("span", { class: "unit" }, " " + unit) : null), h("div", { class: "per" }, per), cmp ? h("div", { class: "cmp" }, cmp) : null);
   const ratio = res.firstInst ? res.firstInst / st.sRent : null;
   $("#simKpis").replaceChildren(
@@ -1689,18 +1759,8 @@ function renderSim() {
     h("tbody", {}, res.rows.map(r => h("tr", {}, h("td", {}, r.year === 0 ? "hoje" : r.year), ...[r.V, r.L, r[kb], r[kr], r[kb] - r[kr], r.R, ...(hasF ? [r.fgtsB, r.fgtsR] : [])].map(v => h("td", { class: "num" }, nf0.format(v)))))))));
   $("#simChart").hidden = SIM_TABLE; $("#simTable").hidden = !SIM_TABLE;
   $("#simTblToggle").textContent = SIM_TABLE ? "Ver gráfico" : "Ver tabela"; $("#simTblToggle").setAttribute("aria-pressed", String(SIM_TABLE));
-  // sensibilidade
-  const shifts = [-.02, -.01, 0, .01, .02], grid = SIM.sensitivity(p, shifts, shifts);
-  const mx = Math.max(1, ...grid.flat().map(Math.abs));
-  $("#simSensSub").textContent = `Patrimônio comprando − alugando em ${N} anos · linhas: valorização do imóvel · colunas: Selic`;
-  const pp = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v * 100) + " p.p.";
-  $("#simSens").replaceChildren(h("div", { class: "tablewrap" }, h("table", { class: "data heat sens" },
-    h("thead", {}, h("tr", {}, h("th", {}, "Valorização \\ Selic"), ...shifts.map(sv => h("th", { class: "num" }, sv ? pp(sv) : "premissa")))),
-    h("tbody", {}, grid.map((row, i) => h("tr", {}, h("td", {}, shifts[i] ? pp(shifts[i]) : "premissa"), ...row.map((v, k) => {
-      const a = Math.min(1, Math.abs(v) / mx), col = v >= 0 ? "var(--div-lo)" : "var(--div-hi)";
-      return h("td", { class: "cell", title: `${v >= 0 ? "Comprar" : "Alugar"} melhor por ${FMT.brlc(Math.abs(v))}`,
-        style: `background:color-mix(in srgb, ${col} ${Math.round(a * 70)}%, transparent);${a > .55 ? "color:#fff;" : ""}${i === 2 && k === 2 ? "outline:2px solid var(--ink);outline-offset:-2px;" : ""}` },
-        (v >= 0 ? "+" : "−") + nf0.format(Math.abs(v) / 1000)); })))))));
+  renderSimCost(res, N, hasF);
+  renderSimSens(p, N);
   // Focus
   const years = Array.from(new Set([...Object.keys(p.selicPath), ...Object.keys(p.igpmPath), ...Object.keys(p.ipcaPath)])).sort();
   $("#simFocusSub").textContent = fp.selic ? `Mediana · boletim de ${FMT.date(dayISO(fp.mc.selic.data))}${fp.mc.selic.respondentes ? " · " + fp.mc.selic.respondentes + " respondentes" : ""} · fonte: BCB` : "Indisponível — usando médias informadas";
@@ -1710,6 +1770,110 @@ function renderSim() {
     : h("div", { class: "empty" }, "Sem projeções do Focus ainda."),
     h("p", { class: "note" }, years.length ? `Depois de ${years.at(-1)}, repete o último valor projetado.` : ""));
 }
+const sgnBrlc = v => (v < 0 ? "−" : "") + FMT.brlc(Math.abs(v)), sgnBrl = v => (v < 0 ? "−" : "") + FMT.brl(Math.abs(v));
+const pctIn = v => String(Math.round(v * 100) / 100).replace(".", ",");
+function simHints(st, res, p) {
+  const set = (id, t) => { const el = $("#" + id); if (el) el.textContent = t || ""; };
+  set("cRent", st.sPrice ? `${pctIn(st.sRent * 12 / st.sPrice * 100)}% a.a. do preço` : "");
+  set("cHorizon", `até ${p.startYear + st.sHorizon}`);
+  set("cDown", `${FMT.brlc(st.sPrice * st.sDown / 100)}; financia ${FMT.brlc(res.loan0)}`);
+  set("cAcq", FMT.brlc(st.sPrice * st.sAcq / 100));
+  set("cRate", `≈ ${pctIn((Math.pow(1 + st.sRate / 100, 1 / 12) - 1) * 100)}% a.m.`);
+  set("cFgtsDep", st.sFgtsDep ? `salário ≈ ${FMT.brl(Math.round(st.sFgtsDep / 0.08 / 10) * 10)}` : "");
+  set("cMaint", st.sMaint ? `${FMT.brl(st.sPrice * st.sMaint / 100 / 12)}/mês no início` : "");
+  const modeL = { parcelas: "até 80% das parcelas", amortizacao: "amortiza a cada 2 anos", nenhum: "depósitos não usados" };
+  set("sumFin", `${pctIn(st.sDown)}% de entrada · ${pctIn(st.sRate)}% a.a. · ${st.sTerm} anos · ${st.sSystem === "SAC" ? "SAC" : "Price"}`);
+  set("sumFgts", st.sFgtsBal > 0 || st.sFgtsDep > 0 ? `${FMT.brlc(st.sFgtsBal)} + ${FMT.brl(st.sFgtsDep)}/mês · ${modeL[st.sFgtsMode]}` : "não usado");
+  set("sumProj", `valoriza ${st.sApprMode === "custom" ? pctIn(st.sAppr) + "% a.a." : "IGP-M"} · aluguel ${st.sRentMode === "custom" ? pctIn(st.sRentAdj) + "% a.a." : "IGP-M"}`);
+  set("sumInv", [`Tesouro ${pctIn(st.sTesouro)}% da Selic`, `custódia ${pctIn(st.sCustody)}%`, st.sMaint ? `manutenção ${pctIn(st.sMaint)}%` : "", st.sSell ? `venda ${pctIn(st.sSell)}%` : ""].filter(Boolean).join(" · "));
+}
+function renderSimCost(res, N, hasF) {
+  const b = res.cost.buy, r = res.cost.rent;
+  const items = [
+    ["Juros do financiamento", b.juros, null], ["Custos de aquisição (ITBI, cartório)", b.aquisicao, null],
+    ["Manutenção do imóvel", b.manutencao, null, !b.manutencao], ["Custo de venda", b.venda, null, !b.venda],
+    ["Aluguel pago", null, r.aluguel], ["Valorização do imóvel", b.valorizacao, null],
+    ["Rendimento no Tesouro, líquido de IR", b.rendimento, r.rendimento], ["Rendimento do FGTS", b.fgts, r.fgts, !hasF],
+  ].filter(x => !x[3]);
+  const mx = Math.max(1, ...items.flatMap(x => [Math.abs(x[1] || 0), Math.abs(x[2] || 0)]));
+  const cell = v => v == null ? h("td", { class: "num muted" }, "—") : h("td", { class: "num" }, (v < 0 && Math.abs(v) >= 500 ? "−" : "") + nf0.format(Math.abs(v) / 1000));
+  const bar = (v, col) => h("span", { class: "cb", style: `width:${Math.round(Math.abs(v || 0) / mx * 100)}%;background:${v < 0 ? "var(--ok)" : col};opacity:${v ? .8 : 0}` });
+  const cheaper = b.total <= r.total;
+  $("#simCostSub").textContent = `Em ${N} anos · R$ mil nominais, somados mês a mês`;
+  $("#simCost").replaceChildren(h("div", { class: "tablewrap" }, h("table", { class: "data costtbl" },
+    h("thead", {}, h("tr", {}, h("th", {}, "Item"), h("th", { class: "num" }, "Comprar"), h("th", { class: "bar" }, ""), h("th", { class: "num" }, "Alugar"), h("th", { class: "bar" }, ""))),
+    h("tbody", {}, items.map(([t, vb, vr]) => h("tr", {}, h("td", {}, t), cell(vb), h("td", { class: "bar" }, vb != null ? bar(vb, "var(--ink)") : ""), cell(vr), h("td", { class: "bar" }, vr != null ? bar(vr, "var(--ink-2)") : "")))),
+    h("tfoot", {},
+      h("tr", { class: "sum" }, h("td", {}, "Custo de morar"), cell(b.total), h("td", {}, ""), cell(r.total), h("td", {}, "")),
+      h("tr", {}, h("td", { class: "muted" }, "por mês, em média"), h("td", { class: "num muted" }, sgnBrl(b.total / res.months)), h("td", {}, ""), h("td", { class: "num muted" }, sgnBrl(r.total / res.months)), h("td", {}, ""))))),
+    h("p", { class: "note", style: "margin-top:4px" }, h("b", {}, `${cheaper ? "Comprar" : "Alugar"} custa ${FMT.brlc(Math.abs(r.total - b.total))} a menos no período`), " — é a diferença de patrimônio do resultado.",
+      Math.min(b.total, r.total) < 0 ? ` Custo negativo: os ganhos (${r.total < 0 ? "rendimento do caixa" : "valorização e rendimentos"}) superaram tudo o que foi gasto para morar.` : ""));
+}
+const SHORT_LBL = { selic: "Selic", infl: "Inflação", appr: "Valorização", rate: "Taxa do financ.", rent: "Aluguel inicial", price: "Preço de compra" };
+const SENS_KEYS = ["selic", "infl", "appr", "rate", "rent", "price"];
+function sensShifts(k, step) { const u = SIM.SHOCKS[k].unit === "pp" ? .01 : .10; return [-2, -1, 0, 1, 2].map(i => i * step * u); }
+function sensLabel(k, x, p) {
+  if (!x) return "premissa";
+  const sh = SIM.SHOCKS[k], sg = x > 0 ? "+" : "−";
+  if (sh.unit === "pct") { const v = (k === "rent" ? p.rent : p.price) * (1 + x); return `${sg}${nf0.format(Math.abs(x) * 100)}% (${k === "rent" ? FMT.brl(Math.round(v / 10) * 10) : FMT.brlc(v)})`; }
+  if (k === "rate") return `${pctIn((p.rateAA + x) * 100)}% a.a.`;
+  if (k === "appr" && p.apprAA != null) return `${pctIn((p.apprAA + x) * 100)}% a.a.`;
+  return `${sg}${pctIn(Math.abs(x) * 100)} p.p.`;
+}
+function renderSimSens(p, N) {
+  const real = SIM_SENS.unit === "real", uTxt = real ? "R$ mil de hoje" : "R$ mil nominais";
+  document.querySelectorAll("#sensUnit button").forEach(b => { b.setAttribute("aria-pressed", String(b.dataset.v === SIM_SENS.unit)); b.onclick = () => { SIM_SENS.unit = b.dataset.v; store.set("simSens", SIM_SENS); renderSimSens(SIM_LAST.p, SIM_LAST.st.sHorizon); }; });
+  $("#simSensSub").textContent = `Patrimônio comprando − alugando em ${N} anos, ${uTxt}. Azul: comprar fica melhor; vermelho: alugar fica melhor.`;
+  // tornado
+  const shocks = [["selic", .02], ["infl", .02], ["appr", .02], ["rate", .02], ["rent", .2], ["price", .1]];
+  const tor = SIM.tornado(p, shocks, real), base = tor[0].base;
+  const host = $("#simTornado"); host.replaceChildren();
+  const W = host.clientWidth || 560, narrow = W < 520, pd = narrow ? 44 : 92, rowH = 34;
+  const m = { t: 22, r: pd, b: 22, l: (narrow ? 92 : 112) + pd }, H = m.t + m.b + rowH * tor.length;
+  const vals = tor.flatMap(t => [t.lo, t.hi]).concat([0, base]), lo = Math.min(...vals), hi = Math.max(...vals), pad = (hi - lo) * .04 || 1;
+  const X = v => m.l + (v - lo + pad) / (hi - lo + 2 * pad) * (W - m.l - m.r);
+  const k$ = v => (v >= 0 ? "+" : "−") + nf0.format(Math.abs(v) / 1000);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": "Tornado: impacto de cada premissa no resultado" });
+  svg.append(s("line", { x1: X(0), x2: X(0), y1: m.t - 6, y2: H - m.b, stroke: "var(--axis)", "stroke-dasharray": "3 3" }));
+  svg.append(s("text", { x: X(0), y: H - 6, "text-anchor": "middle", class: "lbl" }, "empate (0)"));
+  svg.append(s("line", { x1: X(base), x2: X(base), y1: m.t - 6, y2: H - m.b, stroke: "var(--ink)", "stroke-width": 1.5 }));
+  svg.append(s("text", { x: X(base), y: m.t - 9, "text-anchor": "middle", class: "lbl" }, "premissa " + k$(base)));
+  const flips = [];
+  tor.forEach((t, i) => {
+    const y = m.t + i * rowH + 6, bh = rowH - 14;
+    svg.append(s("text", { x: 4, y: y + bh / 2 + 4, "text-anchor": "start" }, SHORT_LBL[t.k] || t.label));
+    for (const [v, sg] of [[t.lo, -1], [t.hi, 1]]) {
+      const x0 = Math.min(X(base), X(v)), w = Math.abs(X(v) - X(base));
+      const r = s("rect", { x: x0, y, width: Math.max(1, w), height: bh, rx: 2, fill: v >= 0 ? "var(--div-lo)" : "var(--div-hi)", opacity: .85 });
+      r.append(s("title", {}, `${t.label} ${sensLabel(t.k, sg * t.d, p)}: ${v >= 0 ? "comprar" : "alugar"} melhor por ${FMT.brlc(Math.abs(v))}`));
+      svg.append(r);
+      const right = X(v) >= X(base);
+      svg.append(s("text", { x: right ? X(v) + 4 : X(v) - 4, y: y + bh / 2 + 4, "text-anchor": right ? "start" : "end", class: "lbl" }, narrow ? `${k$(v)} ${sg > 0 ? "↑" : "↓"}` : `${k$(v)} (${sg > 0 ? "+" : "−"}${t.unit === "pp" ? t.d * 100 + " p.p." : t.d * 100 + "%"})`));
+      if ((v >= 0) !== (base >= 0)) flips.push(`${t.label} ${sg > 0 ? "+" : "−"}${t.unit === "pp" ? t.d * 100 + " p.p." : t.d * 100 + "%"}`);
+    }
+  });
+  host.append(svg);
+  $("#simTornadoNote").textContent = `Cada barra muda só uma premissa (Selic, inflação, valorização e taxa: ±2 p.p. em todos os anos; aluguel ±20%; preço ±10%), mantendo as demais${narrow ? " (↑ premissa maior, ↓ menor)" : ""}. ` +
+    (flips.length ? `Invertem a decisão: ${flips.join("; ")}${flips.at(-1).endsWith(".") ? "" : "."} ` : "Nenhum desses choques isolados inverte a decisão. ") +
+    (p.apprAA != null ? "Com valorização fixa, o choque de inflação não muda a valorização do imóvel." : "A valorização segue o IGP-M, então o choque de inflação também valoriza o imóvel.");
+  // grade de duas premissas
+  const opt = (sel, val, other) => { sel.replaceChildren(...SENS_KEYS.filter(k => k !== other).map(k => h("option", { value: k }, SIM.SHOCKS[k].label))); sel.value = val; };
+  if (SIM_SENS.row === SIM_SENS.col) SIM_SENS.col = SENS_KEYS.find(k => k !== SIM_SENS.row);
+  opt($("#sensRow"), SIM_SENS.row, SIM_SENS.col); opt($("#sensCol"), SIM_SENS.col, SIM_SENS.row); $("#sensStep").value = String(SIM_SENS.step);
+  const rs = sensShifts(SIM_SENS.row, SIM_SENS.step), cs = sensShifts(SIM_SENS.col, SIM_SENS.step);
+  const g = SIM.grid(p, SIM_SENS.row, rs, SIM_SENS.col, cs, real), mx = Math.max(1, ...g.flat().map(Math.abs));
+  $("#simSens").replaceChildren(h("div", { class: "tablewrap" }, h("table", { class: "data heat sens" },
+    h("thead", {}, h("tr", {}, h("th", {}, `${SHORT_LBL[SIM_SENS.row]} ↓ · ${SHORT_LBL[SIM_SENS.col]} →`), ...cs.map(x => h("th", { class: "num" }, sensLabel(SIM_SENS.col, x, p))))),
+    h("tbody", {}, g.map((row, i) => h("tr", {}, h("td", {}, sensLabel(SIM_SENS.row, rs[i], p)), ...row.map((v, k) => {
+      const a = Math.min(1, Math.abs(v) / mx), col = v >= 0 ? "var(--div-lo)" : "var(--div-hi)";
+      return h("td", { class: "cell", title: `${v >= 0 ? "Comprar" : "Alugar"} melhor por ${FMT.brlc(Math.abs(v))}`,
+        style: `background:color-mix(in srgb, ${col} ${Math.round(a * 70)}%, transparent);${a > .55 ? "color:#fff;" : ""}${i === 2 && k === 2 ? "outline:2px solid var(--ink);outline-offset:-2px;" : ""}` },
+        (v >= 0 ? "+" : "−") + nf0.format(Math.abs(v) / 1000)); })))))));
+  const ax = [SIM_SENS.row, SIM_SENS.col];
+  $("#simSensNote").textContent = `Cada célula soma os dois choques às premissas (em todos os anos, para Selic e inflação). Contorno: premissa atual.` +
+    (ax.includes("infl") && ax.includes("selic") ? " Na diagonal, Selic e inflação sobem juntas (juro real constante)." : "") +
+    (ax.includes("infl") && !real ? " Em valores nominais, mais inflação infla os dois patrimônios; compare em R$ de hoje." : "");
+}
 function simCsv() {
   if (!SIM_LAST) return;
   const { res, st } = SIM_LAST, fp = focusPaths();
@@ -1718,6 +1882,10 @@ function simCsv() {
   const br = v => String(v).replace(".", ",");
   const prem = `Premissas: preço ${FMT.brl(st.sPrice)}; aluguel ${FMT.brl(st.sRent)}/mês; entrada ${br(st.sDown)}%; custos ${br(st.sAcq)}%; financiamento ${br(st.sRate)}% a.a., ${st.sTerm} anos, ${st.sSystem}; valorização ${st.sApprMode === "custom" ? br(st.sAppr) + "% a.a." : "IGP-M Focus"}; reajuste ${st.sRentMode === "custom" ? br(st.sRentAdj) + "% a.a." : "IGP-M Focus"}; Tesouro ${br(st.sTesouro)}% da Selic, custódia ${br(st.sCustody)}%; manutenção ${br(st.sMaint)}%; venda ${br(st.sSell)}%; FGTS saldo ${FMT.brl(st.sFgtsBal)}, depósito ${FMT.brl(st.sFgtsDep)}/mês, entrada ${st.sFgtsDown}, uso ${st.sFgtsMode}, rende ${br(st.sFgtsYield)}% a.a., teto SFH ${FMT.brl(st.sSfhCap)}. Focus: ${fp.selic ? "boletim de " + FMT.date(dayISO(fp.mc.selic.data)) : "indisponível (médias informadas)"}.`;
   rows.unshift([prem]);
+  const sp = SIM_LAST.p, real = SIM_SENS.unit === "real", rs = sensShifts(SIM_SENS.row, SIM_SENS.step), cs = sensShifts(SIM_SENS.col, SIM_SENS.step);
+  const gg = SIM.grid(sp, SIM_SENS.row, rs, SIM_SENS.col, cs, real);
+  rows.push([], [`Sensibilidade: comprando − alugando em ${st.sHorizon} anos (R$ ${real ? "de hoje" : "nominais"}); linhas: ${SIM.SHOCKS[SIM_SENS.row].label}; colunas: ${SIM.SHOCKS[SIM_SENS.col].label}`],
+    ["", ...cs.map(x => sensLabel(SIM_SENS.col, x, sp))], ...gg.map((r, i) => [sensLabel(SIM_SENS.row, rs[i], sp), ...r.map(Math.round)]));
   csvDownload(rows, `Simulação comprar × alugar — ${st.sHorizon} anos`, "radar-simulacao");
 }
 /* =====================================================================
@@ -1763,6 +1931,17 @@ $("#sEstRent").onclick = () => simEstimate("rent");
 $("#sEstPrice").onclick = () => simEstimate("price");
 $("#simTblToggle").onclick = () => { SIM_TABLE = !SIM_TABLE; renderSim(); };
 $("#simCsv").onclick = simCsv;
+for (const id of ["sensRow", "sensCol", "sensStep"]) $("#" + id).addEventListener("change", () => {
+  SIM_SENS = { ...SIM_SENS, row: $("#sensRow").value, col: $("#sensCol").value, step: Number($("#sensStep").value) };
+  store.set("simSens", SIM_SENS); if (SIM_LAST) renderSimSens(SIM_LAST.p, SIM_LAST.st.sHorizon); });
+const SIM_OPEN = store.get("simOpen", {});
+document.querySelectorAll("#simForm details.grp").forEach(d => { if (SIM_OPEN[d.id] != null) d.open = SIM_OPEN[d.id];
+  d.addEventListener("toggle", () => { SIM_OPEN[d.id] = d.open; store.set("simOpen", SIM_OPEN); }); });
+$("#simShare").onclick = async () => {
+  const url = simShareUrl(), b = $("#simShare");
+  try { await navigator.clipboard.writeText(url); b.textContent = "Link copiado ✓"; } catch { prompt("Copie o link:", url); }
+  setTimeout(() => b.textContent = "Copiar link", 2000);
+};
 $("#zoomMode").onclick = () => { ZOOM_MODE = !ZOOM_MODE; unpinTip(); hideTip(); renderScatter(); };
 $("#zoomOutBtn").onclick = zoomOut;
 $("#zoomReset").onclick = resetZoom;
@@ -1779,7 +1958,7 @@ tabBtns.forEach((b, i) => {
     if (j != null) { e.preventDefault(); tabBtns[j].focus(); setTab(tabBtns[j].dataset.tab); }
   };
 });
-addEventListener("hashchange", () => setTab(location.hash.replace("#", "")));
+addEventListener("hashchange", () => { simFromHash(); setTab(location.hash.replace("#", "").split("?")[0]); });
 let rzT, lastW = 0;
 new ResizeObserver(() => { const w = $("#main").clientWidth; if (!DATA || w === lastW) return; lastW = w; clearTimeout(rzT); rzT = setTimeout(renderTab, 150); }).observe($("#main"));
 

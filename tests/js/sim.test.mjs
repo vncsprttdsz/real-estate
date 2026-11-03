@@ -69,5 +69,22 @@ r = SIM.simulate(am);
 ok(near(r.fgts.down, 200_000, .01) && near(r.fgts.usedAmort, 100_000 + 23_000 + 24_000, .01), "amortização: meses 24 (100 mil + 23 depósitos) e 48 (24 depósitos)");
 const noF = SIM.simulate({ ...am, fgtsMode: "nenhum" });
 ok(r.final.L < noF.final.L - 100_000, "amortização: saldo devedor menor que sem uso do FGTS");
+
+// 12) Decomposição: diferença de patrimônio = custo alugando − custo comprando (com FGTS, venda e manutenção)
+for (const extra of [{}, { fgtsBalance: 150_000, fgtsMonthly: 1500, fgtsMode: "parcelas" }, { fgtsBalance: 150_000, fgtsMonthly: 1500, fgtsMode: "amortizacao", maintAA: .01, sellCostPct: .05, system: "PRICE" }]) {
+  r = SIM.simulate({ ...base, ...extra, ipcaPath: { 2027: 4 } });
+  ok(near(r.cost.rent.total - r.cost.buy.total, r.final.diff, 1), `decomposição fecha com a diferença (${Math.round(r.final.diff)}) ${JSON.stringify(Object.keys(extra))}`);
+}
+
+// 13) Choques: inflação maior encarece o aluguel; taxa maior piora comprar; aluguel de empate zera a diferença
+const inflUp = SIM.simulate({ ...base, inflShift: .02 }), b0 = SIM.simulate(base);
+ok(inflUp.sumRent > b0.sumRent, "inflação +2 pp reajusta mais o aluguel");
+ok(SIM.simulate({ ...base, rateShift: .02 }).final.diff < b0.final.diff, "taxa do financiamento +2 pp reduz a vantagem de comprar");
+const ber = SIM.breakevenRent(base);
+ok(ber != null && near(SIM.simulate({ ...base, rent: ber }).final.diff, 0, 50), `aluguel de empate R$ ${Math.round(ber)}`);
+const tor = SIM.tornado(base, [["selic", .02], ["infl", .02], ["rent", .2]]);
+ok(tor.length === 3 && Math.abs(tor[0].hi - tor[0].lo) >= Math.abs(tor[2].hi - tor[2].lo), "tornado ordenado pela amplitude");
+const gr = SIM.grid(base, "infl", [-.01, 0, .01], "selic", [0]);
+ok(near(gr[1][0], b0.final.diff, 1e-6), "grade: célula central = premissa");
 console.log(fails ? `\n${fails} falha(s)` : "\ntodos os testes passaram");
 process.exit(fails ? 1 : 0);

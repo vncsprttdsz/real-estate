@@ -82,7 +82,11 @@ oferece "Restaurar padrão".
   prazo do financiamento (SAC ou Price), horizonte. Usa as projeções do Boletim Focus (Selic e IGP-M, mediana,
   atualizadas a cada coleta) para o rendimento do caixa no Tesouro Selic, o reajuste do aluguel e, por padrão,
   a valorização do imóvel. Compara o patrimônio nos dois cenários com o mesmo desembolso mensal, mostra a
-  valorização de empate, a evolução ano a ano e uma tabela de sensibilidade (valorização × Selic). Botão
+  valorização e o aluguel de empate, a evolução ano a ano e "para onde vai o dinheiro" (juros, aluguel,
+  valorização e rendimentos que explicam a diferença). Sensibilidade: tornado com cada premissa isolada
+  (Selic, inflação, valorização, taxa, aluguel, preço) e grade com duas premissas à escolha (padrão:
+  inflação × Selic), em R$ de hoje ou nominais. Premissas avançadas ficam recolhidas com resumo, cada campo
+  mostra o valor em reais e "Copiar link" compartilha a simulação. Botão
   "Simular" em cada anúncio da tabela e no cartão do gráfico. Considera o FGTS: saldo na entrada e depósitos
   mensais pagando até 80% das parcelas (ciclos de 12 meses) ou amortizando a cada 2 anos, só para imóvel até o
   teto do SFH (editável); quem aluga mantém o saldo no FGTS (rendimento com piso no IPCA do Focus). Motor em `docs/sim.js`
