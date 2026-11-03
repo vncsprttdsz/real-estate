@@ -74,6 +74,13 @@ oferece "Restaurar padrão".
   composição da amostra por fonte, comprar × alugar e leilões.
 - **Anúncios** — tabela com ordenação, busca, colunas opcionais, cabeçalho e coluna de identificação fixos,
   linha de medianas do filtro inteiro (todas as páginas) e exportação CSV do filtro atual.
+- **Comprar × alugar** — simulador para um imóvel: preço, aluguel, entrada, custos de aquisição, taxa e
+  prazo do financiamento (SAC ou Price), horizonte. Usa as projeções do Boletim Focus (Selic e IGP-M, mediana,
+  atualizadas a cada coleta) para o rendimento do caixa no Tesouro Selic, o reajuste do aluguel e, por padrão,
+  a valorização do imóvel. Compara o patrimônio nos dois cenários com o mesmo desembolso mensal, mostra a
+  valorização de empate, a evolução ano a ano e uma tabela de sensibilidade (valorização × Selic). Botão
+  "Simular" em cada anúncio da tabela e no cartão do gráfico. Motor em `docs/sim.js`
+  (testes: `node tests/js/sim.test.mjs`).
 - **Qualidade e metodologia** — status e cobertura de cada fonte, mudanças de cobertura e definições.
 
 Exportações: PNG dos gráficos e CSV (formato brasileiro: `;` e vírgula decimal) incluem título, filtros,

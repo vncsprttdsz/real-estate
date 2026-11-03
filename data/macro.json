@@ -1,7 +1,27 @@
 {
  "fonte": "Boletim Focus (BCB), mediana das projeções anuais",
- "atualizado": null,
- "erro": "IGP-M: Failed to perform, curl: (7) CONNECT tunnel failed, response 403. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.",
- "selic": null,
- "igpm": null
+ "atualizado": "2026-11-03T20:35:33+00:00",
+ "erro": null,
+ "selic": {
+  "data": "2026-10-30",
+  "anos": {
+   "2026": 13.5,
+   "2027": 12.5,
+   "2028": 11.0,
+   "2029": 10.25,
+   "2030": 10.0
+  },
+  "respondentes": 143
+ },
+ "igpm": {
+  "data": "2026-10-30",
+  "anos": {
+   "2026": 6.0539,
+   "2027": 4.2076,
+   "2028": 4.0,
+   "2029": 3.9,
+   "2030": 3.86
+  },
+  "respondentes": 65
+ }
 }
