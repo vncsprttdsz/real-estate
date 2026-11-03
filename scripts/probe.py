@@ -11,9 +11,9 @@ for key, nome in macro.INDICADORES.items():
         print(f"[focus] {nome}: OK {json.dumps(out, ensure_ascii=False)}")
     except Exception as e:
         print(f"[focus] {nome}: ERRO {e}")
-        r = http.get(macro.FOCUS, params={"$top": "3", "$format": "json", "$filter": f"Indicador eq '{nome}'"}, retries=1)
+        r = http.get(macro.odata_url({"$top": "3", "$format": "json", "$filter": f"Indicador eq '{nome}'"}), retries=1)
         print(f"   bruto HTTP {r.status_code}: {r.text[:600]}")
-r = http.get(macro.FOCUS, params={"$top": "200", "$format": "json", "$select": "Indicador", "$orderby": "Data desc"}, retries=1)
+r = http.get(macro.odata_url({"$top": "400", "$format": "json", "$select": "Indicador", "$orderby": "Data desc"}), retries=1)
 try:
     print("[focus] indicadores disponíveis:", sorted({x["Indicador"] for x in r.json()["value"]}))
 except Exception as e:

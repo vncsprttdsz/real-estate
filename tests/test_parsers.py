@@ -419,3 +419,9 @@ def test_focus_update_keeps_previous_on_failure(tmp_path, monkeypatch):
 
     out = macro.update(Down())
     assert out["selic"]["anos"] == {"2026": 15.0} and out["erro"] and out["atualizado"] == "2026-10-31T10:00:00+00:00"
+
+
+def test_focus_url_uses_percent20():
+    from imoveis import macro
+    u = macro.odata_url({"$filter": "Indicador eq 'IGP-M' and baseCalculo eq 0", "$orderby": "Data desc"})
+    assert "+" not in u.split("?", 1)[1] and "Indicador%20eq%20'IGP-M'" in u and "Data%20desc" in u

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import sys
+from urllib.parse import quote
 from datetime import datetime, timezone
 
 from .common import ROOT
@@ -33,12 +34,17 @@ def parse_focus(rows: list[dict]) -> dict:
     return {"data": latest, "anos": dict(sorted(anos.items())), "respondentes": max(resp) if resp else None}
 
 
+def odata_url(params: dict) -> str:
+    """A API OData do BCB exige espaços como %20 (rejeita o '+' que a codificação de formulário usa)."""
+    return FOCUS + "?" + "&".join(f"{k}={quote(str(v), safe="'(),")}" for k, v in params.items())
+
+
 def fetch_indicador(http: Http, nome: str) -> dict:
     base = {"$orderby": "Data desc", "$top": "80", "$format": "json",
             "$select": "Indicador,Data,DataReferencia,Mediana,numeroRespondentes,baseCalculo"}
     # baseCalculo 0 = estatística com as projeções dos últimos 30 dias (a referência do boletim)
     for filtro in (f"Indicador eq '{nome}' and baseCalculo eq 0", f"Indicador eq '{nome}'"):
-        r = http.get(FOCUS, params={**base, "$filter": filtro}, retries=2)
+        r = http.get(odata_url({**base, "$filter": filtro}), retries=2)
         if r.status_code == 200:
             rows = r.json().get("value") or []
             rows = [x for x in rows if x.get("baseCalculo", 0) == 0] or rows
