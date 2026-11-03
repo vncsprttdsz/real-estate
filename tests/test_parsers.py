@@ -378,3 +378,19 @@ def test_grupozap_zero_results_drops_zone(cfg):
     calls.clear()
     grupozap._fetch_api(FakeHttp(), cfg, "zap", "venda", "Itaim Bibi")
     assert calls[0] is True   # memória é por bairro: outro bairro volta a tentar com zona
+
+
+def test_quintoandar_tiles_large_neighborhood():
+    """Jardim Paulista é dividido em faixas; cada uma é paginada; ids repetidos viram um anúncio só."""
+    cfg3 = Config(neighborhoods=["Jardim Paulista"], min_area=100)
+    seen_vps = []
+
+    class FakeHttp:
+        def post(self, url, json=None, headers=None):
+            vp = json["filters"]["location"]["viewport"]; seen_vps.append(vp["west"])
+            hits = [{"_source": {"id": 1, "area": 120, "salePrice": 2_000_000, "type": "Apartamento", "neighbourhood": "Jardim Paulista"}}]
+            return _R(200, __import__("json").dumps({"hits": {"hits": hits, "total": {"value": 1}}}))
+
+    houses = quintoandar._fetch_api(FakeHttp(), cfg3, "venda")
+    assert len(set(seen_vps)) == 3 and len(houses) == 3
+    assert len([l for l in quintoandar.fetch(FakeHttp(), cfg3) if l.business == "venda"]) == 1

@@ -19,7 +19,12 @@ PAGE_SIZE = 36
 VIEWPORTS = {
     "itaim bibi": {"north": -23.574, "south": -23.593, "east": -46.667, "west": -46.692},
     "vila nova conceicao": {"north": -23.583, "south": -23.598, "east": -46.660, "west": -46.678},
-    "jardim paulista": {"north": -23.556, "south": -23.586, "east": -46.648, "west": -46.682},
+    # Bairro grande (~2.200 anúncios de venda ≥ 100 m²): 3 faixas para cada busca ficar abaixo do limite da API.
+    "jardim paulista": [
+        {"north": -23.556, "south": -23.586, "east": -46.6707, "west": -46.682},
+        {"north": -23.556, "south": -23.586, "east": -46.6593, "west": -46.6707},
+        {"north": -23.556, "south": -23.586, "east": -46.648, "west": -46.6593},
+    ],
 }
 DEFAULT_VIEWPORT = {"north": -23.565, "south": -23.605, "east": -46.655, "west": -46.700}
 
@@ -76,9 +81,14 @@ def parse_house(h: dict, business: str) -> Listing | None:
     )
 
 
-def _body(cfg: Config, business: str, offset: int, page_size: int, neighborhood: str) -> dict:
-    """Corpo enxuto: a API recusa ("Invalid parameter type") alguns filtros opcionais vazios."""
+def viewports(neighborhood: str) -> list[dict]:
     vp = VIEWPORTS.get(norm(neighborhood), DEFAULT_VIEWPORT)
+    return vp if isinstance(vp, list) else [vp]
+
+
+def _body(cfg: Config, business: str, offset: int, page_size: int, neighborhood: str, vp: dict | None = None) -> dict:
+    """Corpo enxuto: a API recusa ("Invalid parameter type") alguns filtros opcionais vazios."""
+    vp = vp or viewports(neighborhood)[0]
     lat = (vp["north"] + vp["south"]) / 2
     lng = (vp["east"] + vp["west"]) / 2
     return {
@@ -100,10 +110,11 @@ def _fetch_api(http: Http, cfg: Config, business: str) -> list[dict]:
     headers = {"Origin": SITE, "Referer": SITE + "/", "Content-Type": "application/json"}
     houses = []
     for nb in cfg.neighborhoods:
+      for vi, vp in enumerate(viewports(nb)):   # bairros grandes: uma busca por faixa (duplicatas somem em fetch())
         offset = 0
         while offset < 1500:
-            r = http.post(API, json=_body(cfg, business, offset, PAGE_SIZE, nb), headers=headers)
-            dump_debug(f"quintoandar-{business}-{slug(nb)}-{offset}.json [HTTP {r.status_code}]", r.text)
+            r = http.post(API, json=_body(cfg, business, offset, PAGE_SIZE, nb, vp), headers=headers)
+            dump_debug(f"quintoandar-{business}-{slug(nb)}-{vi}-{offset}.json [HTTP {r.status_code}]", r.text)
             if r.status_code != 200:
                 if offset and "pagination" in r.text.lower():
                     break  # limite de profundidade da API: fica com o que já veio (mais recentes primeiro)
@@ -115,7 +126,7 @@ def _fetch_api(http: Http, cfg: Config, business: str) -> list[dict]:
             total = (data.get("hits") or {}).get("total") or {}
             total = total.get("value", 0) if isinstance(total, dict) else total
             if os.environ.get("DEBUG"):
-                print(f"[debug] quintoandar {business} {nb} offset={offset} page={len(page)} total={total}",
+                print(f"[debug] quintoandar {business} {nb} faixa={vi} offset={offset} page={len(page)} total={total}",
                       file=sys.stderr)
             offset += PAGE_SIZE
             if not page or offset >= (total or 0):
