@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from .common import ROOT, Config, Listing, norm
 from .http import Http
 from .notify import Notifier, brl, describe
-from . import dashboard, macro
+from . import dashboard, dedupe, macro
 from .sources import grupozap, quintoandar, zuk
 
 STATE = ROOT / "data" / "state.json"
@@ -116,18 +116,28 @@ def run(dry_run: bool = False) -> int:
         state["initialized_nbs"] = {s: sorted(known & cfg.neighborhoods_norm) for s in state["initialized"]}
 
     new_items, drops, first_load = [], [], {}
+    # Unidades já conhecidas (qualquer fonte): republicação ou cópia em outro portal não gera alerta.
+    catalog = dashboard._load(dashboard.CATALOG, {})
+    known_units = {dedupe.key(d) for k, d in catalog.items() if k in state["seen"]} - {None}
+    dup_skipped = 0
     for source, listings in results.items():
         src_new = source not in state["initialized"]
         nbs_done = set(state["initialized_nbs"].get(source, []))
         for l in listings:
             prev = state["seen"].get(l.key)
             if prev is None:
+                unit = dedupe.key(l.to_dict())
                 initializing = src_new or norm(l.neighborhood) not in nbs_done
                 if initializing:
                     label = source if src_new else f"{source} ({l.neighborhood})"
                     first_load[label] = first_load.get(label, 0) + 1
                 elif cfg.in_budget(l):
-                    new_items.append(l)
+                    if unit and unit in known_units:
+                        dup_skipped += 1
+                    else:
+                        new_items.append(l)
+                if unit:
+                    known_units.add(unit)
                 state["seen"][l.key] = {
                     "first_seen": ts, "last_seen": ts, "price": l.ref_price,
                     "hist": [[ts, l.ref_price]] if l.ref_price else [],
@@ -151,6 +161,15 @@ def run(dry_run: bool = False) -> int:
         seen_nbs = {norm(l.neighborhood) for l in listings}
         done = nbs_done | (cfg.neighborhoods_norm if source == "zuk" else seen_nbs & cfg.neighborhoods_norm)
         state["initialized_nbs"][source] = sorted(done)
+
+    # Mesma unidade em vários anúncios: um aviso de queda por unidade.
+    seen_drop, uniq = set(), []
+    for item in drops:
+        k = dedupe.key(item[0].to_dict()) or item[0].key
+        if k not in seen_drop:
+            seen_drop.add(k)
+            uniq.append(item)
+    drops = uniq
 
     # Esquece anúncios sumidos há muito tempo (só de fontes que funcionaram neste ciclo).
     cutoff = datetime.now(timezone.utc).timestamp() - REMOVE_AFTER_DAYS * 86400
@@ -176,7 +195,7 @@ def run(dry_run: bool = False) -> int:
     if dry_run:
         for l in new_items:
             print("NOVO:", describe(l)[0])
-        print(f"[dry-run] novos={len(new_items)} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
+        print(f"[dry-run] novos={len(new_items)} duplicados={dup_skipped} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
         return 0
 
     if new_items:
@@ -215,7 +234,7 @@ def run(dry_run: bool = False) -> int:
         macro_data = None
     dashboard.build(cfg, state, results, errors, macro_data)
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1, sort_keys=True))
-    print(f"novos={len(new_items)} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
+    print(f"novos={len(new_items)} duplicados={dup_skipped} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
     return 0
 
 

@@ -539,7 +539,8 @@ table.sens td.cell { text-align: right; min-width: 70px; }
           <dt>Mediana</dt><dd>Valor do meio entre os anúncios ativos do recorte. Menos sensível a extremos que a média.</dd>
           <dt>vs. mediana</dt><dd>R$/m² do anúncio ÷ mediana do mesmo bairro e negócio − 1 (todos os anúncios ativos, sem filtro de orçamento). Leilões comparam com a mediana de venda.</dd>
           <dt>Anúncios monitorados (ativos)</dt><dd>Anúncios vistos na amostra coletada. Não é o estoque total do mercado: depende da cobertura de cada fonte e pode ter o mesmo imóvel em mais de um portal.</dd>
-          <dt>Novo</dt><dd>Anúncio visto pela primeira vez após a carga inicial da fonte. A carga inicial e mudanças de cobertura não contam como novos.</dd>
+          <dt>Novo</dt><dd>Imóvel visto pela primeira vez após a carga inicial da fonte. A carga inicial, mudanças de cobertura e cópias de um imóvel já conhecido (republicação ou outro portal) não contam como novos.</dd>
+          <dt>Duplicados</dt><dd>Anúncios com mesmo negócio, bairro, rua (sem número), área (m² inteiros) e preço são tratados como o mesmo imóvel: contam uma vez, com o anúncio ativo visto primeiro como principal e os demais listados como “outros anúncios” (+N na coluna Fonte). Leilões e anúncios sem rua não são agrupados.</dd>
           <dt>Queda de preço</dt><dd>Redução do preço pedido entre duas coletas (no aluguel, do valor total).</dd>
           <dt>Saiu do ar</dt><dd>Anúncio ausente das coletas por 24 h (ZAP e Viva Real: 7 dias, porque só a janela mais recente é lida). Pode ser venda, locação, retirada ou saída da janela coletada — não é confirmação de negócio fechado.</dd>
           <dt>No orçamento</dt><dd id="defBudget"></dd>
@@ -661,6 +662,11 @@ const periodDays = () => +F.period || null;
 const periodLabel = () => periodDays() ? `últimos ${F.period} dias` : "desde o início da coleta";
 const inPeriod = iso => iso && (!periodDays() || Date.now() - new Date(iso).getTime() <= periodDays() * DAY);
 const isNew = r => !r.initial && inPeriod(r.first_seen);
+// Cópias do mesmo imóvel (outros portais ou republicações) agrupadas na coleta: r.also
+const copies = r => (r.also || []).filter(c => c.active || !r.active);
+const srcCount = (rows, k) => rows.reduce((n, r) => n + (r.source === k) + copies(r).filter(c => c.source === k).length, 0);
+const alsoText = r => { const c = {}; for (const x of copies(r)) c[x.source] = (c[x.source] || 0) + 1;
+  return Object.entries(c).map(([k, n]) => (SOURCE[k] || k) + (n > 1 ? ` (${n})` : "")).join(", "); };
 const sincePrev = iso => DATA.prev_run && iso && new Date(iso) > new Date(DATA.prev_run);
 function lastDrop(r) {
   const hs = r.hist || [];
@@ -900,6 +906,9 @@ function scatter(host, rows, market) {
     if (pin) {
       const u = safeUrl(mk.r.url);
       if (u) body.append(h("a", { class: "tipbtn", href: u, target: "_blank", rel: "noopener" }, "Abrir anúncio ↗"));
+      const cp = copies(mk.r).map(c => ({ ...c, u: safeUrl(c.url) })).filter(c => c.u);
+      if (cp.length) body.append(h("div", { class: "tl", style: "margin-top:4px" }, "Outros anúncios do mesmo imóvel: ",
+        ...cp.slice(0, 6).flatMap((c, i) => [i ? " · " : "", h("a", { href: c.u, target: "_blank", rel: "noopener" }, (SOURCE[c.source] || c.source) + " ↗")]), cp.length > 6 ? ` e mais ${cp.length - 6}` : ""));
       if (mk.r.area && mk.r.business !== "leilao") body.append(h("button", { class: "btn sm", type: "button", style: "margin-top:6px;width:100%;justify-content:center", onclick: () => simFromListing(mk.r) }, "Simular comprar × alugar"));
       pinTip(() => { pinned = null; showOne(null); });
     }
@@ -1012,6 +1021,7 @@ function listingTip(r) {
     h("div", { class: "tl" }, (m2(r) ? FMT.brl(m2(r)) + "/m²" : "") + (vs != null ? " · " + FMT.pct(vs, 0) + " vs. mediana do bairro" : "")),
     h("div", { class: "row", style: "margin-top:5px" }, h("span", {}, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:5px;vertical-align:-1px` }), r.neighborhood), h("span", { class: "tl" }, SOURCE[r.source] || r.source)),
     r.address ? h("div", { class: "tl" }, r.address) : null,
+    copies(r).length ? h("div", { class: "tl" }, `Também anunciado ${copies(r).length}× — ${alsoText(r)}`) : null,
     drop ? h("div", { class: "tl", style: "margin-top:3px" }, `▼ ${FMT.pct(drop.pct)} em ${FMT.dayMon(drop.at)} (${FMT.brlc(drop.from)} → ${FMT.brlc(drop.to)})`) : null,
     h("div", { class: "tl", style: "margin-top:3px" }, r.initial ? `Já existia na carga inicial (${FMT.dayMon(r.first_seen)})` : "Visto pela 1ª vez em " + FMT.dateTime(r.first_seen))
   );
@@ -1342,16 +1352,16 @@ function renderSmallMultiples() {
 }
 function renderSourceMix() {
   const rows = DATA.listings.filter(r => r.active && baseFilter(r)), total = rows.length;
-  const data = Object.keys(DATA.sources || SOURCE).map(k => ({ k, n: rows.filter(r => r.source === k).length, nw: DATA.listings.filter(r => r.source === k && baseFilter(r) && isNew(r)).length, ok: DATA.sources?.[k]?.ok }));
-  const max = Math.max(1, ...data.map(d => d.n));
+  const data = Object.keys(DATA.sources || SOURCE).map(k => ({ k, n: srcCount(rows, k), nw: DATA.listings.filter(r => r.source === k && baseFilter(r) && isNew(r)).length, ok: DATA.sources?.[k]?.ok }));
+  const max = Math.max(1, ...data.map(d => d.n)), nAds = data.reduce((a, d) => a + d.n, 0);
   $("#sourceMix").replaceChildren(h("div", { class: "tablewrap" }, h("table", { class: "data" },
     h("thead", {}, h("tr", {}, h("th", {}, "Fonte"), h("th", { class: "num" }, "Ativos", h("span", { class: "u" }, "anúncios")), h("th", { class: "num", style: "min-width:160px" }, "Participação na amostra", h("span", { class: "u" }, "% do recorte filtrado")), h("th", { class: "num" }, "Novos", h("span", { class: "u" }, periodLabel())), h("th", {}, "Coleta"))),
     h("tbody", {}, data.map(d => h("tr", {}, h("td", {}, SOURCE[d.k] || d.k), h("td", { class: "num" }, FMT.int(d.n)),
-      h("td", { class: "num" }, h("span", { class: "ibar" }, h("i", { style: `width:${Math.round(d.n / max * 90)}px` }), total ? FMT.share(d.n / total) : "—")),
+      h("td", { class: "num" }, h("span", { class: "ibar" }, h("i", { style: `width:${Math.round(d.n / max * 90)}px` }), nAds ? FMT.share(d.n / nAds) : "—")),
       h("td", { class: "num" }, FMT.int(d.nw)),
       h("td", {}, h("span", { class: "ico " + (d.ok ? "ok" : "crit"), "aria-hidden": "true" }, d.ok ? "✓" : "!"), " ", d.ok ? "ok" : "com erro")))),
-    h("tfoot", {}, h("tr", { class: "sum" }, h("td", {}, "Total"), h("td", { class: "num" }, FMT.int(total)), h("td", { class: "num" }, total ? "100,0%" : "—"), h("td", { class: "num" }, FMT.int(data.reduce((a, d) => a + d.nw, 0))), h("td", {}, ""))))),
-    h("p", { class: "note" }, "A mesma unidade pode estar anunciada em mais de um portal: ZAP e Viva Real são deduplicados entre si; o QuintoAndar não. A participação reflete a cobertura de cada coleta (ver aba Qualidade), não o tamanho dos portais."));
+    h("tfoot", {}, h("tr", { class: "sum" }, h("td", {}, "Total de anúncios"), h("td", { class: "num" }, FMT.int(nAds)), h("td", { class: "num" }, nAds ? "100,0%" : "—"), h("td", { class: "num" }, FMT.int(data.reduce((a, d) => a + d.nw, 0))), h("td", {}, ""))))),
+    h("p", { class: "note" }, `Ativos e participação contam todos os anúncios, inclusive cópias do mesmo imóvel; depois de agrupar duplicados (mesma rua, área, preço e negócio), o recorte tem ${FMT.int(total)} imóveis únicos. Novos: só a 1ª cópia de cada imóvel, atribuída à fonte onde ele apareceu. A participação reflete a cobertura de cada coleta (ver aba Qualidade), não o tamanho dos portais.`));
 }
 function renderBuyVsRent() {
   const area = Math.max(1, +$("#calcArea").value || 150), box = $("#bvr"); box.replaceChildren();
@@ -1418,7 +1428,7 @@ function setSort(col, dir) { SORT = { col, dir }; store.set("sort", SORT); PAGE 
 function tableRows() {
   const q = ($("#search").value || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
   let rows = DATA.listings.filter(r => ($("#showGone").checked || r.active) && baseFilter(r));
-  if (q) rows = rows.filter(r => [r.title, r.address, r.neighborhood, SOURCE[r.source]].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").includes(q));
+  if (q) rows = rows.filter(r => [r.title, r.address, r.neighborhood, SOURCE[r.source], alsoText(r)].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").includes(q));
   const col = COLS.find(c => c.k === SORT.col) || COLS.find(c => c.k === "first_seen");
   rows.sort((a, b) => { const x = col.sort(a), y = col.sort(b); if (x == null || y == null) return (x == null) - (y == null); return (x < y ? -1 : x > y ? 1 : 0) * SORT.dir; });
   return { rows, col };
@@ -1427,7 +1437,10 @@ function cellFor(c, r) {
   const u = safeUrl(r.url), d = recentDrop(r);
   switch (c.k) {
     case "status": return !r.active ? h("span", { class: "badge gone" }, "Saiu") : isNew(r) ? h("span", { class: "badge new" }, "Novo") : d ? h("span", { class: "badge" }, "▼ " + FMT.pct(d.pct)) : r.business === "leilao" ? h("span", { class: "badge" }, "Leilão") : "";
-    case "title": return [u ? h("a", { href: u, target: "_blank", rel: "noopener", class: "ttl" }, r.address || r.title || "Abrir anúncio") : h("span", { class: "ttl" }, r.address || r.title), r.address && r.title ? h("span", { class: "addr" }, r.title) : null];
+    case "title": return [u ? h("a", { href: u, target: "_blank", rel: "noopener", class: "ttl" }, r.address || r.title || "Abrir anúncio") : h("span", { class: "ttl" }, r.address || r.title), r.address && r.title ? h("span", { class: "addr" }, r.title) : null,
+      copies(r).length ? h("span", { class: "addr" }, `+${copies(r).length} anúncio${copies(r).length > 1 ? "s" : ""} do mesmo imóvel: `,
+        ...copies(r).slice(0, 4).map(c => ({ ...c, u: safeUrl(c.url) })).filter(c => c.u).flatMap((c, i) => [i ? " · " : "", h("a", { href: c.u, target: "_blank", rel: "noopener" }, SOURCE[c.source] || c.source)]),
+        copies(r).length > 4 ? " …" : "") : null];
     case "neighborhood": return [h("span", { class: "sw", style: `background:${COLOR[r.neighborhood] || "var(--neutral-mark)"};margin-right:5px;width:8px;height:8px` }), SHORT[r.neighborhood] || r.neighborhood];
     case "area": return r.area ? nf0.format(r.area) : "n/d";
     case "bedrooms": return r.bedrooms ?? "n/d";
@@ -1437,7 +1450,8 @@ function cellFor(c, r) {
     case "condo": return r.condo ? nf0.format(r.condo) : "n/d";
     case "vs": return vsCell(vsMedian(r));
     case "first_seen": return r.initial ? "carga inicial" : FMT.dateTime(r.first_seen);
-    case "source": return SOURCE[r.source] || r.source;
+    case "source": { const n = copies(r).length;
+      return n ? h("span", { title: "Também em: " + alsoText(r) }, SOURCE[r.source] || r.source, h("span", { class: "muted" }, ` +${n}`)) : SOURCE[r.source] || r.source; }
     case "sim": return h("button", { class: "btn simbtn", type: "button", title: "Simular comprar × alugar com este anúncio", onclick: () => simFromListing(r) }, "Simular");
   }
 }
@@ -1478,11 +1492,11 @@ function renderTable() {
 }
 function exportTableCsv() {
   const { rows } = tableRows();
-  const head = ["Situação", "Endereço", "Título", "Bairro", "Negócio", "Área (m²)", "Quartos", "Vagas", `${priceLabel()} (${priceUnit()})`, "Condomínio (R$/mês)", `${m2Label()} (${m2Unit()})`, "vs. mediana do bairro (%)", "Visto 1ª vez", "Visto por último", "Ativo", "No orçamento", "Fonte", "URL"];
+  const head = ["Situação", "Endereço", "Título", "Bairro", "Negócio", "Área (m²)", "Quartos", "Vagas", `${priceLabel()} (${priceUnit()})`, "Condomínio (R$/mês)", `${m2Label()} (${m2Unit()})`, "vs. mediana do bairro (%)", "Visto 1ª vez", "Visto por último", "Ativo", "No orçamento", "Fonte", "URL", "Outros anúncios do mesmo imóvel"];
   csvDownload([head, ...rows.map(r => { const d = recentDrop(r), vs = vsMedian(r);
     return [!r.active ? "saiu" : isNew(r) ? "novo" : d ? "queda" : "", r.address || "", r.title || "", r.neighborhood, r.business, r.area ?? null, r.bedrooms ?? null, r.parking ?? null,
       refPrice(r) ?? null, r.condo ?? null, m2(r) != null ? Math.round(m2(r)) : null, vs != null ? Math.round(vs * 1000) / 10 : null,
-      r.initial ? "carga inicial" : FMT.dateTime(r.first_seen), FMT.dateTime(r.last_seen), r.active ? "sim" : "não", r.in_budget === false ? "não" : "sim", SOURCE[r.source] || r.source, r.url]; })],
+      r.initial ? "carga inicial" : FMT.dateTime(r.first_seen), FMT.dateTime(r.last_seen), r.active ? "sim" : "não", r.in_budget === false ? "não" : "sim", SOURCE[r.source] || r.source, r.url, copies(r).map(c => c.url).join(" ")]; })],
     `Anúncios (${FMT.int(rows.length)}) — ${priceLabel()} e ${m2Label()}`, "radar-anuncios");
 }
 
@@ -1498,11 +1512,11 @@ function renderQuality() {
       h("td", {}, SOURCE[k] || k),
       h("td", {}, h("span", { class: "ico " + (v.ok ? "ok" : "crit"), "aria-hidden": "true" }, v.ok ? "✓" : "!"), " ", v.ok ? "ok" : `erro (${v.failures}× seguidas)`),
       h("td", {}, v.last_ok ? FMT.dateTime(v.last_ok) : "—"),
-      h("td", { class: "num" }, FMT.int(L.filter(r => r.source === k && r.active).length)),
+      h("td", { class: "num" }, FMT.int(srcCount(L.filter(r => r.active), k))),
       h("td", { style: "white-space:normal;min-width:240px" }, info[k] || "—")))));
   const notes = DATA.notes || [];
   $("#notes").replaceChildren(notes.length ? h("ul", { style: "margin:0;padding-left:18px;display:grid;gap:8px" }, notes.map(n => h("li", {}, h("b", {}, FMT.date(dayISO(n.date)) + ": "), n.text))) : h("div", { class: "empty" }, "Nenhuma mudança registrada."),
-    h("p", { class: "note" }, "Limitações permanentes: preços pedidos (não fechados); mesma unidade pode aparecer em mais de um portal; ZAP e Viva Real leem só a janela mais recente; leilões limitados à 1ª página do Portal Zuk; o histórico guarda um retrato por dia (a última coleta do dia)."));
+    h("p", { class: "note" }, `Duplicados agrupados: ${FMT.int(DATA.dedupe?.copias || 0)} anúncios ativos são cópias de ${FMT.int(DATA.dedupe?.grupos || 0)} imóveis já contados (mesma rua, área, preço e negócio) e não entram nas contagens e medianas. Limitações permanentes: preços pedidos (não fechados); cópias com preço ou área ligeiramente diferentes, ou sem endereço, continuam separadas; ZAP e Viva Real leem só a janela mais recente; leilões limitados à 1ª página do Portal Zuk; o histórico guarda um retrato por dia (a última coleta do dia).`));
 }
 
 /* =====================================================================

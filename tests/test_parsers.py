@@ -425,3 +425,49 @@ def test_focus_url_uses_percent20():
     from imoveis import macro
     u = macro.odata_url({"$filter": "Indicador eq 'IGP-M' and baseCalculo eq 0", "$orderby": "Data desc"})
     assert "+" not in u.split("?", 1)[1] and "Indicador%20eq%20'IGP-M'" in u and "Data%20desc" in u
+
+
+def test_dedupe_key():
+    from imoveis import dedupe
+    a = {"business": "venda", "neighborhood": "Itaim Bibi", "address": "Rua Joaquim Floriano, 100 - Itaim", "area": 120.4, "price": 2_000_000}
+    b = {**a, "address": "R. Joaquim Floriano", "area": 120.0}            # QuintoAndar: sem número
+    assert dedupe.key(a) == dedupe.key(b)
+    assert dedupe.key({**a, "price": 2_010_000}) != dedupe.key(a)
+    assert dedupe.key({**a, "address": ""}) is None
+    assert dedupe.key({**a, "business": "leilao"}) is None
+    r = {"business": "aluguel", "neighborhood": "Itaim Bibi", "address": "Rua A B", "area": 100, "price": 8000, "total_monthly": 10_000}
+    assert dedupe.key(r) == dedupe.key({**r, "price": None})              # aluguel compara pelo total
+
+
+def test_duplicates_grouped_and_not_alerted(tmp_path, monkeypatch):
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_sale=2_250_000, max_rent=13_000)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def L(src, id_, addr="Rua Tabapuã 500", price=2_000_000):
+        return Listing(src, id_, f"https://{src}/{id_}", "venda", neighborhood="Itaim Bibi", address=addr, area=130, price=price)
+
+    batches = iter([
+        {"zap": [L("zap", "1")], "quintoandar": [L("quintoandar", "9", "Rua Tabapuã", 1_500_000)]},
+        # republicação no ZAP + mesma unidade no QuintoAndar + um imóvel realmente novo
+        {"zap": [L("zap", "1"), L("zap", "2"), L("zap", "3", price=1_900_000)], "quintoandar": [L("quintoandar", "9", "Rua Tabapuã", 1_500_000), L("quintoandar", "8", "Rua Tabapuã")]},
+    ])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear()
+    app.run()
+    alerted = [t for subj, items in sent if "novo" in subj for t, _ in items]
+    assert len(alerted) == 1 and alerted[0].endswith("https://zap/3")
+    data = json.loads((tmp_path / "dados.json").read_text())
+    rows = {r["key"]: r for r in data["listings"]}
+    unit = rows["zap:venda:1"]
+    assert {c["url"] for c in unit["also"]} == {"https://zap/2", "https://quintoandar/8"}
+    assert unit["initial"] and "zap:venda:2" not in rows and len(rows) == 3
+    assert data["dedupe"] == {"grupos": 1, "copias": 2, "por_fonte": {"zap": 1, "quintoandar": 1}}

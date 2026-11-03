@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from statistics import median
 
 from .common import ROOT, Config, Listing
+from . import dedupe
 
 CATALOG = ROOT / "data" / "catalogo.json"     # último retrato conhecido de cada anúncio
 HISTORY = ROOT / "data" / "historico.json"    # um retrato agregado por dia
@@ -41,6 +42,9 @@ METHOD_NOTES = [
     ("2026-10-11", "Cobertura ampliada ao longo do dia: QuintoAndar passou a ler todos os resultados, "
                    "ZAP/Viva Real passaram a ler os mais recentes primeiro. Contagens e medianas de 11/10 "
                    "não são comparáveis com dias anteriores; anúncios já existentes foram marcados como carga inicial."),
+    ("2026-11-03", "Anúncios duplicados agrupados: a mesma unidade (rua, área, preço e negócio iguais) em mais de um portal "
+                   "ou republicada no mesmo portal conta uma vez em contagens, medianas e novos. Contagens a partir desta data "
+                   "ficam menores que as anteriores."),
     ("2026-11-03", "Inclusão do bairro Jardim Paulista. Os anúncios dele entram como carga inicial (não contam como novos) "
                    "e as somas que combinam bairros (ex.: anúncios monitorados) passam a incluí-lo a partir desta data."),
 ]
@@ -67,6 +71,36 @@ def snapshot(active: list[dict]) -> dict:
             "price": round(median(prices)) if prices else None,
         }
     return out
+
+
+def group(rows: list[dict]) -> tuple[list[dict], dict]:
+    """Uma linha por unidade. O representante é o anúncio ativo visto primeiro (ou o mais antigo, se
+    nenhum está ativo); a unidade herda a 1ª data em que qualquer cópia apareceu, para que uma
+    republicação não conte como novidade. As demais cópias ficam em `also`."""
+    groups: dict[str, list[dict]] = {}
+    out = []
+    for r in rows:
+        k = dedupe.key(r)
+        if k:
+            groups.setdefault(k, []).append(r)
+        else:
+            out.append(r)
+    merged = {"grupos": 0, "copias": 0, "por_fonte": {}}
+    for k, items in groups.items():
+        items.sort(key=lambda r: (not r["active"], r["first_seen"]))
+        rep, rest = items[0], items[1:]
+        if rest:
+            first = min(items, key=lambda r: r["first_seen"])
+            rep = {**rep, "first_seen": first["first_seen"], "initial": first["initial"], "active": any(r["active"] for r in items),
+                   "also": [{"source": r["source"], "url": r["url"], "active": r["active"], "first_seen": r["first_seen"]} for r in rest]}
+            if rep["active"]:
+                merged["grupos"] += 1
+                for r in rest:
+                    if r["active"]:
+                        merged["copias"] += 1
+                        merged["por_fonte"][r["source"]] = merged["por_fonte"].get(r["source"], 0) + 1
+        out.append(rep)
+    return out, merged
 
 
 def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: dict[str, str], macro: dict | None = None) -> dict:
@@ -100,6 +134,8 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
             ),
         })
 
+    rows, merged = group(rows)
+
     today = datetime.now(timezone.utc).date().isoformat()
     history = [h for h in _load(HISTORY, []) if h["date"] != today]
     history.append({"date": today, "groups": snapshot([r for r in rows if r["active"]])})
@@ -130,6 +166,7 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
             "max_rent": cfg.max_rent,
         },
         "sources": sources,
+        "dedupe": merged,
         "listings": rows,
         "history": history,
     }

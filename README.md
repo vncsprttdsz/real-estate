@@ -15,6 +15,10 @@ Você recebe um alerta quando:
 - um anúncio que já existia **baixa de preço** (3% ou mais, configurável);
 - algum site **parar de responder** por 3 ciclos seguidos (para você saber que o monitor precisa de ajuste).
 
+Anúncios duplicados — a mesma unidade em outro portal ou republicada no mesmo portal (mesma rua,
+área, preço e negócio) — não geram novo alerta e contam uma vez no dashboard, que lista os outros
+anúncios do imóvel (regra em `imoveis/dedupe.py`).
+
 A lista completa do que está anunciado hoje fica em [`ANUNCIOS.md`](ANUNCIOS.md), atualizada a cada ciclo.
 
 ## Como ativar (uma vez só)
