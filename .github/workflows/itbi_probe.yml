@@ -1,0 +1,28 @@
+name: Diagnóstico ITBI (Prefeitura de SP)
+
+# Etapa 1 do histórico de transações: baixa as planilhas de ITBI e gera o relatório em diagnostico/itbi/.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "pandas>=2.2" python-calamine openpyxl requests
+      - run: python -m scripts.itbi_probe
+      - name: Publica o diagnóstico
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostico/itbi
+          git commit -m "Diagnóstico ITBI: amostra e perfil das planilhas" || exit 0
+          for i in 1 2 3 4; do git pull --rebase && git push && break; sleep $((i*5)); done
