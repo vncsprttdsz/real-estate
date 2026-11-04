@@ -86,7 +86,24 @@ select, input[type="search"], input[type="number"] { height: var(--ctl-h); borde
 .check input { width: 15px; height: 15px; accent-color: var(--accent); margin: 0; }
 .active-filters { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-2); }
 .tag { display: inline-flex; align-items: center; height: 20px; padding: 0 6px; font-size: 11.5px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--border); color: var(--ink); }
-@media (max-width: 760px) { .filters { position: static; } .fgroup { flex-wrap: wrap; } .seg { flex-wrap: wrap; } .active-filters .tag, .active-filters .flabel { display: none; } }
+.fbody { display: contents; }
+.ftoggle { display: none; }
+.tl-sm { display: none; }
+body[data-tab="simulador"] .filters { display: none; }
+@media (max-width: 760px) {
+  .filters { position: static; padding: 8px 0; }
+  .ftoggle { display: inline-flex; width: 100%; justify-content: space-between; }
+  .ftoggle #fToggleSum { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+  .fbody { display: none; }
+  .filters.open .fbody { display: flex; flex-direction: column; align-items: stretch; gap: 10px; width: 100%; padding-top: 6px; }
+  .filters.open .ftoggle span[aria-hidden] { transform: rotate(180deg); }
+  .fgroup { flex-wrap: wrap; } .seg { flex-wrap: wrap; }
+  .active-filters { display: none; }
+  .filters.open .active-filters { display: flex; }
+  .active-filters .tag, .active-filters .flabel { display: none; }
+  .tabs { position: sticky; top: 0; z-index: 25; background: var(--page); margin-top: 4px; }
+  .tl-lg { display: none; } .tl-sm { display: inline; }
+}
 
 /* ===================== Tabs ===================== */
 .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); margin: 10px 0 12px; overflow-x: auto; scrollbar-width: none; }
@@ -167,7 +184,8 @@ section + section { margin-top: var(--gap); }
 
 /* ===================== Feed ===================== */
 .feed-tools { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
-.feed { list-style: none; margin: 0; padding: 0; max-height: 470px; overflow: auto; }
+.feed { list-style: none; margin: 0; padding: 0 0 18px; max-height: 470px; overflow: auto; -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); }
+.feedfoot { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; padding-top: 6px; border-top: 1px solid var(--border); }
 .feed .grp { position: sticky; top: 0; background: var(--surface); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; padding: 6px 2px 4px; border-bottom: 1px solid var(--border); z-index: 1; }
 .feed li.ev { border-bottom: 1px solid var(--border); }
 .feed a, .feed .noa { display: grid; grid-template-columns: 58px 1fr auto; gap: 1px 8px; padding: 7px 4px; text-decoration: none; border-radius: 6px; }
@@ -220,6 +238,12 @@ table.heat td.cell { text-align: right; min-width: 64px; padding: 5px 7px; }
 table.heat th { padding: 5px 7px; }
 table.heat td.cell .n { display: block; font-size: 10.5px; opacity: .85; }
 table.heat td.low { background-image: repeating-linear-gradient(45deg, transparent 0 5px, var(--grid) 5px 6px); color: var(--muted); }
+.marks { display: inline-flex; gap: 2px; }
+.mk { border: 0; background: none; cursor: pointer; font-size: 15px; line-height: 1; padding: 2px 3px; color: var(--muted); border-radius: 4px; }
+.mk:hover { background: var(--hover); color: var(--ink); }
+.mk.on { color: #e0a400; } .mk.hide { font-size: 12px; } .mk.hide.on { color: var(--accent); }
+tr:hover .mk.hide { color: var(--ink-2); }
+.cutv { color: var(--div-lo); font-weight: 600; }
 /* Mobile cards for listings */
 @media (max-width: 640px) {
   #tbl thead, #tbl tr.sum { display: none; }
@@ -227,7 +251,11 @@ table.heat td.low { background-image: repeating-linear-gradient(45deg, transpare
   #tbl td { border: 0; padding: 0; white-space: normal; text-align: left; background: none !important; position: static; box-shadow: none !important; }
   #tbl td.c-parking, #tbl td.c-source, #tbl td.c-condo, #tbl td.c-status:empty { display: none; }
   #tbl td.c-title { grid-column: 1 / 3; order: -2; font-weight: 600; }
-  #tbl td.c-status { grid-column: 1 / 3; order: -1; }
+  #tbl td.c-status { grid-column: 1 / 2; order: -1; }
+  #tbl td.c-fav { grid-column: 2 / 3; grid-row: 1; justify-self: end; }
+  #tbl td.c-title { grid-column: 1 / 2 !important; }
+  #tbl td.c-days { order: 7; color: var(--ink-2); } #tbl td.c-days::before { content: "no ar: "; }
+  #tbl td.c-cut { order: 8; text-align: right; } #tbl td.c-cut:has(.muted) { display: none; }
   #tbl td.c-title .ttl, #tbl td .addr { max-width: none; white-space: normal; }
   #tbl td.c-neighborhood { order: 1; } #tbl td.c-area { order: 2; text-align: right; } #tbl td.c-area::after { content: " m²"; }
   #tbl td.c-bedrooms { order: 3; color: var(--ink-2); } #tbl td.c-bedrooms::after { content: " quartos"; }
@@ -309,6 +337,8 @@ table.sens td.cell { text-align: right; min-width: 70px; }
   </header>
 
   <div class="filters" role="region" aria-label="Filtros globais (valem para todas as abas)">
+    <button class="ftoggle btn" type="button" id="fToggle" aria-expanded="false" aria-controls="fBody"><span>Filtros</span><span class="muted" id="fToggleSum"></span><span aria-hidden="true">▾</span></button>
+    <div class="fbody" id="fBody">
     <div class="fgroup"><span class="flabel" id="lb-business">Negócio</span>
       <div class="seg" data-f="business" role="group" aria-labelledby="lb-business">
         <button data-v="venda">Comprar</button><button data-v="aluguel">Alugar</button><button data-v="leilao">Leilão</button>
@@ -322,6 +352,7 @@ table.sens td.cell { text-align: right; min-width: 70px; }
       <div class="seg" data-f="period" role="group" aria-labelledby="lb-period">
         <button data-v="7">7 dias</button><button data-v="30">30 dias</button><button data-v="90">90 dias</button><button data-v="0">Tudo</button>
       </div></div>
+    </div>
     <div class="active-filters" id="activeFilters" aria-live="polite"></div>
   </div>
 
@@ -329,8 +360,8 @@ table.sens td.cell { text-align: right; min-width: 70px; }
     <button role="tab" id="tab-resumo" aria-controls="p-resumo" data-tab="resumo">Resumo</button>
     <button role="tab" id="tab-explorar" aria-controls="p-explorar" data-tab="explorar">Explorar</button>
     <button role="tab" id="tab-anuncios" aria-controls="p-anuncios" data-tab="anuncios">Anúncios<span class="count" id="tabCount"></span></button>
-    <button role="tab" id="tab-simulador" aria-controls="p-simulador" data-tab="simulador">Comprar × alugar</button>
-    <button role="tab" id="tab-qualidade" aria-controls="p-qualidade" data-tab="qualidade">Qualidade e metodologia</button>
+    <button role="tab" id="tab-simulador" aria-controls="p-simulador" data-tab="simulador"><span class="tl-lg">Comprar × alugar</span><span class="tl-sm">Simulador</span></button>
+    <button role="tab" id="tab-qualidade" aria-controls="p-qualidade" data-tab="qualidade"><span class="tl-lg">Qualidade e metodologia</span><span class="tl-sm">Metodologia</span></button>
   </nav>
 
   <main id="main">
@@ -365,6 +396,7 @@ table.sens td.cell { text-align: right; min-width: 70px; }
             </div>
           </div>
           <ul class="feed" id="feed"></ul>
+          <div class="feedfoot"><span class="muted" id="feedCount"></span><button class="linkbtn" type="button" onclick="setTab('anuncios')">Ver todos na aba Anúncios →</button></div>
         </div>
       </section>
       <section class="grid">
@@ -437,6 +469,7 @@ table.sens td.cell { text-align: right; min-width: 70px; }
         <div class="toolbar">
           <label class="fgroup"><span class="flabel">Ordenar por</span> <select id="sortSel" aria-label="Ordenar por"></select></label>
           <input type="search" id="search" placeholder="Buscar rua, título…" aria-label="Buscar na tabela" style="min-width:200px">
+          <label class="fgroup"><span class="flabel">Mostrar</span> <select id="viewSel" aria-label="Mostrar"><option value="all">Todos (exceto ocultos)</option><option value="fav">Só favoritos</option><option value="hidden">Ocultos</option></select></label>
           <label class="check"><input type="checkbox" id="showGone"> Incluir os que saíram do ar</label>
           <span class="grow"></span>
           <details class="cols"><summary class="btn sm">Colunas</summary><div class="menu" id="colMenu"></div></details>
@@ -731,6 +764,23 @@ function lastDrop(r) {
   return null;
 }
 const recentDrop = r => { const d = lastDrop(r); return d && inPeriod(d.at) ? d : null; };
+// Sinais de negociação: tempo no ar e reduções acumuladas desde a 1ª coleta
+const daysOn = r => Math.max(0, Math.floor((new Date(r.active ? DATA.updated_at : r.last_seen) - new Date(r.first_seen)) / DAY));
+const daysTxt = r => (r.initial ? "≥ " : "") + daysOn(r) + (daysOn(r) === 1 ? " dia" : " dias");
+function cuts(r) {
+  const hs = (r.hist || []).filter(x => x[1]); if (hs.length < 2) return null;
+  let n = 0; for (let i = 1; i < hs.length; i++) if (hs[i][1] < hs[i - 1][1]) n++;
+  const pct = hs.at(-1)[1] / Math.max(...hs.map(x => x[1])) - 1;
+  return n && pct < 0 ? { n, pct, from: Math.max(...hs.map(x => x[1])) } : null;
+}
+// Favoritos e ocultos (só neste navegador)
+let FAV = store.get("fav", {}), HIDE = store.get("hide", {});
+const isFav = r => !!FAV[r.key], isHidden = r => !!HIDE[r.key];
+function toggleMark(kind, r) {
+  const m = kind === "fav" ? FAV : HIDE;
+  if (m[r.key]) delete m[r.key]; else { m[r.key] = Date.now(); if (kind === "fav") delete HIDE[r.key]; else delete FAV[r.key]; }
+  store.set("fav", FAV); store.set("hide", HIDE); renderTable();
+}
 const isGone = r => !r.active && inPeriod(r.last_seen);
 function baseFilter(r, { business = F.business, ignoreBairro = false, ignoreBudget = false } = {}) {
   if (business && r.business !== business) return false;
@@ -837,11 +887,17 @@ function lineChart(host, series, { yFmt = FMT.axis, tipFmt = FMT.brl, height = 2
     const v = x0 + (x1 - x0) * i / (nX - 1);
     svg.append(s("text", { x: X(v), y: H - 6, "text-anchor": i === 0 ? "start" : i === nX - 1 ? "end" : "middle" }, FMT.dayMon(v)));
   }
-  for (const n of DATA.notes || []) {         // mudanças de cobertura marcadas no eixo do tempo
-    const v = +new Date(dayISO(n.date)); if (v < x0 || v > x1) continue;
-    svg.append(s("line", { x1: X(v), x2: X(v), y1: m.t, y2: H - m.b, stroke: "var(--axis)", "stroke-width": 1 }));
-    const right = X(v) > W - m.r - 130;   // perto da borda direita: rótulo à esquerda da marca
-    svg.append(s("text", { x: X(v) + (right ? -3 : 3), y: m.t + 10, class: "halo", "text-anchor": right ? "end" : "start" }, "mudança de cobertura"));
+  let lastLbl = -1e9;
+  for (const d of [...new Set((DATA.notes || []).map(n => n.date))].sort()) {   // mudanças de cobertura no eixo do tempo
+    const v = +new Date(dayISO(d)); if (v < x0 || v > x1) continue;
+    const ln = s("line", { x1: X(v), x2: X(v), y1: m.t, y2: H - m.b, stroke: "var(--axis)", "stroke-width": 1, "stroke-dasharray": "3 3" });
+    ln.append(s("title", {}, `Mudança de cobertura ou metodologia em ${FMT.date(dayISO(d))}`)); svg.append(ln);
+    const lbl = W < 360 ? "▾" : "mudança de cobertura", wl = lbl.length * 6;
+    const right = X(v) + wl + 6 > W - m.r;
+    const xl = right ? X(v) - 3 : X(v) + 3, left = right ? xl - wl : xl;
+    if (left < lastLbl + 6) continue;   // não sobrepõe o rótulo anterior
+    svg.append(s("text", { x: xl, y: m.t + 10 + (zeroBase ? 0 : 12), class: "halo", "text-anchor": right ? "end" : "start" }, lbl));
+    lastLbl = left + wl;
   }
   for (const se of series) {
     let d = "", prev = null;
@@ -899,8 +955,11 @@ function scatter(host, rows, market) {
   const ax = all.map(r => r.area);
   const xMaxAuto = Math.max(quantile(ax, .99) * 1.05, Math.min(...ax) + 10);
   const yMaxAuto = Math.max(...all.filter(r => r.area <= xMaxAuto).map(refPrice));
-  const xtA = niceTicks(Math.min(...ax) * .95, xMaxAuto, 6), ytA = niceTicks(0, yMaxAuto * 1.05, 5);
-  const auto = { x0: xtA[0], x1: xtA.at(-1), y0: 0, y1: ytA.at(-1) };
+  // Eixos começam perto dos dados (o preço não começa em zero: a nuvem ocupa a área útil do gráfico)
+  const xMin = Math.max(0, Math.floor(Math.min(...ax) * .97 / 5) * 5), yQ = quantile(all.map(refPrice), .005);
+  const xtA = niceTicks(xMin, xMaxAuto, 6).filter(t => t >= xMin), ytRaw = niceTicks(yQ * .9, yMaxAuto * 1.04, 5);
+  const ytA = ytRaw.filter(t => t >= ytRaw[0]);
+  const auto = { x0: xMin, x1: xtA.at(-1), y0: ytA[0], y1: ytA.at(-1) };
   const D = ZOOM || auto;
   const inD = r => r.area >= D.x0 && r.area <= D.x1 && refPrice(r) >= D.y0 && refPrice(r) <= D.y1;
   const pts = ZOOM ? all.filter(inD) : all;
@@ -922,7 +981,7 @@ function scatter(host, rows, market) {
   for (const t of xt) svg.append(s("text", { x: X(t), y: H - 14, "text-anchor": "middle" }, nf0.format(t)));
   svg.append(s("text", { x: W - m.r, y: H - 1, "text-anchor": "end" }, "área útil (m²)"));
   svg.append(s("text", { x: m.l - 6, y: m.t - 12, "text-anchor": "end" }, priceUnit()));
-  if (ZOOM) svg.append(s("text", { x: W - m.r, y: m.t - 12, "text-anchor": "end" }, D.y0 > 0 ? "ampliado · eixo não começa em zero" : "ampliado"));
+  svg.append(s("text", { x: W - m.r, y: m.t - 12, "text-anchor": "end" }, (ZOOM ? "ampliado" : "") + (ZOOM && D.y0 > 0 ? " · " : "") + (D.y0 > 0 ? "eixo de preço não começa em zero" : "")));
   const plot = s("g", { "clip-path": `url(#${cid})` }); svg.append(plot);
   const byNb = {};
   for (const r of market) if (m2(r)) (byNb[r.neighborhood] ||= []).push(m2(r));
@@ -1080,7 +1139,8 @@ function listingTip(r) {
     r.address ? h("div", { class: "tl" }, r.address) : null,
     copies(r).length ? h("div", { class: "tl" }, `Também anunciado ${copies(r).length}× — ${alsoText(r)}`) : null,
     drop ? h("div", { class: "tl", style: "margin-top:3px" }, `▼ ${FMT.pct(drop.pct)} em ${FMT.dayMon(drop.at)} (${FMT.brlc(drop.from)} → ${FMT.brlc(drop.to)})`) : null,
-    h("div", { class: "tl", style: "margin-top:3px" }, r.initial ? `Já existia na carga inicial (${FMT.dayMon(r.first_seen)})` : "Visto pela 1ª vez em " + FMT.dateTime(r.first_seen))
+    h("div", { class: "tl", style: "margin-top:3px" }, `No ar: ${daysTxt(r)}` + (cuts(r) ? ` · já baixou ${FMT.pct(cuts(r).pct, 1)}${cuts(r).n > 1 ? ` (${cuts(r).n}×)` : ""}` : "") + (isFav(r) ? " · ★ favorito" : "")),
+    h("div", { class: "tl" }, r.initial ? `Já existia na carga inicial (${FMT.dayMon(r.first_seen)})` : "Visto pela 1ª vez em " + FMT.dateTime(r.first_seen))
   );
 }
 
@@ -1198,12 +1258,12 @@ function renderHeader() {
 }
 function renderAlerts() {
   const out = [], fr = freshness();
-  if (fr.stale) out.push(["warn", `Dados possivelmente desatualizados: última coleta ${FMT.ago(DATA.updated_at)} (esperado a cada 2 h, 7h–23h).`]);
+  if (fr.stale) out.push(["warn", `Última coleta ${FMT.ago(DATA.updated_at)} (agenda: a cada 2 h, 7h–23h). O agendador do GitHub costuma atrasar ou pular execuções; os dados podem não incluir anúncios das últimas horas.`]);
   for (const [k, v] of Object.entries(DATA.sources || {})) if (!v.ok) out.push(["crit", `${SOURCE[k] || k}: coleta falhou ${v.failures}× seguida(s)${v.last_ok ? "; últimos dados válidos de " + FMT.dateTime(v.last_ok) : ""}. Contagens desta fonte podem estar defasadas.`]);
   const ds = histDates();
   if (ds.length < 2) out.push(["info", `Sem variações nem tendências ainda: histórico diário desde ${FMT.date(dayISO(ds[0]))} (${ds.length} retrato).`]);
-  for (const n of (DATA.notes || []).filter(n => Date.now() - new Date(dayISO(n.date)) <= (periodDays() || 3650) * DAY))
-    out.push(["warn", `Mudança de cobertura em ${FMT.date(dayISO(n.date))}: contagens e medianas desse dia não são comparáveis com dias anteriores.`]);
+  const nd = [...new Set((DATA.notes || []).filter(n => Date.now() - new Date(dayISO(n.date)) <= (periodDays() || 3650) * DAY).map(n => n.date))].sort();
+  if (nd.length) out.push(["info", `${nd.length > 1 ? "Mudanças" : "Mudança"} de cobertura ou metodologia em ${nd.map(d => FMT.date(dayISO(d))).join(" e ")}: variações que atravessam ${nd.length > 1 ? "essas datas" : "essa data"} misturam bases diferentes.`]);
   if (DATA.demo) out.push(["info", "Dados de demonstração (fictícios), só para visualizar o layout."]);
   $("#alerts").replaceChildren(...out.map(([lvl, txt]) => h("div", { class: "alert " + lvl, role: lvl === "crit" ? "alert" : null },
     h("span", { class: "ico " + (lvl === "info" ? "" : lvl), style: lvl === "info" ? "background:var(--accent)" : null, "aria-hidden": "true" }, lvl === "info" ? "i" : "!"), h("span", {}, txt, " ",
@@ -1232,6 +1292,7 @@ function renderFilters() {
   $("#activeFilters").replaceChildren(h("span", { class: "flabel" }, "Filtros ativos:"),
     ...activeFilterText().split(" · ").map(t => h("span", { class: "tag" }, t)),
     h("button", { class: "btn sm", type: "button", disabled: !changed || null, onclick: () => { Object.assign(F, DEFAULT_F); PAGE = 0; update(); } }, "Restaurar padrão"));
+  $("#fToggleSum").textContent = [BUSINESS[F.business], F.bairro === "todos" ? "todos os bairros" : SHORT[F.bairro] || F.bairro, F.quartos ? F.quartos + "+ qts" : "", F.budget ? "no orçamento" : "", periodLabel()].filter(Boolean).join(" · ");
 }
 
 /* =====================================================================
@@ -1315,6 +1376,7 @@ function renderFeed() {
   $("#feedSub").textContent = `${periodLabel()} · ${cnt("new")} novos · ${cnt("drop")} quedas · ${cnt("gone")} saíram`;
   $("#feedSeg").querySelectorAll("button").forEach(b => { b.type = "button"; b.setAttribute("aria-pressed", String(b.dataset.v === FEED)); b.onclick = () => { FEED = b.dataset.v; renderFeed(); }; });
   const ul = $("#feed"); ul.replaceChildren();
+  $("#feedCount").textContent = "";
   if (!shown.length) { ul.append(h("li", {}, h("div", { class: "empty" }, ev.length ? "Nenhum evento deste tipo no período." : "Nada novo no período com esses filtros. Carga inicial e mudanças de cobertura não contam como novidade."))); return; }
   let grp = null;
   for (const e of shown.slice(0, 80)) {
@@ -1329,6 +1391,7 @@ function renderFeed() {
     ul.append(h("li", { class: "ev" }, u ? h("a", { href: u, target: "_blank", rel: "noopener" }, ...body) : h("div", { class: "noa" }, ...body)));
   }
   if (shown.length > 80) ul.append(h("li", {}, h("div", { class: "note" }, `Mostrando 80 de ${FMT.int(shown.length)}. Lista completa na aba Anúncios.`)));
+  $("#feedCount").textContent = `${FMT.int(Math.min(80, shown.length))} de ${FMT.int(shown.length)} eventos · role a lista`;
 }
 function renderTrend() {
   const b = histBusiness();
@@ -1462,6 +1525,7 @@ function renderAuctions() {
    Anúncios (tabela)
    ===================================================================== */
 const COLS = [
+  { k: "fav", t: "", sort: r => isFav(r) ? 0 : 1 },
   { k: "status", t: "", sort: r => isNew(r) ? 0 : recentDrop(r) ? 1 : 2 },
   { k: "title", t: "Anúncio", sort: r => r.address || r.title, stick: true },
   { k: "neighborhood", t: "Bairro", sort: r => r.neighborhood },
@@ -1472,6 +1536,8 @@ const COLS = [
   { k: "ppm2", t: () => m2Label(), u: () => m2Unit(), num: 1, sort: r => m2(r) },
   { k: "condo", t: "Condomínio", u: "R$/mês", num: 1, sort: r => r.condo || null, opt: 1 },
   { k: "vs", t: "vs. mediana", u: "do bairro", num: 1, sort: r => vsMedian(r) },
+  { k: "days", t: "No ar", u: "desde a 1ª coleta", num: 1, sort: r => daysOn(r) },
+  { k: "cut", t: "Redução", u: "acumulada", num: 1, sort: r => cuts(r)?.pct ?? 0 },
   { k: "first_seen", t: "Visto 1ª vez", u: "data", num: 1, sort: r => new Date(r.first_seen).getTime(), opt: 1 },
   { k: "source", t: "Fonte", sort: r => r.source, opt: 1 },
   { k: "sim", t: "", sort: () => 0 },
@@ -1480,11 +1546,14 @@ const colT = c => typeof c.t === "function" ? c.t() : c.t;
 const colU = c => typeof c.u === "function" ? c.u() : c.u;
 const SORT_OPTIONS = () => { const v = priceLabel().toLowerCase();
   return [["first_seen:-1", "Mais recentes"], ["price:1", `Menor ${v}`], ["price:-1", `Maior ${v}`], ["area:-1", "Maior área"], ["area:1", "Menor área"],
-    ["ppm2:1", `Menor ${m2Label()}`], ["ppm2:-1", `Maior ${m2Label()}`], ["vs:1", "Mais abaixo da mediana"]]; };
+    ["ppm2:1", `Menor ${m2Label()}`], ["ppm2:-1", `Maior ${m2Label()}`], ["vs:1", "Mais abaixo da mediana"],
+    ["days:-1", "Há mais tempo no ar"], ["cut:1", "Maior redução de preço"]]; };
 function setSort(col, dir) { SORT = { col, dir }; store.set("sort", SORT); PAGE = 0; renderTable(); }
 function tableRows() {
   const q = ($("#search").value || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-  let rows = DATA.listings.filter(r => ($("#showGone").checked || r.active) && baseFilter(r));
+  const view = $("#viewSel").value;
+  let rows = DATA.listings.filter(r => ($("#showGone").checked || r.active || (view === "fav" && isFav(r))) && baseFilter(r));
+  rows = rows.filter(view === "fav" ? isFav : view === "hidden" ? isHidden : r => !isHidden(r));
   if (q) rows = rows.filter(r => [r.title, r.address, r.neighborhood, SOURCE[r.source], alsoText(r)].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").includes(q));
   const col = COLS.find(c => c.k === SORT.col) || COLS.find(c => c.k === "first_seen");
   rows.sort((a, b) => { const x = col.sort(a), y = col.sort(b); if (x == null || y == null) return (x == null) - (y == null); return (x < y ? -1 : x > y ? 1 : 0) * SORT.dir; });
@@ -1493,6 +1562,11 @@ function tableRows() {
 function cellFor(c, r) {
   const u = safeUrl(r.url), d = recentDrop(r);
   switch (c.k) {
+    case "fav": return h("span", { class: "marks" },
+      h("button", { class: "mk" + (isFav(r) ? " on" : ""), type: "button", "aria-pressed": String(isFav(r)), title: isFav(r) ? "Remover dos favoritos" : "Adicionar aos favoritos", onclick: () => toggleMark("fav", r) }, isFav(r) ? "★" : "☆"),
+      h("button", { class: "mk hide" + (isHidden(r) ? " on" : ""), type: "button", "aria-pressed": String(isHidden(r)), title: isHidden(r) ? "Voltar a mostrar" : "Ocultar (descartar)", onclick: () => toggleMark("hide", r) }, isHidden(r) ? "↺" : "✕"));
+    case "days": return h("span", { title: r.initial ? "Já estava no ar quando a coleta começou; o tempo real é maior" : `Visto pela 1ª vez em ${FMT.dateTime(r.first_seen)}` }, daysTxt(r));
+    case "cut": { const c = cuts(r); return c ? h("span", { class: "cutv", title: `${c.n} redução(ões): de ${FMT.brl(c.from)} para ${FMT.brl(refPrice(r))}` }, `${FMT.pct(c.pct, 1)}${c.n > 1 ? ` · ${c.n}×` : ""}`) : h("span", { class: "muted" }, "—"); }
     case "status": return !r.active ? h("span", { class: "badge gone" }, "Saiu") : isNew(r) ? h("span", { class: "badge new" }, "Novo") : d ? h("span", { class: "badge" }, "▼ " + FMT.pct(d.pct)) : r.business === "leilao" ? h("span", { class: "badge" }, "Leilão") : "";
     case "title": return [u ? h("a", { href: u, target: "_blank", rel: "noopener", class: "ttl" }, r.address || r.title || "Abrir anúncio") : h("span", { class: "ttl" }, r.address || r.title), r.address && r.title ? h("span", { class: "addr" }, r.title) : null,
       copies(r).length ? h("span", { class: "addr" }, `+${copies(r).length} anúncio${copies(r).length > 1 ? "s" : ""} do mesmo imóvel: `,
@@ -1549,11 +1623,11 @@ function renderTable() {
 }
 function exportTableCsv() {
   const { rows } = tableRows();
-  const head = ["Situação", "Endereço", "Título", "Bairro", "Negócio", "Área (m²)", "Quartos", "Vagas", `${priceLabel()} (${priceUnit()})`, "Condomínio (R$/mês)", `${m2Label()} (${m2Unit()})`, "vs. mediana do bairro (%)", "Visto 1ª vez", "Visto por último", "Ativo", "No orçamento", "Fonte", "URL", "Outros anúncios do mesmo imóvel"];
+  const head = ["Situação", "Endereço", "Título", "Bairro", "Negócio", "Área (m²)", "Quartos", "Vagas", `${priceLabel()} (${priceUnit()})`, "Condomínio (R$/mês)", `${m2Label()} (${m2Unit()})`, "vs. mediana do bairro (%)", "Visto 1ª vez", "Visto por último", "Ativo", "No orçamento", "Fonte", "URL", "Outros anúncios do mesmo imóvel", "Dias no ar (desde a 1ª coleta)", "Redução acumulada (%)", "Favorito"];
   csvDownload([head, ...rows.map(r => { const d = recentDrop(r), vs = vsMedian(r);
     return [!r.active ? "saiu" : isNew(r) ? "novo" : d ? "queda" : "", r.address || "", r.title || "", r.neighborhood, r.business, r.area ?? null, r.bedrooms ?? null, r.parking ?? null,
       refPrice(r) ?? null, r.condo ?? null, m2(r) != null ? Math.round(m2(r)) : null, vs != null ? Math.round(vs * 1000) / 10 : null,
-      r.initial ? "carga inicial" : FMT.dateTime(r.first_seen), FMT.dateTime(r.last_seen), r.active ? "sim" : "não", r.in_budget === false ? "não" : "sim", SOURCE[r.source] || r.source, r.url, copies(r).map(c => c.url).join(" ")]; })],
+      r.initial ? "carga inicial" : FMT.dateTime(r.first_seen), FMT.dateTime(r.last_seen), r.active ? "sim" : "não", r.in_budget === false ? "não" : "sim", SOURCE[r.source] || r.source, r.url, copies(r).map(c => c.url).join(" "), daysTxt(r), cuts(r) ? Math.round(cuts(r).pct * 1000) / 10 : null, isFav(r) ? "sim" : ""]; })],
     `Anúncios (${FMT.int(rows.length)}) — ${priceLabel()} e ${m2Label()}`, "radar-anuncios");
 }
 
@@ -1973,7 +2047,7 @@ function simCsv() {
 const TABS = ["resumo", "explorar", "anuncios", "simulador", "qualidade"];
 function setTab(t) {
   if (!TABS.includes(t)) t = "resumo";
-  TAB = t; store.set("tab", t);
+  TAB = t; store.set("tab", t); document.body.dataset.tab = t;
   if (location.hash !== "#" + t) history.replaceState(null, "", "#" + t);
   document.querySelectorAll('[role="tab"]').forEach(b => { const on = b.dataset.tab === t; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
   document.querySelectorAll('[role="tabpanel"]').forEach(p => p.hidden = p.id !== "p-" + t);
@@ -1997,9 +2071,11 @@ function toggleTheme() {
 { const t = store.get("theme", null); if (t) document.documentElement.dataset.theme = t; }
 
 $("#fq").onchange = e => { F.quartos = +e.target.value; PAGE = 0; update(); };
+$("#fToggle").onclick = () => { const f = $(".filters"), open = !f.classList.contains("open"); f.classList.toggle("open", open); $("#fToggle").setAttribute("aria-expanded", String(open)); };
 $("#fb").onchange = e => { F.budget = e.target.checked; PAGE = 0; update(); };
 $("#search").oninput = () => { PAGE = 0; renderTable(); };
 $("#showGone").onchange = () => { PAGE = 0; renderTable(); };
+$("#viewSel").onchange = () => { PAGE = 0; renderTable(); };
 $("#sortSel").onchange = e => { const [c, d] = e.target.value.split(":"); setSort(c, +d); };
 $("#calcArea").oninput = renderBuyVsRent;
 let simT; $("#simForm").addEventListener("input", () => { clearTimeout(simT); simT = setTimeout(renderSim, 250); });
