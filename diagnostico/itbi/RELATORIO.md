@@ -123,3 +123,6 @@ sem outliers nem compras em bloco):
   prédios de tipologia homogênea. O fator 0,72 se mantém.
 - Desconto mesmo prédio/tipologia (valor pago ÷ pedido − 1): mediana **−23%** (P25 −39% · P75 −7%; 187 prédios).
 - Compras em bloco (5+ unidades do mesmo prédio na mesma data) passaram a ser excluídas das métricas.
+
+As amostras `amostra_*.csv.gz` foram removidas do repositório após a validação da ingestão (continuam no histórico
+do git, commit 329a2bb). Os dados de produção estão em `data/itbi/` e `docs/transacoes.json`.
