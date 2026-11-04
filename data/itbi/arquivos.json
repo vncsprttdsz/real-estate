@@ -3,7 +3,7 @@
   "url": "https://prefeitura.sp.gov.br/cidade/secretarias/upload/fazenda/arquivos/itbi/GUIAS DE ITBI PAGAS %2803112026%29.xlsx",
   "bytes": 35700590,
   "sha256": "b9ce7810d57345e796a276a7eedeb8346ef4420d191f9e14fca1c104f3cc64bd",
-  "baixado_em": "2026-11-04T20:31:38+00:00",
+  "baixado_em": "2026-11-04T20:35:11+00:00",
   "ano": 2026,
   "linhas_total": 174689,
   "linhas_escopo": 4115,
@@ -13,7 +13,7 @@
   "url": "https://prefeitura.sp.gov.br/cidade/secretarias/upload/fazenda/arquivos/itbi/GUIAS DE ITBI PAGAS %2828012026%29 XLS.xlsx",
   "bytes": 46666755,
   "sha256": "2735033e018d44c4280b22d24a69f774221fd0e441534dd4d77810f80b7a31b5",
-  "baixado_em": "2026-11-04T20:31:50+00:00",
+  "baixado_em": "2026-11-04T20:35:23+00:00",
   "ano": 2025,
   "linhas_total": 230525,
   "linhas_escopo": 5505,
@@ -23,18 +23,11 @@
   "url": "https://prefeitura.sp.gov.br/cidade/secretarias/upload/fazenda/arquivos/itbi/GUIAS-DE-ITBI-PAGAS-2024.xlsx",
   "bytes": 32919810,
   "sha256": "7c584b3e0e47d9c66121b395ea60d3d17830fa25a08e9e2162316cb23c7e3784",
-  "baixado_em": "2026-11-04T17:34:50+00:00",
+  "baixado_em": "2026-11-04T20:35:36+00:00",
   "ano": 2024,
-  "linhas_total": 217745,
-  "linhas_escopo": 4970,
-  "ativo": true,
-  "ultima_tentativa": {
-   "url": "https://prefeitura.sp.gov.br/cidade/secretarias/upload/fazenda/arquivos/itbi/GUIAS-DE-ITBI-PAGAS-2024.xlsx",
-   "bytes": 32919810,
-   "sha256": "7c584b3e0e47d9c66121b395ea60d3d17830fa25a08e9e2162316cb23c7e3784",
-   "baixado_em": "2026-11-04T20:32:03+00:00",
-   "erro": "aba sem cabeçalho reconhecível"
-  }
+  "linhas_total": 217746,
+  "linhas_escopo": 5271,
+  "ativo": true
  },
  "https://www.prefeitura.sp.gov.br/cidade/secretarias/upload/fazenda/arquivos/XLSX/GUIAS-DE-ITBI-PAGAS-2023.xlsx": {
   "url": "https://www.prefeitura.sp.gov.br/cidade/secretarias/upload/fazenda/arquivos/XLSX/GUIAS-DE-ITBI-PAGAS-2023.xlsx",
