@@ -42,7 +42,7 @@ transacoes:
     Jardim América: [Jardim América]
   prefixos_cep: ["014", "045"]   # pré-filtro (Jardins/Jd. Europa/Paulistano e Itaim/VNC); acelera a leitura
   janela_meses: 24               # meses guardados e exibidos (a partir do mês mais recente com dados)
-  fator_area_util: 0.72          # área útil do anúncio ≈ 0,72 × área construída do ITBI (diagnóstico, 356 prédios)
+  fator_area_util: 0.72          # área útil do anúncio ≈ 0,72 × área construída do ITBI (434 prédios casados, 12 meses)
   outliers_percentis: [1, 99]    # R$/m² fora desta faixa, por bairro, sai das métricas (fica marcado na tabela)
   n_minimo: 5                    # células com menos transações ficam ocultas
   lote_minimo: 5                 # N+ transações no mesmo prédio e data = compra em bloco (fora das métricas)

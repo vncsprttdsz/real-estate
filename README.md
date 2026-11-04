@@ -83,7 +83,7 @@ oferece "Restaurar padrão".
   do prédio ao lado dos anúncios no mesmo endereço, calculadora de oferta (preço pedido × fechamentos do prédio e
   do bairro na mesma faixa), série mensal de R$/m² com faixa P25–P75 contra o pedido, desconto por segmento, tabela
   com CSV e metodologia. Período de 1, 6, 12 ou 24 meses. Área do ITBI é a construída do IPTU; o painel converte
-  para área útil equivalente (× 0,72, calibrado em 356 prédios). Dados em `data/itbi/`, atualizados pelo workflow
+  para área útil equivalente (× 0,72, calibrado em 434 prédios). Dados em `data/itbi/`, atualizados pelo workflow
   "Transações (ITBI)" (`python -m imoveis.itbi`; parâmetros em `config.yaml`, seção `transacoes`).
 - **Comprar × alugar** — simulador para um imóvel: preço, aluguel, entrada, custos de aquisição, taxa e
   prazo do financiamento (SAC ou Price), horizonte. Usa as projeções do Boletim Focus (Selic e IGP-M, mediana,

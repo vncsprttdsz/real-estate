@@ -110,3 +110,16 @@ Comparação sem depender de área — mesmo prédio, unidades com área equival
 - Duplicatas exatas (SQL + data + valor): 2; mesmo SQL + data com valor diferente: 7.
 - 24% com financiamento; 8,4% em prédios com ACC ≥ 2023 (entregas de lançamentos, preço possivelmente contratado
   na planta).
+
+## Errata (04/11/2026, após a ingestão completa)
+
+As amostras deste diagnóstico (`amostra_*.csv.gz`) perderam parte das linhas de alguns meses: nas abas em que o CEP
+vem como número decimal ("4532010.0"), o script de diagnóstico juntou o ".0" aos dígitos e o prefixo do CEP saiu
+errado (fev/mar/abr/set-2026 e abr/jun/set/out/nov-2025 ficaram com ~30–60% das linhas). O pipeline de produção
+(`imoveis/itbi.py`) trata o CEP corretamente. Refeito com os dados completos (out/2025–set/2026, 2.344 transações
+sem outliers nem compras em bloco):
+
+- Área do anúncio ÷ área construída do ITBI: mediana **0,71** em 434 prédios (P25 0,59 · P75 0,85); 0,77 em 81
+  prédios de tipologia homogênea. O fator 0,72 se mantém.
+- Desconto mesmo prédio/tipologia (valor pago ÷ pedido − 1): mediana **−23%** (P25 −39% · P75 −7%; 187 prédios).
+- Compras em bloco (5+ unidades do mesmo prédio na mesma data) passaram a ser excluídas das métricas.
