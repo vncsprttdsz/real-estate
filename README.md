@@ -78,6 +78,13 @@ oferece "Restaurar padrão".
   composição da amostra por fonte, comprar × alugar e leilões.
 - **Anúncios** — tabela com ordenação, busca, colunas opcionais, cabeçalho e coluna de identificação fixos,
   linha de medianas do filtro inteiro (todas as páginas) e exportação CSV do filtro atual.
+- **Transações** — fechamentos registrados nas guias de ITBI pagas (Prefeitura de SP) em Itaim Bibi, Vila Nova
+  Conceição, Jardim Paulista, Jardim Europa, Jardim Paulistano e Jardim América: busca por endereço com o histórico
+  do prédio ao lado dos anúncios no mesmo endereço, calculadora de oferta (preço pedido × fechamentos do prédio e
+  do bairro na mesma faixa), série mensal de R$/m² com faixa P25–P75 contra o pedido, desconto por segmento, tabela
+  com CSV e metodologia. Período de 1, 6, 12 ou 24 meses. Área do ITBI é a construída do IPTU; o painel converte
+  para área útil equivalente (× 0,72, calibrado em 356 prédios). Dados em `data/itbi/`, atualizados pelo workflow
+  "Transações (ITBI)" (`python -m imoveis.itbi`; parâmetros em `config.yaml`, seção `transacoes`).
 - **Comprar × alugar** — simulador para um imóvel: preço, aluguel, entrada, custos de aquisição, taxa e
   prazo do financiamento (SAC ou Price), horizonte. Usa as projeções do Boletim Focus (Selic e IGP-M, mediana,
   atualizadas a cada coleta) para o rendimento do caixa no Tesouro Selic, o reajuste do aluguel e, por padrão,

@@ -89,7 +89,21 @@ select, input[type="search"], input[type="number"] { height: var(--ctl-h); borde
 .fbody { display: contents; }
 .ftoggle { display: none; }
 .tl-sm { display: none; }
-body[data-tab="simulador"] .filters { display: none; }
+body[data-tab="simulador"] .filters:not(.txfilters), body[data-tab="transacoes"] .filters:not(.txfilters) { display: none; }
+.txfilters { position: static; margin-bottom: var(--gap); border-top: 0; padding-top: 0; }
+.tx-kpis { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .tx-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .tx-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.txsearch { display: flex; gap: 6px; margin-bottom: 8px; } .txsearch input { flex: 1; min-width: 0; }
+.bldlist { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 3px; font-size: 12.5px; }
+.bldhead { font-size: 13px; }
+.txoffer { display: grid; gap: 6px; margin-top: 8px; font-size: 12.5px; }
+.txoffer .ofl { display: grid; grid-template-columns: 1fr auto; gap: 0 10px; border-top: 1px solid var(--border); padding-top: 5px; }
+.txoffer .ofl .muted { grid-column: 1 / 3; font-size: 11.5px; }
+.txoffer .ofres { background: var(--accent-wash); border-radius: var(--r); padding: 8px 10px; display: grid; gap: 3px; }
+.txoffer .neg { color: var(--div-hi); }
+.txflags { display: inline-flex; gap: 3px; flex-wrap: wrap; }
+#txTbl td, #txTbl th { white-space: nowrap; }
 @media (max-width: 760px) {
   .filters { position: static; padding: 8px 0; }
   .ftoggle { display: inline-flex; width: 100%; justify-content: space-between; }
@@ -360,6 +374,7 @@ table.sens td.cell { text-align: right; min-width: 70px; }
     <button role="tab" id="tab-resumo" aria-controls="p-resumo" data-tab="resumo">Resumo</button>
     <button role="tab" id="tab-explorar" aria-controls="p-explorar" data-tab="explorar">Explorar</button>
     <button role="tab" id="tab-anuncios" aria-controls="p-anuncios" data-tab="anuncios">Anúncios<span class="count" id="tabCount"></span></button>
+    <button role="tab" id="tab-transacoes" aria-controls="p-transacoes" data-tab="transacoes">Transações</button>
     <button role="tab" id="tab-simulador" aria-controls="p-simulador" data-tab="simulador"><span class="tl-lg">Comprar × alugar</span><span class="tl-sm">Simulador</span></button>
     <button role="tab" id="tab-qualidade" aria-controls="p-qualidade" data-tab="qualidade"><span class="tl-lg">Qualidade e metodologia</span><span class="tl-sm">Metodologia</span></button>
   </nav>
@@ -606,6 +621,65 @@ table.sens td.cell { text-align: right; min-width: 70px; }
       </section>
     </div>
 
+    <!-- ============ TRANSAÇÕES (ITBI) ============ -->
+    <div role="tabpanel" id="p-transacoes" aria-labelledby="tab-transacoes" hidden>
+      <div class="filters txfilters" role="region" aria-label="Filtros das transações">
+        <div class="fgroup"><span class="flabel" id="lb-txb">Bairro</span><div class="seg" id="txBairro" role="group" aria-labelledby="lb-txb"></div></div>
+        <div class="fgroup"><span class="flabel" id="lb-txp">Período</span><div class="seg" id="txPer" role="group" aria-labelledby="lb-txp"></div></div>
+        <div class="fgroup"><label class="flabel" for="txBand">Área útil</label><select id="txBand"></select></div>
+        <div class="fgroup"><span class="flabel" id="lb-txa">Base de área</span><div class="seg" id="txBasis" role="group" aria-labelledby="lb-txa"><button data-v="U">Útil equivalente</button><button data-v="C">Construída (ITBI)</button></div></div>
+        <label class="check"><input type="checkbox" id="txOut"> Incluir outliers e compras em bloco</label>
+        <div class="active-filters"><span class="muted" id="txSub"></span></div>
+      </div>
+      <div id="txStatus"></div>
+      <div id="txBody" hidden>
+      <div class="alerts" id="txAlerts"></div>
+      <div class="kpis tx-kpis" id="txKpis"></div>
+      <section class="grid">
+        <div class="card c7">
+          <div class="card-head"><div><h2>Histórico de um endereço</h2><div class="sub">Fechamentos registrados no prédio, ao lado dos anúncios ativos no mesmo endereço</div></div></div>
+          <div class="txsearch"><input type="search" id="txAddr" list="txAddrList" placeholder="Rua e número — ex.: Rua Joaquim Floriano, 100" aria-label="Endereço"><datalist id="txAddrList"></datalist><button class="btn sm" type="button" id="txAddrClear">Limpar</button></div>
+          <div id="txBld"></div>
+        </div>
+        <div class="card c5">
+          <div class="card-head"><div><h2>Calculadora de oferta</h2><div class="sub">Preço pedido × fechamentos do prédio e do bairro na mesma faixa</div></div></div>
+          <form id="txOffer" class="simform" onsubmit="return false">
+            <label>Preço pedido <span class="u">R$</span><input id="txOfPrice" inputmode="decimal" placeholder="2.000.000"></label>
+            <label>Área útil do anúncio <span class="u">m²</span><input id="txOfArea" inputmode="decimal" placeholder="130"></label>
+            <label>Bairro <span class="u">preenchido pelo endereço, se houver</span><select id="txOfNb" onchange="this.dataset.touched=1"></select></label>
+          </form>
+          <div id="txOfOut" class="txoffer"></div>
+        </div>
+        <div class="card c12">
+          <div class="card-head"><div><h2>R$/m² de fechamento × pedido, por bairro</h2><div class="sub" id="txSeriesSub"></div></div>
+            <div class="card-tools"><div class="legend"><span><span class="swl" style="background:var(--s1)"></span>Fechamento (mediana)</span><span><span class="sw" style="background:var(--s1);opacity:.3"></span>P25–P75</span><span><span class="swd" style="border-color:var(--ink-2)"></span>Pedido nos anúncios</span></div></div></div>
+          <div id="txSeries"></div>
+        </div>
+        <div class="card c12">
+          <div class="card-head"><div><h2>Por segmento</h2><div class="sub" id="txSegSub"></div></div>
+            <div class="card-tools"><select id="txSegSel" aria-label="Segmentar por"><option value="band">Faixa de área útil</option><option value="pad">Padrão IPTU (A–E)</option><option value="age">Idade do prédio</option></select></div></div>
+          <div id="txSeg"></div>
+        </div>
+        <div class="card c12">
+          <div class="card-head"><div><h2>Desconto implícito ao longo do tempo</h2><div class="sub" id="txDiscSub"></div></div>
+            <div class="card-tools"><label class="fgroup"><span class="flabel">Defasagem</span><select id="txLag"><option value="0">mesmo mês</option><option value="3">3 meses</option><option value="6">6 meses</option></select></label></div></div>
+          <div id="txDisc"></div>
+        </div>
+        <div class="card c12">
+          <div class="card-head"><div><h2>Transações</h2><div class="sub">Clique no endereço para ver o histórico do prédio</div></div>
+            <div class="card-tools"><input type="search" id="txQ" placeholder="Filtrar por rua, unidade, CEP…" aria-label="Filtrar transações"><button class="btn sm" type="button" id="txCsv">Exportar CSV</button></div></div>
+          <div class="summary" id="txTblSum"></div>
+          <div class="tablewrap"><table class="data" id="txTbl"></table></div>
+          <div class="pager" id="txPager"></div>
+        </div>
+        <div class="card c12">
+          <div class="card-head"><div><h2>Metodologia e ressalvas</h2></div></div>
+          <div id="txMethod"></div>
+        </div>
+      </section>
+      </div>
+    </div>
+
     <!-- ============ QUALIDADE ============ -->
     <div role="tabpanel" id="p-qualidade" aria-labelledby="tab-qualidade" hidden>
       <section class="grid">
@@ -644,6 +718,8 @@ table.sens td.cell { text-align: right; min-width: 70px; }
 <div class="tip" id="tip" role="status" aria-live="polite"></div>
 
 <script src="sim.js"></script>
+<script src="itbi.js"></script>
+<script src="transacoes.js" defer></script>
 <script>
 "use strict";
 /* =====================================================================
@@ -1226,11 +1302,12 @@ function exportChart(key) {
   img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(new XMLSerializer().serializeToString(out));
 }
 // CSV pt-BR: separador ";" e vírgula decimal; cabeçalho com título, filtros, data e notas
-function csvDownload(rows, title, base) {
+function csvDownload(rows, title, base, info = null) {
   const esc = v => { if (v == null) return ""; if (typeof v === "number") return String(v).replace(".", ","); const t = String(v); return /[;"\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; };
-  const meta = [[title], ["Filtros: " + activeFilterText()], [`Dados de ${FMT.dateTime(DATA.updated_at)} · exportado em ${FMT.dateTime(new Date())}`],
-    ["Notas: preços pedidos (não fechados); aluguel = valor total (aluguel + condomínio + IPTU); amostra coletada, não estoque total; vazio = dado não informado."], []];
-  download(new Blob(["﻿" + [...meta, ...rows].map(r => r.map(esc).join(";")).join("\r\n")], { type: "text/csv;charset=utf-8" }), `${base}-${DATA.updated_at.slice(0, 10)}.csv`);
+  const when = info?.updated || DATA.updated_at;
+  const meta = [[title], ["Filtros: " + (info?.filters ?? activeFilterText())], [`Dados de ${FMT.dateTime(when)} · exportado em ${FMT.dateTime(new Date())}`],
+    [info?.notes ?? "Notas: preços pedidos (não fechados); aluguel = valor total (aluguel + condomínio + IPTU); amostra coletada, não estoque total; vazio = dado não informado."], []];
+  download(new Blob(["﻿" + [...meta, ...rows].map(r => r.map(esc).join(";")).join("\r\n")], { type: "text/csv;charset=utf-8" }), `${base}-${String(when).slice(0, 10)}.csv`);
 }
 
 /* =====================================================================
@@ -2044,7 +2121,7 @@ function simCsv() {
 /* =====================================================================
    Abas, tema e orquestração
    ===================================================================== */
-const TABS = ["resumo", "explorar", "anuncios", "simulador", "qualidade"];
+const TABS = ["resumo", "explorar", "anuncios", "transacoes", "simulador", "qualidade"];
 function setTab(t) {
   if (!TABS.includes(t)) t = "resumo";
   TAB = t; store.set("tab", t); document.body.dataset.tab = t;
@@ -2058,6 +2135,7 @@ function renderTab() {
   if (TAB === "explorar") { renderCompare(); renderHeat(); renderSmallMultiples(); renderSourceMix(); renderBuyVsRent(); renderAuctions(); }
   if (TAB === "anuncios") renderTable();
   if (TAB === "simulador") renderSim();
+  if (TAB === "transacoes" && typeof renderTransacoes === "function") renderTransacoes();
   if (TAB === "qualidade") renderQuality();
   if (TAB !== "anuncios") $("#tabCount").textContent = `(${FMT.int(tableRows().rows.length)})`;
 }

@@ -29,3 +29,21 @@ fontes:
 
 # Avisar também quando o preço de um anúncio já visto cair pelo menos X%
 alerta_queda_preco_pct: 3
+
+# Histórico de transações (ITBI pago, Prefeitura de SP) — aba "Transações" do painel.
+# Bairro de cada transação = bairro dos Correios do CEP (a coluna "Bairro" do ITBI é texto livre e falha em 60% dos casos).
+transacoes:
+  bairros:            # nome exibido: bairros dos Correios que entram nele
+    Itaim Bibi: [Itaim Bibi, Chácara Itaim]
+    Vila Nova Conceição: [Vila Nova Conceição]
+    Jardim Paulista: [Jardim Paulista]
+    Jardim Europa: [Jardim Europa]
+    Jardim Paulistano: [Jardim Paulistano]
+    Jardim América: [Jardim América]
+  prefixos_cep: ["014", "045"]   # pré-filtro (Jardins/Jd. Europa/Paulistano e Itaim/VNC); acelera a leitura
+  janela_meses: 24               # meses guardados e exibidos (a partir do mês mais recente com dados)
+  fator_area_util: 0.72          # área útil do anúncio ≈ 0,72 × área construída do ITBI (diagnóstico, 356 prédios)
+  outliers_percentis: [1, 99]    # R$/m² fora desta faixa, por bairro, sai das métricas (fica marcado na tabela)
+  n_minimo: 5                    # células com menos transações ficam ocultas
+  lote_minimo: 5                 # N+ transações no mesmo prédio e data = compra em bloco (fora das métricas)
+  predio_novo_anos: 2            # ACC até N anos antes da transação = prédio novo (preço pode ser da planta)
