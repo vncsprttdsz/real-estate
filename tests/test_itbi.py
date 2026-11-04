@@ -26,12 +26,13 @@ ST = {"lote": 5, "bairros": ["Itaim Bibi", "Jardim Paulista"], "alias": {"itaim 
 def test_extract_filters_and_headerless_sheet():
     good = pd.DataFrame([row(1), row(2, nat="12.Dação em pagamento"), row(3, prop=50), row(4, uso=24), row(5, cep=5426000), row(6, valor=0)], columns=HEAD)
     # aba sem cabeçalho (como OUT-2024): a 1ª linha de dados vira o "cabeçalho" do pandas
-    raw = pd.DataFrame([row(7, data="2026-06-02")], columns=HEAD)
-    headless = pd.DataFrame(raw.values[1:] if len(raw) > 1 else [], columns=[str(v) for v in raw.values[0]])
-    book = {"MAI-2026": good, "JUN-2026": headless, "LEGENDA": pd.DataFrame({"a": [1]})}
+    raw = pd.DataFrame([row(7, data="2026-06-02"), row(8, data="2026-06-03")], columns=HEAD)
+    headless = pd.DataFrame(raw.values[1:], columns=[str(v) for v in raw.values[0]])
+    headless["extra"] = None                                     # coluna vazia a mais no fim (tolerada)
+    book = {"JUN-2026": headless, "MAI-2026": good, "LEGENDA": pd.DataFrame({"a": [1]})}   # sem cabeçalho vem antes
     year, rows, stats = itbi.extract(book, ST)
     assert year == 2026
-    assert sorted(r["sql"] for r in rows) == ["1", "7"]           # só apto, compra e venda, 100%, CEP da região, valor > 0
+    assert sorted(r["sql"] for r in rows) == ["1", "7", "8"]      # só apto, compra e venda, 100%, CEP da região, valor > 0
     r = next(r for r in rows if r["sql"] == "1")
     assert r["cep"] == "04532010" and r["padrao"] == "C" and r["acc"] == 2005 and r["data"] == "2026-05-10"
 
@@ -110,7 +111,18 @@ def test_update_keeps_cache_when_download_fails_or_shrinks(tmp_path, monkeypatch
             return FakeResp(text=page) if url == itbi.PAGE else FakeResp(200, content=b"x" * 200_000)
     out = itbi.update(H2())
     reg = json.loads((tmp_path / "arquivos.json").read_text())
-    assert len(out["linhas"]) == 40 and "rejeitado" in reg["https://p/itbi/novo.xlsx"]["erro"] and reg["u-velho"]["ativo"]
+    assert len(out["linhas"]) == 40 and "rejeitado" in reg["https://p/itbi/novo.xlsx"]["ultima_tentativa"]["erro"] and reg["u-velho"]["ativo"]
+    # 2b) falha de leitura no próprio link ativo: registra a tentativa e mantém o cache ativo
+    monkeypatch.setattr(itbi, "extract", lambda book, st: (_ for _ in ()).throw(ValueError("aba sem cabeçalho")))
+    page2 = '<a href="https://p/itbi/u-velho.xlsx">x</a>'
+    reg["https://p/itbi/u-velho.xlsx"] = {**reg.pop("u-velho"), "url": "https://p/itbi/u-velho.xlsx"}
+    (tmp_path / "arquivos.json").write_text(json.dumps(reg))
+    class H4:
+        def get(self, url, **kw):
+            return FakeResp(text=page2) if url == itbi.PAGE else FakeResp(200, content=b"y" * 200_000)
+    out = itbi.update(H4(), force=True)
+    reg = json.loads((tmp_path / "arquivos.json").read_text())
+    assert len(out["linhas"]) == 40 and reg["https://p/itbi/u-velho.xlsx"]["ativo"] and "cabeçalho" in reg["https://p/itbi/u-velho.xlsx"]["ultima_tentativa"]["erro"]
     # 3) página fora do ar: erro, nada gravado
     class H3:
         def get(self, url, **kw):

@@ -134,6 +134,10 @@ def fix_header(df, ref_cols):
             out = df.iloc[i + 1:].copy()
             out.columns = df.iloc[i].tolist()
             return out
+    if ref_cols and df.shape[1] > len(ref_cols):
+        extra = df.iloc[:, len(ref_cols):]
+        if extra.isna().mean().min() >= 0.99 if extra.shape[1] else True:   # colunas vazias no fim: descarta
+            df = df.iloc[:, :len(ref_cols)]
     if ref_cols and len(ref_cols) >= df.shape[1]:
         body = df.copy()
         body.columns = range(df.shape[1])
@@ -141,7 +145,7 @@ def fix_header(df, ref_cols):
         out = pd.concat([first, body], ignore_index=True)
         out.columns = list(ref_cols)[:df.shape[1]]
         return out
-    raise ValueError("aba sem cabeçalho reconhecível")
+    raise ValueError(f"aba sem cabeçalho reconhecível ({df.shape[1]} colunas; referência: {len(ref_cols) if ref_cols else 'nenhuma'})")
 
 
 def read_book(content: bytes) -> dict:
@@ -162,17 +166,19 @@ def extract(book: dict, st: dict) -> tuple[int | None, list[dict], dict]:
     O bairro ainda não é aplicado (depende do mapa de CEPs)."""
     import pandas as pd
     year = sheet_year(book)
-    rows, ref, stats = [], None, {"abas": {}, "linhas_total": 0}
-    for name, df in book.items():
-        if not re.search(r"-20\d\d\s*$", str(name)):
-            continue
-        df = fix_header(df.dropna(how="all"), ref)
+    rows, stats = [], {"abas": {}, "linhas_total": 0}
+    monthly = {n: d for n, d in book.items() if re.search(r"-20\d\d\s*$", str(n))}
+    # cabeçalho de referência: o de qualquer aba que tenha cabeçalho (a aba sem cabeçalho pode vir antes)
+    ref = next((list(d.columns) for d in monthly.values() if any("CADASTRO" in norm(c).upper() for c in d.columns)), None)
+    for name, df in monthly.items():
+        try:
+            df = fix_header(df.dropna(how="all"), ref)
+        except ValueError as e:
+            raise ValueError(f"aba {name}: {e}") from None
         cols = map_columns(df.columns)
         missing = REQUIRED - set(cols)
         if missing:
             raise ValueError(f"aba {name}: colunas ausentes {sorted(missing)}")
-        if ref is None:
-            ref = list(df.columns)
         stats["abas"][str(name)] = len(df)
         stats["linhas_total"] += len(df)
         c = {k: df[v] for k, v in cols.items()}
@@ -430,17 +436,19 @@ def update(http: Http | None = None, rebuild_only: bool = False, force: bool = F
             try:
                 year, rows, stats = extract(read_book(content), st)
             except Exception as e:
-                log("leitura falhou:", e); registry[url] = {**meta, "erro": str(e)[:300]}; continue
+                log("leitura falhou:", e)
+                registry[url] = {**registry.get(url, {}), "ultima_tentativa": {**meta, "erro": str(e)[:300]}}
+                continue
             meta.update(ano=year, **{k: stats[k] for k in ("linhas_total", "linhas_escopo")})
             if year is None or year < min_year:
-                registry[url] = meta
+                registry[url] = {**registry.get(url, {}), **meta}
                 if year is not None and year < min_year:
                     break
                 continue
             prev = _load(year_file(year), None)
             if prev is not None and len(rows) < MIN_KEEP_RATIO * len(prev["linhas"]):
                 log(f"{year}: {len(rows)} linhas no escopo contra {len(prev['linhas'])} no cache — mantém o cache")
-                registry[url] = {**meta, "erro": "rejeitado: queda de linhas"}
+                registry[url] = {**registry.get(url, {}), "ultima_tentativa": {**meta, "erro": "rejeitado: queda de linhas"}}
                 continue
             year_file(year).write_text(json.dumps({"ano": year, "url": url, "sha256": sha, "abas": stats["abas"], "linhas": rows},
                                                   ensure_ascii=False, separators=(",", ":")))
