@@ -17,6 +17,7 @@ import gzip
 import hashlib
 import io
 import json
+import os
 import re
 import sys
 import time
@@ -34,9 +35,11 @@ PAGE = "https://prefeitura.sp.gov.br/web/fazenda/w/acesso_a_informacao/31501"
 OUT = Path("diagnostico/itbi")
 RAW = Path("/tmp/itbi_raw")
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36"}
-FULL_YEARS = 3            # perfil completo e amostra para os anos mais recentes
-CEP_PREFIXES = ("014", "044", "045", "040")
-BAIRRO_RE = re.compile(r"ITAIM|CONCEIC|JARDIM PAULISTA|JD\.? ?PAULISTA|J\.? PAULISTA|JARDINS|CERQUEIRA|PAULISTA")
+FULL_YEARS = 3            # perfil completo e amostra para os anos mais recentes (2024 cobre a janela de 24 meses)
+MAX_YEARS = 3             # v2: só os anos usados na janela de até 24 meses
+CEP_PREFIXES = ("014", "045")   # Jardins, Jd. Europa, Jd. Paulistano (014xx); Itaim Bibi e Vila Nova Conceição (045xx)
+BAIRRO_RE = re.compile(r"ITAIM|CONCEIC|PAULISTA|JARDINS|CERQUEIRA|EUROPA|AMERICA|PAULISTANO")
+CEP_BUDGET_S = 15 * 60
 
 
 def norm(s) -> str:
@@ -68,8 +71,26 @@ def scrape_links() -> list[dict]:
 
 
 def year_of(link: dict) -> int | None:
+    # "GUIAS DE ITBI PAGAS (28012026)" é o arquivo de 2025 publicado em 28/01/2026: o ano real vem das abas (ver main)
     m = re.findall(r"(20[12]\d)", link["texto"] + " " + link["href"])
     return int(m[-1]) if m else None
+
+
+def fix_header(df: pd.DataFrame, ref_cols: list | None) -> pd.DataFrame:
+    """Algumas abas não trazem o cabeçalho na 1ª linha: procura a linha com 'Cadastro' ou aplica o da aba de referência."""
+    if any("CADASTRO" in norm(c) for c in df.columns):
+        return df
+    for i in range(min(15, len(df))):
+        row = [norm(v) for v in df.iloc[i].tolist()]
+        if any("CADASTRO" in v for v in row):
+            out = df.iloc[i + 1:].copy(); out.columns = df.iloc[i].tolist(); return out
+    if ref_cols and len(ref_cols) >= df.shape[1]:
+        first = pd.DataFrame([df.columns.tolist()], columns=range(df.shape[1]))
+        body = df.copy(); body.columns = range(df.shape[1])
+        out = pd.concat([first, body], ignore_index=True); out.columns = ref_cols[:df.shape[1]]
+        out.attrs["header_from_ref"] = True
+        return out
+    return df
 
 
 def download(link: dict) -> tuple[Path, dict]:
@@ -133,9 +154,9 @@ def read_book(path: Path, nrows=None) -> dict[str, pd.DataFrame]:
 
 def viacep(cep: str) -> dict:
     for url in (f"https://viacep.com.br/ws/{cep}/json/", f"https://brasilapi.com.br/api/cep/v1/{cep}"):
-        for _ in range(3):
+        for _ in range(1):
             try:
-                r = requests.get(url, headers=UA, timeout=20)
+                r = requests.get(url, headers=UA, timeout=6)
                 if r.status_code == 200:
                     j = r.json()
                     if not j.get("erro"):
@@ -193,24 +214,35 @@ def main():
     (OUT / "links.json").write_text(json.dumps(links, ensure_ascii=False, indent=1))
     log(f"{len(links)} links"); [log(" ", l) for l in links]
     files = [l for l in links if re.search(r"xls", l["href"], re.I)] or links
-    by_year = sorted(((year_of(l), l) for l in files if year_of(l)), key=lambda x: x[0], reverse=True)
+    by_year = sorted(((year_of(l), l) for l in files if year_of(l)), key=lambda x: x[0], reverse=True)[:MAX_YEARS]
     metas, perfil, amostras = [], {}, {}
     for i, (year, link) in enumerate(by_year):
         try:
             path, meta = download(link)
         except Exception as e:
             log("download falhou", link, e); metas.append({"url": link["href"], "erro": str(e)}); continue
-        meta["ano"] = year; metas.append(meta); log("baixado", meta)
         full = i < FULL_YEARS
         try:
             book = read_book(path, None if full else 50)
         except Exception as e:
-            log("leitura falhou", e); meta["erro_leitura"] = str(e); continue
+            log("leitura falhou", e); meta["erro_leitura"] = str(e); metas.append(meta); continue
+        anos_abas = [int(y) for sh in book for y in re.findall(r"-(20\d\d)$", sh)]
+        year = max(set(anos_abas), key=anos_abas.count) if anos_abas else year
+        meta["ano"] = year; meta["ano_pelo_nome"] = year_of(link); metas.append(meta); log("baixado", meta)
+        for sh, df in book.items():   # tabelas de apoio completas
+            if not re.search(r"-20\d\d$", sh):
+                df.to_csv(OUT / f"apoio_{year}_{re.sub(r'\W+', '_', sh)}.csv", index=False)
+        ref = None
         perfil[meta["arquivo"]] = {"ano": year, "abas": list(book.keys()), "perfil_completo": full, "por_aba": {}}
         frames = []
         for sh, df in book.items():
-            df = df.dropna(how="all")
+            if not re.search(r"-20\d\d$", sh):
+                continue
+            df = fix_header(df.dropna(how="all"), ref)
+            if ref is None and any("CADASTRO" in norm(c) for c in df.columns):
+                ref = list(df.columns)
             p = profile_sheet(df) if full else {"linhas_lidas": len(df), "colunas": [str(c) for c in df.columns]}
+            p["cabecalho_da_aba_de_referencia"] = bool(df.attrs.get("header_from_ref"))
             perfil[meta["arquivo"]]["por_aba"][sh] = p
             if full and len(df):
                 reg = df[region_mask(df)].copy(); reg.insert(0, "_aba", sh); frames.append(reg)
@@ -229,9 +261,18 @@ def main():
             ceps |= set(df[c].astype(str).str.replace(r"\D", "", regex=True).str.zfill(8))
     ceps = sorted(c for c in ceps if re.fullmatch(r"\d{8}", c) and c != "00000000")
     log("CEPs distintos na amostra:", len(ceps))
-    with ThreadPoolExecutor(6) as ex:
-        res = dict(zip(ceps, ex.map(viacep, ceps)))
+    t0, res = time.time(), {}
+    def one(c):
+        return c, (viacep(c) if time.time() - t0 < CEP_BUDGET_S else {"bairro": None, "pulado": True})
+    with ThreadPoolExecutor(8) as ex:
+        for k, (c, v) in enumerate(ex.map(one, ceps)):
+            res[c] = v
+            if k % 200 == 0:
+                log("CEP", k, "/", len(ceps), round(time.time() - t0), "s")
+                (OUT / "cep_correios.json").write_text(json.dumps(res, ensure_ascii=False, indent=0))
     (OUT / "cep_correios.json").write_text(json.dumps(res, ensure_ascii=False, indent=0))
+    if os.environ.get("ITBI_SKIP_IPTU", "1") == "1":
+        log("ok (sem IPTU)"); return
     # IPTU por SQL
     sqls = set()
     for df in amostras.values():
