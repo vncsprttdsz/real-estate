@@ -1,15 +1,17 @@
 # Anúncios atuais dentro dos critérios
 
-Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$ 2.250.000, aluguel até R$ 13.000/mês. Critérios em [`config.yaml`](config.yaml).
+Atualizado em 05/11/2026 07:02 UTC · 1794 anúncios. Orçamento: compra até R$ 2.250.000, aluguel até R$ 13.000/mês. Critérios em [`config.yaml`](config.yaml).
 
-## Venda (1242)
+## Venda (1298)
 
 | Bairro | Área | Preço | Quartos | Fonte | Link |
 |---|---|---|---|---|---|
+| Jardim Paulista | 100 m² | R$ 670.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920954579/) |
 | Vila Nova Conceição | 108 m² | R$ 680.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-hall-de-servico-independente-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920362954/) |
 | Itaim Bibi | 101 m² | R$ 715.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894899499/comprar) |
 | Vila Nova Conceição | 108 m² | R$ 785.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895769257/comprar) |
 | Itaim Bibi | 123 m² | R$ 800.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895513531/comprar) |
+| Vila Nova Conceição | 128 m² | R$ 818.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-olimpia-zona-sul-sao-paulo-sp-128m2-id-2920973722/) |
 | Vila Nova Conceição | 128 m² | R$ 818.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-128m2-id-2920918943/) |
 | Vila Nova Conceição | 100 m² | R$ 849.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-varanda-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2919938784/) |
 | Jardim Paulista | 140 m² | R$ 850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920913225/) |
@@ -17,13 +19,14 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 120 m² | R$ 850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895724901/comprar) |
 | Jardim Paulista | 120 m² | R$ 850.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893439425/comprar) |
 | Jardim Paulista | 115 m² | R$ 870.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894682064/comprar) |
+| Jardim Paulista | 112 m² | R$ 875.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-elevador-paraiso-zona-sul-sao-paulo-sp-112m2-id-2920986260/) |
 | Jardim Paulista | 112 m² | R$ 875.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-ar-condicionado-paraiso-zona-sul-sao-paulo-sp-112m2-id-2920926901/) |
 | Jardim Paulista | 112 m² | R$ 875.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895720138/comprar) |
 | Jardim Paulista | 100 m² | R$ 899.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895056173/comprar) |
 | Jardim Paulista | 115 m² | R$ 899.392 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895129805/comprar) |
+| Vila Nova Conceição | 112 m² | R$ 900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-112m2-id-2920970788/) |
 | Vila Nova Conceição | 112 m² | R$ 900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-112m2-id-2920909558/) |
 | Jardim Paulista | 100 m² | R$ 900.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892891886/comprar) |
-| Jardim Paulista | 100 m² | R$ 910.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920608249/) |
 | Jardim Paulista | 100 m² | R$ 910.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895022565/comprar) |
 | Jardim Paulista | 100 m² | R$ 920.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895691325/comprar) |
 | Jardim Paulista | 100 m² | R$ 930.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892891883/comprar) |
@@ -31,9 +34,11 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 110 m² | R$ 950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894646607/comprar) |
 | Jardim Paulista | 116 m² | R$ 950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894736157/comprar) |
 | Jardim Paulista | 135 m² | R$ 960.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895534360/comprar) |
+| Jardim Paulista | 100 m² | R$ 970.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920982055/) |
 | Jardim Paulista | 100 m² | R$ 970.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920919708/) |
 | Jardim Paulista | 100 m² | R$ 970.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920897841/) |
 | Jardim Paulista | 113 m² | R$ 991.500 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895284216/comprar) |
+| Jardim Paulista | 133 m² | R$ 999.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-paraiso-zona-sul-sao-paulo-sp-133m2-id-2920972513/) |
 | Jardim Paulista | 133 m² | R$ 999.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-paraiso-zona-sul-sao-paulo-sp-133m2-id-2920914300/) |
 | Jardim Paulista | 133 m² | R$ 999.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-paraiso-zona-sul-sao-paulo-sp-133m2-id-2920893632/) |
 | Itaim Bibi | 102 m² | R$ 1.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-102m2-id-2920896024/) |
@@ -42,9 +47,8 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 102 m² | R$ 1.000.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893407484/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.009.500 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895377111/comprar) |
 | Jardim Paulista | 118 m² | R$ 1.019.280 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-118m2-id-2920572178/) |
-| Jardim Paulista | 132 m² | R$ 1.040.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-paraiso-zona-sul-sao-paulo-sp-132m2-id-2920894259/) |
-| Jardim Paulista | 132 m² | R$ 1.040.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894849502/comprar) |
-| Itaim Bibi | 100 m² | R$ 1.049.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2919604241/) |
+| Jardim Paulista | 132 m² | R$ 1.020.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894849502/comprar) |
+| Jardim Paulista | 132 m² | R$ 1.040.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-paraiso-zona-sul-sao-paulo-sp-132m2-id-2920894259/) |
 | Jardim Paulista | 100 m² | R$ 1.049.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920893692/) |
 | Vila Nova Conceição | 127 m² | R$ 1.050.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2920745391/) |
 | Itaim Bibi | 105 m² | R$ 1.050.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2920891512/) |
@@ -55,11 +59,10 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 100 m² | R$ 1.050.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895057480/comprar) |
 | Jardim Paulista | 136 m² | R$ 1.050.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894555301/comprar) |
 | Jardim Paulista | 135 m² | R$ 1.059.900 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2920650222/) |
-| Itaim Bibi | 110 m² | R$ 1.060.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920677162/) |
-| Itaim Bibi | 110 m² | R$ 1.060.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-sala-de-jantar-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920649690/) |
-| Itaim Bibi | 110 m² | R$ 1.060.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920518860/) |
+| Itaim Bibi | 110 m² | R$ 1.060.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920677162/) |
 | Jardim Paulista | 120 m² | R$ 1.060.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-paraiso-zona-sul-sao-paulo-sp-120m2-id-2920891725/) |
 | Jardim Paulista | 120 m² | R$ 1.060.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893251839/comprar) |
+| Vila Nova Conceição | 116 m² | R$ 1.063.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-olimpia-zona-sul-sao-paulo-sp-116m2-id-2920976171/) |
 | Vila Nova Conceição | 116 m² | R$ 1.063.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-olimpia-zona-sul-sao-paulo-sp-116m2-id-2920913510/) |
 | Vila Nova Conceição | 116 m² | R$ 1.063.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-116m2-id-2920896318/) |
 | Vila Nova Conceição | 116 m² | R$ 1.063.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-olimpia-zona-sul-sao-paulo-sp-116m2-id-2920894073/) |
@@ -68,24 +71,27 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 116 m² | R$ 1.063.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895218324/comprar) |
 | Itaim Bibi | 110 m² | R$ 1.070.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635156/comprar) |
 | Jardim Paulista | 126 m² | R$ 1.070.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895634709/comprar) |
+| Jardim Paulista | 115 m² | R$ 1.075.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-paraiso-zona-sul-sao-paulo-sp-115m2-id-2920977624/) |
 | Jardim Paulista | 115 m² | R$ 1.075.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-paraiso-zona-sul-sao-paulo-sp-115m2-id-2920917680/) |
 | Jardim Paulista | 115 m² | R$ 1.075.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-paraiso-zona-sul-sao-paulo-sp-115m2-id-2920892375/) |
 | Jardim Paulista | 115 m² | R$ 1.075.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894209167/comprar) |
+| Vila Nova Conceição | 107 m² | R$ 1.079.850 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-nova-conceicao-zona-sul-sao-paulo-sp-107m2-id-2920114320/) |
 | Jardim Paulista | 104 m² | R$ 1.089.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894569954/comprar) |
 | Jardim Paulista | 129 m² | R$ 1.090.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-129m2-id-2920754999/) |
 | Jardim Paulista | 129 m² | R$ 1.090.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-129m2-id-2920643634/) |
-| Jardim Paulista | 116 m² | R$ 1.090.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-116m2-id-2920471365/) |
+| Jardim Paulista | 110 m² | R$ 1.099.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920974126/) |
 | Jardim Paulista | 110 m² | R$ 1.099.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920919982/) |
 | Jardim Paulista | 110 m² | R$ 1.099.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920896487/) |
 | Jardim Paulista | 110 m² | R$ 1.099.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895783386/comprar) |
 | Itaim Bibi | 105 m² | R$ 1.099.660 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2920573754/) |
 | Jardim Paulista | 130 m² | R$ 1.099.900 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895550197/comprar) |
 | Vila Nova Conceição | 100 m² | R$ 1.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2920899551/) |
+| Jardim Paulista | 100 m² | R$ 1.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-paraiso-zona-sul-sao-paulo-sp-100m2-id-2921017266/) |
+| Jardim Paulista | 111 m² | R$ 1.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-111m2-id-2920978945/) |
 | Jardim Paulista | 111 m² | R$ 1.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-111m2-id-2920917472/) |
 | Jardim Paulista | 111 m² | R$ 1.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-111m2-id-2920893899/) |
 | Jardim Paulista | 100 m² | R$ 1.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920810937/) |
 | Jardim Paulista | 100 m² | R$ 1.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920675880/) |
-| Jardim Paulista | 110 m² | R$ 1.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920470885/) |
 | Vila Nova Conceição | 114 m² | R$ 1.100.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635289/comprar) |
 | Vila Nova Conceição | 100 m² | R$ 1.100.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894072831/comprar) |
 | Jardim Paulista | 138 m² | R$ 1.100.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895735100/comprar) |
@@ -99,7 +105,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 100 m² | R$ 1.114.500 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920924379/) |
 | Jardim Paulista | 100 m² | R$ 1.114.500 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920897470/) |
 | Jardim Paulista | 108 m² | R$ 1.118.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920897980/) |
-| Jardim Paulista | 108 m² | R$ 1.118.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920892142/) |
+| Jardim Paulista | 108 m² | R$ 1.118.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920892142/) |
 | Jardim Paulista | 108 m² | R$ 1.118.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895140683/comprar) |
 | Jardim Paulista | 111 m² | R$ 1.120.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piso-de-madeira-jardim-paulista-zona-sul-sao-paulo-sp-111m2-id-2920844297/) |
 | Jardim Paulista | 108 m² | R$ 1.122.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920774582/) |
@@ -112,6 +118,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 109 m² | R$ 1.149.700 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-vila-olimpia-zona-sul-sao-paulo-sp-109m2-id-2919280317/) |
 | Vila Nova Conceição | 109 m² | R$ 1.149.700 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894600348/comprar) |
 | Vila Nova Conceição | 109 m² | R$ 1.149.700 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895803414/comprar) |
+| Itaim Bibi | 105 m² | R$ 1.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2920960932/) |
 | Itaim Bibi | 104 m² | R$ 1.150.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-104m2-id-2920892970/) |
 | Itaim Bibi | 105 m² | R$ 1.150.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2920896131/) |
 | Jardim Paulista | 125 m² | R$ 1.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-125m2-id-2920889897/) |
@@ -122,12 +129,12 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 120 m² | R$ 1.175.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894975907/comprar) |
 | Jardim Paulista | 117 m² | R$ 1.177.600 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895648797/comprar) |
 | Jardim Paulista | 101 m² | R$ 1.179.350 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920496065/) |
-| Vila Nova Conceição | 100 m² | R$ 1.180.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-sala-de-jantar-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2918968482/) |
 | Jardim Paulista | 110 m² | R$ 1.180.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920894541/) |
 | Jardim Paulista | 101 m² | R$ 1.180.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920867370/) |
 | Jardim Paulista | 110 m² | R$ 1.180.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894647340/comprar) |
 | Jardim Paulista | 118 m² | R$ 1.185.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895652650/comprar) |
 | Vila Nova Conceição | 105 m² | R$ 1.190.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920895908/) |
+| Jardim Paulista | 102 m² | R$ 1.190.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-102m2-id-2920982250/) |
 | Jardim Paulista | 102 m² | R$ 1.190.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-102m2-id-2920922934/) |
 | Jardim Paulista | 104 m² | R$ 1.190.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-104m2-id-2920901836/) |
 | Jardim Paulista | 102 m² | R$ 1.190.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-102m2-id-2920895615/) |
@@ -135,6 +142,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 102 m² | R$ 1.190.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895475431/comprar) |
 | Jardim Paulista | 103 m² | R$ 1.190.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894393551/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.190.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894513103/comprar) |
+| Jardim Paulista | 113 m² | R$ 1.196.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-113m2-id-2920988260/) |
 | Jardim Paulista | 113 m² | R$ 1.196.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-113m2-id-2920929568/) |
 | Jardim Paulista | 113 m² | R$ 1.196.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-113m2-id-2920894689/) |
 | Jardim Paulista | 113 m² | R$ 1.196.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895664799/comprar) |
@@ -143,12 +151,18 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 109 m² | R$ 1.199.950 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895539087/comprar) |
 | Vila Nova Conceição | 100 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2920900044/) |
 | Vila Nova Conceição | 116 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-116m2-id-2920798752/) |
-| Vila Nova Conceição | 100 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2920724536/) |
+| Vila Nova Conceição | 100 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2920773984/) |
 | Vila Nova Conceição | 116 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-embutido-vila-nova-conceicao-zona-sul-sao-paulo-sp-116m2-id-2919625859/) |
-| Vila Nova Conceição | 105 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2919506378/) |
+| Vila Nova Conceição | 105 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2919506378/) |
+| Itaim Bibi | 107 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920974808/) |
 | Itaim Bibi | 107 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920920455/) |
 | Itaim Bibi | 107 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920891421/) |
 | Itaim Bibi | 107 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-banheira-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920140819/) |
+| Jardim Paulista | 160 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920984622/) |
+| Jardim Paulista | 126 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-126m2-id-2920980176/) |
+| Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920976193/) |
+| Jardim Paulista | 130 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920974591/) |
+| Jardim Paulista | 104 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-104m2-id-2920968532/) |
 | Jardim Paulista | 160 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920913703/) |
 | Jardim Paulista | 126 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-126m2-id-2920920351/) |
 | Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920911376/) |
@@ -161,16 +175,13 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 130 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920891523/) |
 | Jardim Paulista | 107 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920891551/) |
 | Jardim Paulista | 130 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920887863/) |
-| Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920773331/) |
+| Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920773331/) |
 | Jardim Paulista | 104 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-104m2-id-2920654753/) |
 | Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920592116/) |
 | Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920521162/) |
 | Jardim Paulista | 110 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920510904/) |
 | Jardim Paulista | 120 m² | R$ 1.200.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2920510816/) |
 | Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920478994/) |
-| Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920448188/) |
-| Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920439310/) |
-| Jardim Paulista | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920434643/) |
 | Vila Nova Conceição | 100 m² | R$ 1.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894674147/comprar) |
 | Itaim Bibi | 107 m² | R$ 1.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895311311/comprar) |
 | Jardim Paulista | 126 m² | R$ 1.200.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895729613/comprar) |
@@ -191,26 +202,26 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 140 m² | R$ 1.216.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895380305/comprar) |
 | Jardim Paulista | 138 m² | R$ 1.218.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895456239/comprar) |
 | Jardim Paulista | 101 m² | R$ 1.219.500 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920903042/) |
+| Jardim Paulista | 101 m² | R$ 1.229.500 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920976991/) |
+| Jardim Paulista | 101 m² | R$ 1.229.500 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920967495/) |
 | Jardim Paulista | 101 m² | R$ 1.229.500 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920915792/) |
 | Jardim Paulista | 101 m² | R$ 1.229.500 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920894899/) |
 | Jardim Paulista | 101 m² | R$ 1.229.500 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920649869/) |
-| Jardim Paulista | 147 m² | R$ 1.230.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-147m2-id-2920604581/) |
 | Jardim Paulista | 100 m² | R$ 1.235.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920898518/) |
 | Jardim Paulista | 100 m² | R$ 1.235.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894626429/comprar) |
 | Jardim Paulista | 160 m² | R$ 1.242.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-paraiso-zona-sul-sao-paulo-sp-160m2-id-2920849457/) |
 | Jardim Paulista | 120 m² | R$ 1.242.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894726334/comprar) |
 | Vila Nova Conceição | 109 m² | R$ 1.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-109m2-id-2920892551/) |
 | Vila Nova Conceição | 109 m² | R$ 1.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-109m2-id-2920313868/) |
-| Itaim Bibi | 108 m² | R$ 1.250.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920780657/) |
+| Itaim Bibi | 108 m² | R$ 1.250.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920954365/) |
 | Jardim Paulista | 125 m² | R$ 1.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-125m2-id-2920898430/) |
 | Jardim Paulista | 100 m² | R$ 1.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920899460/) |
 | Jardim Paulista | 108 m² | R$ 1.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920838767/) |
-| Jardim Paulista | 101 m² | R$ 1.250.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920750381/) |
-| Itaim Bibi | 108 m² | R$ 1.250.000 | 2 | vivareal | [abrir](https://www.vivareal.com.br/imovel/apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-com-garagem-108m2-venda-RS1250000-id-2920954365/) |
+| Jardim Paulista | 101 m² | R$ 1.250.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-lavanderia-coletiva-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920750381/) |
 | Jardim Paulista | 126 m² | R$ 1.250.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895622369/comprar) |
 | Jardim Paulista | 125 m² | R$ 1.250.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893381327/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.250.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893834123/comprar) |
-| Vila Nova Conceição | 109 m² | R$ 1.251.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-fogao-vila-olimpia-zona-sul-sao-paulo-sp-109m2-id-2920843923/) |
+| Vila Nova Conceição | 109 m² | R$ 1.251.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-vila-olimpia-zona-sul-sao-paulo-sp-109m2-id-2920843923/) |
 | Itaim Bibi | 101 m² | R$ 1.255.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894751471/comprar) |
 | Jardim Paulista | 125 m² | R$ 1.263.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-125m2-id-2920677672/) |
 | Jardim Paulista | 145 m² | R$ 1.265.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893027625/comprar) |
@@ -220,36 +231,39 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 109 m² | R$ 1.275.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895322738/comprar) |
 | Itaim Bibi | 100 m² | R$ 1.276.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920849483/) |
 | Jardim Paulista | 140 m² | R$ 1.280.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2920897779/) |
-| Itaim Bibi | 108 m² | R$ 1.280.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919409456/) |
-| Jardim Paulista | 107 m² | R$ 1.280.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-closet-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920749204/) |
+| Jardim Paulista | 107 m² | R$ 1.280.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2921010360/) |
+| Jardim Paulista | 107 m² | R$ 1.280.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920749204/) |
 | Jardim Paulista | 158 m² | R$ 1.280.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-lavabo-jardim-paulista-zona-sul-sao-paulo-sp-158m2-id-2920512749/) |
 | Jardim Paulista | 140 m² | R$ 1.280.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893028217/comprar) |
 | Jardim Paulista | 105 m² | R$ 1.280.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894034320/comprar) |
 | Itaim Bibi | 130 m² | R$ 1.285.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920898796/) |
 | Itaim Bibi | 108 m² | R$ 1.289.240 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920105012/) |
 | Vila Nova Conceição | 100 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2920895624/) |
+| Itaim Bibi | 105 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920988959/) |
 | Itaim Bibi | 105 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920927806/) |
 | Itaim Bibi | 105 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920897274/) |
-| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920871233/) |
-| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-armario-embutido-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920805361/) |
-| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920772397/) |
-| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920677288/) |
+| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920871233/) |
+| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920772397/) |
+| Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920677288/) |
 | Itaim Bibi | 108 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920528560/) |
+| Jardim Paulista | 126 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-126m2-id-2921020854/) |
 | Jardim Paulista | 126 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-126m2-id-2920686788/) |
-| Jardim Paulista | 170 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920676843/) |
-| Jardim Paulista | 100 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920674613/) |
-| Jardim Paulista | 170 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920648825/) |
-| Jardim Paulista | 170 m² | R$ 1.290.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920652545/) |
+| Jardim Paulista | 100 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920674613/) |
 | Jardim Paulista | 104 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-104m2-id-2920650927/) |
 | Itaim Bibi | 105 m² | R$ 1.290.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895781696/comprar) |
 | Jardim Paulista | 135 m² | R$ 1.290.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893105612/comprar) |
 | Vila Nova Conceição | 127 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-seguranca-interna-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2920320440/) |
+| Itaim Bibi | 107 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920984338/) |
 | Itaim Bibi | 107 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920924345/) |
 | Itaim Bibi | 106 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-106m2-id-2920899846/) |
 | Itaim Bibi | 107 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920897800/) |
 | Itaim Bibi | 135 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920896180/) |
 | Itaim Bibi | 107 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920834088/) |
 | Itaim Bibi | 127 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-127m2-id-2920617962/) |
+| Jardim Paulista | 115 m² | R$ 1.300.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920989833/) |
+| Jardim Paulista | 108 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920983611/) |
+| Jardim Paulista | 100 m² | R$ 1.300.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920982759/) |
+| Jardim Paulista | 132 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-132m2-id-2920975592/) |
 | Jardim Paulista | 115 m² | R$ 1.300.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920926914/) |
 | Jardim Paulista | 108 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920926845/) |
 | Jardim Paulista | 100 m² | R$ 1.300.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920922571/) |
@@ -260,10 +274,9 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 108 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920896335/) |
 | Jardim Paulista | 123 m² | R$ 1.300.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-123m2-id-2920895134/) |
 | Jardim Paulista | 132 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-132m2-id-2920894554/) |
-| Jardim Paulista | 114 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-114m2-id-2920868331/) |
 | Jardim Paulista | 110 m² | R$ 1.300.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-banheira-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920773407/) |
-| Jardim Paulista | 107 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920621371/) |
 | Jardim Paulista | 158 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-158m2-id-2920724348/) |
+| Jardim Paulista | 107 m² | R$ 1.300.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920621371/) |
 | Itaim Bibi | 107 m² | R$ 1.300.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895619331/comprar) |
 | Itaim Bibi | 130 m² | R$ 1.300.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894504030/comprar) |
 | Itaim Bibi | 135 m² | R$ 1.300.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895141919/comprar) |
@@ -283,6 +296,8 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 147 m² | R$ 1.303.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893949764/comprar) |
 | Jardim Paulista | 140 m² | R$ 1.306.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920896980/) |
 | Jardim Paulista | 140 m² | R$ 1.306.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894699354/comprar) |
+| Jardim Paulista | 101 m² | R$ 1.325.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920989551/) |
+| Jardim Paulista | 114 m² | R$ 1.325.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-114m2-id-2920981856/) |
 | Jardim Paulista | 101 m² | R$ 1.325.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920929006/) |
 | Jardim Paulista | 114 m² | R$ 1.325.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-114m2-id-2920920592/) |
 | Jardim Paulista | 101 m² | R$ 1.325.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-101m2-id-2920898509/) |
@@ -294,9 +309,11 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 107 m² | R$ 1.346.150 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920589087/) |
 | Itaim Bibi | 116 m² | R$ 1.349.270 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920107189/) |
 | Jardim Paulista | 110 m² | R$ 1.349.530 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920571247/) |
+| Itaim Bibi | 100 m² | R$ 1.350.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920981326/) |
+| Itaim Bibi | 106 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-106m2-id-2920974471/) |
 | Itaim Bibi | 105 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2920921123/) |
 | Itaim Bibi | 101 m² | R$ 1.350.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-101m2-id-2920913700/) |
-| Itaim Bibi | 100 m² | R$ 1.350.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920919221/) |
+| Itaim Bibi | 100 m² | R$ 1.350.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920919221/) |
 | Itaim Bibi | 106 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-vila-olimpia-zona-sul-sao-paulo-sp-106m2-id-2920911183/) |
 | Itaim Bibi | 112 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920896710/) |
 | Itaim Bibi | 105 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2920895164/) |
@@ -306,6 +323,8 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 121 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-banheira-itaim-bibi-zona-sul-sao-paulo-sp-121m2-id-2920775764/) |
 | Itaim Bibi | 100 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920776351/) |
 | Itaim Bibi | 100 m² | R$ 1.350.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920447637/) |
+| Jardim Paulista | 131 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-131m2-id-2921009839/) |
+| Jardim Paulista | 111 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-111m2-id-2920977462/) |
 | Jardim Paulista | 111 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-111m2-id-2920914799/) |
 | Jardim Paulista | 215 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-paraiso-zona-sul-sao-paulo-sp-215m2-id-2920897715/) |
 | Jardim Paulista | 111 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-111m2-id-2920891387/) |
@@ -331,11 +350,12 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 100 m² | R$ 1.363.500 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635962/comprar) |
 | Jardim Paulista | 106 m² | R$ 1.370.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-106m2-id-2920892510/) |
 | Jardim Paulista | 106 m² | R$ 1.370.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893390089/comprar) |
+| Itaim Bibi | 121 m² | R$ 1.373.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-121m2-id-2921007949/) |
 | Itaim Bibi | 110 m² | R$ 1.374.680 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920572179/) |
 | Itaim Bibi | 128 m² | R$ 1.377.620 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2920117070/) |
 | Itaim Bibi | 135 m² | R$ 1.380.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920900349/) |
 | Itaim Bibi | 135 m² | R$ 1.380.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920749365/) |
-| Itaim Bibi | 135 m² | R$ 1.380.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920675876/) |
+| Itaim Bibi | 135 m² | R$ 1.380.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920675876/) |
 | Itaim Bibi | 110 m² | R$ 1.380.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920677796/) |
 | Jardim Paulista | 132 m² | R$ 1.380.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-132m2-id-2920896760/) |
 | Jardim Paulista | 110 m² | R$ 1.380.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920827158/) |
@@ -343,17 +363,17 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 135 m² | R$ 1.380.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894848948/comprar) |
 | Jardim Paulista | 105 m² | R$ 1.380.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895410496/comprar) |
 | Jardim Paulista | 132 m² | R$ 1.380.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895099702/comprar) |
+| Jardim Paulista | 141 m² | R$ 1.383.520 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-paraiso-zona-sul-sao-paulo-sp-141m2-id-2920976710/) |
 | Jardim Paulista | 141 m² | R$ 1.383.520 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-paraiso-zona-sul-sao-paulo-sp-141m2-id-2920914779/) |
 | Jardim Paulista | 141 m² | R$ 1.383.520 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-paraiso-zona-sul-sao-paulo-sp-141m2-id-2920891358/) |
 | Jardim Paulista | 206 m² | R$ 1.385.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893304090/comprar) |
 | Jardim Paulista | 150 m² | R$ 1.389.420 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920569552/) |
 | Jardim Paulista | 199 m² | R$ 1.389.800 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-199m2-id-2920651313/) |
 | Itaim Bibi | 105 m² | R$ 1.390.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2919721535/) |
+| Jardim Paulista | 110 m² | R$ 1.390.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-banheira-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2921009040/) |
 | Jardim Paulista | 128 m² | R$ 1.390.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920890930/) |
 | Jardim Paulista | 160 m² | R$ 1.390.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-espaco-gourmet-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920893450/) |
 | Jardim Paulista | 167 m² | R$ 1.390.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-167m2-id-2920835607/) |
-| Jardim Paulista | 167 m² | R$ 1.390.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-167m2-id-2920682589/) |
-| Jardim Paulista | 167 m² | R$ 1.390.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-167m2-id-2920676746/) |
 | Jardim Paulista | 105 m² | R$ 1.390.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-105m2-id-2920509093/) |
 | Jardim Paulista | 124 m² | R$ 1.390.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895797774/comprar) |
 | Jardim Paulista | 160 m² | R$ 1.390.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893640042/comprar) |
@@ -361,6 +381,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 128 m² | R$ 1.390.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895135881/comprar) |
 | Jardim Paulista | 124 m² | R$ 1.390.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894107002/comprar) |
 | Jardim Paulista | 135 m² | R$ 1.394.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2920848188/) |
+| Jardim Paulista | 106 m² | R$ 1.399.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-106m2-id-2920986689/) |
 | Jardim Paulista | 107 m² | R$ 1.399.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-com-churrasqueira-paraiso-zona-sul-sao-paulo-sp-107m2-id-2920894217/) |
 | Jardim Paulista | 106 m² | R$ 1.399.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-106m2-id-2920897434/) |
 | Jardim Paulista | 106 m² | R$ 1.399.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895343155/comprar) |
@@ -369,6 +390,9 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 150 m² | R$ 1.399.430 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920572636/) |
 | Vila Nova Conceição | 115 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-vila-olimpia-zona-sul-sao-paulo-sp-115m2-id-2920891687/) |
 | Vila Nova Conceição | 108 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-olimpia-zona-sul-sao-paulo-sp-108m2-id-2920647139/) |
+| Itaim Bibi | 100 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2921006321/) |
+| Itaim Bibi | 105 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920980166/) |
+| Itaim Bibi | 128 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2920973285/) |
 | Jardim Paulista | 110 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920921198/) |
 | Itaim Bibi | 105 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920919393/) |
 | Itaim Bibi | 128 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2920909267/) |
@@ -376,15 +400,12 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 105 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920895598/) |
 | Itaim Bibi | 115 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2920894317/) |
 | Itaim Bibi | 128 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2920891854/) |
-| Itaim Bibi | 126 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-126m2-id-2920750825/) |
+| Itaim Bibi | 126 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-lavanderia-coletiva-itaim-bibi-zona-sul-sao-paulo-sp-126m2-id-2920750825/) |
 | Itaim Bibi | 128 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2920523075/) |
 | Itaim Bibi | 128 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2919710205/) |
 | Itaim Bibi | 122 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-122m2-id-2919465656/) |
-| Itaim Bibi | 100 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2919230144/) |
-| Itaim Bibi | 100 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2919643029/) |
 | Jardim Paulista | 100 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920899850/) |
 | Jardim Paulista | 215 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-paraiso-zona-sul-sao-paulo-sp-215m2-id-2920690259/) |
-| Jardim Paulista | 100 m² | R$ 1.400.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920423435/) |
 | Itaim Bibi | 105 m² | R$ 1.400.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895785251/comprar) |
 | Vila Nova Conceição | 115 m² | R$ 1.400.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893331807/comprar) |
 | Itaim Bibi | 108 m² | R$ 1.400.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895415371/comprar) |
@@ -395,7 +416,6 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 122 m² | R$ 1.400.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895504551/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.400.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895453126/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.400.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894707703/comprar) |
-| Itaim Bibi | 105 m² | R$ 1.420.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2919114782/) |
 | Jardim Paulista | 167 m² | R$ 1.420.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-paraiso-zona-sul-sao-paulo-sp-167m2-id-2920896722/) |
 | Jardim Paulista | 177 m² | R$ 1.420.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-paraiso-zona-sul-sao-paulo-sp-177m2-id-2920893395/) |
 | Jardim Paulista | 167 m² | R$ 1.420.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892802277/comprar) |
@@ -405,26 +425,27 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 134 m² | R$ 1.430.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894428680/comprar) |
 | Itaim Bibi | 135 m² | R$ 1.435.240 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920114460/) |
 | Vila Nova Conceição | 116 m² | R$ 1.435.500 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895593026/comprar) |
+| Jardim Paulista | 106 m² | R$ 1.436.171 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-106m2-id-2920976461/) |
 | Jardim Paulista | 106 m² | R$ 1.436.171 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-106m2-id-2920911532/) |
 | Jardim Paulista | 106 m² | R$ 1.436.171 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-106m2-id-2920894005/) |
 | Jardim Paulista | 106 m² | R$ 1.436.171 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895773548/comprar) |
-| Jardim Paulista | 145 m² | R$ 1.439.690 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-145m2-id-2920350064/) |
-| Jardim Paulista | 115 m² | R$ 1.440.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-moveis-planejados-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920775064/) |
+| Jardim Paulista | 115 m² | R$ 1.440.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920775064/) |
 | Jardim Paulista | 115 m² | R$ 1.440.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-moveis-planejados-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920688960/) |
 | Jardim Paulista | 115 m² | R$ 1.440.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895668821/comprar) |
 | Jardim Paulista | 120 m² | R$ 1.442.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895142475/comprar) |
 | Itaim Bibi | 136 m² | R$ 1.449.690 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-136m2-id-2920649373/) |
-| Vila Nova Conceição | 105 m² | R$ 1.450.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920770695/) |
+| Vila Nova Conceição | 141 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-closet-vila-nova-conceicao-zona-sul-sao-paulo-sp-141m2-id-2920964373/) |
+| Vila Nova Conceição | 105 m² | R$ 1.450.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920770695/) |
 | Vila Nova Conceição | 105 m² | R$ 1.450.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2920682972/) |
 | Itaim Bibi | 100 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920902724/) |
 | Itaim Bibi | 100 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920894423/) |
 | Itaim Bibi | 119 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-119m2-id-2920512426/) |
 | Itaim Bibi | 100 m² | R$ 1.450.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920512611/) |
+| Jardim Paulista | 115 m² | R$ 1.450.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piso-de-madeira-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920994028/) |
 | Jardim Paulista | 135 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-paraiso-zona-sul-sao-paulo-sp-135m2-id-2920895722/) |
 | Jardim Paulista | 133 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-133m2-id-2920891907/) |
 | Jardim Paulista | 107 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920885652/) |
 | Jardim Paulista | 107 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920870965/) |
-| Jardim Paulista | 105 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-105m2-id-2920707736/) |
 | Jardim Paulista | 107 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920549337/) |
 | Jardim Paulista | 135 m² | R$ 1.450.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2920511108/) |
 | Jardim Paulista | 100 m² | R$ 1.450.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920675052/) |
@@ -439,6 +460,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 114 m² | R$ 1.469.210 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-jardim-paulista-zona-sul-sao-paulo-sp-114m2-id-2920649480/) |
 | Itaim Bibi | 107 m² | R$ 1.474.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920792636/) |
 | Itaim Bibi | 107 m² | R$ 1.474.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920774976/) |
+| Itaim Bibi | 100 m² | R$ 1.475.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920971132/) |
 | Itaim Bibi | 100 m² | R$ 1.475.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920911456/) |
 | Itaim Bibi | 100 m² | R$ 1.475.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920892797/) |
 | Itaim Bibi | 100 m² | R$ 1.475.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895255062/comprar) |
@@ -448,21 +470,19 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 134 m² | R$ 1.480.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895662082/comprar) |
 | Jardim Paulista | 115 m² | R$ 1.480.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892794981/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.480.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895160554/comprar) |
+| Itaim Bibi | 112 m² | R$ 1.483.040 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920986915/) |
 | Itaim Bibi | 112 m² | R$ 1.483.040 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920929530/) |
 | Itaim Bibi | 112 m² | R$ 1.483.040 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920895192/) |
 | Itaim Bibi | 112 m² | R$ 1.483.040 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892870108/comprar) |
+| Jardim Paulista | 130 m² | R$ 1.484.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920745521/) |
 | Jardim Paulista | 116 m² | R$ 1.489.150 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-jardim-paulista-zona-sul-sao-paulo-sp-116m2-id-2920571541/) |
 | Itaim Bibi | 107 m² | R$ 1.490.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920899048/) |
-| Itaim Bibi | 100 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-closet-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920871234/) |
-| Itaim Bibi | 134 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920748860/) |
-| Itaim Bibi | 134 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920687481/) |
-| Itaim Bibi | 134 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920674631/) |
-| Itaim Bibi | 134 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920670633/) |
+| Itaim Bibi | 100 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920871234/) |
+| Jardim Paulista | 102 m² | R$ 1.490.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-102m2-id-2920977366/) |
 | Jardim Paulista | 102 m² | R$ 1.490.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-102m2-id-2920915202/) |
 | Jardim Paulista | 100 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920896337/) |
 | Jardim Paulista | 102 m² | R$ 1.490.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-102m2-id-2920894500/) |
 | Jardim Paulista | 110 m² | R$ 1.490.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920507185/) |
-| Jardim Paulista | 110 m² | R$ 1.490.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920470829/) |
 | Itaim Bibi | 183 m² | R$ 1.490.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895776701/comprar) |
 | Itaim Bibi | 107 m² | R$ 1.490.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893585115/comprar) |
 | Itaim Bibi | 183 m² | R$ 1.490.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895638077/comprar) |
@@ -470,13 +490,14 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 100 m² | R$ 1.490.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894852568/comprar) |
 | Jardim Paulista | 105 m² | R$ 1.490.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894439844/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.493.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920769207/) |
-| Vila Nova Conceição | 111 m² | R$ 1.498.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2917780943/) |
 | Jardim Paulista | 131 m² | R$ 1.498.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-131m2-id-2920512757/) |
 | Jardim Paulista | 137 m² | R$ 1.499.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920892882/) |
 | Jardim Paulista | 137 m² | R$ 1.499.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894805560/comprar) |
 | Itaim Bibi | 116 m² | R$ 1.499.610 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920116650/) |
 | Vila Nova Conceição | 105 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-jardim-vila-nova-conceicao-zona-sul-sao-paulo-sp-105m2-id-2920512761/) |
-| Vila Nova Conceição | 105 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-espaco-gourmet-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2917812080/) |
+| Itaim Bibi | 118 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2921012149/) |
+| Itaim Bibi | 103 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2920984748/) |
+| Itaim Bibi | 100 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920976328/) |
 | Itaim Bibi | 103 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2920920898/) |
 | Itaim Bibi | 100 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920914521/) |
 | Itaim Bibi | 100 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920915786/) |
@@ -486,24 +507,21 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 103 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2920895840/) |
 | Itaim Bibi | 100 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920894129/) |
 | Itaim Bibi | 100 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920894897/) |
-| Jardim Paulista | 110 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-espaco-gourmet-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920891388/) |
+| Jardim Paulista | 110 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920891388/) |
 | Itaim Bibi | 140 m² | R$ 1.500.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-churrasqueira-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2920894386/) |
 | Itaim Bibi | 137 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2920870181/) |
 | Itaim Bibi | 118 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2920513264/) |
 | Itaim Bibi | 118 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2920469195/) |
 | Itaim Bibi | 168 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-168m2-id-2919900542/) |
-| Itaim Bibi | 112 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2919276645/) |
-| Itaim Bibi | 100 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-churrasqueira-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2918940770/) |
+| Jardim Paulista | 107 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2921012331/) |
+| Jardim Paulista | 124 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-124m2-id-2920970877/) |
 | Jardim Paulista | 124 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-124m2-id-2920902811/) |
 | Jardim Paulista | 114 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-114m2-id-2920897903/) |
 | Jardim Paulista | 100 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920893500/) |
 | Jardim Paulista | 149 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-149m2-id-2920896252/) |
 | Jardim Paulista | 124 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-124m2-id-2920891446/) |
-| Jardim Paulista | 133 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-133m2-id-2920769418/) |
-| Jardim Paulista | 131 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-131m2-id-2920750382/) |
-| Jardim Paulista | 105 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-bela-vista-centro-sao-paulo-sp-105m2-id-2920662689/) |
+| Jardim Paulista | 105 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-bela-vista-centro-sao-paulo-sp-105m2-id-2920781047/) |
 | Jardim Paulista | 198 m² | R$ 1.500.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-198m2-id-2920653626/) |
-| Jardim Paulista | 133 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-133m2-id-2920650806/) |
 | Jardim Paulista | 106 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-106m2-id-2920525510/) |
 | Jardim Paulista | 140 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920513853/) |
 | Jardim Paulista | 200 m² | R$ 1.500.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-200m2-id-2920675919/) |
@@ -525,13 +543,15 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 134 m² | R$ 1.500.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895128844/comprar) |
 | Itaim Bibi | 105 m² | R$ 1.510.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piso-laminado-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2920524651/) |
 | Jardim Paulista | 105 m² | R$ 1.515.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-105m2-id-2920899075/) |
+| Jardim Paulista | 105 m² | R$ 1.525.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-105m2-id-2920969363/) |
 | Jardim Paulista | 105 m² | R$ 1.525.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-105m2-id-2920654693/) |
 | Jardim Paulista | 105 m² | R$ 1.525.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894684695/comprar) |
 | Jardim Paulista | 150 m² | R$ 1.530.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920747881/) |
-| Jardim Paulista | 150 m² | R$ 1.530.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920676635/) |
+| Jardim Paulista | 150 m² | R$ 1.530.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920587829/) |
+| Itaim Bibi | 120 m² | R$ 1.534.500 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920988531/) |
 | Itaim Bibi | 120 m² | R$ 1.534.500 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920931565/) |
 | Itaim Bibi | 120 m² | R$ 1.534.500 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892810730/comprar) |
-| Jardim Paulista | 108 m² | R$ 1.538.130 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920649081/) |
+| Jardim Paulista | 108 m² | R$ 1.538.130 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920649081/) |
 | Jardim Paulista | 150 m² | R$ 1.540.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920829943/) |
 | Jardim Paulista | 150 m² | R$ 1.540.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920674380/) |
 | Jardim Paulista | 100 m² | R$ 1.546.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895828658/comprar) |
@@ -541,13 +561,12 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 178 m² | R$ 1.550.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-178m2-id-2920525850/) |
 | Vila Nova Conceição | 126 m² | R$ 1.550.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-academia-vila-nova-conceicao-zona-sul-sao-paulo-sp-126m2-id-2919182431/) |
 | Itaim Bibi | 127 m² | R$ 1.550.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-127m2-id-2920755326/) |
+| Jardim Paulista | 121 m² | R$ 1.550.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-america-zona-sul-sao-paulo-sp-121m2-id-2921025034/) |
 | Jardim Paulista | 132 m² | R$ 1.550.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-132m2-id-2920674693/) |
-| Jardim Paulista | 105 m² | R$ 1.550.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-105m2-id-2920467911/) |
 | Vila Nova Conceição | 105 m² | R$ 1.550.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895406550/comprar) |
 | Itaim Bibi | 128 m² | R$ 1.550.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894769376/comprar) |
 | Jardim Paulista | 132 m² | R$ 1.550.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892841483/comprar) |
 | Jardim Paulista | 140 m² | R$ 1.550.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894920710/comprar) |
-| Itaim Bibi | 100 m² | R$ 1.551.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2918965496/) |
 | Jardim Paulista | 136 m² | R$ 1.570.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895558357/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.570.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895472463/comprar) |
 | Jardim Paulista | 110 m² | R$ 1.570.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893992814/comprar) |
@@ -557,6 +576,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 150 m² | R$ 1.580.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920511611/) |
 | Jardim Paulista | 124 m² | R$ 1.580.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895667693/comprar) |
 | Jardim Paulista | 150 m² | R$ 1.580.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894989037/comprar) |
+| Itaim Bibi | 102 m² | R$ 1.588.050 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-escritorio-vila-olimpia-zona-sul-sao-paulo-sp-102m2-id-2920975142/) |
 | Itaim Bibi | 102 m² | R$ 1.588.050 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-vila-olimpia-zona-sul-sao-paulo-sp-102m2-id-2920911328/) |
 | Itaim Bibi | 102 m² | R$ 1.588.050 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895677612/comprar) |
 | Itaim Bibi | 117 m² | R$ 1.589.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894998457/comprar) |
@@ -567,32 +587,37 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 150 m² | R$ 1.590.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895022748/comprar) |
 | Itaim Bibi | 117 m² | R$ 1.594.240 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-lavanderia-coletiva-itaim-bibi-zona-sul-sao-paulo-sp-117m2-id-2920119314/) |
 | Itaim Bibi | 130 m² | R$ 1.595.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2919493713/) |
+| Jardim Paulista | 110 m² | R$ 1.595.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920975612/) |
 | Jardim Paulista | 137 m² | R$ 1.595.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920924243/) |
 | Jardim Paulista | 110 m² | R$ 1.595.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920913525/) |
 | Jardim Paulista | 110 m² | R$ 1.595.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895681186/comprar) |
 | Jardim Paulista | 150 m² | R$ 1.595.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895543173/comprar) |
 | Jardim Paulista | 137 m² | R$ 1.595.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895302600/comprar) |
 | Jardim Paulista | 110 m² | R$ 1.596.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920775655/) |
+| Itaim Bibi | 126 m² | R$ 1.597.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-126m2-id-2920984322/) |
 | Itaim Bibi | 126 m² | R$ 1.597.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-126m2-id-2920927276/) |
 | Itaim Bibi | 126 m² | R$ 1.597.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-126m2-id-2919494501/) |
 | Itaim Bibi | 126 m² | R$ 1.597.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895431773/comprar) |
+| Jardim Paulista | 109 m² | R$ 1.599.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-109m2-id-2920974218/) |
 | Jardim Paulista | 109 m² | R$ 1.599.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-109m2-id-2920911369/) |
 | Jardim Paulista | 109 m² | R$ 1.599.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895507526/comprar) |
 | Itaim Bibi | 137 m² | R$ 1.599.370 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2920571291/) |
 | Itaim Bibi | 134 m² | R$ 1.599.390 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920647577/) |
 | Jardim Paulista | 135 m² | R$ 1.599.900 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895523056/comprar) |
+| Vila Nova Conceição | 102 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-102m2-id-2920983866/) |
 | Vila Nova Conceição | 102 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-102m2-id-2920921494/) |
 | Vila Nova Conceição | 117 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-vila-nova-conceicao-zona-sul-sao-paulo-sp-117m2-id-2918941269/) |
-| Itaim Bibi | 116 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920917132/) |
-| Itaim Bibi | 134 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920748644/) |
+| Itaim Bibi | 116 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920978627/) |
+| Itaim Bibi | 116 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920917132/) |
 | Itaim Bibi | 128 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-vila-olimpia-zona-sul-sao-paulo-sp-128m2-id-2920673770/) |
 | Itaim Bibi | 135 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920513778/) |
 | Itaim Bibi | 101 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-101m2-id-2920513774/) |
 | Itaim Bibi | 119 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-119m2-id-2920509265/) |
 | Itaim Bibi | 134 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920511563/) |
 | Itaim Bibi | 119 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-119m2-id-2920474164/) |
+| Itaim Bibi | 134 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920748644/) |
 | Itaim Bibi | 140 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2920142426/) |
-| Itaim Bibi | 103 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2919181576/) |
+| Jardim Paulista | 112 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-112m2-id-2920980099/) |
 | Jardim Paulista | 110 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-escritorio-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920925533/) |
 | Jardim Paulista | 112 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-112m2-id-2920923733/) |
 | Jardim Paulista | 109 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-109m2-id-2920921359/) |
@@ -606,7 +631,6 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 175 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-175m2-id-2920513855/) |
 | Jardim Paulista | 120 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2920509802/) |
 | Jardim Paulista | 140 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920708873/) |
-| Jardim Paulista | 140 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920472100/) |
 | Itaim Bibi | 128 m² | R$ 1.600.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895634682/comprar) |
 | Vila Nova Conceição | 102 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895500984/comprar) |
 | Vila Nova Conceição | 110 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894736958/comprar) |
@@ -619,7 +643,6 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 108 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895724571/comprar) |
 | Jardim Paulista | 109 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895368596/comprar) |
 | Jardim Paulista | 170 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893567273/comprar) |
-| Jardim Paulista | 100 m² | R$ 1.600.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894557210/comprar) |
 | Jardim Paulista | 140 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635205/comprar) |
 | Jardim Paulista | 115 m² | R$ 1.600.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893052494/comprar) |
 | Jardim Paulista | 118 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895601692/comprar) |
@@ -637,31 +660,29 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 140 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893546981/comprar) |
 | Itaim Bibi | 110 m² | R$ 1.610.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-closet-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2919895967/) |
 | Jardim Paulista | 100 m² | R$ 1.610.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920950582/) |
-| Jardim Paulista | 100 m² | R$ 1.610.000 | 5 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-5-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920423436/) |
-| Jardim Paulista | 137 m² | R$ 1.620.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920608645/) |
 | Jardim Paulista | 137 m² | R$ 1.620.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-acesso-24-horas-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920526338/) |
 | Jardim Paulista | 137 m² | R$ 1.620.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920511349/) |
 | Jardim Paulista | 200 m² | R$ 1.620.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895649521/comprar) |
 | Jardim Paulista | 163 m² | R$ 1.620.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894030150/comprar) |
+| Jardim Paulista | 115 m² | R$ 1.625.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920974853/) |
 | Jardim Paulista | 115 m² | R$ 1.625.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920911482/) |
 | Jardim Paulista | 114 m² | R$ 1.625.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894221300/comprar) |
 | Jardim Paulista | 115 m² | R$ 1.625.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894389687/comprar) |
-| Jardim Paulista | 100 m² | R$ 1.629.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920747823/) |
+| Jardim Paulista | 100 m² | R$ 1.629.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920747823/) |
 | Jardim Paulista | 100 m² | R$ 1.630.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920833533/) |
 | Jardim Paulista | 115 m² | R$ 1.630.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920719561/) |
-| Itaim Bibi | 117 m² | R$ 1.639.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-117m2-id-2920608481/) |
-| Itaim Bibi | 135 m² | R$ 1.645.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2919368262/) |
 | Itaim Bibi | 130 m² | R$ 1.649.020 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920115687/) |
+| Vila Nova Conceição | 102 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-olimpia-zona-sul-sao-paulo-sp-102m2-id-2920969365/) |
 | Itaim Bibi | 135 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920773066/) |
 | Itaim Bibi | 135 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920669172/) |
 | Itaim Bibi | 115 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2920664677/) |
 | Itaim Bibi | 108 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920467718/) |
+| Jardim Paulista | 110 m² | R$ 1.650.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920987834/) |
+| Jardim Paulista | 100 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920976343/) |
 | Jardim Paulista | 110 m² | R$ 1.650.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920928736/) |
 | Jardim Paulista | 100 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920913979/) |
 | Jardim Paulista | 160 m² | R$ 1.650.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-closet-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920848776/) |
-| Jardim Paulista | 130 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920700274/) |
 | Jardim Paulista | 218 m² | R$ 1.650.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-america-zona-sul-sao-paulo-sp-218m2-id-2920509270/) |
-| Jardim Paulista | 140 m² | R$ 1.650.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920340037/) |
 | Itaim Bibi | 111 m² | R$ 1.650.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895836569/comprar) |
 | Jardim Paulista | 135 m² | R$ 1.650.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895709094/comprar) |
 | Itaim Bibi | 130 m² | R$ 1.650.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894756922/comprar) |
@@ -669,25 +690,26 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 115 m² | R$ 1.650.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895706342/comprar) |
 | Jardim Paulista | 130 m² | R$ 1.650.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895769140/comprar) |
 | Jardim Paulista | 110 m² | R$ 1.650.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895395880/comprar) |
+| Jardim Paulista | 147 m² | R$ 1.673.500 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-147m2-id-2920976825/) |
 | Jardim Paulista | 147 m² | R$ 1.673.500 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-147m2-id-2920912093/) |
 | Vila Nova Conceição | 102 m² | R$ 1.675.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-vila-olimpia-zona-sul-sao-paulo-sp-102m2-id-2920909082/) |
 | Jardim Paulista | 140 m² | R$ 1.675.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920510332/) |
-| Jardim Paulista | 140 m² | R$ 1.675.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920473772/) |
 | Itaim Bibi | 124 m² | R$ 1.675.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894345866/comprar) |
 | Vila Nova Conceição | 111 m² | R$ 1.680.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2920797784/) |
 | Vila Nova Conceição | 111 m² | R$ 1.680.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2920007668/) |
+| Itaim Bibi | 103 m² | R$ 1.680.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2920989124/) |
 | Itaim Bibi | 103 m² | R$ 1.680.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2920931182/) |
 | Itaim Bibi | 120 m² | R$ 1.680.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920520197/) |
-| Itaim Bibi | 134 m² | R$ 1.680.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-lavabo-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2918942454/) |
 | Itaim Bibi | 103 m² | R$ 1.680.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895654586/comprar) |
-| Itaim Bibi | 134 m² | R$ 1.685.400 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2918857797/) |
 | Jardim Paulista | 129 m² | R$ 1.689.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895514011/comprar) |
 | Itaim Bibi | 130 m² | R$ 1.690.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920684148/) |
 | Itaim Bibi | 162 m² | R$ 1.690.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-playground-itaim-bibi-zona-sul-sao-paulo-sp-162m2-id-2920520521/) |
 | Itaim Bibi | 162 m² | R$ 1.690.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-162m2-id-2920507302/) |
 | Itaim Bibi | 162 m² | R$ 1.690.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-162m2-id-2920466756/) |
+| Jardim Paulista | 109 m² | R$ 1.690.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-109m2-id-2921029239/) |
+| Jardim Paulista | 128 m² | R$ 1.690.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920971761/) |
 | Jardim Paulista | 128 m² | R$ 1.690.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920909801/) |
-| Jardim Paulista | 128 m² | R$ 1.690.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920848461/) |
+| Jardim Paulista | 128 m² | R$ 1.690.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-banheira-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920848461/) |
 | Jardim Paulista | 110 m² | R$ 1.690.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-embutido-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920607666/) |
 | Itaim Bibi | 123 m² | R$ 1.690.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894220640/comprar) |
 | Jardim Paulista | 130 m² | R$ 1.690.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895834747/comprar) |
@@ -696,31 +718,31 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 128 m² | R$ 1.690.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894539377/comprar) |
 | Jardim Paulista | 113 m² | R$ 1.695.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-113m2-id-2920730539/) |
 | Jardim Paulista | 113 m² | R$ 1.695.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-interfone-jardim-paulista-zona-sul-sao-paulo-sp-113m2-id-2920640236/) |
+| Itaim Bibi | 100 m² | R$ 1.699.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920978268/) |
 | Itaim Bibi | 100 m² | R$ 1.699.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920922140/) |
-| Itaim Bibi | 112 m² | R$ 1.699.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920746384/) |
+| Itaim Bibi | 112 m² | R$ 1.699.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920746384/) |
 | Jardim Paulista | 100 m² | R$ 1.699.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895501462/comprar) |
 | Itaim Bibi | 115 m² | R$ 1.699.230 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2919866055/) |
 | Jardim Paulista | 178 m² | R$ 1.699.530 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-178m2-id-2920570814/) |
 | Itaim Bibi | 111 m² | R$ 1.699.810 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-111m2-id-2920586289/) |
+| Itaim Bibi | 112 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920977604/) |
+| Itaim Bibi | 116 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920975277/) |
 | Itaim Bibi | 112 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920917558/) |
 | Itaim Bibi | 116 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920912279/) |
 | Itaim Bibi | 117 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-117m2-id-2920673945/) |
 | Itaim Bibi | 117 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-117m2-id-2920664380/) |
+| Itaim Bibi | 115 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2920618647/) |
 | Itaim Bibi | 117 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-117m2-id-2920613586/) |
-| Itaim Bibi | 155 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-155m2-id-2920513761/) |
 | Itaim Bibi | 117 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-117m2-id-2920502788/) |
-| Itaim Bibi | 155 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-155m2-id-2920468294/) |
-| Itaim Bibi | 103 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2919125060/) |
-| Itaim Bibi | 106 m² | R$ 1.700.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-106m2-id-2919101155/) |
-| Itaim Bibi | 106 m² | R$ 1.700.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-106m2-id-2918875355/) |
+| Jardim Paulista | 140 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-paraiso-zona-sul-sao-paulo-sp-140m2-id-2920977203/) |
+| Jardim Paulista | 155 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-155m2-id-2920969305/) |
 | Jardim Paulista | 140 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-paraiso-zona-sul-sao-paulo-sp-140m2-id-2920914498/) |
 | Jardim Paulista | 155 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-155m2-id-2920914867/) |
 | Jardim Paulista | 128 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920909072/) |
 | Jardim Paulista | 170 m² | R$ 1.700.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-tanque-de-areia-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920866990/) |
-| Jardim Paulista | 131 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-131m2-id-2920660951/) |
-| Jardim Paulista | 135 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-embutido-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2920607247/) |
-| Jardim Paulista | 110 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920677925/) |
 | Jardim Paulista | 127 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-127m2-id-2920687497/) |
+| Jardim Paulista | 131 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-131m2-id-2920660951/) |
+| Jardim Paulista | 110 m² | R$ 1.700.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920677925/) |
 | Itaim Bibi | 136 m² | R$ 1.700.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895384556/comprar) |
 | Itaim Bibi | 132 m² | R$ 1.700.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895519240/comprar) |
 | Itaim Bibi | 112 m² | R$ 1.700.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895360742/comprar) |
@@ -741,21 +763,19 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 100 m² | R$ 1.708.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895474967/comprar) |
 | Jardim Paulista | 162 m² | R$ 1.710.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895166392/comprar) |
 | Itaim Bibi | 136 m² | R$ 1.718.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893753182/comprar) |
+| Jardim Paulista | 137 m² | R$ 1.723.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920970810/) |
 | Jardim Paulista | 137 m² | R$ 1.723.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920910349/) |
 | Jardim Paulista | 137 m² | R$ 1.723.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895430141/comprar) |
-| Itaim Bibi | 130 m² | R$ 1.740.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920775918/) |
-| Itaim Bibi | 130 m² | R$ 1.740.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920678471/) |
-| Itaim Bibi | 130 m² | R$ 1.740.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-americana-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920553139/) |
 | Jardim Paulista | 158 m² | R$ 1.741.000 | 5 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894951800/comprar) |
-| Itaim Bibi | 123 m² | R$ 1.748.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-123m2-id-2920748312/) |
+| Itaim Bibi | 123 m² | R$ 1.748.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-123m2-id-2921012744/) |
+| Itaim Bibi | 123 m² | R$ 1.748.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-lavanderia-coletiva-itaim-bibi-zona-sul-sao-paulo-sp-123m2-id-2920748312/) |
+| Jardim Paulista | 107 m² | R$ 1.749.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920955786/) |
 | Vila Nova Conceição | 137 m² | R$ 1.749.580 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-137m2-id-2920651080/) |
 | Itaim Bibi | 137 m² | R$ 1.750.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2920677338/) |
 | Itaim Bibi | 137 m² | R$ 1.750.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2916203604/) |
 | Jardim Paulista | 150 m² | R$ 1.750.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-banheira-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920775758/) |
-| Jardim Paulista | 150 m² | R$ 1.750.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920679243/) |
 | Jardim Paulista | 198 m² | R$ 1.750.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-jardim-paulista-zona-sul-sao-paulo-sp-198m2-id-2916058888/) |
 | Jardim Paulista | 150 m² | R$ 1.750.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920511960/) |
-| Jardim Paulista | 200 m² | R$ 1.750.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-200m2-id-2920405992/) |
 | Itaim Bibi | 129 m² | R$ 1.750.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895578473/comprar) |
 | Itaim Bibi | 144 m² | R$ 1.750.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894641649/comprar) |
 | Itaim Bibi | 135 m² | R$ 1.750.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893536669/comprar) |
@@ -766,21 +786,24 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 150 m² | R$ 1.750.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893388798/comprar) |
 | Itaim Bibi | 116 m² | R$ 1.755.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2919891115/) |
 | Jardim Paulista | 198 m² | R$ 1.760.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894784251/comprar) |
+| Itaim Bibi | 116 m² | R$ 1.765.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-flat-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920988689/) |
+| Jardim Paulista | 135 m² | R$ 1.770.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-banheira-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2921009340/) |
 | Jardim Paulista | 103 m² | R$ 1.775.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895384136/comprar) |
 | Jardim Paulista | 147 m² | R$ 1.775.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893572734/comprar) |
 | Itaim Bibi | 128 m² | R$ 1.780.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2920513371/) |
 | Itaim Bibi | 123 m² | R$ 1.780.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895583959/comprar) |
 | Jardim Paulista | 190 m² | R$ 1.789.140 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-190m2-id-2920572235/) |
+| Itaim Bibi | 116 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920976634/) |
 | Itaim Bibi | 116 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2920913569/) |
 | Itaim Bibi | 123 m² | R$ 1.790.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-fogao-itaim-bibi-zona-sul-sao-paulo-sp-123m2-id-2920774571/) |
+| Jardim Paulista | 181 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-181m2-id-2921021137/) |
+| Jardim Paulista | 110 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920988435/) |
+| Jardim Paulista | 181 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-181m2-id-2920955174/) |
 | Jardim Paulista | 110 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920928206/) |
-| Jardim Paulista | 181 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-181m2-id-2920824056/) |
-| Jardim Paulista | 181 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-181m2-id-2920811646/) |
-| Jardim Paulista | 181 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-181m2-id-2920786856/) |
-| Jardim Paulista | 181 m² | R$ 1.790.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-181m2-id-2920786660/) |
 | Itaim Bibi | 116 m² | R$ 1.790.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895339547/comprar) |
 | Jardim Paulista | 193 m² | R$ 1.790.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895492261/comprar) |
 | Jardim Paulista | 100 m² | R$ 1.790.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894440536/comprar) |
+| Jardim Paulista | 176 m² | R$ 1.795.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-176m2-id-2921013168/) |
 | Jardim Paulista | 150 m² | R$ 1.795.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895601732/comprar) |
 | Vila Nova Conceição | 127 m² | R$ 1.797.600 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-127m2-id-2919857670/) |
 | Vila Nova Conceição | 127 m² | R$ 1.797.860 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-127m2-id-2920832769/) |
@@ -798,15 +821,12 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 100 m² | R$ 1.800.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920243678/) |
 | Itaim Bibi | 115 m² | R$ 1.800.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2920140532/) |
 | Itaim Bibi | 145 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-escritorio-itaim-bibi-zona-sul-sao-paulo-sp-145m2-id-2919535266/) |
-| Itaim Bibi | 103 m² | R$ 1.800.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2920462601/) |
-| Itaim Bibi | 106 m² | R$ 1.800.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-interfone-itaim-bibi-zona-sul-sao-paulo-sp-106m2-id-2919051254/) |
-| Itaim Bibi | 110 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2918972726/) |
+| Jardim Paulista | 120 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2920982843/) |
+| Jardim Paulista | 108 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920976507/) |
 | Jardim Paulista | 120 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2920923242/) |
 | Jardim Paulista | 108 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920911424/) |
 | Jardim Paulista | 163 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-163m2-id-2920906414/) |
 | Jardim Paulista | 135 m² | R$ 1.800.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2920835949/) |
-| Jardim Paulista | 109 m² | R$ 1.800.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-109m2-id-2920470028/) |
-| Jardim Paulista | 170 m² | R$ 1.800.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920364638/) |
 | Itaim Bibi | 136 m² | R$ 1.800.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893909738/comprar) |
 | Itaim Bibi | 134 m² | R$ 1.800.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894555830/comprar) |
 | Itaim Bibi | 117 m² | R$ 1.800.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895012647/comprar) |
@@ -830,21 +850,25 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 100 m² | R$ 1.848.100 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920587477/) |
 | Vila Nova Conceição | 120 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2920683444/) |
 | Vila Nova Conceição | 100 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2920682364/) |
+| Itaim Bibi | 113 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-113m2-id-2920979989/) |
+| Itaim Bibi | 107 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920978171/) |
 | Itaim Bibi | 113 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-113m2-id-2920917613/) |
 | Itaim Bibi | 107 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920916469/) |
-| Itaim Bibi | 144 m² | R$ 1.850.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-sala-de-jantar-itaim-bibi-zona-sul-sao-paulo-sp-144m2-id-2920772398/) |
 | Itaim Bibi | 108 m² | R$ 1.850.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920689155/) |
+| Jardim Paulista | 130 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2921008253/) |
+| Jardim Paulista | 256 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-256m2-id-2920980307/) |
+| Jardim Paulista | 100 m² | R$ 1.850.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920976923/) |
 | Jardim Paulista | 256 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-256m2-id-2920919118/) |
 | Jardim Paulista | 100 m² | R$ 1.850.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920916317/) |
 | Jardim Paulista | 160 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920848190/) |
 | Jardim Paulista | 160 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920831055/) |
 | Jardim Paulista | 122 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-122m2-id-2920772686/) |
-| Jardim Paulista | 160 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-moveis-planejados-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920772465/) |
 | Jardim Paulista | 122 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-122m2-id-2920511105/) |
 | Jardim Paulista | 120 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2920678276/) |
 | Itaim Bibi | 113 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895681556/comprar) |
 | Itaim Bibi | 123 m² | R$ 1.850.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894369629/comprar) |
 | Itaim Bibi | 136 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894056430/comprar) |
+| Itaim Bibi | 163 m² | R$ 1.850.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893632332/comprar) |
 | Jardim Paulista | 145 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892786883/comprar) |
 | Jardim Paulista | 160 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894681227/comprar) |
 | Jardim Paulista | 170 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894919508/comprar) |
@@ -858,16 +882,16 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 141 m² | R$ 1.852.500 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895219072/comprar) |
 | Jardim Paulista | 168 m² | R$ 1.865.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895138809/comprar) |
 | Jardim Paulista | 113 m² | R$ 1.870.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895711872/comprar) |
-| Itaim Bibi | 163 m² | R$ 1.875.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893632332/comprar) |
 | Jardim Paulista | 163 m² | R$ 1.875.000 | 5 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894569958/comprar) |
+| Itaim Bibi | 120 m² | R$ 1.880.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920987366/) |
 | Itaim Bibi | 120 m² | R$ 1.880.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920928021/) |
+| Jardim Paulista | 122 m² | R$ 1.880.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-122m2-id-2920985761/) |
 | Jardim Paulista | 122 m² | R$ 1.880.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-122m2-id-2920927895/) |
 | Itaim Bibi | 120 m² | R$ 1.880.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895599274/comprar) |
 | Jardim Paulista | 122 m² | R$ 1.880.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895718029/comprar) |
+| Jardim Paulista | 149 m² | R$ 1.890.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-149m2-id-2920973435/) |
 | Jardim Paulista | 149 m² | R$ 1.890.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-149m2-id-2920905429/) |
-| Jardim Paulista | 135 m² | R$ 1.890.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2920783502/) |
 | Jardim Paulista | 172 m² | R$ 1.890.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-172m2-id-2920508264/) |
-| Jardim Paulista | 182 m² | R$ 1.890.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-182m2-id-2920472553/) |
 | Itaim Bibi | 130 m² | R$ 1.890.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895324199/comprar) |
 | Jardim Paulista | 149 m² | R$ 1.890.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895787124/comprar) |
 | Jardim Paulista | 170 m² | R$ 1.890.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635346/comprar) |
@@ -875,14 +899,16 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 190 m² | R$ 1.894.390 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-190m2-id-2920648014/) |
 | Vila Nova Conceição | 128 m² | R$ 1.899.120 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-128m2-id-2919858956/) |
 | Jardim Paulista | 171 m² | R$ 1.899.660 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-171m2-id-2920578507/) |
+| Vila Nova Conceição | 120 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2920977005/) |
 | Vila Nova Conceição | 120 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2920920058/) |
 | Vila Nova Conceição | 100 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2920021436/) |
+| Itaim Bibi | 139 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-139m2-id-2921009634/) |
 | Itaim Bibi | 108 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920866586/) |
 | Itaim Bibi | 108 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920805007/) |
-| Itaim Bibi | 115 m² | R$ 1.900.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2919231436/) |
+| Jardim Paulista | 140 m² | R$ 1.900.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920977026/) |
+| Jardim Paulista | 158 m² | R$ 1.900.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-jardim-paulista-zona-sul-sao-paulo-sp-158m2-id-2920971984/) |
 | Jardim Paulista | 140 m² | R$ 1.900.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-varanda-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920916307/) |
 | Jardim Paulista | 158 m² | R$ 1.900.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-158m2-id-2920911695/) |
-| Jardim Paulista | 200 m² | R$ 1.900.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-200m2-id-2909995058/) |
 | Jardim Paulista | 150 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920528233/) |
 | Vila Nova Conceição | 100 m² | R$ 1.900.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893229495/comprar) |
 | Vila Nova Conceição | 120 m² | R$ 1.900.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895406357/comprar) |
@@ -903,38 +929,44 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 100 m² | R$ 1.908.930 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894231606/comprar) |
 | Jardim Paulista | 250 m² | R$ 1.910.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895457871/comprar) |
 | Itaim Bibi | 112 m² | R$ 1.915.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895827877/comprar) |
-| Itaim Bibi | 140 m² | R$ 1.920.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2919101356/) |
+| Jardim Paulista | 108 m² | R$ 1.920.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920988162/) |
 | Jardim Paulista | 108 m² | R$ 1.920.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920923802/) |
-| Jardim Paulista | 108 m² | R$ 1.920.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920870755/) |
+| Jardim Paulista | 108 m² | R$ 1.920.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-108m2-id-2920870755/) |
 | Jardim Paulista | 108 m² | R$ 1.920.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895374610/comprar) |
+| Jardim Paulista | 132 m² | R$ 1.925.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-132m2-id-2920979378/) |
+| Jardim Paulista | 135 m² | R$ 1.925.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2920973205/) |
 | Jardim Paulista | 132 m² | R$ 1.925.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-132m2-id-2920917025/) |
 | Jardim Paulista | 135 m² | R$ 1.925.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-135m2-id-2920911773/) |
 | Jardim Paulista | 160 m² | R$ 1.928.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895526888/comprar) |
-| Itaim Bibi | 137 m² | R$ 1.930.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-interfone-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2920686768/) |
-| Itaim Bibi | 137 m² | R$ 1.930.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2919901602/) |
+| Itaim Bibi | 169 m² | R$ 1.930.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-169m2-id-2920972635/) |
+| Itaim Bibi | 137 m² | R$ 1.930.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2920686768/) |
 | Itaim Bibi | 140 m² | R$ 1.930.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2920466337/) |
 | Itaim Bibi | 120 m² | R$ 1.930.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894480914/comprar) |
 | Itaim Bibi | 145 m² | R$ 1.930.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895474553/comprar) |
 | Itaim Bibi | 140 m² | R$ 1.940.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2920919714/) |
+| Jardim Paulista | 149 m² | R$ 1.940.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-149m2-id-2920975251/) |
 | Jardim Paulista | 149 m² | R$ 1.940.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-149m2-id-2920911947/) |
 | Itaim Bibi | 140 m² | R$ 1.940.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895271158/comprar) |
 | Jardim Paulista | 149 m² | R$ 1.940.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893558851/comprar) |
 | Itaim Bibi | 139 m² | R$ 1.945.370 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894790368/comprar) |
 | Jardim Paulista | 128 m² | R$ 1.949.850 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920649765/) |
+| Vila Nova Conceição | 120 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2920975874/) |
 | Vila Nova Conceição | 120 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2920911884/) |
+| Itaim Bibi | 154 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-154m2-id-2920977966/) |
+| Itaim Bibi | 153 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-153m2-id-2920974724/) |
 | Itaim Bibi | 154 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-154m2-id-2920917057/) |
 | Itaim Bibi | 153 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-153m2-id-2920904920/) |
 | Itaim Bibi | 110 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920509662/) |
+| Jardim Paulista | 132 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-132m2-id-2920980738/) |
+| Jardim Paulista | 100 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920976602/) |
 | Jardim Paulista | 132 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-132m2-id-2920917617/) |
 | Jardim Paulista | 100 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920914471/) |
 | Jardim Paulista | 130 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920912589/) |
 | Jardim Paulista | 110 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920682807/) |
-| Jardim Paulista | 110 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-despensa-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920677740/) |
+| Jardim Paulista | 110 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920677740/) |
 | Jardim Paulista | 110 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920650487/) |
 | Jardim Paulista | 113 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-113m2-id-2920509089/) |
 | Jardim Paulista | 188 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-188m2-id-2920510978/) |
-| Jardim Paulista | 188 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-188m2-id-2920471251/) |
-| Jardim Paulista | 188 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-188m2-id-2920459569/) |
 | Vila Nova Conceição | 120 m² | R$ 1.950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895511168/comprar) |
 | Itaim Bibi | 153 m² | R$ 1.950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895648745/comprar) |
 | Itaim Bibi | 140 m² | R$ 1.950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894992892/comprar) |
@@ -945,25 +977,28 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 100 m² | R$ 1.950.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895137203/comprar) |
 | Jardim Paulista | 180 m² | R$ 1.950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894653147/comprar) |
 | Jardim Paulista | 110 m² | R$ 1.950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893975742/comprar) |
+| Jardim Paulista | 116 m² | R$ 1.955.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893486901/comprar) |
 | Jardim Paulista | 165 m² | R$ 1.957.225 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894958898/comprar) |
 | Jardim Paulista | 110 m² | R$ 1.960.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894789886/comprar) |
 | Itaim Bibi | 120 m² | R$ 1.964.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920144954/) |
 | Jardim Paulista | 170 m² | R$ 1.964.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895834434/comprar) |
+| Itaim Bibi | 138 m² | R$ 1.970.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2920986146/) |
+| Itaim Bibi | 138 m² | R$ 1.970.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2920926364/) |
 | Itaim Bibi | 145 m² | R$ 1.970.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-145m2-id-2920843926/) |
-| Jardim Paulista | 170 m² | R$ 1.970.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2874367931/) |
-| Itaim Bibi | 138 m² | R$ 1.970.000 | 3 | vivareal | [abrir](https://www.vivareal.com.br/imovel/apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-com-garagem-138m2-venda-RS1970000-id-2920926364/) |
 | Itaim Bibi | 138 m² | R$ 1.970.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895802507/comprar) |
+| Vila Nova Conceição | 100 m² | R$ 1.975.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2920972197/) |
 | Vila Nova Conceição | 100 m² | R$ 1.975.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2920911736/) |
 | Itaim Bibi | 102 m² | R$ 1.975.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-102m2-id-2920924892/) |
 | Vila Nova Conceição | 100 m² | R$ 1.975.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895438683/comprar) |
 | Itaim Bibi | 127 m² | R$ 1.975.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894474280/comprar) |
 | Itaim Bibi | 130 m² | R$ 1.980.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2876150101/) |
-| Itaim Bibi | 200 m² | R$ 1.980.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-itaim-bibi-zona-sul-sao-paulo-sp-200m2-id-2919114361/) |
+| Jardim Paulista | 220 m² | R$ 1.980.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-220m2-id-2920988596/) |
+| Jardim Paulista | 162 m² | R$ 1.980.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-162m2-id-2920988637/) |
+| Jardim Paulista | 116 m² | R$ 1.980.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-116m2-id-2920967493/) |
 | Jardim Paulista | 162 m² | R$ 1.980.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-162m2-id-2920928296/) |
 | Jardim Paulista | 116 m² | R$ 1.980.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-116m2-id-2920834090/) |
 | Jardim Paulista | 196 m² | R$ 1.980.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-196m2-id-2920772455/) |
 | Itaim Bibi | 126 m² | R$ 1.980.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895196638/comprar) |
-| Jardim Paulista | 116 m² | R$ 1.980.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893486901/comprar) |
 | Jardim Paulista | 162 m² | R$ 1.980.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895576223/comprar) |
 | Jardim Paulista | 220 m² | R$ 1.980.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895588162/comprar) |
 | Jardim Paulista | 115 m² | R$ 1.980.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893451787/comprar) |
@@ -972,17 +1007,20 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 190 m² | R$ 1.989.610 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-190m2-id-2920572766/) |
 | Vila Nova Conceição | 100 m² | R$ 1.990.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2920527185/) |
 | Itaim Bibi | 135 m² | R$ 1.990.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-deposito-privativo-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2899038284/) |
+| Jardim Paulista | 175 m² | R$ 1.990.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-175m2-id-2920984978/) |
 | Jardim Paulista | 239 m² | R$ 1.990.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-239m2-id-2920531150/) |
-| Jardim Paulista | 130 m² | R$ 1.990.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920653741/) |
 | Vila Nova Conceição | 128 m² | R$ 1.990.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895837269/comprar) |
 | Itaim Bibi | 116 m² | R$ 1.990.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635312/comprar) |
 | Jardim Paulista | 120 m² | R$ 1.990.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893099602/comprar) |
 | Jardim Paulista | 212 m² | R$ 1.990.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895751528/comprar) |
 | Jardim Paulista | 132 m² | R$ 1.990.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893405069/comprar) |
 | Jardim Paulista | 127 m² | R$ 1.990.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894616959/comprar) |
+| Jardim Paulista | 216 m² | R$ 1.991.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-216m2-id-2921013741/) |
 | Itaim Bibi | 115 m² | R$ 1.995.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2920140022/) |
+| Jardim Paulista | 124 m² | R$ 1.997.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-124m2-id-2920974461/) |
 | Jardim Paulista | 124 m² | R$ 1.997.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-124m2-id-2920910632/) |
 | Itaim Bibi | 162 m² | R$ 1.998.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895747724/comprar) |
+| Itaim Bibi | 108 m² | R$ 1.998.700 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-armario-de-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920972772/) |
 | Itaim Bibi | 108 m² | R$ 1.998.700 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920903812/) |
 | Itaim Bibi | 108 m² | R$ 1.998.700 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895735786/comprar) |
 | Jardim Paulista | 134 m² | R$ 1.999.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-134m2-id-2920919446/) |
@@ -991,31 +1029,36 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 201 m² | R$ 1.999.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894604607/comprar) |
 | Jardim Paulista | 135 m² | R$ 1.999.899 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894871232/comprar) |
 | Itaim Bibi | 148 m² | R$ 1.999.900 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-148m2-id-2920108517/) |
+| Vila Nova Conceição | 104 m² | R$ 2.000.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-escritorio-vila-nova-conceicao-zona-sul-sao-paulo-sp-104m2-id-2920966435/) |
 | Vila Nova Conceição | 104 m² | R$ 2.000.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-vila-nova-conceicao-zona-sul-sao-paulo-sp-104m2-id-2920787833/) |
+| Vila Nova Conceição | 104 m² | R$ 2.000.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-104m2-id-2920133111/) |
+| Itaim Bibi | 108 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2921023382/) |
+| Itaim Bibi | 158 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-158m2-id-2920978478/) |
+| Itaim Bibi | 115 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2920979995/) |
 | Itaim Bibi | 158 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-158m2-id-2920920438/) |
+| Itaim Bibi | 115 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2920919853/) |
 | Itaim Bibi | 135 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920912152/) |
 | Itaim Bibi | 130 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920888618/) |
 | Itaim Bibi | 118 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2920761049/) |
 | Itaim Bibi | 118 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2920684611/) |
-| Itaim Bibi | 135 m² | R$ 2.000.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2920676175/) |
 | Itaim Bibi | 178 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-178m2-id-2919725471/) |
 | Itaim Bibi | 128 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2920675467/) |
-| Itaim Bibi | 162 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-varanda-itaim-bibi-zona-sul-sao-paulo-sp-162m2-id-2918767625/) |
+| Jardim Paulista | 200 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-200m2-id-2921006318/) |
+| Jardim Paulista | 130 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920983055/) |
+| Jardim Paulista | 145 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-145m2-id-2920971771/) |
 | Jardim Paulista | 130 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920922850/) |
 | Jardim Paulista | 145 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-145m2-id-2920916226/) |
 | Jardim Paulista | 128 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-closet-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920876507/) |
-| Jardim Paulista | 128 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920849474/) |
+| Jardim Paulista | 128 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-128m2-id-2920849474/) |
 | Jardim Paulista | 160 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920847030/) |
 | Jardim Paulista | 160 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920836541/) |
-| Jardim Paulista | 138 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920790262/) |
+| Jardim Paulista | 138 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920790262/) |
 | Jardim Paulista | 110 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920773987/) |
-| Jardim Paulista | 137 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920773986/) |
-| Jardim Paulista | 138 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920760379/) |
+| Jardim Paulista | 138 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920760379/) |
 | Jardim Paulista | 110 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920707892/) |
 | Jardim Paulista | 110 m² | R$ 2.000.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920687479/) |
-| Jardim Paulista | 137 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920707258/) |
 | Jardim Paulista | 160 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920688487/) |
-| Itaim Bibi | 115 m² | R$ 2.000.000 | 3 | vivareal | [abrir](https://www.vivareal.com.br/imovel/apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-com-garagem-115m2-venda-RS2000000-id-2920919853/) |
+| Jardim Paulista | 137 m² | R$ 2.000.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920773986/) |
 | Itaim Bibi | 105 m² | R$ 2.000.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895472645/comprar) |
 | Itaim Bibi | 110 m² | R$ 2.000.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893408100/comprar) |
 | Itaim Bibi | 105 m² | R$ 2.000.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895009277/comprar) |
@@ -1040,15 +1083,16 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 108 m² | R$ 2.015.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920260002/) |
 | Jardim Paulista | 151 m² | R$ 2.019.230 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-151m2-id-2920571838/) |
 | Itaim Bibi | 108 m² | R$ 2.020.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2920676354/) |
+| Itaim Bibi | 110 m² | R$ 2.021.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2920963656/) |
 | Itaim Bibi | 108 m² | R$ 2.022.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2919962765/) |
 | Jardim Paulista | 140 m² | R$ 2.025.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893382566/comprar) |
 | Jardim Paulista | 230 m² | R$ 2.030.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893985928/comprar) |
 | Jardim Paulista | 220 m² | R$ 2.035.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894454147/comprar) |
-| Itaim Bibi | 115 m² | R$ 2.050.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2919233238/) |
+| Vila Nova Conceição | 100 m² | R$ 2.045.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893448629/comprar) |
 | Itaim Bibi | 101 m² | R$ 2.050.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895634566/comprar) |
 | Jardim Paulista | 150 m² | R$ 2.050.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895098764/comprar) |
+| Itaim Bibi | 120 m² | R$ 2.053.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920966960/) |
 | Jardim Paulista | 158 m² | R$ 2.066.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895357121/comprar) |
-| Vila Nova Conceição | 100 m² | R$ 2.070.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893448629/comprar) |
 | Jardim Paulista | 114 m² | R$ 2.070.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895655427/comprar) |
 | Itaim Bibi | 118 m² | R$ 2.075.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2920673344/) |
 | Itaim Bibi | 118 m² | R$ 2.075.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-118m2-id-2920521741/) |
@@ -1056,43 +1100,43 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 111 m² | R$ 2.080.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2919468113/) |
 | Vila Nova Conceição | 111 m² | R$ 2.080.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895716297/comprar) |
 | Jardim Paulista | 139 m² | R$ 2.080.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895396147/comprar) |
+| Jardim Paulista | 170 m² | R$ 2.085.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2921009533/) |
+| Jardim Paulista | 160 m² | R$ 2.087.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-160m2-id-2920983624/) |
 | Jardim Paulista | 160 m² | R$ 2.087.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895675054/comprar) |
 | Itaim Bibi | 180 m² | R$ 2.090.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-180m2-id-2920512428/) |
 | Jardim Paulista | 204 m² | R$ 2.090.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-204m2-id-2920708874/) |
 | Jardim Paulista | 204 m² | R$ 2.090.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-204m2-id-2920675257/) |
 | Jardim Paulista | 204 m² | R$ 2.090.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-204m2-id-2920650577/) |
-| Jardim Paulista | 168 m² | R$ 2.090.000 | 6 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-6-quartos-com-armario-embutido-jardim-paulista-zona-sul-sao-paulo-sp-168m2-id-2920609047/) |
-| Jardim Paulista | 210 m² | R$ 2.090.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-jardim-paulista-zona-sul-sao-paulo-sp-210m2-id-2920605848/) |
-| Jardim Paulista | 129 m² | R$ 2.090.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-129m2-id-2920472405/) |
+| Itaim Bibi | 147 m² | R$ 2.097.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-147m2-id-2920966334/) |
 | Itaim Bibi | 149 m² | R$ 2.097.870 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-149m2-id-2920109971/) |
 | Itaim Bibi | 149 m² | R$ 2.099.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-149m2-id-2920849771/) |
 | Jardim Paulista | 153 m² | R$ 2.099.200 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-153m2-id-2920499500/) |
 | Jardim Paulista | 140 m² | R$ 2.099.550 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920576169/) |
 | Vila Nova Conceição | 191 m² | R$ 2.099.890 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-191m2-id-2920572092/) |
+| Vila Nova Conceição | 111 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2920986304/) |
 | Vila Nova Conceição | 111 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2920689345/) |
 | Vila Nova Conceição | 111 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2920676672/) |
 | Vila Nova Conceição | 177 m² | R$ 2.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-vila-nova-conceicao-zona-sul-sao-paulo-sp-177m2-id-2920514550/) |
+| Vila Nova Conceição | 111 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-111m2-id-2920435926/) |
 | Vila Nova Conceição | 127 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-moema-zona-sul-sao-paulo-sp-127m2-id-2919683453/) |
-| Itaim Bibi | 107 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-quadra-poliesportiva-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920775894/) |
-| Itaim Bibi | 120 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920748656/) |
-| Itaim Bibi | 107 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920678854/) |
+| Itaim Bibi | 164 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-164m2-id-2920973912/) |
+| Itaim Bibi | 158 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-158m2-id-2920973574/) |
+| Itaim Bibi | 107 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920775894/) |
+| Itaim Bibi | 120 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-lavanderia-coletiva-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920748656/) |
+| Itaim Bibi | 107 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920678854/) |
 | Itaim Bibi | 107 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-quadra-poliesportiva-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2920615442/) |
-| Itaim Bibi | 120 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-acesso-24-horas-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2919990735/) |
-| Itaim Bibi | 120 m² | R$ 2.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-lavabo-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2919438852/) |
-| Itaim Bibi | 140 m² | R$ 2.100.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2918769261/) |
+| Jardim Paulista | 180 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-180m2-id-2921026684/) |
+| Jardim Paulista | 140 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920962479/) |
 | Jardim Paulista | 100 m² | R$ 2.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920782705/) |
 | Jardim Paulista | 198 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-198m2-id-2920774431/) |
 | Jardim Paulista | 156 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-156m2-id-2920759088/) |
 | Jardim Paulista | 100 m² | R$ 2.100.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920759463/) |
 | Jardim Paulista | 156 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-156m2-id-2920753272/) |
-| Jardim Paulista | 161 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-161m2-id-2920748465/) |
 | Jardim Paulista | 198 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-198m2-id-2920722876/) |
 | Jardim Paulista | 198 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-198m2-id-2920690844/) |
-| Jardim Paulista | 156 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-156m2-id-2920682032/) |
+| Jardim Paulista | 156 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-jardim-paulista-zona-sul-sao-paulo-sp-156m2-id-2920682032/) |
 | Jardim Paulista | 198 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-198m2-id-2920684460/) |
-| Jardim Paulista | 161 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-161m2-id-2920669273/) |
-| Jardim Paulista | 166 m² | R$ 2.100.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-166m2-id-2920607556/) |
-| Jardim Paulista | 170 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920639060/) |
+| Jardim Paulista | 170 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920748465/) |
 | Itaim Bibi | 101 m² | R$ 2.100.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895618448/comprar) |
 | Vila Nova Conceição | 111 m² | R$ 2.100.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895395926/comprar) |
 | Itaim Bibi | 120 m² | R$ 2.100.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895492131/comprar) |
@@ -1123,11 +1167,15 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 138 m² | R$ 2.149.290 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920581337/) |
 | Jardim Paulista | 107 m² | R$ 2.149.400 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920578837/) |
 | Vila Nova Conceição | 127 m² | R$ 2.150.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-moema-zona-sul-sao-paulo-sp-127m2-id-2920010641/) |
+| Itaim Bibi | 150 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2920973126/) |
+| Jardim Paulista | 170 m² | R$ 2.150.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-170m2-id-2919808210/) |
 | Itaim Bibi | 165 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-165m2-id-2920511175/) |
 | Itaim Bibi | 160 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-160m2-id-2920519683/) |
 | Itaim Bibi | 152 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-152m2-id-2920409237/) |
-| Itaim Bibi | 160 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-160m2-id-2920144641/) |
-| Jardim Paulista | 170 m² | R$ 2.150.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-170m2-id-2919808210/) |
+| Itaim Bibi | 160 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piso-de-madeira-itaim-bibi-zona-sul-sao-paulo-sp-160m2-id-2920144641/) |
+| Jardim Paulista | 140 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-140m2-id-2920982729/) |
+| Jardim Paulista | 114 m² | R$ 2.150.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-114m2-id-2920975745/) |
+| Jardim Paulista | 107 m² | R$ 2.150.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-107m2-id-2920969026/) |
 | Jardim Paulista | 146 m² | R$ 2.150.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-escritorio-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920725951/) |
 | Jardim Paulista | 127 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-127m2-id-2920655736/) |
 | Jardim Paulista | 200 m² | R$ 2.150.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-200m2-id-2920511987/) |
@@ -1144,23 +1192,21 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 140 m² | R$ 2.150.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895448366/comprar) |
 | Jardim Paulista | 237 m² | R$ 2.150.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894740519/comprar) |
 | Jardim Paulista | 278 m² | R$ 2.160.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-278m2-id-2920636935/) |
-| Itaim Bibi | 143 m² | R$ 2.180.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-143m2-id-2919127639/) |
-| Jardim Paulista | 110 m² | R$ 2.180.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920746117/) |
 | Jardim Paulista | 120 m² | R$ 2.189.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895203393/comprar) |
 | Itaim Bibi | 187 m² | R$ 2.189.690 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-187m2-id-2920118347/) |
 | Itaim Bibi | 168 m² | R$ 2.190.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-168m2-id-2920637343/) |
-| Jardim Paulista | 115 m² | R$ 2.190.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920773075/) |
-| Jardim Paulista | 115 m² | R$ 2.190.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-americana-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920691133/) |
+| Jardim Paulista | 115 m² | R$ 2.190.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-americana-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920773075/) |
+| Jardim Paulista | 115 m² | R$ 2.190.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920691133/) |
 | Jardim Paulista | 115 m² | R$ 2.190.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920681978/) |
 | Itaim Bibi | 132 m² | R$ 2.190.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892851420/comprar) |
 | Itaim Bibi | 110 m² | R$ 2.190.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895808634/comprar) |
-| Vila Nova Conceição | 120 m² | R$ 2.195.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2917713646/) |
 | Jardim Paulista | 207 m² | R$ 2.198.880 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-207m2-id-2920571734/) |
 | Itaim Bibi | 140 m² | R$ 2.199.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894774988/comprar) |
 | Jardim Paulista | 222 m² | R$ 2.199.620 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-jardim-paulista-zona-sul-sao-paulo-sp-222m2-id-2920572770/) |
 | Itaim Bibi | 150 m² | R$ 2.199.790 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2920581885/) |
 | Itaim Bibi | 187 m² | R$ 2.199.850 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-187m2-id-2920589569/) |
 | Jardim Paulista | 152 m² | R$ 2.199.990 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895479853/comprar) |
+| Vila Nova Conceição | 120 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2920990535/) |
 | Vila Nova Conceição | 127 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-127m2-id-2920690244/) |
 | Vila Nova Conceição | 116 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-116m2-id-2920507211/) |
 | Vila Nova Conceição | 151 m² | R$ 2.200.000 | 7 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-7-quartos-com-hall-de-servico-independente-vila-olimpia-zona-sul-sao-paulo-sp-151m2-id-2920422356/) |
@@ -1168,7 +1214,6 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 120 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-120m2-id-2920016983/) |
 | Vila Nova Conceição | 103 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-103m2-id-2919849035/) |
 | Vila Nova Conceição | 104 m² | R$ 2.200.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-104m2-id-2918966645/) |
-| Itaim Bibi | 163 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-espaco-gourmet-itaim-bibi-zona-sul-sao-paulo-sp-163m2-id-2920862454/) |
 | Itaim Bibi | 141 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-141m2-id-2920755211/) |
 | Itaim Bibi | 115 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2920672932/) |
 | Itaim Bibi | 138 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2920512321/) |
@@ -1176,16 +1221,21 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 150 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2920608024/) |
 | Itaim Bibi | 140 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2919717759/) |
 | Itaim Bibi | 130 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2919598459/) |
+| Jardim Paulista | 200 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-200m2-id-2921024054/) |
+| Jardim Paulista | 150 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2921016386/) |
+| Jardim Paulista | 170 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920988218/) |
+| Jardim Paulista | 216 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-216m2-id-2920981671/) |
+| Jardim Paulista | 158 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-158m2-id-2920976200/) |
+| Jardim Paulista | 136 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-136m2-id-2920973639/) |
+| Jardim Paulista | 100 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920959689/) |
 | Jardim Paulista | 150 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920889566/) |
 | Jardim Paulista | 150 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920806670/) |
 | Jardim Paulista | 170 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-170m2-id-2920786478/) |
 | Jardim Paulista | 150 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920780150/) |
-| Jardim Paulista | 277 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-277m2-id-2920760601/) |
 | Jardim Paulista | 122 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-122m2-id-2920745981/) |
 | Jardim Paulista | 190 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-190m2-id-2920689072/) |
 | Jardim Paulista | 150 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920678177/) |
 | Jardim Paulista | 150 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920592837/) |
-| Jardim Paulista | 193 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-193m2-id-2920378384/) |
 | Vila Nova Conceição | 120 m² | R$ 2.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892812510/comprar) |
 | Itaim Bibi | 118 m² | R$ 2.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894258552/comprar) |
 | Itaim Bibi | 163 m² | R$ 2.200.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895805888/comprar) |
@@ -1213,30 +1263,36 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 157 m² | R$ 2.200.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895221473/comprar) |
 | Jardim Paulista | 170 m² | R$ 2.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894793997/comprar) |
 | Jardim Paulista | 210 m² | R$ 2.200.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893577938/comprar) |
+| Jardim Paulista | 118 m² | R$ 2.202.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-118m2-id-2920977454/) |
 | Jardim Paulista | 118 m² | R$ 2.202.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892787168/comprar) |
 | Jardim Paulista | 120 m² | R$ 2.210.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2920750044/) |
 | Jardim Paulista | 120 m² | R$ 2.210.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2920689371/) |
 | Vila Nova Conceição | 127 m² | R$ 2.215.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-127m2-id-2919832337/) |
 | Jardim Paulista | 130 m² | R$ 2.215.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920731944/) |
+| Vila Nova Conceição | 128 m² | R$ 2.220.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-piscina-vila-olimpia-zona-sul-sao-paulo-sp-128m2-id-2920974897/) |
 | Itaim Bibi | 120 m² | R$ 2.220.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920682583/) |
-| Itaim Bibi | 112 m² | R$ 2.220.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920674461/) |
+| Itaim Bibi | 112 m² | R$ 2.220.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920674461/) |
 | Itaim Bibi | 112 m² | R$ 2.220.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2920619635/) |
 | Itaim Bibi | 115 m² | R$ 2.220.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894493326/comprar) |
 | Jardim Paulista | 102 m² | R$ 2.225.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895067847/comprar) |
 | Jardim Paulista | 210 m² | R$ 2.227.500 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893885948/comprar) |
 | Itaim Bibi | 108 m² | R$ 2.228.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895663147/comprar) |
+| Itaim Bibi | 119 m² | R$ 2.239.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-119m2-id-2920962789/) |
+| Jardim Paulista | 110 m² | R$ 2.240.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920984749/) |
 | Itaim Bibi | 120 m² | R$ 2.240.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893651886/comprar) |
 | Jardim Paulista | 167 m² | R$ 2.244.400 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-167m2-id-2920571929/) |
+| Jardim Paulista | 142 m² | R$ 2.245.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-142m2-id-2920977494/) |
 | Jardim Paulista | 142 m² | R$ 2.245.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895614751/comprar) |
 | Vila Nova Conceição | 151 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-vila-olimpia-zona-sul-sao-paulo-sp-151m2-id-2920836542/) |
 | Vila Nova Conceição | 128 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-128m2-id-2920706800/) |
 | Vila Nova Conceição | 127 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-127m2-id-2918737980/) |
+| Itaim Bibi | 120 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920975480/) |
 | Itaim Bibi | 130 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920774197/) |
+| Jardim Paulista | 151 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-151m2-id-2920981010/) |
+| Jardim Paulista | 137 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920978392/) |
 | Jardim Paulista | 210 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-210m2-id-2920844704/) |
+| Jardim Paulista | 180 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-180m2-id-2920678502/) |
 | Jardim Paulista | 117 m² | R$ 2.250.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-117m2-id-2920779745/) |
-| Jardim Paulista | 180 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-180m2-id-2920678502/) |
-| Jardim Paulista | 180 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-180m2-id-2920593373/) |
-| Jardim Paulista | 117 m² | R$ 2.250.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-117m2-id-2920673621/) |
 | Itaim Bibi | 120 m² | R$ 2.250.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895543177/comprar) |
 | Itaim Bibi | 120 m² | R$ 2.250.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893141559/comprar) |
 | Itaim Bibi | 133 m² | R$ 2.250.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895339688/comprar) |
@@ -1249,12 +1305,14 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 130 m² | R$ 2.250.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893103139/comprar) |
 | Jardim Paulista | 141 m² | R$ 2.250.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895600736/comprar) |
 
-## Aluguel (494)
+## Aluguel (496)
 
 | Bairro | Área | Preço | Quartos | Fonte | Link |
 |---|---|---|---|---|---|
 | Vila Nova Conceição | 140 m² | R$ 4.225/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-moema-zona-sul-sao-paulo-sp-140m2-id-2919068564/) |
 | Jardim Paulista | 100 m² | R$ 4.306/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894116441) |
+| Itaim Bibi | 100 m² | R$ 4.556/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2921026044/) |
+| Itaim Bibi | 100 m² | R$ 4.556/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920967346/) |
 | Jardim Paulista | 110 m² | R$ 4.713/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892785990) |
 | Jardim Paulista | 100 m² | R$ 5.334/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2915632972/) |
 | Jardim Paulista | 116 m² | R$ 5.765/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-zelador-jardim-paulista-zona-sul-sao-paulo-sp-116m2-id-2916394867/) |
@@ -1282,7 +1340,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 110 m² | R$ 6.770/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2918517135/) |
 | Jardim Paulista | 115 m² | R$ 6.853/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-closet-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2915988038/) |
 | Itaim Bibi | 103 m² | R$ 6.863/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2920412754/) |
-| Jardim Paulista | 110 m² | R$ 6.900/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920771701/) |
+| Jardim Paulista | 110 m² | R$ 6.900/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920771701/) |
 | Jardim Paulista | 100 m² | R$ 6.962/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-acesso-24-horas-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2841700727/) |
 | Jardim Paulista | 140 m² | R$ 6.970/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893028217) |
 | Itaim Bibi | 100 m² | R$ 7.000/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-armario-embutido-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920597434/) |
@@ -1334,13 +1392,17 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 110 m² | R$ 7.800/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-lavanderia-coletiva-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920361761/) |
 | Jardim Paulista | 115 m² | R$ 7.830/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920362150/) |
 | Jardim Paulista | 100 m² | R$ 7.834/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2918761378/) |
+| Jardim Paulista | 100 m² | R$ 7.834/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2915111546/) |
 | Itaim Bibi | 115 m² | R$ 7.883/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892847845) |
 | Jardim Paulista | 112 m² | R$ 7.894/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-112m2-id-2919678890/) |
 | Jardim Paulista | 110 m² | R$ 7.900/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-lavanderia-coletiva-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920360844/) |
 | Jardim Paulista | 115 m² | R$ 7.930/mês | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-1-quarto-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2918590282/) |
+| Itaim Bibi | 130 m² | R$ 7.942/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2921010266/) |
 | Itaim Bibi | 130 m² | R$ 7.942/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920678081/) |
 | Itaim Bibi | 130 m² | R$ 7.942/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920682827/) |
 | Jardim Paulista | 110 m² | R$ 7.960/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920361763/) |
+| Itaim Bibi | 130 m² | R$ 7.968/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2921023367/) |
+| Itaim Bibi | 130 m² | R$ 7.968/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920966306/) |
 | Jardim Paulista | 100 m² | R$ 7.980/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-100m2-id-2920361279/) |
 | Itaim Bibi | 120 m² | R$ 8.000/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2916053640/) |
 | Jardim Paulista | 130 m² | R$ 8.000/mês | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920361477/) |
@@ -1352,7 +1414,6 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 105 m² | R$ 8.080/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-jardim-america-zona-sul-sao-paulo-sp-105m2-id-2919548082/) |
 | Jardim Paulista | 120 m² | R$ 8.100/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2920225391/) |
 | Jardim Paulista | 130 m² | R$ 8.110/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920361772/) |
-| Itaim Bibi | 107 m² | R$ 8.112/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2919562456/) |
 | Jardim Paulista | 110 m² | R$ 8.129/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2917795904/) |
 | Jardim Paulista | 130 m² | R$ 8.173/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920207580/) |
 | Itaim Bibi | 102 m² | R$ 8.185/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-102m2-id-2920673959/) |
@@ -1392,8 +1453,8 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 103 m² | R$ 8.647/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-103m2-id-2920390836/) |
 | Jardim Paulista | 176 m² | R$ 8.659/mês | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-176m2-id-2920784679/) |
 | Itaim Bibi | 130 m² | R$ 8.669/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920670848/) |
-| Jardim Paulista | 150 m² | R$ 8.678/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920676205/) |
-| Jardim Paulista | 150 m² | R$ 8.678/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920611422/) |
+| Jardim Paulista | 150 m² | R$ 8.678/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920676205/) |
+| Jardim Paulista | 150 m² | R$ 8.678/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920611422/) |
 | Itaim Bibi | 102 m² | R$ 8.678/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895834515) |
 | Itaim Bibi | 100 m² | R$ 8.690/mês | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893132737) |
 | Jardim Paulista | 120 m² | R$ 8.700/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-120m2-id-2916427982/) |
@@ -1408,9 +1469,9 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 130 m² | R$ 8.835/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-lavanderia-coletiva-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920361385/) |
 | Jardim Paulista | 111 m² | R$ 8.847/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895654577) |
 | Jardim Paulista | 114 m² | R$ 8.853/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895769695) |
+| Jardim Paulista | 130 m² | R$ 8.860/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-jardins-zona-oeste-sao-paulo-sp-130m2-id-2909075384/) |
 | Jardim Paulista | 110 m² | R$ 8.860/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920362655/) |
 | Jardim Paulista | 115 m² | R$ 8.860/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-interfone-jardim-paulista-zona-sul-sao-paulo-sp-115m2-id-2920361755/) |
-| Jardim Paulista | 130 m² | R$ 8.860/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-jardim-jardins-zona-oeste-sao-paulo-sp-130m2-id-2909075384/) |
 | Jardim Paulista | 105 m² | R$ 8.865/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893171825) |
 | Itaim Bibi | 130 m² | R$ 8.877/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920677372/) |
 | Itaim Bibi | 130 m² | R$ 8.877/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920522175/) |
@@ -1425,7 +1486,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 110 m² | R$ 8.962/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920360613/) |
 | Jardim Paulista | 110 m² | R$ 8.962/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920226353/) |
 | Jardim Paulista | 129 m² | R$ 8.978/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-lavabo-jardim-paulista-zona-sul-sao-paulo-sp-129m2-id-2917484440/) |
-| Vila Nova Conceição | 100 m² | R$ 9.000/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2913707141/) |
+| Vila Nova Conceição | 100 m² | R$ 9.000/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2915073874/) |
 | Itaim Bibi | 100 m² | R$ 9.044/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920770297/) |
 | Itaim Bibi | 100 m² | R$ 9.044/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2920663179/) |
 | Jardim Paulista | 130 m² | R$ 9.050/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-interfone-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920363343/) |
@@ -1551,13 +1612,8 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920828472/) |
 | Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920808176/) |
 | Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920795499/) |
-| Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920783659/) |
-| Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920781045/) |
-| Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920781139/) |
-| Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920778355/) |
-| Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920777880/) |
-| Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920774677/) |
-| Jardim Paulista | 146 m² | R$ 10.469/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920762947/) |
+| Jardim Paulista | 146 m² | R$ 10.470/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920781045/) |
+| Jardim Paulista | 146 m² | R$ 10.470/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-jardim-paulista-zona-sul-sao-paulo-sp-146m2-id-2920774677/) |
 | Jardim Paulista | 142 m² | R$ 10.471/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894018704) |
 | Jardim Paulista | 130 m² | R$ 10.487/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-interfone-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2916420092/) |
 | Itaim Bibi | 112 m² | R$ 10.490/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895782132) |
@@ -1621,9 +1677,8 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 174 m² | R$ 11.038/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-174m2-id-2920526784/) |
 | Vila Nova Conceição | 102 m² | R$ 11.040/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-102m2-id-2919372271/) |
 | Jardim Paulista | 173 m² | R$ 11.050/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-173m2-id-2901988715/) |
-| Itaim Bibi | 134 m² | R$ 11.076/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-cozinha-americana-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2918477758/) |
 | Itaim Bibi | 134 m² | R$ 11.077/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2919074939/) |
-| Itaim Bibi | 136 m² | R$ 11.077/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-136m2-id-2920677036/) |
+| Itaim Bibi | 136 m² | R$ 11.077/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-136m2-id-2920677036/) |
 | Itaim Bibi | 130 m² | R$ 11.080/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2919918596/) |
 | Itaim Bibi | 160 m² | R$ 11.100/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-160m2-id-2920015040/) |
 | Jardim Paulista | 180 m² | R$ 11.103/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-jardim-america-zona-sul-sao-paulo-sp-180m2-id-2916052280/) |
@@ -1639,8 +1694,8 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 130 m² | R$ 11.350/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920360614/) |
 | Jardim Paulista | 130 m² | R$ 11.383/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-130m2-id-2920360606/) |
 | Itaim Bibi | 136 m² | R$ 11.387/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892842933) |
-| Jardim Paulista | 138 m² | R$ 11.400/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-jardim-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920790262/) |
-| Jardim Paulista | 138 m² | R$ 11.400/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920760379/) |
+| Jardim Paulista | 138 m² | R$ 11.400/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920790262/) |
+| Jardim Paulista | 138 m² | R$ 11.400/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-jardim-paulista-zona-sul-sao-paulo-sp-138m2-id-2920760379/) |
 | Jardim Paulista | 150 m² | R$ 11.400/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-lavanderia-coletiva-jardim-paulista-zona-sul-sao-paulo-sp-150m2-id-2920361464/) |
 | Jardim Paulista | 146 m² | R$ 11.451/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/892870727) |
 | Jardim Paulista | 174 m² | R$ 11.465/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-174m2-id-2920771693/) |
@@ -1682,12 +1737,14 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 107 m² | R$ 12.041/mês | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893230380) |
 | Itaim Bibi | 160 m² | R$ 12.055/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894288093) |
 | Itaim Bibi | 130 m² | R$ 12.100/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2920700837/) |
+| Itaim Bibi | 160 m² | R$ 12.100/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-160m2-id-2920722747/) |
 | Jardim Paulista | 155 m² | R$ 12.100/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-area-de-servico-jardim-paulista-zona-sul-sao-paulo-sp-155m2-id-2919412364/) |
 | Jardim Paulista | 180 m² | R$ 12.114/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895724318) |
 | Itaim Bibi | 134 m² | R$ 12.140/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2918857797/) |
 | Jardim Paulista | 108 m² | R$ 12.148/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895746850) |
 | Vila Nova Conceição | 132 m² | R$ 12.150/mês | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-flat-1-quarto-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-132m2-id-2919516462/) |
 | Vila Nova Conceição | 132 m² | R$ 12.150/mês | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-flat-1-quarto-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-132m2-id-2919477017/) |
+| Itaim Bibi | 115 m² | R$ 12.230/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2921013596/) |
 | Itaim Bibi | 120 m² | R$ 12.245/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2920134973/) |
 | Itaim Bibi | 130 m² | R$ 12.251/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895730167) |
 | Jardim Paulista | 159 m² | R$ 12.274/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895786973) |
@@ -1720,8 +1777,8 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Jardim Paulista | 137 m² | R$ 12.700/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-jardim-paulista-zona-sul-sao-paulo-sp-137m2-id-2920774753/) |
 | Jardim Paulista | 110 m² | R$ 12.700/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-cobertura-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2920691238/) |
 | Jardim Paulista | 110 m² | R$ 12.700/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-110m2-id-2918042379/) |
-| Itaim Bibi | 150 m² | R$ 12.720/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2920792800/) |
-| Itaim Bibi | 150 m² | R$ 12.720/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2920773865/) |
+| Itaim Bibi | 150 m² | R$ 12.720/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2920792800/) |
+| Itaim Bibi | 150 m² | R$ 12.720/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2920773865/) |
 | Jardim Paulista | 216 m² | R$ 12.726/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895680825) |
 | Vila Nova Conceição | 115 m² | R$ 12.745/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-porcelanato-vila-nova-conceicao-zona-sul-sao-paulo-sp-115m2-id-2916426985/) |
 | Jardim Paulista | 155 m² | R$ 12.783/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-armario-de-cozinha-jardim-paulista-zona-sul-sao-paulo-sp-155m2-id-2916605245/) |
@@ -1733,6 +1790,7 @@ Atualizado em 04/11/2026 23:55 UTC · 1736 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 121 m² | R$ 12.812/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895360691) |
 | Vila Nova Conceição | 125 m² | R$ 12.827/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895631730) |
 | Jardim Paulista | 105 m² | R$ 12.871/mês | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-cobertura-1-quarto-com-piscina-jardim-paulista-zona-sul-sao-paulo-sp-105m2-id-2920224501/) |
+| Itaim Bibi | 150 m² | R$ 12.880/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2921009755/) |
 | Itaim Bibi | 150 m² | R$ 12.880/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2920858694/) |
 | Jardim Paulista | 100 m² | R$ 12.885/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895744138) |
 | Vila Nova Conceição | 151 m² | R$ 12.900/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-escritorio-vila-nova-conceicao-zona-sul-sao-paulo-sp-151m2-id-2916324156/) |
