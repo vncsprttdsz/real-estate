@@ -710,34 +710,34 @@
   "rent_basis": "total",
   "groups": {
    "venda|Jardim Paulista": {
-    "n": 1629,
-    "ppm2": 15357.14,
+    "n": 1671,
+    "ppm2": 15400.0,
     "price": 2760000
    },
    "aluguel|Vila Nova Conceição": {
-    "n": 493,
-    "ppm2": 159.22,
-    "price": 23000
+    "n": 504,
+    "ppm2": 159.24,
+    "price": 23430
    },
    "aluguel|Itaim Bibi": {
-    "n": 537,
-    "ppm2": 119.81,
+    "n": 553,
+    "ppm2": 120.83,
     "price": 16000
    },
    "aluguel|Jardim Paulista": {
-    "n": 636,
-    "ppm2": 92.03,
+    "n": 641,
+    "ppm2": 92.07,
     "price": 12000
    },
    "venda|Itaim Bibi": {
-    "n": 1593,
-    "ppm2": 19718.31,
+    "n": 1579,
+    "ppm2": 19870.31,
     "price": 3200000
    },
    "venda|Vila Nova Conceição": {
-    "n": 1315,
-    "ppm2": 30500.28,
-    "price": 5495050
+    "n": 1324,
+    "ppm2": 30546.62,
+    "price": 5500000
    }
   }
  }
