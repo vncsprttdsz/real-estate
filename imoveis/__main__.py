@@ -12,6 +12,7 @@ import json
 import sys
 import traceback
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 from .common import ROOT, Config, Listing, norm
 from .http import Http
@@ -101,6 +102,92 @@ def write_report(listings: list[Listing], cfg: Config) -> None:
             )
         lines.append("")
     REPORT.write_text("\n".join(lines))
+
+
+SP = ZoneInfo("America/Sao_Paulo")
+
+
+def now_sp() -> datetime:
+    return datetime.now(SP)
+
+
+def digest_add(state: dict, day: str, kind: str, l: Listing, gap=None, old: float | None = None) -> None:
+    """Guarda um evento de compra para o resumo do dia (compacto; uma entrada por imóvel e tipo)."""
+    items = state.setdefault("digest", {}).setdefault(day, [])
+    if any(x["key"] == l.key and x["kind"] == kind for x in items):
+        return
+    items.append({"kind": kind, "key": l.key, "business": l.business, "nb": l.neighborhood.strip(), "area": l.area,
+                  "price": l.ref_price, "old": old, "url": l.url, "addr": l.address or l.title, "bedrooms": l.bedrooms,
+                  "source": l.source, "pct": round(gap.pct, 4) if gap else None, "scope": gap.scope if gap else None,
+                  "median": round(gap.median) if gap else None})
+
+
+def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list[tuple[str, str]]]:
+    """Resumo diário de compra: contagem por bairro, quedas e oportunidades."""
+    d = f"{day[8:10]}/{day[5:7]}"
+    new = [x for x in items if x["kind"] == "novo"]
+    drops = [x for x in items if x["kind"] == "queda"]
+    lim = -(cfg.bargain_pct or 0) / 100
+    opp = sorted([x for x in items if x["pct"] is not None and cfg.bargain_pct and x["pct"] <= lim], key=lambda x: x["pct"])
+    by_nb: dict = {}
+    for x in new:
+        by_nb[x["nb"]] = by_nb.get(x["nb"], 0) + 1
+    cap = f", até {brl(cfg.max_sale)}" if cfg.max_sale else ""
+    head = (f"{len(new)} anúncio{'s' if len(new) != 1 else ''} novo{'s' if len(new) != 1 else ''} de compra "
+            f"({cfg.alert_min_area:.0f} m² ou mais{cap})" + (": " + " · ".join(f"{k} {v}" for k, v in sorted(by_nb.items(), key=lambda kv: -kv[1])) if new else "."))
+    ppms = sorted(x["price"] / x["area"] for x in new if x["price"] and x["area"])
+    if ppms:
+        head += f"\nR$/m² mediano dos novos: {brl(ppms[len(ppms) // 2])}."
+    if drops:
+        head += f"\nQuedas de preço: {len(drops)}."
+    out = [(head, head)]
+
+    def line(x):
+        pct = f"{x['pct'] * 100:+.0f}%".replace("-", "−") if x["pct"] is not None else ""
+        ppm = brl(x["price"] / x["area"]) + "/m²" if x["price"] and x["area"] else ""
+        parts = [p for p in (pct, x["nb"], f"{x['area']:.0f} m²" if x["area"] else "", f"{x['bedrooms']} qts" if x["bedrooms"] else "",
+                             brl(x["price"]), ppm) if p]
+        t = " · ".join(parts)
+        if x["kind"] == "queda" and x.get("old"):
+            t += f"\nbaixou de {brl(x['old'])}"
+        if x.get("addr"):
+            t += "\n" + x["addr"]
+        return t + "\n" + x["url"]
+
+    if opp:
+        txt = f"💎 Possíveis oportunidades ({cfg.bargain_pct:.0f}%+ abaixo da mediana do seu recorte):\n\n" + "\n\n".join(line(x) for x in opp[:5])
+        if len(opp) > 5:
+            txt += f"\n\n… e mais {len(opp) - 5}."
+        out.append((txt, txt))
+    elif new:
+        best = sorted([x for x in new if x["pct"] is not None], key=lambda x: x["pct"])[:3]
+        if best:
+            txt = "Nenhum bem abaixo da mediana hoje. Os de menor R$/m² vs. a mediana do seu recorte:\n\n" + "\n\n".join(line(x) for x in best)
+            out.append((txt, txt))
+    return f"🏢 Compra — resumo de {d}", out
+
+
+def send_digests(state: dict, cfg: Config, notifier, now: datetime, dry_run: bool = False) -> list[str]:
+    """Envia o resumo do dia a partir de digest_hour; dias anteriores pendentes (coleta perdida) vão na próxima."""
+    if not cfg.digest:
+        return []
+    today, sent = now.strftime("%Y-%m-%d"), []
+    pending = state.setdefault("digest", {})
+    days = sorted(d for d in pending if d < today or (d == today and now.hour >= cfg.digest_hour))
+    if now.hour >= cfg.digest_hour and today not in days and state.get("digest_last") != today:
+        days.append(today)                                   # dia sem novidade: avisa mesmo assim (sinal de vida)
+    for day in days:
+        subject, items = digest_messages(day, pending.get(day, []), cfg)
+        if cfg.dashboard_url:
+            items[-1] = (items[-1][0] + f"\n\nPainel: {cfg.dashboard_url}#anuncios", items[-1][1])
+        if dry_run:
+            print(subject); [print(t) for t, _ in items]
+        else:
+            notifier.send(subject, items)
+        pending.pop(day, None)
+        state["digest_last"] = max(state.get("digest_last") or "", day)
+        sent.append(day)
+    return sent
 
 
 def market_rows(results: dict, catalog: dict, state: dict, ts: str, days: int = 7) -> list[dict]:
@@ -232,6 +319,26 @@ def run(dry_run: bool = False) -> int:
             uniq.append(item)
     drops = uniq
 
+    # Avisos: só imóveis com a área mínima de alerta; negócios do resumo diário vão para o resumo.
+    big = lambda l: not cfg.alert_min_area or (l.area is not None and l.area >= cfg.alert_min_area)
+    day = datetime.fromisoformat(ts).astimezone(SP).strftime("%Y-%m-%d")
+    if cfg.digest:
+        gap_of = {l.key: g for l, g, _ in bargains}
+        for l in new_items:
+            if l.business in cfg.digest and big(l):
+                g = gap_of.get(l.key) or (market.gap(l.to_dict()) if cfg.bargain_pct else None)
+                digest_add(state, day, "novo", l, g)
+        for l, g, old in bargains:
+            if l.business in cfg.digest and big(l):
+                digest_add(state, day, "novo" if old is None else "queda", l, g, old)
+        for l, old, _ in drops:
+            if l.business in cfg.digest and big(l):
+                digest_add(state, day, "queda", l, market.gap(l.to_dict()) if cfg.bargain_pct else None, old)
+    now_imm = lambda l: l.business in cfg.immediate and big(l)
+    new_items = [l for l in new_items if now_imm(l)]
+    drops = [x for x in drops if now_imm(x[0])]
+    bargains = [x for x in bargains if now_imm(x[0])]
+
     # Esquece anúncios sumidos há muito tempo (só de fontes que funcionaram neste ciclo).
     cutoff = datetime.now(timezone.utc).timestamp() - REMOVE_AFTER_DAYS * 86400
     for key in list(state["seen"]):
@@ -258,9 +365,11 @@ def run(dry_run: bool = False) -> int:
             print("NOVO:", describe(l)[0])
         for l, g, old in bargains:
             print(f"ABAIXO DA MEDIANA ({g.pct:+.0%} vs. {g.scope}):", describe(l)[0])
+        send_digests(json.loads(json.dumps(state)), cfg, notifier, now_sp(), dry_run=True)
         print(f"[dry-run] abaixo_mediana={len(bargains)} novos={len(new_items)} duplicados={dup_skipped} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
         return 0
 
+    send_digests(state, cfg, notifier, now_sp())
     if bargains:
         n = len(bargains)
         items = []
@@ -272,7 +381,8 @@ def run(dry_run: bool = False) -> int:
         notifier.send(f"💎 {n} imóve{'is' if n > 1 else 'l'} {cfg.bargain_pct:.0f}% ou mais abaixo da mediana", items)
     if new_items:
         n = len(new_items)
-        subject = f"🏠 {n} anúncio{'s' if n > 1 else ''} novo{'s' if n > 1 else ''} nos seus critérios"
+        what = ("aluguel" if n == 1 else "aluguéis") if all(l.business == "aluguel" for l in new_items) else ("anúncio" if n == 1 else "anúncios")
+        subject = f"🏠 {n} {what} novo{'s' if n > 1 else ''} nos seus critérios"
         notifier.send(subject, [describe(l) for l in new_items])
     if drops:
         items = [describe(l, f"{why}: {brl(old)} → {brl(l.ref_price)}") for l, old, why in drops]

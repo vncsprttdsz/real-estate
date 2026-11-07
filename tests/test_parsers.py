@@ -578,3 +578,74 @@ def test_bargain_market_falls_back_to_neighborhood():
     assert g.scope == "Itaim Bibi" and round(g.pct, 2) == -0.5
     assert m.gap({"business": "leilao", "neighborhood": "Itaim Bibi", "area": 120, "price": 1}) is None
     assert m.gap({"business": "venda", "neighborhood": "Moema", "area": 120, "price": 1_000_000}) is None
+
+
+def test_rent_immediate_purchase_daily_digest(tmp_path, monkeypatch):
+    """Aluguel ≥ 120 m² avisa na hora; compra vai para o resumo diário (a partir das 23h de Brasília)."""
+    from datetime import datetime
+    cfg = Config(neighborhoods=["Itaim Bibi", "Vila Nova Conceição"], min_area=100, max_sale=3_000_000, max_rent=20_000,
+                 bargain_pct=25, bargain_min_n=5, alert_min_area=120, immediate=("aluguel",), digest=("venda", "leilao"),
+                 digest_hour=23, dashboard_url="https://x/painel/")
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+    clock = {"t": datetime(2026, 11, 7, 15, 17, tzinfo=app.SP)}
+    monkeypatch.setattr(app, "now_sp", lambda: clock["t"])
+    monkeypatch.setattr(app, "now", lambda: clock["t"].astimezone(__import__("datetime").timezone.utc).isoformat(timespec="seconds"))
+
+    def V(i, price, area=130, nb="Itaim Bibi"):
+        return Listing("zap", str(i), f"https://z/{i}", "venda", neighborhood=nb, address=f"Rua {i} 1", area=area, price=price)
+
+    def A(i, total, area=130):
+        return Listing("zap", f"a{i}", f"https://z/a{i}", "aluguel", neighborhood="Itaim Bibi", address=f"Rua a{i} 1", area=area, price=total * .8, total_monthly=total)
+
+    base = [V(i, 2_400_000 + i * 10_000) for i in range(10)] + [A(i, 12_000 + i * 100) for i in range(10)] + [V(50, 2_700_000, nb="Vila Nova Conceição")]
+    batches = iter([
+        {"zap": base},
+        {"zap": base + [A(100, 12_550), A(101, 11_000, area=110), V(200, 2_500_000), V(201, 1_600_000, nb="Itaim Bibi"),
+                        V(202, 2_450_000, nb="Vila Nova Conceição"), V(203, 1_000_000, area=110)]},
+        {"zap": base + [A(100, 12_550), A(101, 11_000, area=110), V(200, 2_500_000), V(201, 1_600_000),
+                        V(202, 2_450_000, nb="Vila Nova Conceição"), V(203, 1_000_000, area=110)]},
+        {"zap": base},
+    ])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear()
+    app.run()                                                     # 15h: só o aluguel ≥ 120 m² avisa
+    urls = [t for _, items in sent for t, _ in items]
+    assert any("https://z/a100" in t for t in urls) and not any("https://z/a101" in t for t in urls)
+    assert not any("https://z/20" in t for t in urls)              # compra não avisa na hora
+    st = json.loads((tmp_path / "state.json").read_text())
+    day = list(st["digest"])[0]
+    assert {x["key"] for x in st["digest"][day]} == {"zap:venda:200", "zap:venda:201", "zap:venda:202"}   # 203 tem 110 m²
+    sent.clear(); clock["t"] = datetime(2026, 11, 7, 23, 17, tzinfo=app.SP)
+    app.run()                                                     # 23h: resumo do dia
+    dig = [(s, items) for s, items in sent if s.startswith("🏢")]
+    assert len(dig) == 1 and dig[0][0] == "🏢 Compra — resumo de 07/11"
+    text = "\n".join(t for t, _ in dig[0][1])
+    assert "3 anúncios novos de compra (120 m² ou mais, até R$ 3.000.000): Itaim Bibi 2 · Vila Nova Conceição 1" in text
+    assert "Possíveis oportunidades" in text and "https://z/201" in text and "Painel: https://x/painel/#anuncios" in text
+    assert "digest" not in json.loads((tmp_path / "state.json").read_text()) or not json.loads((tmp_path / "state.json").read_text())["digest"]
+    sent.clear(); clock["t"] = datetime(2026, 11, 8, 23, 17, tzinfo=app.SP)
+    app.run()                                                     # dia sem novidade: mensagem curta
+    dig = [items for s, items in sent if s.startswith("🏢")]
+    assert len(dig) == 1 and dig[0][0][0].startswith("0 anúncios novos de compra")
+
+
+def test_missed_digest_goes_out_next_run():
+    from datetime import datetime
+    cfg = Config(neighborhoods=["Itaim Bibi"], digest=("venda",), digest_hour=23, alert_min_area=120, bargain_pct=25)
+    state = {"digest": {"2026-11-07": [{"kind": "novo", "key": "k", "business": "venda", "nb": "Itaim Bibi", "area": 130, "price": 2e6,
+                                         "old": None, "url": "u", "addr": "R", "bedrooms": 3, "source": "zap", "pct": -0.1, "scope": "s", "median": 1}]}}
+    out = []
+    class N:
+        def send(self, s, items, footer=""): out.append(s)
+    assert app.send_digests(state, cfg, N(), datetime(2026, 11, 8, 1, 47, tzinfo=app.SP)) == ["2026-11-07"]
+    assert out == ["🏢 Compra — resumo de 07/11"] and state["digest"] == {} and state["digest_last"] == "2026-11-07"
+    assert app.send_digests(state, cfg, N(), datetime(2026, 11, 8, 15, 0, tzinfo=app.SP)) == []      # antes das 23h, nada

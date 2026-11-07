@@ -96,6 +96,11 @@ class Config:
     bargain_pct: float | None = None       # avisa anúncio X% ou mais abaixo da mediana (None = desligado)
     bargain_min_n: int = 15                # anúncios mínimos no grupo de comparação
     bargain_budget_only: bool = True       # só dentro do orçamento
+    alert_min_area: float = 0              # área mínima para qualquer aviso (o painel segue com area_minima_m2)
+    immediate: tuple = ("venda", "aluguel", "leilao")   # negócios avisados a cada coleta
+    digest: tuple = ()                     # negócios que vão para o resumo diário
+    digest_hour: int = 23                  # hora de Brasília a partir da qual o resumo do dia é enviado
+    dashboard_url: str = ""
 
     @property
     def neighborhoods_norm(self) -> set[str]:
@@ -118,6 +123,11 @@ class Config:
             bargain_pct=(float(raw["alerta_abaixo_mediana"]["pct"]) if (raw.get("alerta_abaixo_mediana") or {}).get("pct") else None),
             bargain_min_n=int((raw.get("alerta_abaixo_mediana") or {}).get("amostra_minima", 15)),
             bargain_budget_only=bool((raw.get("alerta_abaixo_mediana") or {}).get("so_no_orcamento", True)),
+            alert_min_area=float((raw.get("avisos") or {}).get("area_minima_m2") or 0),
+            immediate=tuple(norm(b) for b in (raw.get("avisos") or {}).get("imediato", ["venda", "aluguel", "leilao"])),
+            digest=tuple(norm(b) for b in (raw.get("avisos") or {}).get("resumo_diario", [])),
+            digest_hour=int((raw.get("avisos") or {}).get("resumo_diario_hora", 23)),
+            dashboard_url=str(raw.get("painel_url") or ""),
         )
 
     @staticmethod

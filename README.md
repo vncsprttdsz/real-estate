@@ -11,6 +11,11 @@ agendador do GitHub à 1h47), novos anúncios de
 | [QuintoAndar](https://www.quintoandar.com.br) | venda e aluguel |
 | [Portal Zuk](https://www.portalzuk.com.br) | leilões |
 
+Avisos (configuráveis em `avisos` no `config.yaml`): só imóveis com **120 m² ou mais**. **Aluguel** avisa a cada
+coleta (é o que exige resposta rápida). **Compra e leilão** chegam num **resumo diário** a partir das 23h: quantos
+anúncios novos, por bairro, quedas de preço e possíveis oportunidades (ou, sem nenhuma, os 3 de menor R$/m² em
+relação à mediana); se a coleta das 23h falhar, o resumo sai na seguinte.
+
 Você recebe um alerta quando:
 - entra um **anúncio novo** dentro dos critérios;
 - um anúncio que já existia **baixa de preço** (3% ou mais, configurável);
