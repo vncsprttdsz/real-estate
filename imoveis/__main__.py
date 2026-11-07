@@ -320,7 +320,8 @@ def run(dry_run: bool = False) -> int:
     drops = uniq
 
     # Avisos: só imóveis com a área mínima de alerta; negócios do resumo diário vão para o resumo.
-    big = lambda l: not cfg.alert_min_area or (l.area is not None and l.area >= cfg.alert_min_area)
+    big = lambda l: ((not cfg.alert_min_area or (l.area is not None and l.area >= cfg.alert_min_area))
+                     and (not cfg.alert_min_bedrooms or l.bedrooms is None or l.bedrooms >= cfg.alert_min_bedrooms))
     day = datetime.fromisoformat(ts).astimezone(SP).strftime("%Y-%m-%d")
     if cfg.digest:
         gap_of = {l.key: g for l, g, _ in bargains}

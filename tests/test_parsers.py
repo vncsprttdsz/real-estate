@@ -649,3 +649,26 @@ def test_missed_digest_goes_out_next_run():
     assert app.send_digests(state, cfg, N(), datetime(2026, 11, 8, 1, 47, tzinfo=app.SP)) == ["2026-11-07"]
     assert out == ["🏢 Compra — resumo de 07/11"] and state["digest"] == {} and state["digest_last"] == "2026-11-07"
     assert app.send_digests(state, cfg, N(), datetime(2026, 11, 8, 15, 0, tzinfo=app.SP)) == []      # antes das 23h, nada
+
+
+def test_alert_min_bedrooms(tmp_path, monkeypatch):
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_rent=20_000, alert_min_area=120, alert_min_bedrooms=3, immediate=("aluguel",))
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def A(i, q):
+        return Listing("zap", f"a{i}", f"https://z/a{i}", "aluguel", neighborhood="Itaim Bibi", address=f"Rua {chr(65 + i)} 1",
+                       area=150, price=10_000 + i, total_monthly=12_000 + i, bedrooms=q)
+    batches = iter([{"zap": [A(0, 3)]}, {"zap": [A(0, 3), A(1, 2), A(2, 3), A(3, None)]}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear(); app.run()
+    urls = " ".join(t for _, items in sent for t, _ in items)
+    assert "https://z/a2" in urls and "https://z/a3" in urls and "https://z/a1" not in urls
