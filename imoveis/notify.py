@@ -12,6 +12,7 @@ import base64
 import html
 import os
 import smtplib
+import re
 import sys
 from email.mime.text import MIMEText
 
@@ -150,8 +151,11 @@ class Notifier:
                 try:
                     r = http.get("https://api.callmebot.com/whatsapp.php",
                                  params={"phone": phone, "text": m, "apikey": key}, retries=2)
-                    if r.status_code != 200 or "error" in r.text.lower()[:500]:
-                        print(f"[erro] WhatsApp/CallMeBot: {r.status_code} {r.text[:300]}", file=sys.stderr)
+                    resumo = re.sub(r"\d{4,}", "…", re.sub(r"<[^>]+>|\s+", " ", r.text)).strip()[:160]   # sem telefone/chave
+                    if r.status_code != 200 or re.search(r"error|invalid|not (allowed|valid)", r.text[:800], re.I):
+                        print(f"[erro] WhatsApp/CallMeBot: HTTP {r.status_code} · {resumo}", file=sys.stderr)
+                    else:
+                        print(f"[ok] WhatsApp/CallMeBot: HTTP {r.status_code} · {resumo}")
                 except Exception as e:
                     print(f"[erro] WhatsApp/CallMeBot: {e}", file=sys.stderr)
 
