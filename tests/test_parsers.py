@@ -755,3 +755,33 @@ def test_area_filter_on_alerts(tmp_path, monkeypatch):
     app.run(); sent.clear(); app.run()
     urls = " ".join(t for _, items in sent for t, _ in items)
     assert "https://z/a1" in urls and "https://z/a3" in urls and "https://z/a2" not in urls
+
+
+def test_digest_window_after_send_hour_goes_to_next_day(tmp_path, monkeypatch):
+    from datetime import datetime
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_sale=3_000_000, alert_min_area=120, immediate=("aluguel",),
+                 digest=("venda",), digest_hour=20)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+    clock = {"t": datetime(2026, 11, 7, 19, 17, tzinfo=app.SP)}
+    monkeypatch.setattr(app, "now_sp", lambda: clock["t"])
+    monkeypatch.setattr(app, "now", lambda: clock["t"].astimezone(__import__("datetime").timezone.utc).isoformat(timespec="seconds"))
+    V = lambda i: Listing("zap", str(i), f"https://z/{i}", "venda", neighborhood="Itaim Bibi", address=f"Rua {chr(65 + i)} 1", area=130, price=2_000_000 + i, bedrooms=3)
+    batches = iter([{"zap": [V(0)]}, {"zap": [V(0), V(1)]}, {"zap": [V(0), V(1), V(2)]}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear()
+    clock["t"] = datetime(2026, 11, 7, 20, 17, tzinfo=app.SP); app.run()     # V1 aparece às 20h17 e o resumo sai
+    dig = [items for s, items in sent if s.startswith("🏢")]
+    assert len(dig) == 1 and dig[0][0][0].startswith("0 anúncios")          # V1 já é do resumo de amanhã
+    st = json.loads((tmp_path / "state.json").read_text())
+    assert list(st["digest"]) == ["2026-11-08"] and st["digest"]["2026-11-08"][0]["key"] == "zap:venda:1"
+    sent.clear(); clock["t"] = datetime(2026, 11, 7, 22, 17, tzinfo=app.SP); app.run()
+    assert not [s for s, _ in sent if s.startswith("🏢")]                   # nada de segunda mensagem no mesmo dia

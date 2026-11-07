@@ -11,7 +11,7 @@ import argparse
 import json
 import sys
 import traceback
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 from .common import ROOT, Config, Listing, norm
@@ -324,7 +324,9 @@ def run(dry_run: bool = False) -> int:
     big = lambda l: ((not cfg.alert_min_area or (l.area is not None and l.area >= cfg.alert_min_area))
                      and (not cfg.alert_min_bedrooms or l.bedrooms is None or l.bedrooms >= cfg.alert_min_bedrooms)
                      and in_area(l))
-    day = datetime.fromisoformat(ts).astimezone(SP).strftime("%Y-%m-%d")
+    # Resumo do dia D cobre de digest_hour de D−1 a digest_hour de D: o que aparece depois do envio vai para o de amanhã.
+    when = datetime.fromisoformat(ts).astimezone(SP)
+    day = (when + timedelta(days=1) if when.hour >= cfg.digest_hour else when).strftime("%Y-%m-%d")
     if cfg.digest:
         gap_of = {l.key: g for l, g, _ in bargains}
         for l in new_items:

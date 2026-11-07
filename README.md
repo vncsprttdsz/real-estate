@@ -14,9 +14,9 @@ agendador do GitHub à 1h47), novos anúncios de
 Avisos (configuráveis em `avisos` no `config.yaml`): só imóveis com **120 m² ou mais** e **3 quartos ou mais**.
 Nos avisos de aluguel, a descrição do anúncio (ZAP) é lida e o aviso ganha **⭐** e vai para o topo quando menciona
 andar alto ou vista livre (ou quando o andar informado é o 10º ou acima). **Aluguel** avisa a cada
-coleta (é o que exige resposta rápida). **Compra e leilão** chegam num **resumo diário** a partir das 23h: quantos
+coleta (é o que exige resposta rápida). **Compra e leilão** chegam num **resumo diário** às 20h (cobre das 20h da véspera às 20h do dia): quantos
 anúncios novos, por bairro, quedas de preço e possíveis oportunidades (ou, sem nenhuma, os 3 de menor R$/m² em
-relação à mediana); se a coleta das 23h falhar, o resumo sai na seguinte.
+relação à mediana); se a coleta das 20h falhar, o resumo sai na seguinte.
 
 Área de interesse: os anúncios guardam latitude/longitude (ZAP/Viva Real: endereço geocodificado ou posição
 aproximada; QuintoAndar: localização da busca). Em `docs/area.html` (link "Área no mapa" no painel) dá para ajustar
