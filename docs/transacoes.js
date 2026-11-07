@@ -209,7 +209,7 @@ function renderTxSeries() {
     grid.append(h("div", { class: nbs.length === 1 ? "c12" : nbs.length <= 2 ? "c6" : "c4" }, h("div", { class: "ink2", style: "font-size:12.5px;font-weight:600" }, b, h("span", { class: "muted", style: "font-weight:400" }, ` · ${FMT.int(rows.filter(r => ITBI.inRange(r, rg)).length)} transações`)), ch));
     txBandChart(ch, ser, ask, b, nbs.length === 1 ? 260 : 170);
   }
-  $("#txSeriesSub").textContent = `${txBasisLbl()} · mês da transação · ${TXJ.parametros.janela_meses} meses · faixa = metade central (P25–P75); meses com menos de ${TXJ.parametros.n_minimo} transações sem faixa${TX.band >= 0 ? " · " + ITBI.BANDS[TX.band][2] : ""} · pedido: radar de anúncios desde out/26 (só Itaim Bibi, Vila Nova Conceição e Jardim Paulista), ITBI até ${txYm(end)}`;
+  $("#txSeriesSub").textContent = `${txBasisLbl()} · mês da transação · ${TXJ.parametros.janela_meses} meses · faixa = metade central (P25–P75); meses com menos de ${TXJ.parametros.n_minimo} transações sem faixa${TX.band >= 0 ? " · " + ITBI.BANDS[TX.band][2] : ""} · pedido: radar de anúncios desde out/26 (só ${FMT.list(DATA?.criteria?.neighborhoods || [])}), ITBI até ${txYm(end)}`;
 }
 function txBandChart(host, ser, ask, title, H) {
   const W = host.clientWidth || 360, m = { t: 14, r: 10, b: 22, l: 48 }, nMin = TXJ.parametros.n_minimo, f = TXJ.parametros.fator_area_util;

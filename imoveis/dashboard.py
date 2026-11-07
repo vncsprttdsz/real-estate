@@ -5,7 +5,7 @@ import json
 from datetime import datetime, timezone
 from statistics import median
 
-from .common import ROOT, Config, Listing
+from .common import ROOT, Config, Listing, norm
 from . import dedupe
 
 CATALOG = ROOT / "data" / "catalogo.json"     # último retrato conhecido de cada anúncio
@@ -48,6 +48,9 @@ METHOD_NOTES = [
     ("2026-11-03", "Anúncios duplicados agrupados: a mesma unidade (rua, área, preço e negócio iguais) em mais de um portal "
                    "ou republicada no mesmo portal conta uma vez em contagens, medianas e novos. Contagens a partir desta data "
                    "ficam menores que as anteriores."),
+    ("2026-11-07", "Jardim Paulista retirado do monitoramento de anúncios: sai das contagens, medianas, listas e alertas. "
+                   "Somas que combinam bairros a partir desta data cobrem só Itaim Bibi e Vila Nova Conceição. "
+                   "Na aba Transações (ITBI) o bairro continua."),
     ("2026-11-03", "Inclusão do bairro Jardim Paulista. Os anúncios dele entram como carga inicial (não contam como novos) "
                    "e as somas que combinam bairros (ex.: anúncios monitorados) passam a incluí-lo a partir desta data."),
 ]
@@ -149,7 +152,9 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
         for l in listings:
             catalog[l.key] = l.to_dict()
     # Só guarda o que o monitor ainda lembra (mesma janela de 30 dias do estado).
-    catalog = {k: v for k, v in catalog.items() if k in state["seen"]}
+    # Só bairros configurados: um bairro retirado do config.yaml some do painel na próxima coleta.
+    nbs = cfg.neighborhoods_norm
+    catalog = {k: v for k, v in catalog.items() if k in state["seen"] and norm(v.get("neighborhood")) in nbs}
 
     last_ok = state.get("last_ok", {})
     rows = []

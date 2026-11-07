@@ -115,6 +115,12 @@ def run(dry_run: bool = False) -> int:
         known = {norm(v.get("neighborhood", "")) for v in dashboard._load(dashboard.CATALOG, {}).values()}
         state["initialized_nbs"] = {s: sorted(known & cfg.neighborhoods_norm) for s in state["initialized"]}
 
+    # Bairro retirado do config.yaml: esquece os anúncios dele e a carga inicial (se voltar, entra de novo como carga inicial).
+    cat_prev = dashboard._load(dashboard.CATALOG, {})
+    for k in [k for k in state["seen"] if k in cat_prev and norm(cat_prev[k].get("neighborhood")) not in cfg.neighborhoods_norm]:
+        del state["seen"][k]
+    state["initialized_nbs"] = {s: [n for n in v if n in cfg.neighborhoods_norm] for s, v in state["initialized_nbs"].items()}
+
     new_items, drops, first_load = [], [], {}
     # Unidades já conhecidas (qualquer fonte): republicação ou cópia em outro portal não gera alerta.
     catalog = dashboard._load(dashboard.CATALOG, {})

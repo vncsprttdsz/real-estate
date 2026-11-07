@@ -495,3 +495,31 @@ def test_rent_ppm2_uses_total_and_history_is_rebased():
     assert all(h["groups"]["venda|Itaim Bibi"]["ppm2"] == 20_000 and h["rent_basis"] == "total" for h in out)
     out[0]["groups"]["aluguel|Itaim Bibi"]["ppm2"] = 1.0
     assert dashboard.rebase_rent_history(out, catalog, state)[0]["groups"]["aluguel|Itaim Bibi"]["ppm2"] == 1.0  # só uma vez
+
+
+def test_removed_neighborhood_leaves_dashboard_and_state(tmp_path, monkeypatch):
+    """Bairro retirado do config: some do painel e do estado; se voltar, entra de novo como carga inicial."""
+    cfgs = {"v": Config(neighborhoods=["Itaim Bibi", "Jardim Paulista"], min_area=100)}
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfgs["v"]))
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": None)
+
+    def L(i, nb):
+        return Listing("zap", i, f"https://z/{i}", "venda", neighborhood=nb, area=120, price=2_000_000)
+
+    batches = iter([{"zap": [L("1", "Itaim Bibi"), L("2", "Jardim Paulista")]}, {"zap": [L("1", "Itaim Bibi")]}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run()
+    cfgs["v"] = Config(neighborhoods=["Itaim Bibi"], min_area=100)
+    app.run()
+    rows = json.loads((tmp_path / "dados.json").read_text())["listings"]
+    st = json.loads((tmp_path / "state.json").read_text())
+    assert [r["id"] for r in rows] == ["1"]
+    assert "zap:venda:2" not in st["seen"] and st["initialized_nbs"]["zap"] == ["itaim bibi"]
+    assert "zap:venda:2" not in json.loads((tmp_path / "catalogo.json").read_text())
