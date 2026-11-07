@@ -34,7 +34,7 @@ avisos:
   destacar_andar_alto_vista: true   # lê a descrição dos avisos imediatos e destaca (⭐) andar alto e vista livre
   imediato: [aluguel]          # avisa a cada coleta: anúncio novo, queda de preço e abaixo da mediana
   resumo_diario: [venda, leilao]   # uma mensagem por dia: quantos novos, bairros, quedas e oportunidades
-  resumo_diario_hora: 20       # enviado na 1ª coleta a partir desta hora (Brasília); cobre das 20h de ontem às 20h de hoje
+  resumo_diario_hora: 19       # enviado na 1ª coleta a partir desta hora (19h17); cobre das 19h de ontem às 19h de hoje
 painel_url: https://vncsprttdsz.github.io/real-estate/
 
 # Avisar também quando o preço de um anúncio já visto cair pelo menos X%
