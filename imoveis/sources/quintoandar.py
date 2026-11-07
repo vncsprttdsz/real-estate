@@ -110,6 +110,8 @@ def _fetch_api(http: Http, cfg: Config, business: str) -> list[dict]:
     headers = {"Origin": SITE, "Referer": SITE + "/", "Content-Type": "application/json"}
     houses = []
     for nb in cfg.neighborhoods:
+      if norm(nb) not in VIEWPORTS:
+          continue   # sem área de busca própria (ex.: Vila Uberabinha, coberta pelas áreas do Itaim e da VNC)
       for vi, vp in enumerate(viewports(nb)):   # bairros grandes: uma busca por faixa (duplicatas somem em fetch())
         offset = 0
         while offset < 1500:

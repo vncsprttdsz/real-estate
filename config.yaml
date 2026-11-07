@@ -2,6 +2,7 @@
 bairros:
   - Vila Nova Conceição
   - Itaim Bibi
+  - Vila Uberabinha        # entre Itaim e VNC (CEPs 04514–04520); ZAP/Viva Real classificam à parte
 cidade: São Paulo
 estado: SP
 
@@ -57,6 +58,7 @@ transacoes:
     Jardim Europa: [Jardim Europa]
     Jardim Paulistano: [Jardim Paulistano]
     Jardim América: [Jardim América]
+    Vila Uberabinha: [Vila Uberabinha]
   prefixos_cep: ["014", "045"]   # pré-filtro (Jardins/Jd. Europa/Paulistano e Itaim/VNC); acelera a leitura
   janela_meses: 24               # meses guardados e exibidos (a partir do mês mais recente com dados)
   fator_area_util: 0.72          # área útil do anúncio ≈ 0,72 × área construída do ITBI (434 prédios casados, 12 meses)
