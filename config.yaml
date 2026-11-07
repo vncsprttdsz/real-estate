@@ -67,3 +67,28 @@ transacoes:
   n_minimo: 5                    # células com menos transações ficam ocultas
   lote_minimo: 5                 # N+ transações no mesmo prédio e data = compra em bloco (fora das métricas)
   predio_novo_anos: 2            # ACC até N anos antes da transação = prédio novo (preço pode ser da planta)
+
+# Área de interesse (filtro geográfico dos avisos): polígono [lat, lon] desenhado em docs/area.html
+# (https://vncsprttdsz.github.io/real-estate/area.html → "Copiar coordenadas"). A coleta continua por bairro;
+# os avisos só valem para anúncios dentro do polígono. Rascunho a partir do mapa enviado em 07/11 — confirmar.
+area_de_interesse:
+  ativo: false
+  avisar_sem_coordenadas: true   # anúncio sem localização passa (raro)
+  poligono:
+    - [-23.5785, -46.6893]
+    - [-23.5762, -46.6830]
+    - [-23.5765, -46.6745]
+    - [-23.5795, -46.6690]
+    - [-23.5800, -46.6648]
+    - [-23.5815, -46.6595]
+    - [-23.5870, -46.6560]
+    - [-23.5945, -46.6575]
+    - [-23.5985, -46.6630]
+    - [-23.5995, -46.6690]
+    - [-23.5985, -46.6730]
+    - [-23.5930, -46.6735]
+    - [-23.5880, -46.6755]
+    - [-23.5905, -46.6800]
+    - [-23.5920, -46.6855]
+    - [-23.5935, -46.6905]
+    - [-23.5860, -46.6915]

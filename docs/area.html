@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Área de interesse — Radar de apartamentos</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root { --bg: #f6f7f9; --surface: #fff; --ink: #1b2430; --ink-2: #4a5566; --muted: #7a8494; --border: #dde1e7;
+  --accent: #2a6fdb; --in: #1f8a4c; --out: #b4bcc8; --poly: #2a6fdb; --r: 8px; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root { --bg: #11151b; --surface: #1a2029; --ink: #e8ecf1; --ink-2: #b5bfcc; --muted: #8893a3;
+  --border: #2c3542; --accent: #6ea2ff; --in: #4fc483; --out: #5b6676; --poly: #6ea2ff; color-scheme: dark; } }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; display: flex; flex-direction: column; }
+header { padding: 10px max(16px, env(safe-area-inset-left)) 8px; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; border-bottom: 1px solid var(--border); background: var(--surface); }
+header h1 { font-size: 16px; margin: 0; }
+header .sub { color: var(--muted); font-size: 12.5px; }
+header a { color: var(--accent); font-size: 12.5px; }
+#map { flex: 1; min-height: 300px; }
+.panel { background: var(--surface); border-top: 1px solid var(--border); padding: 10px max(16px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)); display: grid; gap: 8px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+button { height: 34px; padding: 0 12px; border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.stat { font-size: 12.5px; color: var(--ink-2); }
+.stat b { color: var(--ink); }
+.help { font-size: 12px; color: var(--muted); }
+textarea { width: 100%; height: 70px; font: 11.5px/1.35 ui-monospace, Menlo, monospace; border: 1px solid var(--border); border-radius: var(--r); background: var(--bg); color: var(--ink); padding: 6px; }
+.vx { width: 22px; height: 22px; border-radius: 50%; background: var(--surface); border: 3px solid var(--poly); box-shadow: 0 1px 3px rgba(0,0,0,.35); }
+.mid { width: 16px; height: 16px; border-radius: 50%; background: var(--poly); opacity: .55; color: #fff; font: 700 13px/16px system-ui; text-align: center; }
+.home { background: #d23c3c; color: #fff; border-radius: 6px; padding: 2px 6px; font: 600 11.5px system-ui; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+.ring-lbl { color: var(--ink-2); font: 600 11px system-ui; white-space: nowrap; text-shadow: 0 0 3px var(--surface), 0 0 3px var(--surface); }
+.leaflet-container { background: var(--bg); }
+.legend { display: inline-flex; gap: 10px; align-items: center; font-size: 12px; color: var(--ink-2); }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Área de interesse</h1>
+  <span class="sub">Arraste os pontos azuis para ajustar. Toque no “+” entre dois pontos para criar outro; toque num ponto para removê-lo.</span>
+  <a href="index.html">← Voltar ao painel</a>
+</header>
+<div id="map" role="application" aria-label="Mapa com a área de interesse editável"></div>
+<div class="panel">
+  <div class="row">
+    <button class="primary" type="button" id="copy">Copiar coordenadas</button>
+    <button type="button" id="reset">Restaurar rascunho</button>
+    <span class="legend"><span><span class="dot" style="background:var(--in)"></span>anúncio dentro</span><span><span class="dot" style="background:var(--out)"></span>fora</span></span>
+    <span class="stat" id="stat"></span>
+  </div>
+  <textarea id="coords" readonly aria-label="Coordenadas do polígono"></textarea>
+  <div class="help">Cole as coordenadas na conversa com o Claude para virar o filtro dos avisos. Os círculos mostram 10, 15 e 20 minutos a pé (≈ 0,8, 1,2 e 1,6 km em linha reta) da Av. Brig. Faria Lima, 3500.</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+"use strict";
+// Rascunho a partir do mapa desenhado em 07/11 (o mesmo do config.yaml, seção area_de_interesse)
+const DRAFT = [[-23.5785,-46.6893],[-23.5762,-46.6830],[-23.5765,-46.6745],[-23.5795,-46.6690],[-23.5800,-46.6648],[-23.5815,-46.6595],
+  [-23.5870,-46.6560],[-23.5945,-46.6575],[-23.5985,-46.6630],[-23.5995,-46.6690],[-23.5985,-46.6730],[-23.5930,-46.6735],[-23.5880,-46.6755],
+  [-23.5905,-46.6800],[-23.5920,-46.6855],[-23.5935,-46.6905],[-23.5860,-46.6915]];
+const HOME = [-23.5870, -46.6818];   // Av. Brig. Faria Lima, 3500 (aproximado)
+const KEY = "radar:area";
+let pts;
+try { pts = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { pts = null; }
+if (!Array.isArray(pts) || pts.length < 3) pts = DRAFT.map(p => p.slice());
+
+const map = L.map("map", { zoomControl: true, tap: true }).setView([-23.5875, -46.675], 15);
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+L.marker(HOME, { icon: L.divIcon({ className: "", html: '<div class="home">Faria Lima 3500</div>', iconSize: null, iconAnchor: [48, 10] }), keyboard: false, interactive: false }).addTo(map);
+[[800, "10 min"], [1200, "15 min"], [1600, "20 min"]].forEach(([r, t]) => {
+  L.circle(HOME, { radius: r, color: "#d23c3c", weight: 1, dashArray: "4 6", fill: false, interactive: false }).addTo(map);
+  const p = L.latLng(HOME[0] + r / 111320, HOME[1]);
+  L.marker(p, { icon: L.divIcon({ className: "", html: `<div class="ring-lbl">${t} a pé</div>`, iconSize: null, iconAnchor: [20, 14] }), interactive: false }).addTo(map);
+});
+
+const poly = L.polygon(pts, { color: css("--poly"), weight: 2, fillOpacity: .12 }).addTo(map);
+const handles = L.layerGroup().addTo(map);
+let listings = [], dots = L.layerGroup().addTo(map);
+
+function inside(lat, lon, P) {
+  let ok = false;
+  for (let i = 0, j = P.length - 1; i < P.length; j = i++) {
+    const [y1, x1] = P[i], [y2, x2] = P[j];
+    if ((y1 > lat) !== (y2 > lat) && lon < (x2 - x1) * (lat - y1) / (y2 - y1) + x1) ok = !ok;
+  }
+  return ok;
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(pts)); } catch {} }
+function text() { return "[" + pts.map(p => `[${p[0].toFixed(5)}, ${p[1].toFixed(5)}]`).join(", ") + "]"; }
+function refresh() {
+  poly.setLatLngs(pts);
+  document.getElementById("coords").value = text();
+  dots.clearLayers();
+  let n = 0, inn = 0;
+  for (const r of listings) {
+    const ok = inside(r.lat, r.lon, pts); n++; if (ok) inn++;
+    L.circleMarker([r.lat, r.lon], { radius: ok ? 4 : 3, weight: 0, fillOpacity: ok ? .85 : .5, fillColor: ok ? css("--in") : css("--out"), interactive: false }).addTo(dots);
+  }
+  document.getElementById("stat").innerHTML = n ? `Aluguéis ativos no painel: <b>${inn}</b> dentro de ${n} com localização · ${pts.length} pontos` : `${pts.length} pontos`;
+}
+function drawHandles() {
+  handles.clearLayers();
+  pts.forEach((p, i) => {
+    const m = L.marker(p, { draggable: true, icon: L.divIcon({ className: "", html: '<div class="vx"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }),
+      keyboard: true, title: `Ponto ${i + 1}: arraste para mover, toque para remover` });
+    m.on("drag", e => { const ll = e.target.getLatLng(); pts[i] = [ll.lat, ll.lng]; refresh(); });
+    m.on("dragend", () => { save(); drawHandles(); });
+    m.on("click", () => {
+      if (pts.length <= 3) return;
+      const box = document.createElement("div");
+      const b = document.createElement("button"); b.type = "button"; b.textContent = "Remover este ponto";
+      b.onclick = () => { pts.splice(i, 1); map.closePopup(); save(); refresh(); drawHandles(); };
+      box.append(b);
+      L.popup({ closeButton: true }).setLatLng(p).setContent(box).openOn(map);
+    });
+    handles.addLayer(m);
+    const q = pts[(i + 1) % pts.length], mid = [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+    const add = L.marker(mid, { icon: L.divIcon({ className: "", html: '<div class="mid">+</div>', iconSize: [16, 16], iconAnchor: [8, 8] }), title: "Criar ponto aqui" });
+    add.on("click", () => { pts.splice(i + 1, 0, mid); save(); refresh(); drawHandles(); });
+    handles.addLayer(add);
+  });
+}
+document.getElementById("reset").onclick = () => { pts = DRAFT.map(p => p.slice()); save(); refresh(); drawHandles(); };
+document.getElementById("copy").onclick = async e => {
+  const t = text(), b = e.currentTarget;
+  try { await navigator.clipboard.writeText(t); b.textContent = "Copiado ✓"; }
+  catch { const ta = document.getElementById("coords"); ta.focus(); ta.select(); b.textContent = "Selecione e copie abaixo"; }
+  setTimeout(() => b.textContent = "Copiar coordenadas", 2500);
+};
+fetch("dados.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.json()).then(d => {
+  listings = (d.listings || []).filter(r => r.active && r.business === "aluguel" && r.lat && r.lon);
+  refresh();
+}).catch(() => refresh());
+refresh(); drawHandles();
+map.fitBounds(poly.getBounds(), { padding: [14, 14] });
+</script>
+</body>
+</html>

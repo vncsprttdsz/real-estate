@@ -708,3 +708,50 @@ def test_immediate_alert_star(tmp_path, monkeypatch):
     app.run(); sent.clear(); app.run()
     subj, items = next((s, i) for s, i in sent if s.startswith("🏠"))
     assert "⭐ 1 com destaque" in subj and items[0][0].startswith("⭐ Andar alto · vista livre") and "https://z/a2" in items[0][0]
+
+
+def test_geo_inside_and_coordinates_parsed():
+    from imoveis import geo
+    from imoveis.sources import grupozap, quintoandar
+    sq = [[0, 0], [0, 10], [10, 10], [10, 0]]
+    assert geo.inside(5, 5, sq) and not geo.inside(11, 5, sq) and not geo.inside(5, -1, sq)
+    notch = [[0, 0], [0, 10], [10, 10], [10, 6], [4, 5], [10, 4], [10, 0]]   # "U" com entalhe no meio
+    assert geo.inside(9, 2, notch) and not geo.inside(9, 5, notch) and geo.inside(2, 5, notch)
+    item = {"listing": {"id": "1", "unitTypes": ["APARTMENT"], "usableAreas": [150], "bedrooms": [3],
+                        "pricingInfos": [{"businessType": "RENTAL", "price": "10000", "rentalInfo": {"monthlyRentalTotalPrice": "12000"}}],
+                        "address": {"neighborhood": "Itaim Bibi", "street": "Rua Joaquim Floriano", "streetNumber": "960",
+                                    "point": {"lat": -23.585669, "lon": -46.679271, "source": "GOOGLE", "aproximated": False}}}}
+    l = grupozap.parse_listing(item, "zap", "aluguel")
+    assert (l.lat, l.lon, l.geo_approx) == (-23.585669, -46.679271, False)
+    item["listing"]["address"]["point"] = {"approximateLat": -23.584, "approximateLon": -46.685}
+    l = grupozap.parse_listing(item, "zap", "aluguel")
+    assert (l.lat, l.lon, l.geo_approx) == (-23.584, -46.685, True)
+    h = {"id": 9, "area": 150, "type": "Apartamento", "forRent": True, "rentPrice": 10000, "totalCost": 12000,
+         "neighbourhood": "Itaim Bibi", "address": "Rua Itacema", "location": {"lat": -23.579689, "lon": -46.6745796}}
+    l = quintoandar.parse_house(h, "aluguel")
+    assert (l.lat, l.lon) == (-23.579689, -46.6745796)
+
+
+def test_area_filter_on_alerts(tmp_path, monkeypatch):
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_rent=20_000, alert_min_area=120, immediate=("aluguel",),
+                 area_polygon=[[-23.58, -46.69], [-23.58, -46.67], [-23.60, -46.67], [-23.60, -46.69]])
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def A(i, lat, lon):
+        return Listing("zap", f"a{i}", f"https://z/a{i}", "aluguel", neighborhood="Itaim Bibi", address=f"Rua {chr(65 + i)} 1",
+                       area=150, price=10_000 + i, total_monthly=12_000 + i, bedrooms=3, lat=lat, lon=lon)
+    batches = iter([{"zap": [A(0, -23.59, -46.68)]},
+                    {"zap": [A(0, -23.59, -46.68), A(1, -23.59, -46.68), A(2, -23.57, -46.68), A(3, None, None)]}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear(); app.run()
+    urls = " ".join(t for _, items in sent for t, _ in items)
+    assert "https://z/a1" in urls and "https://z/a3" in urls and "https://z/a2" not in urls

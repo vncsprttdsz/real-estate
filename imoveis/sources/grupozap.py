@@ -95,7 +95,18 @@ def parse_listing(item: dict, source: str, business: str) -> Listing | None:
         bedrooms=first_int(lst.get("bedrooms")),
         parking=first_int(lst.get("parkingSpaces")),
         floor=(first_int(lst.get("unitFloor")) or None),
+        **_coords(addr),
     )
+
+
+def _coords(addr: dict) -> dict:
+    """address.point: lat/lon exatos (Google) ou approximateLat/Lon quando o anunciante esconde o endereço."""
+    p = addr.get("point") or {}
+    lat, lon = to_float(p.get("lat")), to_float(p.get("lon"))
+    if lat and lon:
+        return {"lat": lat, "lon": lon, "geo_approx": bool(p.get("aproximated"))}
+    lat, lon = to_float(p.get("approximateLat")), to_float(p.get("approximateLon"))
+    return {"lat": lat, "lon": lon, "geo_approx": True} if lat and lon else {}
 
 
 # Do mais filtrado ao mais simples: a API recusa (HTTP 400) alguns parâmetros,

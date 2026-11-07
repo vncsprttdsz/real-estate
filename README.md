@@ -18,6 +18,11 @@ coleta (é o que exige resposta rápida). **Compra e leilão** chegam num **resu
 anúncios novos, por bairro, quedas de preço e possíveis oportunidades (ou, sem nenhuma, os 3 de menor R$/m² em
 relação à mediana); se a coleta das 23h falhar, o resumo sai na seguinte.
 
+Área de interesse: os anúncios guardam latitude/longitude (ZAP/Viva Real: endereço geocodificado ou posição
+aproximada; QuintoAndar: localização da busca). Em `docs/area.html` (link "Área no mapa" no painel) dá para ajustar
+o polígono no mapa e copiar as coordenadas para `area_de_interesse` no `config.yaml`; com `ativo: true`, os avisos
+só valem para anúncios dentro dele.
+
 Você recebe um alerta quando:
 - entra um **anúncio novo** dentro dos critérios;
 - um anúncio que já existia **baixa de preço** (3% ou mais, configurável);

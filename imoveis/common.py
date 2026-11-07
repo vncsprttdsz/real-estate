@@ -69,6 +69,9 @@ class Listing:
     parking: int | None = None
     extra: str = ""      # informação livre (ex.: data do leilão)
     floor: int | None = None   # andar da unidade, quando o portal informa
+    lat: float | None = None   # coordenadas do prédio (ou aproximadas, quando o anunciante esconde o endereço)
+    lon: float | None = None
+    geo_approx: bool = False
 
     @property
     def key(self) -> str:
@@ -103,6 +106,8 @@ class Config:
     digest: tuple = ()                     # negócios que vão para o resumo diário
     digest_hour: int = 23                  # hora de Brasília a partir da qual o resumo do dia é enviado
     dashboard_url: str = ""
+    area_polygon: list = field(default_factory=list)   # [[lat, lon], ...]; vazio = sem filtro de área
+    area_keep_unknown: bool = True         # anúncio sem coordenadas passa no filtro de área
     highlight: bool = False                # busca a descrição dos avisos imediatos e destaca andar alto / vista livre
 
     @property
@@ -133,6 +138,9 @@ class Config:
             digest_hour=int((raw.get("avisos") or {}).get("resumo_diario_hora", 23)),
             dashboard_url=str(raw.get("painel_url") or ""),
             highlight=bool((raw.get("avisos") or {}).get("destacar_andar_alto_vista", False)),
+            area_polygon=(((raw.get("area_de_interesse") or {}).get("poligono") or [])
+                          if (raw.get("area_de_interesse") or {}).get("ativo") else []),
+            area_keep_unknown=bool((raw.get("area_de_interesse") or {}).get("avisar_sem_coordenadas", True)),
         )
 
     @staticmethod

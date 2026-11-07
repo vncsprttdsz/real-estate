@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 from .common import ROOT, Config, Listing, norm
 from .http import Http
 from .notify import Notifier, brl, describe
-from . import bargain, dashboard, dedupe, details, macro
+from . import bargain, dashboard, dedupe, details, geo, macro
 from .sources import grupozap, quintoandar, zuk
 
 STATE = ROOT / "data" / "state.json"
@@ -320,8 +320,10 @@ def run(dry_run: bool = False) -> int:
     drops = uniq
 
     # Avisos: só imóveis com a área mínima de alerta; negócios do resumo diário vão para o resumo.
+    in_area = lambda l: (not cfg.area_polygon or (geo.inside(l.lat, l.lon, cfg.area_polygon) if l.lat and l.lon else cfg.area_keep_unknown))
     big = lambda l: ((not cfg.alert_min_area or (l.area is not None and l.area >= cfg.alert_min_area))
-                     and (not cfg.alert_min_bedrooms or l.bedrooms is None or l.bedrooms >= cfg.alert_min_bedrooms))
+                     and (not cfg.alert_min_bedrooms or l.bedrooms is None or l.bedrooms >= cfg.alert_min_bedrooms)
+                     and in_area(l))
     day = datetime.fromisoformat(ts).astimezone(SP).strftime("%Y-%m-%d")
     if cfg.digest:
         gap_of = {l.key: g for l, g, _ in bargains}

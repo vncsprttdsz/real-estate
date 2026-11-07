@@ -1329,6 +1329,7 @@ function renderHeader() {
       fr.stale ? h("span", { class: "ico warn", "aria-hidden": "true" }, "!") : null, `Dados de ${FMT.dateTime(DATA.updated_at)} (${FMT.ago(DATA.updated_at)})`),
     h("button", { class: "pill" + (bad ? " crit" : ""), type: "button", style: "cursor:pointer", onclick: () => setTab("qualidade"), title: "Ver status e cobertura das fontes" },
       h("span", { class: "ico " + (bad ? "crit" : "ok"), "aria-hidden": "true" }, bad ? "!" : "✓"), `${srcs.length - bad}/${srcs.length} fontes ok`),
+    h("a", { class: "btn sm", href: "area.html", title: "Ver e ajustar no mapa a área de interesse dos avisos" }, "Área no mapa"),
     h("button", { class: "btn sm", type: "button", "aria-label": "Alternar tema claro/escuro", onclick: toggleTheme }, "◐ Tema"));
   $("#defBudget").textContent = `Compra: preço pedido ≤ ${FMT.brlc(c.max_sale)}; aluguel: valor total ≤ ${FMT.brlc(c.max_rent)}/mês; leilão: lance ≤ teto de compra. Anúncio sem preço não é excluído. Definido em config.yaml.`;
   $("#footer").textContent = "Coleta própria em ZAP Imóveis, Viva Real, QuintoAndar e Portal Zuk, a cada 2 h (7h–23h). Preços pedidos, não fechados — confirme sempre no anúncio original.";
