@@ -523,3 +523,58 @@ def test_removed_neighborhood_leaves_dashboard_and_state(tmp_path, monkeypatch):
     assert [r["id"] for r in rows] == ["1"]
     assert "zap:venda:2" not in st["seen"] and st["initialized_nbs"]["zap"] == ["itaim bibi"]
     assert "zap:venda:2" not in json.loads((tmp_path / "catalogo.json").read_text())
+
+
+def test_bargain_alerts_below_median(tmp_path, monkeypatch):
+    """Novo anúncio ≥ 20% abaixo da mediana (bairro + faixa) vira aviso próprio; queda que cruza o limite também."""
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_sale=3_000_000, max_rent=20_000, bargain_pct=20, bargain_min_n=5)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def V(i, price, area=120, nb="Itaim Bibi"):
+        return Listing("zap", str(i), f"https://z/{i}", "venda", neighborhood=nb, address=f"Rua {i} 1", area=area, price=price)
+
+    def A(i, total, area=120):
+        return Listing("zap", f"a{i}", f"https://z/a{i}", "aluguel", neighborhood="Itaim Bibi", address=f"Rua a{i} 1", area=area, price=total * .8, total_monthly=total)
+
+    base = [V(i, 2_400_000 + i * 10_000) for i in range(10)] + [A(i, 12_000 + i * 100) for i in range(10)]   # ~R$ 20 mil/m²; ~R$ 100/m²·mês
+    batches = iter([
+        {"zap": base},
+        {"zap": base + [V(100, 1_700_000), V(101, 2_300_000), A(100, 8_500), V(102, 2_200_000)]},          # −29% e −4%; aluguel −29%
+        {"zap": base + [V(100, 1_700_000), V(101, 2_300_000), A(100, 8_500), V(102, 1_800_000)]},          # 102 baixou e cruzou o limite
+    ])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear()
+    app.run()
+    subj = [s for s, _ in sent]
+    bargain = next(items for s, items in sent if s.startswith("💎"))
+    texts = [t for t, _ in bargain]
+    assert len(texts) == 2 and any("https://z/100" in t for t in texts) and any("https://z/a100" in t for t in texts)
+    assert all("vs. mediana (Itaim Bibi, 100–150 m² no seu orçamento)" in t for t in texts)
+    import re as _re
+    assert all(int(_re.match(r"−(\d+)%", t).group(1)) >= 20 for t in texts)   # ex.: "−31% vs. mediana …"
+    novos = [t for s, items in sent if "novo" in s for t, _ in items]
+    assert any("https://z/101" in t for t in novos) and not any("https://z/100\n" in t + "\n" for t in novos)  # não repete
+    sent.clear()
+    app.run()
+    bargain = [items for s, items in sent if s.startswith("💎")]
+    assert len(bargain) == 1 and "https://z/102" in bargain[0][0][0] and "baixou de R$ 2.200.000 para R$ 1.800.000" in bargain[0][0][0]
+    assert not any("https://z/102" in t for s, items in sent if s.startswith("📉") for t, _ in items)
+
+
+def test_bargain_market_falls_back_to_neighborhood():
+    from imoveis import bargain
+    rows = [{"business": "venda", "neighborhood": "Itaim Bibi", "area": 120, "price": 2_400_000} for _ in range(20)]
+    m = bargain.Market(rows, min_n=15)
+    g = m.gap({"business": "venda", "neighborhood": "Itaim Bibi", "area": 400, "price": 4_000_000})   # faixa 300+ vazia → bairro
+    assert g.scope == "Itaim Bibi" and round(g.pct, 2) == -0.5
+    assert m.gap({"business": "leilao", "neighborhood": "Itaim Bibi", "area": 120, "price": 1}) is None
+    assert m.gap({"business": "venda", "neighborhood": "Moema", "area": 120, "price": 1_000_000}) is None

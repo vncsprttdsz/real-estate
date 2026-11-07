@@ -29,6 +29,15 @@ fontes:
 # Avisar também quando o preço de um anúncio já visto cair pelo menos X%
 alerta_queda_preco_pct: 3
 
+# Avisar quando um anúncio (novo, ou que baixou de preço) tiver R$/m² pelo menos X% abaixo da mediana dos
+# anúncios do mesmo bairro, negócio e faixa de área (aluguel: valor total por m²). pct: null desliga.
+# Com so_no_orcamento, compara só com os anúncios dentro do orçamento (no bairro inteiro, quase tudo que cabe
+# no teto já fica abaixo da mediana). 25% ≈ 3 avisos por dia (medido em 29/10–07/11).
+alerta_abaixo_mediana:
+  pct: 25
+  amostra_minima: 15      # anúncios no grupo de comparação; com menos, compara com o bairro inteiro
+  so_no_orcamento: true   # false = compara com o bairro inteiro e avisa mesmo acima do teto de preço
+
 # Histórico de transações (ITBI pago, Prefeitura de SP) — aba "Transações" do painel.
 # Bairro de cada transação = bairro dos Correios do CEP (a coluna "Bairro" do ITBI é texto livre e falha em 60% dos casos).
 transacoes:

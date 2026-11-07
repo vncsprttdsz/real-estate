@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from .common import ROOT, Config, Listing, norm
 from .http import Http
 from .notify import Notifier, brl, describe
-from . import dashboard, dedupe, macro
+from . import bargain, dashboard, dedupe, macro
 from .sources import grupozap, quintoandar, zuk
 
 STATE = ROOT / "data" / "state.json"
@@ -103,6 +103,26 @@ def write_report(listings: list[Listing], cfg: Config) -> None:
     REPORT.write_text("\n".join(lines))
 
 
+def market_rows(results: dict, catalog: dict, state: dict, ts: str, days: int = 7) -> list[dict]:
+    """Mercado para as medianas: anúncios desta coleta + os do catálogo vistos nos últimos dias; uma vez por imóvel."""
+    cutoff = datetime.fromisoformat(ts).timestamp() - days * 86400
+    rows = {}
+    for k, d in catalog.items():
+        s = state["seen"].get(k)
+        if s and datetime.fromisoformat(s["last_seen"]).timestamp() >= cutoff:
+            rows[k] = d
+    for ls in results.values():
+        for l in ls:
+            rows[l.key] = l.to_dict()
+    out, units = [], set()
+    for k, d in rows.items():
+        u = dedupe.key(d) or k
+        if u not in units:
+            units.add(u)
+            out.append(d)
+    return out
+
+
 def run(dry_run: bool = False) -> int:
     cfg = Config.load()
     state = load_state()
@@ -126,6 +146,7 @@ def run(dry_run: bool = False) -> int:
     catalog = dashboard._load(dashboard.CATALOG, {})
     known_units = {dedupe.key(d) for k, d in catalog.items() if k in state["seen"]} - {None}
     dup_skipped = 0
+    new_outside, price_cuts = [], []
     for source, listings in results.items():
         src_new = source not in state["initialized"]
         nbs_done = set(state["initialized_nbs"].get(source, []))
@@ -137,11 +158,13 @@ def run(dry_run: bool = False) -> int:
                 if initializing:
                     label = source if src_new else f"{source} ({l.neighborhood})"
                     first_load[label] = first_load.get(label, 0) + 1
-                elif cfg.in_budget(l):
-                    if unit and unit in known_units:
+                elif unit and unit in known_units:
+                    if cfg.in_budget(l):
                         dup_skipped += 1
-                    else:
-                        new_items.append(l)
+                elif cfg.in_budget(l):
+                    new_items.append(l)
+                elif cfg.bargain_pct and not cfg.bargain_budget_only:
+                    new_outside.append(l)
                 if unit:
                     known_units.add(unit)
                 state["seen"][l.key] = {
@@ -151,6 +174,8 @@ def run(dry_run: bool = False) -> int:
                 }
                 continue
             old_price = prev.get("price")
+            if old_price and l.ref_price and l.ref_price < old_price:
+                price_cuts.append((l, old_price))
             if cfg.in_budget(l) and old_price and l.ref_price and l.ref_price < old_price:
                 if not cfg.within_cap(l.business, old_price):
                     drops.append((l, old_price, "Baixou e entrou no seu orçamento"))
@@ -167,6 +192,36 @@ def run(dry_run: bool = False) -> int:
         seen_nbs = {norm(l.neighborhood) for l in listings}
         done = nbs_done | (cfg.neighborhoods_norm if source == "zuk" else seen_nbs & cfg.neighborhoods_norm)
         state["initialized_nbs"][source] = sorted(done)
+
+    # Abaixo da mediana: anúncios novos, ou que baixaram e cruzaram o limite.
+    bargains = []
+    if cfg.bargain_pct:
+        rows = market_rows(results, catalog, state, ts)
+        if cfg.bargain_budget_only:   # compara com o seu recorte: anúncios dentro do orçamento
+            rows = [d for d in rows if cfg.within_cap(d.get("business"), (d.get("total_monthly") or d.get("price")) if d.get("business") == "aluguel" else d.get("price"))]
+        market = bargain.Market(rows, cfg.bargain_min_n, " no seu orçamento" if cfg.bargain_budget_only else "")
+        lim = -cfg.bargain_pct / 100
+        for l in new_items + new_outside:
+            g = market.gap(l.to_dict())
+            if g and g.pct <= lim:
+                bargains.append((l, g, None))
+        for l, old in price_cuts:
+            if cfg.bargain_budget_only and not cfg.in_budget(l):
+                continue
+            d = l.to_dict()
+            g, g_old = market.gap(d), market.gap(d, old)
+            if g and g.pct <= lim and (g_old is None or g_old.pct > lim):
+                bargains.append((l, g, old))
+        seen_b, uniq_b = set(), []
+        for item in bargains:
+            k = dedupe.key(item[0].to_dict()) or item[0].key
+            if k not in seen_b:
+                seen_b.add(k)
+                uniq_b.append(item)
+        bargains = sorted(uniq_b, key=lambda x: x[1].pct)
+        shown = {b[0].key for b in bargains}
+        new_items = [l for l in new_items if l.key not in shown]   # não repete no aviso de "novos"
+        drops = [x for x in drops if x[0].key not in shown]
 
     # Mesma unidade em vários anúncios: um aviso de queda por unidade.
     seen_drop, uniq = set(), []
@@ -201,9 +256,20 @@ def run(dry_run: bool = False) -> int:
     if dry_run:
         for l in new_items:
             print("NOVO:", describe(l)[0])
-        print(f"[dry-run] novos={len(new_items)} duplicados={dup_skipped} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
+        for l, g, old in bargains:
+            print(f"ABAIXO DA MEDIANA ({g.pct:+.0%} vs. {g.scope}):", describe(l)[0])
+        print(f"[dry-run] abaixo_mediana={len(bargains)} novos={len(new_items)} duplicados={dup_skipped} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
         return 0
 
+    if bargains:
+        n = len(bargains)
+        items = []
+        for l, g, old in bargains:
+            unit = "/m²·mês" if l.business == "aluguel" else "/m²"
+            note = (f"{g.pct * 100:+.0f}% vs. mediana ({g.scope}): {brl(g.ppm)} vs. {brl(g.median)}{unit}".replace("-", "−")
+                    + (f" · baixou de {brl(old)} para {brl(l.ref_price)}" if old else ""))
+            items.append(describe(l, note))
+        notifier.send(f"💎 {n} imóve{'is' if n > 1 else 'l'} {cfg.bargain_pct:.0f}% ou mais abaixo da mediana", items)
     if new_items:
         n = len(new_items)
         subject = f"🏠 {n} anúncio{'s' if n > 1 else ''} novo{'s' if n > 1 else ''} nos seus critérios"
@@ -240,7 +306,7 @@ def run(dry_run: bool = False) -> int:
         macro_data = None
     dashboard.build(cfg, state, results, errors, macro_data)
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1, sort_keys=True))
-    print(f"novos={len(new_items)} duplicados={dup_skipped} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
+    print(f"abaixo_mediana={len(bargains)} novos={len(new_items)} duplicados={dup_skipped} quedas={len(drops)} carga_inicial={first_load} erros={list(errors)}")
     return 0
 
 

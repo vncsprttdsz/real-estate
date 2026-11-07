@@ -93,6 +93,9 @@ class Config:
     max_rent: float | None = None
     sources: dict = field(default_factory=dict)
     price_drop_pct: float = 3
+    bargain_pct: float | None = None       # avisa anúncio X% ou mais abaixo da mediana (None = desligado)
+    bargain_min_n: int = 15                # anúncios mínimos no grupo de comparação
+    bargain_budget_only: bool = True       # só dentro do orçamento
 
     @property
     def neighborhoods_norm(self) -> set[str]:
@@ -112,6 +115,9 @@ class Config:
             max_rent=raw.get("preco_max_aluguel"),
             sources=raw.get("fontes", {}),
             price_drop_pct=float(raw.get("alerta_queda_preco_pct") or 0),
+            bargain_pct=(float(raw["alerta_abaixo_mediana"]["pct"]) if (raw.get("alerta_abaixo_mediana") or {}).get("pct") else None),
+            bargain_min_n=int((raw.get("alerta_abaixo_mediana") or {}).get("amostra_minima", 15)),
+            bargain_budget_only=bool((raw.get("alerta_abaixo_mediana") or {}).get("so_no_orcamento", True)),
         )
 
     @staticmethod

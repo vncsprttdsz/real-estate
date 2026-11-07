@@ -14,6 +14,9 @@ agendador do GitHub à 1h47), novos anúncios de
 Você recebe um alerta quando:
 - entra um **anúncio novo** dentro dos critérios;
 - um anúncio que já existia **baixa de preço** (3% ou mais, configurável);
+- um anúncio novo (ou que baixou de preço) tem **R$/m² 25% ou mais abaixo da mediana** dos anúncios do seu
+  orçamento no mesmo bairro, negócio e faixa de área (aluguel pelo valor total/m²; configurável em
+  `alerta_abaixo_mediana` no `config.yaml`) — chega numa mensagem própria, "💎";
 - algum site **parar de responder** por 3 ciclos seguidos (para você saber que o monitor precisa de ajuste).
 
 Anúncios duplicados — a mesma unidade em outro portal ou republicada no mesmo portal (mesma rua,
