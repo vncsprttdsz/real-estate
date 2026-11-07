@@ -70,25 +70,27 @@ transacoes:
 
 # Área de interesse (filtro geográfico dos avisos): polígono [lat, lon] desenhado em docs/area.html
 # (https://vncsprttdsz.github.io/real-estate/area.html → "Copiar coordenadas"). A coleta continua por bairro;
-# os avisos só valem para anúncios dentro do polígono. Rascunho a partir do mapa enviado em 07/11 — confirmar.
+# os avisos só valem para anúncios dentro do polígono.
 area_de_interesse:
-  ativo: false
+  ativo: true
   avisar_sem_coordenadas: true   # anúncio sem localização passa (raro)
-  poligono:
-    - [-23.5785, -46.6893]
-    - [-23.5762, -46.6830]
-    - [-23.5765, -46.6745]
-    - [-23.5795, -46.6690]
-    - [-23.5800, -46.6648]
-    - [-23.5815, -46.6595]
-    - [-23.5870, -46.6560]
-    - [-23.5945, -46.6575]
-    - [-23.5985, -46.6630]
-    - [-23.5995, -46.6690]
-    - [-23.5985, -46.6730]
-    - [-23.5930, -46.6735]
-    - [-23.5880, -46.6755]
-    - [-23.5905, -46.6800]
-    - [-23.5920, -46.6855]
-    - [-23.5935, -46.6905]
-    - [-23.5860, -46.6915]
+  poligono:                      # confirmado em 07/11
+    - [-23.57965, -46.69357]
+    - [-23.57452, -46.68430]
+    - [-23.57585, -46.67412]
+    - [-23.57716, -46.67135]
+    - [-23.57768, -46.66660]
+    - [-23.57778, -46.66284]
+    - [-23.58150, -46.65950]
+    - [-23.58692, -46.65895]
+    - [-23.59278, -46.65603]
+    - [-23.59850, -46.66300]
+    - [-23.60006, -46.66961]
+    - [-23.59850, -46.67300]
+    - [-23.59300, -46.67350]
+    - [-23.58484, -46.67085]
+    - [-23.58800, -46.67550]
+    - [-23.59050, -46.68000]
+    - [-23.59200, -46.68550]
+    - [-23.59350, -46.69050]
+    - [-23.58629, -46.69040]

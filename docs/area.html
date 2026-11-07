@@ -46,7 +46,7 @@ textarea { width: 100%; height: 70px; font: 11.5px/1.35 ui-monospace, Menlo, mon
 <div class="panel">
   <div class="row">
     <button class="primary" type="button" id="copy">Copiar coordenadas</button>
-    <button type="button" id="reset">Restaurar rascunho</button>
+    <button type="button" id="reset">Restaurar área salva</button>
     <span class="legend"><span><span class="dot" style="background:var(--in)"></span>anúncio dentro</span><span><span class="dot" style="background:var(--out)"></span>fora</span></span>
     <span class="stat" id="stat"></span>
   </div>
@@ -56,12 +56,10 @@ textarea { width: 100%; height: 70px; font: 11.5px/1.35 ui-monospace, Menlo, mon
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 "use strict";
-// Rascunho a partir do mapa desenhado em 07/11 (o mesmo do config.yaml, seção area_de_interesse)
-const DRAFT = [[-23.5785,-46.6893],[-23.5762,-46.6830],[-23.5765,-46.6745],[-23.5795,-46.6690],[-23.5800,-46.6648],[-23.5815,-46.6595],
-  [-23.5870,-46.6560],[-23.5945,-46.6575],[-23.5985,-46.6630],[-23.5995,-46.6690],[-23.5985,-46.6730],[-23.5930,-46.6735],[-23.5880,-46.6755],
-  [-23.5905,-46.6800],[-23.5920,-46.6855],[-23.5935,-46.6905],[-23.5860,-46.6915]];
+// Área confirmada em 07/11 (a mesma do config.yaml, seção area_de_interesse)
+const DRAFT = [[-23.57965,-46.69357],[-23.57452,-46.6843],[-23.57585,-46.67412],[-23.57716,-46.67135],[-23.57768,-46.6666],[-23.57778,-46.66284],[-23.5815,-46.6595],[-23.58692,-46.65895],[-23.59278,-46.65603],[-23.5985,-46.663],[-23.60006,-46.66961],[-23.5985,-46.673],[-23.593,-46.6735],[-23.58484,-46.67085],[-23.588,-46.6755],[-23.5905,-46.68],[-23.592,-46.6855],[-23.5935,-46.6905],[-23.58629,-46.6904]];
 const HOME = [-23.5870, -46.6818];   // Av. Brig. Faria Lima, 3500 (aproximado)
-const KEY = "radar:area";
+const KEY = "radar:area:v2";   // v2: área confirmada; ajustes anteriores ficam para trás
 let pts;
 try { pts = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { pts = null; }
 if (!Array.isArray(pts) || pts.length < 3) pts = DRAFT.map(p => p.slice());
