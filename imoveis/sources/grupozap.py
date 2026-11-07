@@ -220,7 +220,7 @@ def fetch(http: Http, cfg: Config, source: str) -> list[Listing]:
     for business in cfg.businesses:
         if business not in BUSINESS:
             continue
-        for nb in cfg.neighborhoods:
+        for nb in cfg.query_neighborhoods:
             items = None
             for method in (_fetch_api,):
                 try:

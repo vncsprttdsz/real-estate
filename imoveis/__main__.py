@@ -226,7 +226,9 @@ def run(dry_run: bool = False) -> int:
     cat_prev = dashboard._load(dashboard.CATALOG, {})
     for k in [k for k in state["seen"] if k in cat_prev and norm(cat_prev[k].get("neighborhood")) not in cfg.neighborhoods_norm]:
         del state["seen"][k]
-    state["initialized_nbs"] = {s: [n for n in v if n in cfg.neighborhoods_norm] for s, v in state["initialized_nbs"].items()}
+    # (com área de interesse ativa, rótulos de outros bairros também valem: mantém a carga inicial deles)
+    keep_nb = lambda n: bool(cfg.area_polygon) or n in cfg.neighborhoods_norm
+    state["initialized_nbs"] = {s: [n for n in v if keep_nb(n)] for s, v in state["initialized_nbs"].items()}
 
     new_items, drops, first_load = [], [], {}
     # Unidades já conhecidas (qualquer fonte): republicação ou cópia em outro portal não gera alerta.
@@ -277,7 +279,8 @@ def run(dry_run: bool = False) -> int:
             state["initialized"].append(source)
         # Marca como inicializados os bairros que trouxeram anúncios (ou todos, no Zuk, onde vazio é normal).
         seen_nbs = {norm(l.neighborhood) for l in listings}
-        done = nbs_done | (cfg.neighborhoods_norm if source == "zuk" else seen_nbs & cfg.neighborhoods_norm)
+        # (os anúncios já passaram por cfg.matches: todo rótulo visto aqui é de bairro monitorado ou da área)
+        done = nbs_done | (cfg.neighborhoods_norm if source == "zuk" else seen_nbs)
         state["initialized_nbs"][source] = sorted(done)
 
     # Abaixo da mediana: anúncios novos, ou que baixaram e cruzaram o limite.

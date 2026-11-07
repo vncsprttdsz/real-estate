@@ -21,7 +21,9 @@ relação à mediana); se a coleta das 19h17 falhar, o resumo sai na seguinte.
 Área de interesse: os anúncios guardam latitude/longitude (ZAP/Viva Real: endereço geocodificado ou posição
 aproximada; QuintoAndar: localização da busca). Em `docs/area.html` (link "Área no mapa" no painel) dá para ajustar
 o polígono no mapa e copiar as coordenadas para `area_de_interesse` no `config.yaml`; com `ativo: true`, os avisos
-só valem para anúncios dentro dele.
+só valem para anúncios dentro dele. Com a área ativa, também são consultados os bairros de `bairros_extras` (Jardim Europa, Jardim
+Paulistano, Chácara Itaim) e a busca do QuintoAndar cobre o polígono inteiro; de qualquer rótulo, vale o anúncio
+que estiver dentro da área (o painel continua com os bairros monitorados).
 
 Você recebe um alerta quando:
 - entra um **anúncio novo** dentro dos critérios;

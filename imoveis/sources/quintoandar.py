@@ -108,15 +108,28 @@ def _body(cfg: Config, business: str, offset: int, page_size: int, neighborhood:
     }
 
 
+def area_tiles(poly: list, n: int = 2) -> list[dict]:
+    """Caixa que envolve a área de interesse, dividida em n×n faixas (limite de paginação da API)."""
+    if not poly:
+        return []
+    s, nn = min(p[0] for p in poly), max(p[0] for p in poly)
+    w, e = min(p[1] for p in poly), max(p[1] for p in poly)
+    dl, dg = (nn - s) / n, (e - w) / n
+    return [{"north": s + (i + 1) * dl, "south": s + i * dl, "east": w + (j + 1) * dg, "west": w + j * dg}
+            for i in range(n) for j in range(n)]
+
+
 def _fetch_api(http: Http, cfg: Config, business: str) -> list[dict]:
     headers = {"Origin": SITE, "Referer": SITE + "/", "Content-Type": "application/json"}
     houses = []
-    for nb in cfg.neighborhoods:
-      if norm(nb) not in VIEWPORTS:
-          continue   # sem área de busca própria (ex.: Vila Uberabinha, coberta pelas áreas do Itaim e da VNC)
-      for vi, vp in enumerate(viewports(nb)):   # bairros grandes: uma busca por faixa (duplicatas somem em fetch())
+    searches = [(nb, vp, 1500) for nb in cfg.neighborhoods if norm(nb) in VIEWPORTS for vp in viewports(nb)]
+    # Área de interesse: cobre o polígono inteiro (o rótulo de bairro não importa, vale a localização). As faixas do
+    # Itaim e da VNC já cobrem quase tudo; aqui bastam os mais recentes de cada faixa para pegar as novidades.
+    searches += [(cfg.neighborhoods[0], vp, 300) for vp in area_tiles(cfg.area_polygon)]
+    for vi, (nb, vp, max_offset) in enumerate(searches):
+      if True:   # uma busca por faixa; duplicatas somem em fetch()
         offset = 0
-        while offset < 1500:
+        while offset < max_offset:
             r = http.post(API, json=_body(cfg, business, offset, PAGE_SIZE, nb, vp), headers=headers)
             dump_debug(f"quintoandar-{business}-{slug(nb)}-{vi}-{offset}.json [HTTP {r.status_code}]", r.text)
             if r.status_code != 200:

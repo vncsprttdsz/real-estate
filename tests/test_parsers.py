@@ -785,3 +785,16 @@ def test_digest_window_after_send_hour_goes_to_next_day(tmp_path, monkeypatch):
     assert list(st["digest"]) == ["2026-11-08"] and st["digest"]["2026-11-08"][0]["key"] == "zap:venda:1"
     sent.clear(); clock["t"] = datetime(2026, 11, 7, 22, 17, tzinfo=app.SP); app.run()
     assert not [s for s, _ in sent if s.startswith("🏢")]                   # nada de segunda mensagem no mesmo dia
+
+
+def test_area_accepts_other_labels_inside_polygon():
+    from imoveis.sources import quintoandar
+    poly = [[-23.58, -46.69], [-23.58, -46.67], [-23.60, -46.67], [-23.60, -46.69]]
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, area_polygon=poly, area_extra_neighborhoods=["Jardim Europa", "Itaim Bibi"])
+    L = lambda nb, lat, lon: Listing("quintoandar", "1", "u", "aluguel", neighborhood=nb, area=150, price=10_000, total_monthly=12_000, lat=lat, lon=lon)
+    assert cfg.matches(L("Jardim Paulista", -23.59, -46.68))        # rótulo diferente, mas dentro da área
+    assert not cfg.matches(L("Jardim Paulista", -23.57, -46.68))    # fora da área e fora dos bairros
+    assert cfg.matches(L("Itaim Bibi", -23.57, -46.68))             # bairro monitorado vale para o painel mesmo fora
+    assert cfg.query_neighborhoods == ["Itaim Bibi", "Jardim Europa"]
+    tiles = quintoandar.area_tiles(poly)
+    assert len(tiles) == 4 and min(t["south"] for t in tiles) == -23.60 and max(t["east"] for t in tiles) == -46.67

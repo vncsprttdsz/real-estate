@@ -74,6 +74,10 @@ transacoes:
 area_de_interesse:
   ativo: true
   avisar_sem_coordenadas: true   # anúncio sem localização passa (raro)
+  # Também consultados no ZAP/Viva Real, valendo só o que cair dentro da área (sondagem de 07/11: Jardim Europa
+  # e Jardim Paulistano ~100% dentro, Chácara Itaim ~70%; Moema, Vila Olímpia e Ibirapuera < 6%, fora).
+  # No QuintoAndar a busca cobre o polígono inteiro e aceita qualquer rótulo dentro dele.
+  bairros_extras: [Jardim Europa, Jardim Paulistano, Chácara Itaim]
   poligono:                      # confirmado em 07/11
     - [-23.57965, -46.69357]
     - [-23.57452, -46.68430]

@@ -11,6 +11,8 @@ from pathlib import Path
 
 import yaml
 
+from .geo import inside
+
 ROOT = Path(__file__).resolve().parent.parent
 DEBUG_DIR = ROOT / "debug"
 
@@ -108,11 +110,20 @@ class Config:
     dashboard_url: str = ""
     area_polygon: list = field(default_factory=list)   # [[lat, lon], ...]; vazio = sem filtro de área
     area_keep_unknown: bool = True         # anúncio sem coordenadas passa no filtro de área
+    area_extra_neighborhoods: list = field(default_factory=list)   # coletados só pelo que cai dentro da área
     highlight: bool = False                # busca a descrição dos avisos imediatos e destaca andar alto / vista livre
 
     @property
     def neighborhoods_norm(self) -> set[str]:
         return {norm(n) for n in self.neighborhoods}
+
+    @property
+    def query_neighborhoods(self) -> list[str]:
+        """Bairros consultados nos portais: os monitorados + os extras da área de interesse."""
+        return list(self.neighborhoods) + [n for n in self.area_extra_neighborhoods if norm(n) not in self.neighborhoods_norm]
+
+    def in_area(self, l) -> bool:
+        return bool(self.area_polygon and l.lat and l.lon and inside(l.lat, l.lon, self.area_polygon))
 
     @classmethod
     def load(cls, path: Path | None = None) -> "Config":
@@ -141,6 +152,8 @@ class Config:
             area_polygon=(((raw.get("area_de_interesse") or {}).get("poligono") or [])
                           if (raw.get("area_de_interesse") or {}).get("ativo") else []),
             area_keep_unknown=bool((raw.get("area_de_interesse") or {}).get("avisar_sem_coordenadas", True)),
+            area_extra_neighborhoods=(list((raw.get("area_de_interesse") or {}).get("bairros_extras") or [])
+                                      if (raw.get("area_de_interesse") or {}).get("ativo") else []),
         )
 
     @staticmethod
@@ -158,7 +171,8 @@ class Config:
 
     def matches(self, l: Listing) -> bool:
         """Bairro, área e tipo — o mercado que o monitor acompanha (sem o teto de preço)."""
-        if norm(l.neighborhood) not in self.neighborhoods_norm:
+        # Bairro monitorado, ou qualquer rótulo desde que o prédio fique dentro da área de interesse
+        if norm(l.neighborhood) not in self.neighborhoods_norm and not self.in_area(l):
             return False
         # Leilões frequentemente não informam área na listagem: só descarta se souber que é menor.
         if l.area is not None and l.area < self.min_area:
