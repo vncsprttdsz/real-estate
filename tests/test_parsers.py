@@ -672,3 +672,39 @@ def test_alert_min_bedrooms(tmp_path, monkeypatch):
     app.run(); sent.clear(); app.run()
     urls = " ".join(t for _, items in sent for t, _ in items)
     assert "https://z/a2" in urls and "https://z/a3" in urls and "https://z/a1" not in urls
+
+
+def test_highlights_floor_and_description():
+    from imoveis import details
+    L = lambda **k: Listing("zap", "1", "https://z/1", "aluguel", neighborhood="Itaim Bibi", area=150, **k)
+    assert details.highlights(L(floor=14), None) == ["andar alto (14º)"]
+    assert details.highlights(L(floor=3), "Lindo apartamento em andar alto com vista definitiva para o parque") == ["andar alto", "vista livre"]
+    assert details.highlights(L(), "Sem prédios na frente, sol da manhã") == ["vista livre"]
+    assert details.highlights(L(), "Apartamento térreo, vista para o jardim interno") == []
+    html = '<script>{"description":"Apartamentos para alugar em Vila Nova Conceição. Entre em contato!","x":{"description":"Andar alto, vista livre, 3 suítes, reformado, 2 vagas e depósito."}}</script>'
+    assert details.descriptions(html)[0].startswith("Apartamentos") or "Andar alto" in " ".join(details.descriptions(html))
+
+
+def test_immediate_alert_star(tmp_path, monkeypatch):
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_rent=20_000, alert_min_area=120, immediate=("aluguel",), highlight=True)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard, details
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    monkeypatch.setattr(details, "fetch_description", lambda http, l: "Andar alto e vista livre" if l.id == "a2" else "Reformado")
+    monkeypatch.setattr(app.Http, "__init__", lambda self, *a, **k: None)
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def A(i):
+        return Listing("zap", f"a{i}", f"https://z/a{i}", "aluguel", neighborhood="Itaim Bibi", address=f"Rua {chr(65 + i)} 1",
+                       area=150, price=10_000 + i, total_monthly=12_000 + i, bedrooms=3)
+    batches = iter([{"zap": [A(0)]}, {"zap": [A(0), A(1), A(2)]}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear(); app.run()
+    subj, items = next((s, i) for s, i in sent if s.startswith("🏠"))
+    assert "⭐ 1 com destaque" in subj and items[0][0].startswith("⭐ Andar alto · vista livre") and "https://z/a2" in items[0][0]

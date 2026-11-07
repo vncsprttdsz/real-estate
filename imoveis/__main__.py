@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 from .common import ROOT, Config, Listing, norm
 from .http import Http
 from .notify import Notifier, brl, describe
-from . import bargain, dashboard, dedupe, macro
+from . import bargain, dashboard, dedupe, details, macro
 from .sources import grupozap, quintoandar, zuk
 
 STATE = ROOT / "data" / "state.json"
@@ -340,6 +340,20 @@ def run(dry_run: bool = False) -> int:
     drops = [x for x in drops if now_imm(x[0])]
     bargains = [x for x in bargains if now_imm(x[0])]
 
+    # Destaques (⭐ andar alto / vista livre): descrição só dos poucos anúncios que vão gerar aviso agora.
+    stars: dict[str, list[str]] = {}
+    if cfg.highlight and not dry_run:
+        cand = {l.key: l for l in new_items + [x[0] for x in drops] + [x[0] for x in bargains]}
+        http_d = Http(1.0, 2.0)
+        for l in list(cand.values())[:12]:
+            tags = details.highlights(l, details.fetch_description(http_d, l))
+            if tags:
+                stars[l.key] = tags
+        star_first = lambda key: 0 if key in stars else 1
+        new_items.sort(key=lambda l: star_first(l.key))
+        bargains.sort(key=lambda x: (star_first(x[0].key), x[1].pct))
+    star_note = lambda l: ("⭐ " + " · ".join(stars[l.key]).capitalize()) if l.key in stars else ""
+
     # Esquece anúncios sumidos há muito tempo (só de fontes que funcionaram neste ciclo).
     cutoff = datetime.now(timezone.utc).timestamp() - REMOVE_AFTER_DAYS * 86400
     for key in list(state["seen"]):
@@ -378,15 +392,17 @@ def run(dry_run: bool = False) -> int:
             unit = "/m²·mês" if l.business == "aluguel" else "/m²"
             note = (f"{g.pct * 100:+.0f}% vs. mediana ({g.scope}): {brl(g.ppm)} vs. {brl(g.median)}{unit}".replace("-", "−")
                     + (f" · baixou de {brl(old)} para {brl(l.ref_price)}" if old else ""))
-            items.append(describe(l, note))
+            items.append(describe(l, " · ".join(x for x in (star_note(l), note) if x)))
         notifier.send(f"💎 {n} imóve{'is' if n > 1 else 'l'} {cfg.bargain_pct:.0f}% ou mais abaixo da mediana", items)
     if new_items:
         n = len(new_items)
         what = ("aluguel" if n == 1 else "aluguéis") if all(l.business == "aluguel" for l in new_items) else ("anúncio" if n == 1 else "anúncios")
         subject = f"🏠 {n} {what} novo{'s' if n > 1 else ''} nos seus critérios"
-        notifier.send(subject, [describe(l) for l in new_items])
+        if stars:
+            subject += f" · ⭐ {sum(1 for l in new_items if l.key in stars)} com destaque"
+        notifier.send(subject, [describe(l, star_note(l)) for l in new_items])
     if drops:
-        items = [describe(l, f"{why}: {brl(old)} → {brl(l.ref_price)}") for l, old, why in drops]
+        items = [describe(l, " · ".join(x for x in (star_note(l), f"{why}: {brl(old)} → {brl(l.ref_price)}") if x)) for l, old, why in drops]
         notifier.send(f"📉 {len(drops)} anúncio(s) baixaram de preço", items)
     if first_load:
         summary = ", ".join(f"{k}: {v}" for k, v in first_load.items())

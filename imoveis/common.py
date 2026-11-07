@@ -68,6 +68,7 @@ class Listing:
     bedrooms: int | None = None
     parking: int | None = None
     extra: str = ""      # informação livre (ex.: data do leilão)
+    floor: int | None = None   # andar da unidade, quando o portal informa
 
     @property
     def key(self) -> str:
@@ -102,6 +103,7 @@ class Config:
     digest: tuple = ()                     # negócios que vão para o resumo diário
     digest_hour: int = 23                  # hora de Brasília a partir da qual o resumo do dia é enviado
     dashboard_url: str = ""
+    highlight: bool = False                # busca a descrição dos avisos imediatos e destaca andar alto / vista livre
 
     @property
     def neighborhoods_norm(self) -> set[str]:
@@ -130,6 +132,7 @@ class Config:
             digest=tuple(norm(b) for b in (raw.get("avisos") or {}).get("resumo_diario", [])),
             digest_hour=int((raw.get("avisos") or {}).get("resumo_diario_hora", 23)),
             dashboard_url=str(raw.get("painel_url") or ""),
+            highlight=bool((raw.get("avisos") or {}).get("destacar_andar_alto_vista", False)),
         )
 
     @staticmethod

@@ -31,6 +31,7 @@ fontes:
 avisos:
   area_minima_m2: 120          # só avisa imóveis com esta área ou mais
   quartos_minimos: 3           # e com pelo menos estes quartos (anúncio sem a informação é avisado)
+  destacar_andar_alto_vista: true   # lê a descrição dos avisos imediatos e destaca (⭐) andar alto e vista livre
   imediato: [aluguel]          # avisa a cada coleta: anúncio novo, queda de preço e abaixo da mediana
   resumo_diario: [venda, leilao]   # uma mensagem por dia: quantos novos, bairros, quedas e oportunidades
   resumo_diario_hora: 23       # enviado na primeira coleta a partir desta hora (Brasília); se faltar, vai na seguinte
