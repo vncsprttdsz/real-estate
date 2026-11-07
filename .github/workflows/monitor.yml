@@ -40,6 +40,10 @@ jobs:
       DEBUG: ${{ inputs.debug && '1' || '' }}
     steps:
       - uses: actions/checkout@v4
+      # Uma coleta que esperou na fila (concurrency) parte do commit de quando foi disparada; atualiza para o
+      # estado mais recente antes de rodar, para não reavisar anúncios que a coleta anterior já registrou.
+      - name: Atualizar para o estado mais recente
+        run: git fetch --depth=1 origin "$GITHUB_REF_NAME" && git reset --hard FETCH_HEAD
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
