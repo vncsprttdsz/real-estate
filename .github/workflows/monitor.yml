@@ -1,9 +1,11 @@
 name: Monitor de imóveis
 
 on:
+  # Agenda principal: cron-job.org dispara este workflow (workflow_dispatch pela API) a cada 2 h, das 7h17 às
+  # 23h17 de Brasília — o agendador do próprio GitHub atrasava ou pulava execuções (intervalos de 6–11 h).
+  # Reserva: uma execução diária às 1h47 de Brasília, fora dos horários do cron-job.org, caso o serviço pare.
   schedule:
-    # A cada 2 horas, das 7h às 23h de Brasília (UTC-3). Minuto 17 evita a fila do minuto 0.
-    - cron: "17 10-23/2,0,2 * * *"
+    - cron: "47 4 * * *"
   workflow_dispatch:
     inputs:
       debug:

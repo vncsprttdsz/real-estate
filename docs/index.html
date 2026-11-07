@@ -1335,7 +1335,7 @@ function renderHeader() {
 }
 function renderAlerts() {
   const out = [], fr = freshness();
-  if (fr.stale) out.push(["warn", `Última coleta ${FMT.ago(DATA.updated_at)} (agenda: a cada 2 h, 7h–23h). O agendador do GitHub costuma atrasar ou pular execuções; os dados podem não incluir anúncios das últimas horas.`]);
+  if (fr.stale) out.push(["warn", `Última coleta ${FMT.ago(DATA.updated_at)} (agenda: a cada 2 h, 7h–23h). Os dados podem não incluir anúncios das últimas horas; se o atraso persistir, confira o agendamento no cron-job.org e o workflow "Monitor de imóveis".`]);
   for (const [k, v] of Object.entries(DATA.sources || {})) if (!v.ok) out.push(["crit", `${SOURCE[k] || k}: coleta falhou ${v.failures}× seguida(s)${v.last_ok ? "; últimos dados válidos de " + FMT.dateTime(v.last_ok) : ""}. Contagens desta fonte podem estar defasadas.`]);
   const ds = histDates();
   if (ds.length < 2) out.push(["info", `Sem variações nem tendências ainda: histórico diário desde ${FMT.date(dayISO(ds[0]))} (${ds.length} retrato).`]);
@@ -1713,7 +1713,7 @@ function exportTableCsv() {
    ===================================================================== */
 function renderQuality() {
   const L = DATA.listings, info = DATA.source_info || {};
-  $("#srcSub").textContent = `Última coleta: ${FMT.dateTime(DATA.updated_at)}${DATA.prev_run ? " · anterior: " + FMT.dateTime(DATA.prev_run) : ""} · agenda: a cada 2 h, 7h–23h (o GitHub pode atrasar execuções) · histórico: ${histDates().length} retrato(s) diário(s)`;
+  $("#srcSub").textContent = `Última coleta: ${FMT.dateTime(DATA.updated_at)}${DATA.prev_run ? " · anterior: " + FMT.dateTime(DATA.prev_run) : ""} · agenda: a cada 2 h, 7h17–23h17 (cron-job.org) + reserva diária à 1h47 · histórico: ${histDates().length} retrato(s) diário(s)`;
   $("#srcTable").replaceChildren(
     h("thead", {}, h("tr", {}, h("th", {}, "Fonte"), h("th", {}, "Status"), h("th", {}, "Última coleta ok"), h("th", { class: "num" }, "Ativos", h("span", { class: "u" }, "todos os negócios")), h("th", {}, "Cobertura"))),
     h("tbody", {}, Object.entries(DATA.sources || {}).map(([k, v]) => h("tr", {},
