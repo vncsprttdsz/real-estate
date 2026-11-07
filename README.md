@@ -1,6 +1,6 @@
 # Monitor de imóveis — Vila Nova Conceição e Itaim Bibi
 
-Verifica automaticamente, a cada 2 horas (das 7h17 às 23h17, disparado pelo cron-job.org; reserva diária pelo
+Verifica automaticamente, a cada 2 horas (das 5h17 às 21h17, disparado pelo cron-job.org; reserva diária pelo
 agendador do GitHub à 1h47), novos anúncios de
 **apartamentos com 100 m² ou mais**, para **compra, aluguel e leilão**, em:
 

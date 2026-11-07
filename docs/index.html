@@ -1316,7 +1316,7 @@ function csvDownload(rows, title, base, info = null) {
 function freshness() {
   const age = Date.now() - new Date(DATA.updated_at).getTime();
   const hourSP = +new Date().toLocaleString("en-US", { timeZone: "America/Sao_Paulo", hour: "numeric", hour12: false });
-  const limit = (hourSP >= 9 && hourSP <= 23) ? 3 * 36e5 : 10 * 36e5;   // coletas a cada 2 h entre 7h e 23h
+  const limit = (hourSP >= 7 && hourSP <= 23) ? 3 * 36e5 : 10 * 36e5;   // coletas a cada 2 h entre 5h e 21h (+ reserva à 1h47)
   return { age, stale: age > limit };
 }
 function renderHeader() {
@@ -1332,11 +1332,11 @@ function renderHeader() {
     h("a", { class: "btn sm", href: "area.html", title: "Ver e ajustar no mapa a área de interesse dos avisos" }, "Área no mapa"),
     h("button", { class: "btn sm", type: "button", "aria-label": "Alternar tema claro/escuro", onclick: toggleTheme }, "◐ Tema"));
   $("#defBudget").textContent = `Compra: preço pedido ≤ ${FMT.brlc(c.max_sale)}; aluguel: valor total ≤ ${FMT.brlc(c.max_rent)}/mês; leilão: lance ≤ teto de compra. Anúncio sem preço não é excluído. Definido em config.yaml.`;
-  $("#footer").textContent = "Coleta própria em ZAP Imóveis, Viva Real, QuintoAndar e Portal Zuk, a cada 2 h (7h–23h). Preços pedidos, não fechados — confirme sempre no anúncio original.";
+  $("#footer").textContent = "Coleta própria em ZAP Imóveis, Viva Real, QuintoAndar e Portal Zuk, a cada 2 h (5h–21h). Preços pedidos, não fechados — confirme sempre no anúncio original.";
 }
 function renderAlerts() {
   const out = [], fr = freshness();
-  if (fr.stale) out.push(["warn", `Última coleta ${FMT.ago(DATA.updated_at)} (agenda: a cada 2 h, 7h–23h). Os dados podem não incluir anúncios das últimas horas; se o atraso persistir, confira o agendamento no cron-job.org e o workflow "Monitor de imóveis".`]);
+  if (fr.stale) out.push(["warn", `Última coleta ${FMT.ago(DATA.updated_at)} (agenda: a cada 2 h, 5h17–21h17). Os dados podem não incluir anúncios das últimas horas; se o atraso persistir, confira o agendamento no cron-job.org e o workflow "Monitor de imóveis".`]);
   for (const [k, v] of Object.entries(DATA.sources || {})) if (!v.ok) out.push(["crit", `${SOURCE[k] || k}: coleta falhou ${v.failures}× seguida(s)${v.last_ok ? "; últimos dados válidos de " + FMT.dateTime(v.last_ok) : ""}. Contagens desta fonte podem estar defasadas.`]);
   const ds = histDates();
   if (ds.length < 2) out.push(["info", `Sem variações nem tendências ainda: histórico diário desde ${FMT.date(dayISO(ds[0]))} (${ds.length} retrato).`]);
@@ -1714,7 +1714,7 @@ function exportTableCsv() {
    ===================================================================== */
 function renderQuality() {
   const L = DATA.listings, info = DATA.source_info || {};
-  $("#srcSub").textContent = `Última coleta: ${FMT.dateTime(DATA.updated_at)}${DATA.prev_run ? " · anterior: " + FMT.dateTime(DATA.prev_run) : ""} · agenda: a cada 2 h, 7h17–23h17 (cron-job.org) + reserva diária à 1h47 · histórico: ${histDates().length} retrato(s) diário(s)`;
+  $("#srcSub").textContent = `Última coleta: ${FMT.dateTime(DATA.updated_at)}${DATA.prev_run ? " · anterior: " + FMT.dateTime(DATA.prev_run) : ""} · agenda: a cada 2 h, 5h17–21h17 (cron-job.org) + reserva diária à 1h47 · histórico: ${histDates().length} retrato(s) diário(s)`;
   $("#srcTable").replaceChildren(
     h("thead", {}, h("tr", {}, h("th", {}, "Fonte"), h("th", {}, "Status"), h("th", {}, "Última coleta ok"), h("th", { class: "num" }, "Ativos", h("span", { class: "u" }, "todos os negócios")), h("th", {}, "Cobertura"))),
     h("tbody", {}, Object.entries(DATA.sources || {}).map(([k, v]) => h("tr", {},
