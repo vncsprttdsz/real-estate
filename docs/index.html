@@ -189,6 +189,24 @@ section + section { margin-top: var(--gap); }
 .tip .tl { color: var(--ink-2); }
 .tip .row { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
 .zoombar { min-height: 16px; font-size: 12px; color: var(--ink-2); margin-bottom: 2px; }
+.ranges { display: grid; gap: 2px 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 4px; }
+.rng { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.rng .rl { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); width: 38px; flex: none; }
+.rng .rv { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 108px; text-align: right; }
+#scatter { touch-action: pan-y; }   /* 1 dedo rola a página; a pinça fica com o gráfico */
+.dual { position: relative; height: 32px; flex: 1; min-width: 0; touch-action: none; cursor: pointer; }
+.dual::before { content: ""; position: absolute; left: 12px; right: 12px; top: 14px; height: 4px; border-radius: 2px; background: var(--border); }
+.dual .fill { position: absolute; top: 14px; height: 4px; border-radius: 2px; background: var(--accent); }
+.dual input { position: absolute; inset: 0; width: 100%; height: 32px; margin: 0; background: none; pointer-events: none; -webkit-appearance: none; appearance: none; }
+.dual input::-webkit-slider-runnable-track { background: none; height: 32px; }
+.dual input::-webkit-slider-thumb { pointer-events: none; -webkit-appearance: none; width: 24px; height: 24px; margin-top: 4px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,.25); cursor: grab; }
+.dual input::-moz-range-track { background: none; }
+.dual input::-moz-range-thumb { pointer-events: none; width: 20px; height: 20px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); cursor: grab; }
+.dual input:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 640px) {
+  .rng { display: grid; grid-template-columns: auto 1fr; grid-template-areas: "l v" "b b"; gap: 0 8px; }
+  .rng .rl { grid-area: l; width: auto; } .rng .rv { grid-area: v; min-width: 0; font-size: 12px; } .rng .dual { grid-area: b; }
+}
 .btn[aria-pressed="true"] { background: var(--accent-wash); border-color: var(--accent); }
 .tip .cluster ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 2px; max-height: 240px; overflow: auto; }
 .tip .cluster li a { display: block; padding: 4px 6px; border-radius: 5px; text-decoration: none; }
@@ -391,7 +409,6 @@ table.sens td.cell { text-align: right; min-width: 70px; }
           <div class="card-head">
             <div><h2 id="scTitle">Preço pedido × área</h2><div class="sub" id="scSub"></div></div>
             <div class="card-tools">
-              <button class="btn sm" type="button" id="zoomMode" aria-pressed="false" title="Arraste um retângulo sobre o gráfico para ampliar">⬚ Ampliar área</button>
               <button class="btn sm" type="button" id="zoomOutBtn" title="Reduzir o zoom">− Reduzir</button>
               <button class="btn sm" type="button" id="zoomReset" title="Voltar à visão completa">Restaurar</button>
               <button class="btn sm" type="button" data-export="scatter">Baixar PNG</button>
@@ -400,6 +417,10 @@ table.sens td.cell { text-align: right; min-width: 70px; }
           <div class="legend" id="scLegend" style="margin-bottom:4px"></div>
           <div class="zoombar" id="zoomBar" aria-live="polite"></div>
           <div class="chart" id="scatter"></div>
+          <div class="ranges" id="zoomRanges" aria-label="Faixas visíveis do gráfico">
+            <div class="rng"><span class="rl">Área</span><div class="dual" id="rxDual"><i class="fill"></i><input type="range" id="rxLo" min="0" max="1000" step="1" aria-label="Área mínima visível"><input type="range" id="rxHi" min="0" max="1000" step="1" aria-label="Área máxima visível"></div><span class="rv" id="rxV"></span></div>
+            <div class="rng"><span class="rl" id="ryL">Preço</span><div class="dual" id="ryDual"><i class="fill"></i><input type="range" id="ryLo" min="0" max="1000" step="1" aria-label="Preço mínimo visível"><input type="range" id="ryHi" min="0" max="1000" step="1" aria-label="Preço máximo visível"></div><span class="rv" id="ryV"></span></div>
+          </div>
           <p class="note" id="scNote"></p>
         </div>
         <div class="card c4">
@@ -1059,6 +1080,7 @@ function scatter(host, rows, market) {
   svg.append(s("text", { x: m.l - 6, y: m.t - 12, "text-anchor": "end" }, priceUnit()));
   svg.append(s("text", { x: W - m.r, y: m.t - 12, "text-anchor": "end" }, (ZOOM ? "ampliado" : "") + (ZOOM && D.y0 > 0 ? " · " : "") + (D.y0 > 0 ? "eixo de preço não começa em zero" : "")));
   const plot = s("g", { "clip-path": `url(#${cid})` }); svg.append(plot);
+  const view = s("g"); plot.append(view);   // recebe a transformação ao vivo da pinça; ao soltar, o gráfico é redesenhado
   const byNb = {};
   for (const r of market) if (m2(r)) (byNb[r.neighborhood] ||= []).push(m2(r));
   const medians = [];
@@ -1066,21 +1088,21 @@ function scatter(host, rows, market) {
     const med = median(arr); if (!med || !COLOR[nb]) continue;
     medians.push({ nb, med });
     // reta preço = mediana × área, desenhada no domínio visível (o recorte corta o excesso)
-    plot.append(s("line", { x1: X(D.x0), y1: m.t + (1 - (med * D.x0 - D.y0) / (D.y1 - D.y0)) * (H - m.t - m.b), x2: X(D.x1), y2: m.t + (1 - (med * D.x1 - D.y0) / (D.y1 - D.y0)) * (H - m.t - m.b),
+    view.append(s("line", { x1: X(D.x0), y1: m.t + (1 - (med * D.x0 - D.y0) / (D.y1 - D.y0)) * (H - m.t - m.b), x2: X(D.x1), y2: m.t + (1 - (med * D.x1 - D.y0) / (D.y1 - D.y0)) * (H - m.t - m.b),
       stroke: COLOR[nb], "stroke-width": 1.5, "stroke-opacity": .6, "stroke-dasharray": "6 4" }));
   }
   const rad = ZOOM ? 5 : 4;
   const marks = pts.map(r => {
     const cx = X(r.area), cy = Y(refPrice(r)), nw = isNew(r);
-    plot.append(s("circle", { cx, cy, r: nw ? rad + 1.5 : rad, fill: COLOR[r.neighborhood] || "var(--neutral-mark)", stroke: "var(--surface)", "stroke-width": 1.5, "fill-opacity": .85 }));
-    if (nw) plot.append(s("circle", { cx, cy, r: rad + 2.5, fill: "none", stroke: "var(--ink)", "stroke-width": 1, "stroke-opacity": .75 }));
+    view.append(s("circle", { cx, cy, r: nw ? rad + 1.5 : rad, fill: COLOR[r.neighborhood] || "var(--neutral-mark)", stroke: "var(--surface)", "stroke-width": 1.5, "fill-opacity": .85 }));
+    if (nw) view.append(s("circle", { cx, cy, r: rad + 2.5, fill: "none", stroke: "var(--ink)", "stroke-width": 1, "stroke-opacity": .75 }));
     return { r, cx, cy };
   });
   const ring = s("circle", { r: 10, fill: "none", stroke: "var(--ink)", "stroke-width": 2, opacity: 0, "pointer-events": "none" });
   const brushRect = s("rect", { fill: "var(--accent)", "fill-opacity": .12, stroke: "var(--accent)", "stroke-width": 1, opacity: 0, "pointer-events": "none" });
   svg.append(ring, brushRect);
   const hit = s("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent", tabindex: 0,
-    style: `cursor:${ZOOM_MODE ? "crosshair" : "pointer"};${ZOOM_MODE ? "touch-action:none" : ""}`,
+    style: "cursor:pointer;touch-action:pan-y",   // 1 dedo rola a página na vertical; pinça (2 dedos) fica com o gráfico
     "aria-label": "Setas percorrem os anúncios; Enter abre; + e − ampliam e reduzem" });
   const toSvg = e => { const rc = svg.getBoundingClientRect(), k = W / rc.width; return { x: (e.clientX - rc.left) * k, y: (e.clientY - rc.top) * k, k }; };
   const near = (e, radius) => {   // anúncios sob o cursor/dedo, do mais próximo ao mais distante
@@ -1136,33 +1158,89 @@ function scatter(host, rows, market) {
     if (pin) pinTip(() => { pinned = null; showOne(null); });
     showTip(body, list[0].cx, list[0].cy, host);
   };
-  // ---- seleção por arraste (modo "Ampliar área") ----
-  let brush = null, justBrushed = false;
+  // ---- zoom: mouse arrasta um retângulo; no toque, pinça com 2 dedos amplia e move ----
+  let brush = null, justBrushed = false, gest = null;
+  const touches = new Map();
+  const PW = W - m.l - m.r, PH = H - m.t - m.b;
+  const domainFromView = (sc, tx, ty) => {   // faixa de dados que fica visível com a transformação aplicada
+    const px = v => (v - tx) / sc, py = v => (v - ty) / sc;
+    return [invX(px(m.l)), invX(px(m.l + PW)), invY(py(m.t + PH)), invY(py(m.t))];
+  };
+  const liveLabel = d => { $("#zoomBar").textContent = `${FMT.int(d[0])}–${FMT.int(d[1])} m² · ${FMT.brlc(d[2])}–${FMT.brlc(d[3])}${F.business === "aluguel" ? "/mês" : ""} · solte para aplicar`; };
   hit.addEventListener("pointerdown", e => {
-    if (!ZOOM_MODE) return;
-    const p = toSvg(e); brush = { x: p.x, y: p.y, x2: p.x, y2: p.y };
-    try { hit.setPointerCapture(e.pointerId); } catch {}
-    e.preventDefault();
+    if (e.pointerType === "touch") {
+      touches.set(e.pointerId, toSvg(e));
+      if (touches.size === 2) {
+        const [a, b] = [...touches.values()];
+        gest = { d0: Math.hypot(a.x - b.x, a.y - b.y) || 1, c0: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, sc: 1, tx: 0, ty: 0 };
+        unpinTip(); hideTip(); ring.setAttribute("opacity", 0);
+        for (const id of touches.keys()) try { hit.setPointerCapture(id); } catch {}
+      }
+      return;
+    }
+    if (e.pointerType === "mouse" && e.button === 0) { const p = toSvg(e); brush = { x: p.x, y: p.y, x2: p.x, y2: p.y, on: false }; try { hit.setPointerCapture(e.pointerId); } catch {} }
   });
   hit.addEventListener("pointermove", e => {
+    if (e.pointerType === "touch" && touches.has(e.pointerId)) {
+      touches.set(e.pointerId, toSvg(e));
+      if (gest && touches.size === 2) {
+        const [a, b] = [...touches.values()], d = Math.hypot(a.x - b.x, a.y - b.y), c = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+        gest.sc = Math.max(.3, Math.min(25, d / gest.d0)); gest.tx = c.x - gest.sc * gest.c0.x; gest.ty = c.y - gest.sc * gest.c0.y;
+        view.setAttribute("transform", `translate(${gest.tx} ${gest.ty}) scale(${gest.sc})`);
+        liveLabel(domainFromView(gest.sc, gest.tx, gest.ty)); e.preventDefault();
+      }
+      return;
+    }
     if (brush) {
       const p = toSvg(e); brush.x2 = p.x; brush.y2 = p.y;
+      if (!brush.on && Math.hypot(brush.x2 - brush.x, brush.y2 - brush.y) < 6) return;   // clique, não arraste
+      brush.on = true; hideTip();
       const x = Math.max(m.l, Math.min(brush.x, brush.x2)), y = Math.max(m.t, Math.min(brush.y, brush.y2));
       brushRect.setAttribute("x", x); brushRect.setAttribute("y", y);
       brushRect.setAttribute("width", Math.min(W - m.r, Math.max(brush.x, brush.x2)) - x); brushRect.setAttribute("height", Math.min(H - m.b, Math.max(brush.y, brush.y2)) - y);
       brushRect.setAttribute("opacity", 1); return;
     }
-    if (e.pointerType === "mouse" && !pinned && !ZOOM_MODE) { const l = near(e, 24); showOne(l[0], false, l.length ? l.filter(mk => Math.hypot(mk.cx - l[0].cx, mk.cy - l[0].cy) <= 7).length - 1 : 0); }
+    if (e.pointerType === "mouse" && !pinned) { const l = near(e, 24); showOne(l[0], false, l.length ? l.filter(mk => Math.hypot(mk.cx - l[0].cx, mk.cy - l[0].cy) <= 7).length - 1 : 0); }
   });
-  hit.addEventListener("pointerup", () => {
+  const endTouch = e => {
+    if (e.pointerType !== "touch") return;
+    touches.delete(e.pointerId);
+    if (gest && touches.size < 2) {
+      const g = gest; gest = null; justBrushed = true; touches.clear();
+      if (Math.abs(g.sc - 1) < .04 && Math.hypot(g.tx, g.ty) < 8) { view.removeAttribute("transform"); renderScatter(); return; }
+      const [x0, x1, y0, y1] = domainFromView(g.sc, g.tx, g.ty), a = auto;
+      if (x0 <= a.x0 && x1 >= a.x1 && y0 <= a.y0 && y1 >= a.y1) { resetZoom(); return; }
+      zoomTo(x0, x1, y0, y1);
+    }
+  };
+  hit.addEventListener("pointerup", e => {
+    if (e.pointerType === "touch") return endTouch(e);
     if (!brush) return;
-    const b = brush; brush = null; brushRect.setAttribute("opacity", 0); justBrushed = true;
-    if (Math.abs(b.x2 - b.x) < 12 || Math.abs(b.y2 - b.y) < 12) return;   // arraste curto demais: ignora
+    const b = brush; brush = null; brushRect.setAttribute("opacity", 0);
+    if (!b.on) return;
+    justBrushed = true;
+    if (Math.abs(b.x2 - b.x) < 12 || Math.abs(b.y2 - b.y) < 12) return;
     zoomTo(invX(Math.min(b.x, b.x2)), invX(Math.max(b.x, b.x2)), invY(Math.max(b.y, b.y2)), invY(Math.min(b.y, b.y2)));
   });
+  hit.addEventListener("pointercancel", e => { if (e.pointerType === "touch") endTouch(e); brush = null; brushRect.setAttribute("opacity", 0); });
+  const stopPinch = e => { if (e.touches && e.touches.length > 1) e.preventDefault(); };   // a pinça é do gráfico, não da página
+  hit.addEventListener("touchstart", stopPinch, { passive: false });
+  hit.addEventListener("touchmove", stopPinch, { passive: false });
+  let wheelAcc = 0, wheelAt = null, wheelRaf = 0;
+  hit.addEventListener("wheel", e => {   // pinça do trackpad (chega como ctrl+roda) ou ctrl+roda do mouse
+    if (!e.ctrlKey) return;
+    e.preventDefault(); wheelAcc += e.deltaY; wheelAt = toSvg(e);
+    if (wheelRaf) return;
+    wheelRaf = requestAnimationFrame(() => {
+      const f = Math.exp(Math.max(-1, Math.min(1, wheelAcc * .01))), cx = invX(wheelAt.x), cy = invY(wheelAt.y);
+      wheelAcc = 0; wheelRaf = 0;
+      const nx0 = cx - (cx - D.x0) * f, nx1 = cx + (D.x1 - cx) * f, ny0 = cy - (cy - D.y0) * f, ny1 = cy + (D.y1 - cy) * f;
+      if (f > 1 && nx0 <= auto.x0 && nx1 >= auto.x1 && ny0 <= auto.y0 && ny1 >= auto.y1) resetZoom(); else zoomTo(nx0, nx1, ny0, ny1);
+    });
+  }, { passive: false });
   hit.addEventListener("pointerleave", e => { if (e.pointerType === "mouse" && !pinned && !brush) showOne(null); });
   hit.addEventListener("click", e => {
-    if (justBrushed || ZOOM_MODE) { justBrushed = false; return; }
+    if (justBrushed) { justBrushed = false; return; }
     const mouse = e.pointerType === "mouse" || (!e.pointerType && matchMedia("(hover: hover)").matches);
     const cand = near(e, mouse ? 24 : 36);
     // lista só os pontos praticamente sobrepostos ao mais próximo (centros a até ~1,5 raio)
@@ -1204,6 +1282,60 @@ function zoomOut() {
   unpinTip(); hideTip(); renderScatter();
 }
 function resetZoom() { ZOOM = null; ZOOM_MODE = false; unpinTip(); hideTip(); renderScatter(); }
+// Faixas (barras com dois controles) sincronizadas com o zoom; valores 0–1000 sobre o domínio completo do gráfico
+const RANGE_IDS = ["rxLo", "rxHi", "ryLo", "ryHi"];
+function syncRanges() {
+  const a = scatter.auto; if (!a) return;
+  const D = ZOOM || a, f = (v, lo, hi) => Math.round(Math.max(0, Math.min(1000, (v - lo) / (hi - lo) * 1000)));
+  const vals = { rxLo: f(D.x0, a.x0, a.x1), rxHi: f(D.x1, a.x0, a.x1), ryLo: f(D.y0, a.y0, a.y1), ryHi: f(D.y1, a.y0, a.y1) };
+  for (const id of RANGE_IDS) if (document.activeElement !== $("#" + id) && RANGE_DRAG !== id) $("#" + id).value = vals[id];
+  rangeLabels();
+}
+function rangeLabels() {
+  const a = scatter.auto; if (!a) return;
+  const v = id => +$("#" + id).value / 1000, x = t => a.x0 + t * (a.x1 - a.x0), y = t => a.y0 + t * (a.y1 - a.y0);
+  $("#rxV").textContent = `${FMT.int(x(v("rxLo")))}–${FMT.int(x(v("rxHi")))} m²`;
+  $("#ryV").textContent = `${FMT.brlc(y(v("ryLo")))}–${FMT.brlc(y(v("ryHi")))}${F.business === "aluguel" ? "/mês" : ""}`;
+  $("#ryL").textContent = F.business === "aluguel" ? "Total" : F.business === "leilao" ? "Lance" : "Preço";
+  for (const [d, lo, hi] of [["#rxDual", "rxLo", "rxHi"], ["#ryDual", "ryLo", "ryHi"]]) {
+    const fill = $(d + " .fill"), l = v(lo), r = v(hi);
+    fill.style.left = `calc(12px + ${l} * (100% - 24px))`; fill.style.width = `calc(${Math.max(0, r - l)} * (100% - 24px))`;
+  }
+}
+let rangeRaf = 0, RANGE_DRAG = null;
+// Arrastar na barra: o controle mais próximo do dedo/cursor segue o movimento (mais fácil que acertar o polegar)
+function dualDrag(dual, loId, hiId) {
+  const lo = $("#" + loId), hi = $("#" + hiId);
+  const val = (r, x) => Math.round(Math.max(0, Math.min(1, (x - r.left - 12) / (r.width - 24))) * 1000);
+  dual.addEventListener("pointerdown", e => {
+    const r = dual.getBoundingClientRect(), v = val(r, e.clientX);
+    const t = Math.abs(v - lo.value) < Math.abs(v - hi.value) || (v < +lo.value) ? lo : hi;
+    RANGE_DRAG = t.id; try { dual.setPointerCapture(e.pointerId); } catch {}
+    const move = ev => { t.value = val(r, ev.clientX); onRange({ target: t }); };
+    move(e); e.preventDefault();
+    dual.onpointermove = move;
+    dual.onpointerup = dual.onpointercancel = () => {
+      dual.onpointermove = dual.onpointerup = dual.onpointercancel = null; RANGE_DRAG = null;
+      if (rangeRaf) { cancelAnimationFrame(rangeRaf); rangeRaf = 0; applyRanges(); } else syncRanges();   // toque rápido: aplica já
+    };
+  });
+}
+function onRange(e) {
+  const a = scatter.auto; if (!a) return;
+  const gap = 25, el = e.target, isLo = el.id.endsWith("Lo"), pair = $("#" + el.id.slice(0, 2) + (isLo ? "Hi" : "Lo"));
+  if (isLo && +el.value > +pair.value - gap) el.value = +pair.value - gap;
+  if (!isLo && +el.value < +pair.value + gap) el.value = +pair.value + gap;
+  rangeLabels();
+  if (rangeRaf) return;
+  rangeRaf = requestAnimationFrame(() => { rangeRaf = 0; applyRanges(); });
+}
+function applyRanges() {
+  const a = scatter.auto; if (!a) return;
+  const v = id => +$("#" + id).value / 1000;
+  const full = v("rxLo") <= 0 && v("rxHi") >= 1 && v("ryLo") <= 0 && v("ryHi") >= 1;
+  ZOOM = full ? null : { x0: a.x0 + v("rxLo") * (a.x1 - a.x0), x1: a.x0 + v("rxHi") * (a.x1 - a.x0), y0: a.y0 + v("ryLo") * (a.y1 - a.y0), y1: a.y0 + v("ryHi") * (a.y1 - a.y0) };
+  ZOOM_BIZ = F.business; unpinTip(); hideTip(); renderScatter();
+}
 
 function listingTip(r) {
   const vs = vsMedian(r), drop = lastDrop(r);
@@ -1430,16 +1562,14 @@ function renderScatter() {
     ...r.medians.map(md => ({ kind: "dash", color: COLOR[md.nb], text: `mediana ${SHORT[md.nb] || md.nb}: ${FMT.brlc(md.med)}/m²` }))];
   const touch = !matchMedia("(hover: hover)").matches;
   const miss = (r.total || 0) - r.n;
-  $("#zoomMode").setAttribute("aria-pressed", String(ZOOM_MODE));
-  $("#zoomMode").textContent = ZOOM_MODE ? (touch ? "⬚ Arraste o dedo…" : "⬚ Arraste no gráfico…") : "⬚ Ampliar área";
   $("#zoomOutBtn").disabled = !ZOOM; $("#zoomReset").disabled = !ZOOM;
+  syncRanges();
   const zText = ZOOM ? `Zoom: ${FMT.int(ZOOM.x0)}–${FMT.int(ZOOM.x1)} m² · ${FMT.brlc(ZOOM.y0)}–${FMT.brlc(ZOOM.y1)}${F.business === "aluguel" ? "/mês" : ""} · ${FMT.int(r.visible)} de ${FMT.int(r.n)} anúncios visíveis` : "";
-  $("#zoomBar").textContent = ZOOM_MODE ? (touch ? "Arraste o dedo sobre a região que quer ampliar." : "Arraste sobre a região que quer ampliar (Esc cancela).") : zText;
-  $("#scSub").textContent += ZOOM ? " · " + zText.toLowerCase() : "";
+  $("#zoomBar").textContent = zText || (touch ? "Pinça com dois dedos para ampliar (e arraste com dois dedos para mover), ou ajuste as faixas abaixo do gráfico." : "Arraste sobre o gráfico para ampliar uma região, use a pinça do trackpad (ou Ctrl + roda) ou as faixas abaixo.");
   $("#scNote").textContent = `${FMT.int(r.n)} anúncios${miss > 0 ? ` (${FMT.int(miss)} sem área ou preço ficam só na tabela)` : ""}. Tracejado: mediana de ${m2Label()} de todos os anúncios ativos do bairro (sem filtro de orçamento) — ponto abaixo da linha = mais barato por m² que a mediana. ` +
     (r.clipped ? `${FMT.int(r.clipped)} anúncio(s) acima do percentil 99 de área ou do teto do eixo aparecem na borda. ` : "") +
-    (touch ? "Toque num ponto para ver e abrir o anúncio; onde houver vários juntos, aparece a lista. Use “Ampliar área” e arraste o dedo para separar pontos próximos."
-           : "Clique num ponto para abrir o anúncio; onde houver vários juntos, aparece a lista. Para separar pontos próximos: “Ampliar área” e arraste, ou duplo clique.");
+    (touch ? "Toque num ponto para ver e abrir o anúncio; onde houver vários juntos, aparece a lista. Para separar pontos próximos, faça a pinça com dois dedos ou use as faixas de área e preço."
+           : "Clique num ponto para abrir o anúncio; onde houver vários juntos, aparece a lista. Para separar pontos próximos: arraste um retângulo, duplo clique, pinça do trackpad ou as faixas de área e preço.");
 }
 function renderFeed() {
   const ev = [];
@@ -2176,10 +2306,10 @@ $("#simShare").onclick = async () => {
   try { await navigator.clipboard.writeText(url); b.textContent = "Link copiado ✓"; } catch { prompt("Copie o link:", url); }
   setTimeout(() => b.textContent = "Copiar link", 2000);
 };
-$("#zoomMode").onclick = () => { ZOOM_MODE = !ZOOM_MODE; unpinTip(); hideTip(); renderScatter(); };
+for (const id of RANGE_IDS) $("#" + id).addEventListener("input", onRange);   // teclado (setas) nos controles
+dualDrag($("#rxDual"), "rxLo", "rxHi"); dualDrag($("#ryDual"), "ryLo", "ryHi");
 $("#zoomOutBtn").onclick = zoomOut;
 $("#zoomReset").onclick = resetZoom;
-addEventListener("keydown", e => { if (e.key === "Escape" && ZOOM_MODE) { ZOOM_MODE = false; renderScatter(); } });
 $("#csvBtn").onclick = exportTableCsv;
 $("#heatCsv").onclick = heatCsv;
 $("#trToggle").onclick = () => { TREND_TABLE = !TREND_TABLE; renderTrend(); };
