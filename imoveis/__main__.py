@@ -143,13 +143,13 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
     out = [(head, head)]
 
     def line(x):
-        pct = f"{x['pct'] * 100:+.0f}%".replace("-", "−") if x["pct"] is not None else ""
+        pct = f"{x['pct'] * 100:+.0f}% vs. mediana".replace("-", "−") if x["pct"] is not None else ""
         ppm = brl(x["price"] / x["area"]) + "/m²" if x["price"] and x["area"] else ""
         parts = [p for p in (pct, x["nb"], f"{x['area']:.0f} m²" if x["area"] else "", f"{x['bedrooms']} qts" if x["bedrooms"] else "",
                              brl(x["price"]), ppm) if p]
         t = " · ".join(parts)
         if x["kind"] == "queda" and x.get("old"):
-            t += f"\nbaixou de {brl(x['old'])}"
+            t += f"\nbaixou de {brl(x['old'])}" + (f" (−{(1 - x['price'] / x['old']) * 100:.0f}%)" if x["price"] else "")
         if x.get("addr"):
             t += "\n" + x["addr"]
         return t + "\n" + x["url"]
@@ -164,6 +164,14 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
         if best:
             txt = "Nenhum bem abaixo da mediana hoje. Os de menor R$/m² vs. a mediana do seu recorte:\n\n" + "\n\n".join(line(x) for x in best)
             out.append((txt, txt))
+    # Quedas de preço (as que já aparecem como oportunidade não se repetem)
+    in_opp = {x["key"] for x in opp[:5]}
+    rest = [x for x in drops if x["key"] not in in_opp]
+    if rest:
+        txt = f"📉 Baixaram de preço ({len(rest)}):\n\n" + "\n\n".join(line(x) for x in rest[:8])
+        if len(rest) > 8:
+            txt += f"\n\n… e mais {len(rest) - 8}."
+        out.append((txt, txt))
     return f"🏢 Compra — resumo de {d}", out
 
 
