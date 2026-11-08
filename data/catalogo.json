@@ -38863,6 +38863,26 @@
   "total_monthly": null,
   "url": "https://www.vivareal.com.br/imovel/apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-com-garagem-135m2-venda-RS4510000-id-2921534235/"
  },
+ "vivareal:venda:2921545528": {
+  "address": "Avenida Cidade Jardim 993",
+  "area": 472.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": 10.0,
+  "extra": "",
+  "floor": null,
+  "geo_approx": false,
+  "id": "2921545528",
+  "lat": -23.584856,
+  "lon": -46.687748,
+  "neighborhood": "Itaim Bibi",
+  "parking": 4,
+  "price": 23000000.0,
+  "source": "vivareal",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.vivareal.com.br/imovel/apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-com-garagem-472m2-venda-RS23000000-id-2921545528/"
+ },
  "vivareal:venda:48148883": {
   "address": "",
   "area": 144.0,
@@ -95645,8 +95665,8 @@
   "floor": null,
   "geo_approx": true,
   "id": "2920245708",
-  "lat": -23.587,
-  "lon": -46.683,
+  "lat": -23.588,
+  "lon": -46.686,
   "neighborhood": "Itaim Bibi",
   "parking": 3,
   "price": 20000.0,
@@ -139358,6 +139378,26 @@
   "title": "",
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-cobertura-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-593m2-id-2897160004/"
+ },
+ "zap:venda:2897160005": {
+  "address": "Rua Fernandes de Abreu 130",
+  "area": 595.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": null,
+  "extra": "",
+  "floor": null,
+  "geo_approx": false,
+  "id": "2897160005",
+  "lat": -23.589926,
+  "lon": -46.684473,
+  "neighborhood": "Chácara Itaim",
+  "parking": 8,
+  "price": 11965000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-cobertura-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-595m2-id-2897160005/"
  },
  "zap:venda:2897162312": {
   "address": "Rua Fernandes de Abreu 151",
@@ -263742,7 +263782,7 @@
   "geo_approx": true,
   "id": "2919080557",
   "lat": -23.581,
-  "lon": -46.68,
+  "lon": -46.681,
   "neighborhood": "Jardim Europa",
   "parking": 2,
   "price": 5760000.0,
@@ -286145,7 +286185,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2919901602/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-137m2-id-2919901602/"
  },
  "zap:venda:2919907460": {
   "address": "Rua Jacurici 86",
@@ -303834,6 +303874,26 @@
   "title": "",
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-161m2-id-2920465734/"
+ },
+ "zap:venda:2920465764": {
+  "address": "Rua Fernandes de Abreu 77",
+  "area": 332.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": 5400.0,
+  "extra": "",
+  "floor": null,
+  "geo_approx": true,
+  "id": "2920465764",
+  "lat": -23.589,
+  "lon": -46.683,
+  "neighborhood": "Chácara Itaim",
+  "parking": 3,
+  "price": 14000000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-332m2-id-2920465764/"
  },
  "zap:venda:2920465794": {
   "address": "Rua Doutor Renato Paes de Barros 137",
@@ -322711,6 +322771,26 @@
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-178m2-id-2920525850/"
  },
+ "zap:venda:2920525868": {
+  "address": "Avenida Nove de Julho 4789",
+  "area": 170.0,
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": 1850.0,
+  "extra": "",
+  "floor": null,
+  "geo_approx": false,
+  "id": "2920525868",
+  "lat": -23.577602,
+  "lon": -46.671666,
+  "neighborhood": "Bela Vista",
+  "parking": 1,
+  "price": 1980000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-170m2-id-2920525868/"
+ },
  "zap:venda:2920525990": {
   "address": "Rua Marcos Lopes 196",
   "area": 369.0,
@@ -323950,7 +324030,11 @@
   "business": "venda",
   "condo": 4220.0,
   "extra": "",
+  "floor": null,
+  "geo_approx": true,
   "id": "2920527736",
+  "lat": -23.597,
+  "lon": -46.671,
   "neighborhood": "Vila Nova Conceição",
   "parking": 0,
   "price": 6400000.0,
@@ -347693,11 +347777,11 @@
   "floor": null,
   "geo_approx": false,
   "id": "2920980177",
-  "lat": -23.59332,
-  "lon": -46.676466,
+  "lat": -23.59344,
+  "lon": -46.676855,
   "neighborhood": "Vila Nova Conceição",
   "parking": 2,
-  "price": 2600000.0,
+  "price": 2574000.0,
   "source": "zap",
   "title": "",
   "total_monthly": null,
@@ -355849,7 +355933,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-moema-zona-sul-sao-paulo-sp-170m2-id-2921262166/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-deposito-privativo-moema-zona-sul-sao-paulo-sp-170m2-id-2921262166/"
  },
  "zap:venda:2921262355": {
   "address": "Rua João Cachoeira 1765",
@@ -359099,6 +359183,26 @@
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-131m2-id-2921417956/"
  },
+ "zap:venda:2921419239": {
+  "address": "Rua Inajaroba 120",
+  "area": 190.0,
+  "bedrooms": 3,
+  "business": "venda",
+  "condo": 4438.0,
+  "extra": "",
+  "floor": null,
+  "geo_approx": false,
+  "id": "2921419239",
+  "lat": -23.596992,
+  "lon": -46.66563,
+  "neighborhood": "Vila Nova Conceição",
+  "parking": 4,
+  "price": 5900000.0,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-190m2-id-2921419239/"
+ },
  "zap:venda:2921419436": {
   "address": "Rua Japão 90",
   "area": 130.0,
@@ -361841,7 +361945,7 @@
  },
  "zap:venda:2921534661": {
   "address": "Rua Fernandes de Abreu",
-  "area": 332.0,
+  "area": 333.0,
   "bedrooms": 3,
   "business": "venda",
   "condo": 9299.0,
@@ -361852,12 +361956,12 @@
   "lat": -23.59,
   "lon": -46.684,
   "neighborhood": "Chácara Itaim",
-  "parking": 5,
+  "parking": 4,
   "price": 14200000.0,
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-332m2-id-2921534661/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-333m2-id-2921534661/"
  },
  "zap:venda:2921535068": {
   "address": "Rua Tuim 456",
@@ -361930,7 +362034,7 @@
   "geo_approx": true,
   "id": "2921535748",
   "lat": -23.583,
-  "lon": -46.685,
+  "lon": -46.686,
   "neighborhood": "Jardim Paulistano",
   "parking": 5,
   "price": 19850000.0,
@@ -361981,7 +362085,7 @@
  },
  "zap:venda:2921537133": {
   "address": "Rua Doutor Renato Paes de Barros",
-  "area": 217.0,
+  "area": 220.0,
   "bedrooms": 4,
   "business": "venda",
   "condo": 5780.0,
@@ -361997,7 +362101,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-217m2-id-2921537133/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-220m2-id-2921537133/"
  },
  "zap:venda:2921537338": {
   "address": "Avenida Presidente Juscelino Kubitschek",
