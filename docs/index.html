@@ -192,7 +192,12 @@ section + section { margin-top: var(--gap); }
 .ranges { display: grid; gap: 2px 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 4px; }
 .rng { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .rng .rl { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); width: 38px; flex: none; }
-.rng .rv { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 108px; text-align: right; }
+.rng .rv { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; justify-content: flex-end; }
+.axin { width: 58px; height: 26px; padding: 0 6px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--ink); font: inherit; text-align: right; font-variant-numeric: tabular-nums; }
+.axin.wide { width: 92px; }
+.axin:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.axin[aria-invalid="true"] { border-color: var(--crit); }
+.axu { color: var(--muted); }
 #scatter { touch-action: pan-y; }   /* 1 dedo rola a página; a pinça fica com o gráfico */
 .dual { position: relative; height: 32px; flex: 1; min-width: 0; touch-action: none; cursor: pointer; }
 .dual::before { content: ""; position: absolute; left: 12px; right: 12px; top: 14px; height: 4px; border-radius: 2px; background: var(--border); }
@@ -410,7 +415,8 @@ table.sens td.cell { text-align: right; min-width: 70px; }
             <div><h2 id="scTitle">Preço pedido × área</h2><div class="sub" id="scSub"></div></div>
             <div class="card-tools">
               <button class="btn sm" type="button" id="zoomOutBtn" title="Reduzir o zoom">− Reduzir</button>
-              <button class="btn sm" type="button" id="zoomReset" title="Voltar à visão completa">Restaurar</button>
+              <button class="btn sm" type="button" id="zoomReset" title="Voltar às faixas padrão">Restaurar</button>
+              <button class="btn sm" type="button" id="zoomAll" title="Mostrar todos os anúncios">Ver tudo</button>
               <button class="btn sm" type="button" data-export="scatter">Baixar PNG</button>
             </div>
           </div>
@@ -418,8 +424,8 @@ table.sens td.cell { text-align: right; min-width: 70px; }
           <div class="zoombar" id="zoomBar" aria-live="polite"></div>
           <div class="chart" id="scatter"></div>
           <div class="ranges" id="zoomRanges" aria-label="Faixas visíveis do gráfico">
-            <div class="rng"><span class="rl">Área</span><div class="dual" id="rxDual"><i class="fill"></i><input type="range" id="rxLo" min="0" max="1000" step="1" aria-label="Área mínima visível"><input type="range" id="rxHi" min="0" max="1000" step="1" aria-label="Área máxima visível"></div><span class="rv" id="rxV"></span></div>
-            <div class="rng"><span class="rl" id="ryL">Preço</span><div class="dual" id="ryDual"><i class="fill"></i><input type="range" id="ryLo" min="0" max="1000" step="1" aria-label="Preço mínimo visível"><input type="range" id="ryHi" min="0" max="1000" step="1" aria-label="Preço máximo visível"></div><span class="rv" id="ryV"></span></div>
+            <div class="rng"><span class="rl">Área</span><div class="dual" id="rxDual"><i class="fill"></i><input type="range" id="rxLo" min="0" max="1000" step="1" aria-label="Área mínima visível"><input type="range" id="rxHi" min="0" max="1000" step="1" aria-label="Área máxima visível"></div><span class="rv"><input class="axin" id="axX0" inputmode="decimal" aria-label="Área mínima do eixo (m²)"> a <input class="axin" id="axX1" inputmode="decimal" aria-label="Área máxima do eixo (m²)"> <span class="axu">m²</span></span></div>
+            <div class="rng"><span class="rl" id="ryL">Preço</span><div class="dual" id="ryDual"><i class="fill"></i><input type="range" id="ryLo" min="0" max="1000" step="1" aria-label="Preço mínimo visível"><input type="range" id="ryHi" min="0" max="1000" step="1" aria-label="Preço máximo visível"></div><span class="rv"><input class="axin wide" id="axY0" inputmode="decimal" aria-label="Valor mínimo do eixo (R$)"> a <input class="axin wide" id="axY1" inputmode="decimal" aria-label="Valor máximo do eixo (R$)"> <span class="axu" id="ryU">R$</span></span></div>
           </div>
           <p class="note" id="scNote"></p>
         </div>
@@ -1057,7 +1063,8 @@ function scatter(host, rows, market) {
   const xtA = niceTicks(xMin, xMaxAuto, 6).filter(t => t >= xMin), ytRaw = niceTicks(yQ * .9, yMaxAuto * 1.04, 5);
   const ytA = ytRaw.filter(t => t >= ytRaw[0]);
   const auto = { x0: xMin, x1: xtA.at(-1), y0: ytA[0], y1: ytA.at(-1) };
-  const D = ZOOM || auto;
+  const D = ZOOM ? { x0: ZOOM.x0 ?? auto.x0, x1: ZOOM.x1 ?? auto.x1, y0: ZOOM.y0 ?? auto.y0, y1: ZOOM.y1 ?? auto.y1 } : auto;
+  scatter.D = D;
   const inD = r => r.area >= D.x0 && r.area <= D.x1 && refPrice(r) >= D.y0 && refPrice(r) <= D.y1;
   const pts = ZOOM ? all.filter(inD) : all;
   const xt = ZOOM ? niceTicks(D.x0, D.x1, 6).filter(t => t >= D.x0 && t <= D.x1) : xtA;
@@ -1209,7 +1216,7 @@ function scatter(host, rows, market) {
       const g = gest; gest = null; justBrushed = true; touches.clear();
       if (Math.abs(g.sc - 1) < .04 && Math.hypot(g.tx, g.ty) < 8) { view.removeAttribute("transform"); renderScatter(); return; }
       const [x0, x1, y0, y1] = domainFromView(g.sc, g.tx, g.ty), a = auto;
-      if (x0 <= a.x0 && x1 >= a.x1 && y0 <= a.y0 && y1 >= a.y1) { resetZoom(); return; }
+      if (x0 <= a.x0 && x1 >= a.x1 && y0 <= a.y0 && y1 >= a.y1) { viewAll(); return; }
       zoomTo(x0, x1, y0, y1);
     }
   };
@@ -1235,7 +1242,7 @@ function scatter(host, rows, market) {
       const f = Math.exp(Math.max(-1, Math.min(1, wheelAcc * .01))), cx = invX(wheelAt.x), cy = invY(wheelAt.y);
       wheelAcc = 0; wheelRaf = 0;
       const nx0 = cx - (cx - D.x0) * f, nx1 = cx + (D.x1 - cx) * f, ny0 = cy - (cy - D.y0) * f, ny1 = cy + (D.y1 - cy) * f;
-      if (f > 1 && nx0 <= auto.x0 && nx1 >= auto.x1 && ny0 <= auto.y0 && ny1 >= auto.y1) resetZoom(); else zoomTo(nx0, nx1, ny0, ny1);
+      if (f > 1 && nx0 <= auto.x0 && nx1 >= auto.x1 && ny0 <= auto.y0 && ny1 >= auto.y1) viewAll(); else zoomTo(nx0, nx1, ny0, ny1);
     });
   }, { passive: false });
   hit.addEventListener("pointerleave", e => { if (e.pointerType === "mouse" && !pinned && !brush) showOne(null); });
@@ -1275,34 +1282,56 @@ function scatter(host, rows, market) {
 }
 function zoomOut() {
   if (!ZOOM) return;
-  const a = scatter.auto, D = ZOOM, cx = (D.x0 + D.x1) / 2, cy = (D.y0 + D.y1) / 2, w = (D.x1 - D.x0), hgt = (D.y1 - D.y0);
+  const a = scatter.auto, D = scatter.D, cx = (D.x0 + D.x1) / 2, cy = (D.y0 + D.y1) / 2, w = (D.x1 - D.x0), hgt = (D.y1 - D.y0);
   const n = { x0: cx - w, x1: cx + w, y0: cy - hgt, y1: cy + hgt };
   ZOOM = (n.x0 <= a.x0 && n.x1 >= a.x1 && n.y0 <= a.y0 && n.y1 >= a.y1) ? null
     : { x0: Math.max(a.x0, n.x0), x1: Math.min(a.x1, n.x1), y0: Math.max(0, n.y0), y1: Math.min(a.y1, n.y1) };
   unpinTip(); hideTip(); renderScatter();
 }
-function resetZoom() { ZOOM = null; ZOOM_MODE = false; unpinTip(); hideTip(); renderScatter(); }
+// Faixas padrão dos eixos (as do pedido de 08/11): área 120–180 m²; aluguel (valor total) R$ 5 mil–15 mil/mês.
+// Compra e leilão: mesma área, preço automático. null = automático (domínio dos dados).
+const DEFAULT_ZOOM = { aluguel: { x0: 120, x1: 180, y0: 5000, y1: 15000 }, venda: { x0: 120, x1: 180, y0: null, y1: null }, leilao: { x0: 120, x1: 180, y0: null, y1: null } };
+const defaultZoom = b => ({ ...(DEFAULT_ZOOM[b] || DEFAULT_ZOOM.venda) });
+function resetZoom() { ZOOM = defaultZoom(F.business); ZOOM_BIZ = F.business; ZOOM_MODE = false; unpinTip(); hideTip(); renderScatter(); }
+function viewAll() { ZOOM = null; ZOOM_BIZ = F.business; unpinTip(); hideTip(); renderScatter(); }
+// Valores digitados: "120", "5.000", "5 mil", "1,5 mi", "R$ 2.250.000"
+function parseAxis(t) {
+  const s = String(t || "").toLowerCase().replace(/r\$|\s/g, "");
+  const m = s.match(/^([\d.,]+)(mi|milh(ão|ões|oes)?|mil|k)?$/); if (!m) return NaN;
+  const n = parseBR(m[1]); return m[2] ? n * (m[2].startsWith("mi") && m[2] !== "mil" ? 1e6 : 1e3) : n;
+}
+function onAxisInput(e) {
+  const el = e.target, v = parseAxis(el.value), D = scatter.D; if (!D) return;
+  const key = { axX0: "x0", axX1: "x1", axY0: "y0", axY1: "y1" }[el.id];
+  const next = { ...D, [key]: v };
+  const ok = isFinite(v) && v >= 0 && next.x1 > next.x0 && next.y1 > next.y0;
+  el.setAttribute("aria-invalid", String(!ok));
+  if (!ok) return;
+  ZOOM = next; ZOOM_BIZ = F.business; unpinTip(); hideTip(); renderScatter();
+}
 // Faixas (barras com dois controles) sincronizadas com o zoom; valores 0–1000 sobre o domínio completo do gráfico
 const RANGE_IDS = ["rxLo", "rxHi", "ryLo", "ryHi"];
 function syncRanges() {
   const a = scatter.auto; if (!a) return;
-  const D = ZOOM || a, f = (v, lo, hi) => Math.round(Math.max(0, Math.min(1000, (v - lo) / (hi - lo) * 1000)));
+  const D = scatter.D || a, f = (v, lo, hi) => Math.round(Math.max(0, Math.min(1000, (v - lo) / (hi - lo) * 1000)));
   const vals = { rxLo: f(D.x0, a.x0, a.x1), rxHi: f(D.x1, a.x0, a.x1), ryLo: f(D.y0, a.y0, a.y1), ryHi: f(D.y1, a.y0, a.y1) };
   for (const id of RANGE_IDS) if (document.activeElement !== $("#" + id) && RANGE_DRAG !== id) $("#" + id).value = vals[id];
-  rangeLabels();
+  rangeLabels(D);
 }
-function rangeLabels() {
+function rangeLabels(D) {
   const a = scatter.auto; if (!a) return;
   const v = id => +$("#" + id).value / 1000, x = t => a.x0 + t * (a.x1 - a.x0), y = t => a.y0 + t * (a.y1 - a.y0);
-  $("#rxV").textContent = `${FMT.int(x(v("rxLo")))}–${FMT.int(x(v("rxHi")))} m²`;
-  $("#ryV").textContent = `${FMT.brlc(y(v("ryLo")))}–${FMT.brlc(y(v("ryHi")))}${F.business === "aluguel" ? "/mês" : ""}`;
+  // campos editáveis: valores exatos do zoom (ao sincronizar) ou os das barras (durante o arraste)
+  const vals = D ? [D.x0, D.x1, D.y0, D.y1] : [x(v("rxLo")), x(v("rxHi")), y(v("ryLo")), y(v("ryHi"))];
+  ["axX0", "axX1", "axY0", "axY1"].forEach((id, i) => { const el = $("#" + id); if (document.activeElement !== el) { el.value = nf0.format(Math.round(vals[i])); el.removeAttribute("aria-invalid"); } });
+  $("#ryU").textContent = F.business === "aluguel" ? "R$/mês" : "R$";
   $("#ryL").textContent = F.business === "aluguel" ? "Total" : F.business === "leilao" ? "Lance" : "Preço";
   for (const [d, lo, hi] of [["#rxDual", "rxLo", "rxHi"], ["#ryDual", "ryLo", "ryHi"]]) {
     const fill = $(d + " .fill"), l = v(lo), r = v(hi);
     fill.style.left = `calc(12px + ${l} * (100% - 24px))`; fill.style.width = `calc(${Math.max(0, r - l)} * (100% - 24px))`;
   }
 }
-let rangeRaf = 0, RANGE_DRAG = null;
+let rangeRaf = 0, RANGE_DRAG = null, RANGE_AXIS = null;
 // Arrastar na barra: o controle mais próximo do dedo/cursor segue o movimento (mais fácil que acertar o polegar)
 function dualDrag(dual, loId, hiId) {
   const lo = $("#" + loId), hi = $("#" + hiId);
@@ -1322,6 +1351,7 @@ function dualDrag(dual, loId, hiId) {
 }
 function onRange(e) {
   const a = scatter.auto; if (!a) return;
+  RANGE_AXIS = e.target.id.slice(0, 2);
   const gap = 25, el = e.target, isLo = el.id.endsWith("Lo"), pair = $("#" + el.id.slice(0, 2) + (isLo ? "Hi" : "Lo"));
   if (isLo && +el.value > +pair.value - gap) el.value = +pair.value - gap;
   if (!isLo && +el.value < +pair.value + gap) el.value = +pair.value + gap;
@@ -1331,9 +1361,13 @@ function onRange(e) {
 }
 function applyRanges() {
   const a = scatter.auto; if (!a) return;
-  const v = id => +$("#" + id).value / 1000;
-  const full = v("rxLo") <= 0 && v("rxHi") >= 1 && v("ryLo") <= 0 && v("ryHi") >= 1;
-  ZOOM = full ? null : { x0: a.x0 + v("rxLo") * (a.x1 - a.x0), x1: a.x0 + v("rxHi") * (a.x1 - a.x0), y0: a.y0 + v("ryLo") * (a.y1 - a.y0), y1: a.y0 + v("ryHi") * (a.y1 - a.y0) };
+  const v = id => +$("#" + id).value / 1000, D = scatter.D || a;
+  // só o eixo arrastado muda; o outro mantém o valor atual (mesmo fora da faixa dos dados, ex.: digitado)
+  const nx = { x0: a.x0 + v("rxLo") * (a.x1 - a.x0), x1: a.x0 + v("rxHi") * (a.x1 - a.x0) };
+  const ny = { y0: a.y0 + v("ryLo") * (a.y1 - a.y0), y1: a.y0 + v("ryHi") * (a.y1 - a.y0) };
+  const next = RANGE_AXIS === "rx" ? { ...D, ...nx } : RANGE_AXIS === "ry" ? { ...D, ...ny } : { ...nx, ...ny };
+  const full = next.x0 <= a.x0 && next.x1 >= a.x1 && next.y0 <= a.y0 && next.y1 >= a.y1;
+  ZOOM = full ? null : next;
   ZOOM_BIZ = F.business; unpinTip(); hideTip(); renderScatter();
 }
 
@@ -1547,7 +1581,7 @@ function renderKPIs() {
   );
 }
 function renderScatter() {
-  if (ZOOM && ZOOM_BIZ !== F.business) ZOOM = null;   // escala muda entre compra, aluguel e leilão
+  if (ZOOM_BIZ !== F.business) { ZOOM = defaultZoom(F.business); ZOOM_BIZ = F.business; }   // cada negócio tem sua faixa padrão
   const hadFocus = document.activeElement?.closest?.("#scatter");
   const rows = DATA.listings.filter(r => r.active && baseFilter(r));
   const market = DATA.listings.filter(r => r.active && baseFilter(r, { ignoreBudget: true }));
@@ -1562,14 +1596,16 @@ function renderScatter() {
     ...r.medians.map(md => ({ kind: "dash", color: COLOR[md.nb], text: `mediana ${SHORT[md.nb] || md.nb}: ${FMT.brlc(md.med)}/m²` }))];
   const touch = !matchMedia("(hover: hover)").matches;
   const miss = (r.total || 0) - r.n;
-  $("#zoomOutBtn").disabled = !ZOOM; $("#zoomReset").disabled = !ZOOM;
+  const isDef = ZOOM && JSON.stringify(ZOOM) === JSON.stringify(defaultZoom(F.business));
+  $("#zoomOutBtn").disabled = !ZOOM; $("#zoomReset").disabled = !!isDef; $("#zoomAll").disabled = !ZOOM;
   syncRanges();
-  const zText = ZOOM ? `Zoom: ${FMT.int(ZOOM.x0)}–${FMT.int(ZOOM.x1)} m² · ${FMT.brlc(ZOOM.y0)}–${FMT.brlc(ZOOM.y1)}${F.business === "aluguel" ? "/mês" : ""} · ${FMT.int(r.visible)} de ${FMT.int(r.n)} anúncios visíveis` : "";
+  const zD = scatter.D || {};
+  const zText = ZOOM ? `${FMT.int(zD.x0)}–${FMT.int(zD.x1)} m² · ${FMT.brlc(zD.y0)}–${FMT.brlc(zD.y1)}${F.business === "aluguel" ? "/mês" : ""} · ${FMT.int(r.visible)} de ${FMT.int(r.n)} anúncios visíveis` : "";
   $("#zoomBar").textContent = zText || (touch ? "Pinça com dois dedos para ampliar (e arraste com dois dedos para mover), ou ajuste as faixas abaixo do gráfico." : "Arraste sobre o gráfico para ampliar uma região, use a pinça do trackpad (ou Ctrl + roda) ou as faixas abaixo.");
   $("#scNote").textContent = `${FMT.int(r.n)} anúncios${miss > 0 ? ` (${FMT.int(miss)} sem área ou preço ficam só na tabela)` : ""}. Tracejado: mediana de ${m2Label()} de todos os anúncios ativos do bairro (sem filtro de orçamento) — ponto abaixo da linha = mais barato por m² que a mediana. ` +
     (r.clipped ? `${FMT.int(r.clipped)} anúncio(s) acima do percentil 99 de área ou do teto do eixo aparecem na borda. ` : "") +
-    (touch ? "Toque num ponto para ver e abrir o anúncio; onde houver vários juntos, aparece a lista. Para separar pontos próximos, faça a pinça com dois dedos ou use as faixas de área e preço."
-           : "Clique num ponto para abrir o anúncio; onde houver vários juntos, aparece a lista. Para separar pontos próximos: arraste um retângulo, duplo clique, pinça do trackpad ou as faixas de área e preço.");
+    (touch ? "Toque num ponto para ver e abrir o anúncio; onde houver vários juntos, aparece a lista. Para separar pontos próximos, faça a pinça com dois dedos, arraste as faixas ou digite os limites dos eixos (aceita “5 mil”, “1,5 mi”). “Restaurar” volta ao padrão; “Ver tudo” mostra todos."
+           : "Clique num ponto para abrir o anúncio; onde houver vários juntos, aparece a lista. Para separar pontos próximos: arraste um retângulo, duplo clique, pinça do trackpad, as faixas ou digitando os limites dos eixos (aceita “5 mil”, “1,5 mi”). “Restaurar” volta ao padrão; “Ver tudo” mostra todos.");
 }
 function renderFeed() {
   const ev = [];
@@ -2310,6 +2346,11 @@ for (const id of RANGE_IDS) $("#" + id).addEventListener("input", onRange);   //
 dualDrag($("#rxDual"), "rxLo", "rxHi"); dualDrag($("#ryDual"), "ryLo", "ryHi");
 $("#zoomOutBtn").onclick = zoomOut;
 $("#zoomReset").onclick = resetZoom;
+$("#zoomAll").onclick = viewAll;
+for (const id of ["axX0", "axX1", "axY0", "axY1"]) {
+  $("#" + id).addEventListener("change", onAxisInput);
+  $("#" + id).addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); e.target.blur(); } });
+}
 $("#csvBtn").onclick = exportTableCsv;
 $("#heatCsv").onclick = heatCsv;
 $("#trToggle").onclick = () => { TREND_TABLE = !TREND_TABLE; renderTrend(); };
