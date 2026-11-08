@@ -797,19 +797,19 @@
     "price": 16000
    },
    "venda|Vila Uberabinha": {
-    "n": 871,
-    "ppm2": 17365.27,
+    "n": 876,
+    "ppm2": 17391.3,
     "price": 3200000
    },
    "venda|Itaim Bibi": {
-    "n": 1618,
-    "ppm2": 19654.47,
+    "n": 1628,
+    "ppm2": 19626.17,
     "price": 3200000
    },
    "venda|Vila Nova Conceição": {
-    "n": 1312,
-    "ppm2": 30500.0,
-    "price": 5490100
+    "n": 1318,
+    "ppm2": 30444.67,
+    "price": 5490000
    }
   }
  }
