@@ -832,3 +832,36 @@ def test_dashboard_includes_other_labels_inside_area(tmp_path, monkeypatch):
     assert other and other[0]["neighborhood"] == dashboard.OTHER_NB and other[0]["neighborhood_label"] == "Jardim Europa"
     assert data["criteria"]["neighborhoods"] == ["Itaim Bibi", dashboard.OTHER_NB]
     assert "quintoandar:aluguel:a1" in json.loads((tmp_path / "state.json").read_text())["seen"]
+
+
+def test_price_drop_alert_10pct_cumulative(tmp_path, monkeypatch):
+    """Queda ≥ 10% avisa (mesmos critérios dos novos); degraus somam; depois do aviso, recomeça do preço avisado."""
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_rent=20_000, alert_min_area=120, alert_min_bedrooms=3,
+                 immediate=("aluguel",), price_drop_pct=10)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def A(i, total, area=150):
+        return Listing("zap", f"a{i}", f"https://z/a{i}", "aluguel", neighborhood="Itaim Bibi", address=f"Rua {chr(65 + i)} 1",
+                       area=area, price=total - 2_000, total_monthly=total, bedrooms=3)
+    steps = [(15_000, 15_000), (14_000, 12_000), (13_400, 12_000), (13_300, 12_000)]   # (a0, a1 com 100 m²)
+    batches = iter([{"zap": [A(0, p0), A(1, p1, area=100)]} for p0, p1 in steps])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    clock = iter(f"2026-11-0{d}T12:00:00+00:00" for d in range(1, 9))
+    monkeypatch.setattr(app, "now", lambda: next(clock))
+    drops = []
+    for _ in steps:
+        sent.clear(); app.run()
+        drops.append([t for s, items in sent if s.startswith("📉") for t, _ in items])
+    assert drops[1] == []                                   # −6,7%: ainda não
+    assert len(drops[2]) == 1 and "https://z/a0" in drops[2][0]   # −10,7% acumulado desde R$ 15.000
+    assert drops[3] == []                                   # −0,7% depois do aviso: não repete
+    assert not any("https://z/a1" in t for d in drops for t in d)   # 100 m²: fora dos critérios de aviso

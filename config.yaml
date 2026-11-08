@@ -37,8 +37,10 @@ avisos:
   resumo_diario_hora: 19       # enviado na 1ª coleta a partir desta hora (19h17); cobre das 19h de ontem às 19h de hoje
 painel_url: https://vncsprttdsz.github.io/real-estate/
 
-# Avisar também quando o preço de um anúncio já visto cair pelo menos X%
-alerta_queda_preco_pct: 3
+# Avisar também quando o preço de um anúncio já visto cair pelo menos X% (mesmos critérios dos avisos de
+# novos: área, quartos, área de interesse e orçamento; aluguel na hora, compra no resumo diário). Quedas em
+# degraus somam (compara com o maior preço desde o último aviso de queda).
+alerta_queda_preco_pct: 10
 
 # Avisar quando um anúncio (novo, ou que baixou de preço) tiver R$/m² pelo menos X% abaixo da mediana dos
 # anúncios do mesmo bairro, negócio e faixa de área (aluguel: valor total por m²). pct: null desliga.

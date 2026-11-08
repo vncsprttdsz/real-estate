@@ -268,10 +268,16 @@ def run(dry_run: bool = False) -> int:
             if old_price and l.ref_price and l.ref_price < old_price:
                 price_cuts.append((l, old_price))
             if cfg.in_budget(l) and old_price and l.ref_price and l.ref_price < old_price:
+                # Referência: maior preço desde o último aviso de queda (quedas em degraus somam; depois de
+                # avisar, recomeça do preço avisado para não repetir a cada pequeno ajuste).
+                since = prev.get("drop_ts")
+                ref = max([p for t, p in prev.get("hist") or [] if p and (not since or t >= since)] + [old_price])
                 if not cfg.within_cap(l.business, old_price):
                     drops.append((l, old_price, "Baixou e entrou no seu orçamento"))
-                elif cfg.price_drop_pct and l.ref_price <= old_price * (1 - cfg.price_drop_pct / 100):
-                    drops.append((l, old_price, "Queda de preço"))
+                    prev["drop_ts"] = ts
+                elif cfg.price_drop_pct and l.ref_price <= ref * (1 - cfg.price_drop_pct / 100):
+                    drops.append((l, ref, "Queda de preço"))
+                    prev["drop_ts"] = ts
             prev["last_seen"] = ts
             if l.ref_price and l.ref_price != old_price:
                 prev["price"] = l.ref_price
@@ -411,7 +417,7 @@ def run(dry_run: bool = False) -> int:
             subject += f" · ⭐ {sum(1 for l in new_items if l.key in stars)} com destaque"
         notifier.send(subject, [describe(l, star_note(l)) for l in new_items])
     if drops:
-        items = [describe(l, " · ".join(x for x in (star_note(l), f"{why}: {brl(old)} → {brl(l.ref_price)}") if x)) for l, old, why in drops]
+        items = [describe(l, " · ".join(x for x in (star_note(l), f"{why}: {brl(old)} → {brl(l.ref_price)} (−{(1 - l.ref_price / old) * 100:.0f}%)") if x)) for l, old, why in drops]
         notifier.send(f"📉 {len(drops)} anúncio(s) baixaram de preço", items)
     if first_load:
         summary = ", ".join(f"{k}: {v}" for k, v in first_load.items())
