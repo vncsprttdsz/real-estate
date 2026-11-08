@@ -385,6 +385,7 @@ table.sens td.cell { text-align: right; min-width: 70px; }
     <div class="fgroup"><label class="flabel" for="fq">Quartos</label>
       <select id="fq"><option value="0">Qualquer</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></div>
     <div class="fgroup"><label class="check"><input type="checkbox" id="fb"> <span>Só no orçamento</span> <span class="muted" id="fbCap"></span></label></div>
+    <div class="fgroup" id="faGroup" hidden><label class="check" title="Pelas coordenadas do anúncio, não pelo bairro que o site informa"><input type="checkbox" id="fa"> <span>Só na minha área</span></label> <a class="muted" href="area.html" style="font-size:12px">ver mapa</a> <span class="muted" id="faNote" style="font-size:12px"></span></div>
     <div class="fgroup"><span class="flabel" id="lb-period">Período</span>
       <div class="seg" data-f="period" role="group" aria-labelledby="lb-period">
         <button data-v="7">7 dias</button><button data-v="30">30 dias</button><button data-v="90">90 dias</button><button data-v="0">Tudo</button>
@@ -837,8 +838,17 @@ function niceTicks(min, max, n = 5) {
 const SOURCE = { zap: "ZAP", vivareal: "Viva Real", quintoandar: "QuintoAndar", zuk: "Portal Zuk" };
 const BUSINESS = { venda: "Comprar", aluguel: "Alugar", leilao: "Leilão" };
 const SHORT = { "Vila Nova Conceição": "V. N. Conceição" };
-const DEFAULT_F = { period: "30", business: "venda", bairro: "todos", quartos: 0, budget: true };
-let DATA = null, NBS = [], COLOR = {}, MED = {};
+const DEFAULT_F = { period: "30", business: "venda", bairro: "todos", quartos: 0, budget: true, area: false };
+let DATA = null, NBS = [], COLOR = {}, MED = {}, POLY = null;
+/** Ponto dentro do polígono [[lat, lon], ...] (mesmo algoritmo de imoveis/geo.py). */
+function insidePoly(lat, lon, P) {
+  let ok = false;
+  for (let i = 0, j = P.length - 1; i < P.length; j = i++) {
+    const [y1, x1] = P[i], [y2, x2] = P[j];
+    if ((y1 > lat) !== (y2 > lat) && lon < (x2 - x1) * (lat - y1) / (y2 - y1) + x1) ok = !ok;
+  }
+  return ok;
+}
 const F = Object.assign({}, DEFAULT_F, store.get("filters", {}));
 delete F.precoMax;
 let SORT = store.get("sort", { col: "first_seen", dir: -1 });
@@ -890,6 +900,7 @@ function baseFilter(r, { business = F.business, ignoreBairro = false, ignoreBudg
   if (!ignoreBairro && F.bairro !== "todos" && r.neighborhood !== F.bairro) return false;
   if (F.quartos && (r.bedrooms || 0) < F.quartos) return false;
   if (F.budget && !ignoreBudget && r.in_budget === false) return false;
+  if (F.area && POLY && !r._inArea) return false;
   return true;
 }
 function computeMedians() {
@@ -1516,7 +1527,7 @@ function renderAlerts() {
 function activeFilterText() {
   const c = DATA.criteria, cap = F.business === "aluguel" ? c.max_rent : c.max_sale;
   return [BUSINESS[F.business], F.bairro === "todos" ? "todos os bairros" : F.bairro, F.quartos ? F.quartos + "+ quartos" : "qualquer nº de quartos",
-    F.budget ? `só orçamento (≤ ${FMT.brlc(cap)}${F.business === "aluguel" ? "/mês" : ""})` : "sem filtro de orçamento", periodLabel()].join(" · ");
+    F.budget ? `só orçamento (≤ ${FMT.brlc(cap)}${F.business === "aluguel" ? "/mês" : ""})` : "sem filtro de orçamento", ...(F.area && POLY ? ["só na minha área"] : []), periodLabel()].join(" · ");
 }
 function renderFilters() {
   $("#bairroSeg").replaceChildren(h("button", { "data-v": "todos" }, "Todos"),
@@ -1530,13 +1541,20 @@ function renderFilters() {
   });
   $("#fq").value = String(F.quartos);
   $("#fb").checked = !!F.budget;
+  $("#fa").checked = !!F.area;
+  if (POLY) {
+    const keep = F.area; F.area = false;   // conta os que o filtro de área tira só por falta de coordenadas
+    const noGeo = DATA.listings.filter(r => r.active && !(r.lat && r.lon) && baseFilter(r)).length;
+    F.area = keep;
+    $("#faNote").textContent = F.area && noGeo ? `(${FMT.int(noGeo)} sem localização no anúncio ficam de fora)` : "";
+  }
   const c = DATA.criteria, cap = F.business === "aluguel" ? c.max_rent : c.max_sale;
   $("#fbCap").textContent = "";
   const changed = Object.keys(DEFAULT_F).some(k => String(F[k]) !== String(DEFAULT_F[k]));
   $("#activeFilters").replaceChildren(h("span", { class: "flabel" }, "Filtros ativos:"),
     ...activeFilterText().split(" · ").map(t => h("span", { class: "tag" }, t)),
     h("button", { class: "btn sm", type: "button", disabled: !changed || null, onclick: () => { Object.assign(F, DEFAULT_F); PAGE = 0; update(); } }, "Restaurar padrão"));
-  $("#fToggleSum").textContent = [BUSINESS[F.business], F.bairro === "todos" ? "todos os bairros" : SHORT[F.bairro] || F.bairro, F.quartos ? F.quartos + "+ qts" : "", F.budget ? "no orçamento" : "", periodLabel()].filter(Boolean).join(" · ");
+  $("#fToggleSum").textContent = [BUSINESS[F.business], F.bairro === "todos" ? "todos os bairros" : SHORT[F.bairro] || F.bairro, F.quartos ? F.quartos + "+ qts" : "", F.budget ? "no orçamento" : "", F.area && POLY ? "minha área" : "", periodLabel()].filter(Boolean).join(" · ");
 }
 
 /* =====================================================================
@@ -2318,6 +2336,7 @@ function toggleTheme() {
 $("#fq").onchange = e => { F.quartos = +e.target.value; PAGE = 0; update(); };
 $("#fToggle").onclick = () => { const f = $(".filters"), open = !f.classList.contains("open"); f.classList.toggle("open", open); $("#fToggle").setAttribute("aria-expanded", String(open)); };
 $("#fb").onchange = e => { F.budget = e.target.checked; PAGE = 0; update(); };
+$("#fa").onchange = e => { F.area = e.target.checked; PAGE = 0; update(); };
 $("#search").oninput = () => { PAGE = 0; renderTable(); };
 $("#showGone").onchange = () => { PAGE = 0; renderTable(); };
 $("#viewSel").onchange = () => { PAGE = 0; renderTable(); };
@@ -2380,7 +2399,9 @@ new ResizeObserver(() => { const w = $("#main").clientWidth; if (!DATA || w === 
     return;
   }
   DATA.history ||= []; DATA.notes ||= [];
-  for (const r of DATA.listings) r.neighborhood = (r.neighborhood || "").trim();
+  POLY = (DATA.criteria.area_polygon || []).length >= 3 ? DATA.criteria.area_polygon : null;
+  for (const r of DATA.listings) { r.neighborhood = (r.neighborhood || "").trim(); r._inArea = !!(POLY && r.lat && r.lon && insidePoly(r.lat, r.lon, POLY)); }
+  $("#faGroup").hidden = !POLY;
   NBS = DATA.criteria.neighborhoods;
   ["var(--s1)", "var(--s2)", "var(--s3)"].forEach((c, i) => { if (NBS[i]) COLOR[NBS[i]] = c; });
   NBS.slice(3).forEach(nb => COLOR[nb] = "var(--neutral-mark)");   // paleta validada para até 3 bairros

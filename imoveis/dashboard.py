@@ -209,6 +209,7 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
             "businesses": cfg.businesses,
             "max_sale": cfg.max_sale,
             "max_rent": cfg.max_rent,
+            "area_polygon": cfg.area_polygon,
         },
         "sources": sources,
         "dedupe": merged,
