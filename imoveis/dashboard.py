@@ -13,6 +13,7 @@ HISTORY = ROOT / "data" / "historico.json"    # um retrato agregado por dia
 OUTPUT = ROOT / "docs" / "dados.json"
 KEEP_HISTORY_DAYS = 730
 GONE_AFTER_SECONDS = 24 * 3600
+OTHER_NB = "Outros na área"   # anúncios dentro da área de interesse rotulados com outro bairro
 # ZAP/Viva Real: só lemos as novidades de uma busca com milhares de resultados, então
 # ausência não prova que saiu do ar; espera mais antes de marcar.
 GONE_AFTER_BY_SOURCE = {"zap": 7 * 86400, "vivareal": 7 * 86400}
@@ -153,8 +154,10 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
             catalog[l.key] = l.to_dict()
     # Só guarda o que o monitor ainda lembra (mesma janela de 30 dias do estado).
     # Só bairros configurados: um bairro retirado do config.yaml some do painel na próxima coleta.
+    # Com área de interesse, entra também tudo o que fica dentro do polígono, com qualquer rótulo de bairro.
     nbs = cfg.neighborhoods_norm
-    catalog = {k: v for k, v in catalog.items() if k in state["seen"] and norm(v.get("neighborhood")) in nbs}
+    catalog = {k: v for k, v in catalog.items() if k in state["seen"]
+               and (norm(v.get("neighborhood")) in nbs or cfg.in_area_point(v.get("lat"), v.get("lon")))}
 
     last_ok = state.get("last_ok", {})
     rows = []
@@ -180,6 +183,12 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
         })
 
     rows, merged = group(rows)
+    # Rótulos fora dos bairros monitorados (só chegam aqui por estarem dentro da área) viram um grupo único
+    # nos gráficos; o rótulo do site fica em neighborhood_label.
+    for r in rows:
+        if norm(r["neighborhood"]) not in nbs:
+            r["neighborhood_label"], r["neighborhood"] = r["neighborhood"], OTHER_NB
+    has_other = any(r["neighborhood"] == OTHER_NB for r in rows)
 
     today = datetime.now(timezone.utc).date().isoformat()
     history = rebase_rent_history([h for h in _load(HISTORY, []) if h["date"] != today], catalog, state)
@@ -204,7 +213,7 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
         "source_info": SOURCE_INFO,
         "notes": [{"date": a, "text": b} for a, b in METHOD_NOTES],
         "criteria": {
-            "neighborhoods": cfg.neighborhoods,
+            "neighborhoods": list(cfg.neighborhoods) + ([OTHER_NB] if has_other else []),
             "min_area": cfg.min_area,
             "businesses": cfg.businesses,
             "max_sale": cfg.max_sale,

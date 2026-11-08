@@ -798,3 +798,37 @@ def test_area_accepts_other_labels_inside_polygon():
     assert cfg.query_neighborhoods == ["Itaim Bibi", "Jardim Europa"]
     tiles = quintoandar.area_tiles(poly)
     assert len(tiles) == 4 and min(t["south"] for t in tiles) == -23.60 and max(t["east"] for t in tiles) == -46.67
+
+
+def test_dashboard_includes_other_labels_inside_area(tmp_path, monkeypatch):
+    """Tudo dentro do polígono vai para o painel (grupo "Outros na área", com o rótulo do site), fica no estado
+    entre coletas e não volta a avisar como novo."""
+    poly = [[-23.58, -46.69], [-23.58, -46.67], [-23.60, -46.67], [-23.60, -46.69]]
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_rent=20_000, immediate=("aluguel",), area_polygon=poly)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, items)))
+
+    def A(i, nb, lat, lon):
+        return Listing("quintoandar", f"a{i}", f"https://q/a{i}", "aluguel", neighborhood=nb, address=f"Rua {chr(65 + i)} 1",
+                       area=150, price=10_000 + i, total_monthly=12_000 + i, bedrooms=3, lat=lat, lon=lon)
+    base = [A(0, "Itaim Bibi", -23.59, -46.68), A(2, "Jardim Europa", -23.595, -46.685)]   # 1ª coleta = carga inicial do rótulo
+    batches = iter([{"quintoandar": base}, {"quintoandar": base + [A(1, "Jardim Europa", -23.59, -46.68)]},
+                    {"quintoandar": base + [A(1, "Jardim Europa", -23.59, -46.68)]}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run(); sent.clear(); app.run()
+    assert "https://q/a1" in " ".join(t for _, items in sent for t, _ in items)
+    sent.clear(); app.run()
+    assert not sent                                                       # 3ª coleta: nada de novo
+    data = json.loads((tmp_path / "dados.json").read_text())
+    other = [r for r in data["listings"] if r["id"] == "a1"]
+    assert other and other[0]["neighborhood"] == dashboard.OTHER_NB and other[0]["neighborhood_label"] == "Jardim Europa"
+    assert data["criteria"]["neighborhoods"] == ["Itaim Bibi", dashboard.OTHER_NB]
+    assert "quintoandar:aluguel:a1" in json.loads((tmp_path / "state.json").read_text())["seen"]

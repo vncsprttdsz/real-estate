@@ -838,6 +838,8 @@ function niceTicks(min, max, n = 5) {
 const SOURCE = { zap: "ZAP", vivareal: "Viva Real", quintoandar: "QuintoAndar", zuk: "Portal Zuk" };
 const BUSINESS = { venda: "Comprar", aluguel: "Alugar", leilao: "Leilão" };
 const SHORT = { "Vila Nova Conceição": "V. N. Conceição" };
+/** Bairro para exibir: o rótulo do site quando o anúncio está no grupo "Outros na área". */
+const nbName = r => r.neighborhood_label || SHORT[r.neighborhood] || r.neighborhood;
 const DEFAULT_F = { period: "30", business: "venda", bairro: "todos", quartos: 0, budget: true, area: false };
 let DATA = null, NBS = [], COLOR = {}, MED = {}, POLY = null;
 /** Ponto dentro do polígono [[lat, lon], ...] (mesmo algoritmo de imoveis/geo.py). */
@@ -1161,7 +1163,7 @@ function scatter(host, rows, market) {
     ring.setAttribute("r", 18); ring.setAttribute("opacity", 1);
     const items = list.slice(0, 8).map(o => { const r = o.r, u = safeUrl(r.url);
       const txt = [h("b", {}, FMT.brlc(refPrice(r)) + (r.business === "aluguel" ? "/mês" : "")), ` · ${FMT.m2(r.area)}${r.bedrooms ? " · " + r.bedrooms + " qts" : ""}`,
-        h("span", { class: "tl" }, ` · ${SHORT[r.neighborhood] || r.neighborhood} · ${SOURCE[r.source] || r.source}${isNew(r) ? " · novo" : ""}`)];
+        h("span", { class: "tl" }, ` · ${nbName(r)} · ${SOURCE[r.source] || r.source}${isNew(r) ? " · novo" : ""}`)];
       return h("li", {}, u ? h("a", { href: u, target: "_blank", rel: "noopener" }, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:6px` }), ...txt, " ↗") : h("span", {}, ...txt)); });
     const same = new Set(list.map(o => `${o.r.area}|${refPrice(o.r)}`)).size === 1;
     const body = h("div", { class: "cluster" },
@@ -1388,7 +1390,7 @@ function listingTip(r) {
     h("div", { class: "tv" }, FMT.brl(refPrice(r)), r.business === "aluguel" ? h("span", { class: "tl", style: "font-weight:400" }, " /mês (total)") : null),
     h("div", { class: "tl" }, [r.area && FMT.m2(r.area), r.bedrooms && r.bedrooms + (r.bedrooms > 1 ? " quartos" : " quarto"), r.parking && r.parking + (r.parking > 1 ? " vagas" : " vaga")].filter(Boolean).join(" · ")),
     h("div", { class: "tl" }, (m2(r) ? FMT.brl(m2(r)) + "/m²" : "") + (vs != null ? " · " + FMT.pct(vs, 0) + " vs. mediana do bairro" : "")),
-    h("div", { class: "row", style: "margin-top:5px" }, h("span", {}, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:5px;vertical-align:-1px` }), r.neighborhood), h("span", { class: "tl" }, SOURCE[r.source] || r.source)),
+    h("div", { class: "row", style: "margin-top:5px" }, h("span", {}, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:5px;vertical-align:-1px` }), r.neighborhood_label || r.neighborhood), h("span", { class: "tl" }, SOURCE[r.source] || r.source)),
     r.address ? h("div", { class: "tl" }, r.address) : null,
     copies(r).length ? h("div", { class: "tl" }, `Também anunciado ${copies(r).length}× — ${alsoText(r)}`) : null,
     drop ? h("div", { class: "tl", style: "margin-top:3px" }, `▼ ${FMT.pct(drop.pct)} em ${FMT.dayMon(drop.at)} (${FMT.brlc(drop.from)} → ${FMT.brlc(drop.to)})`) : null,
@@ -1649,7 +1651,7 @@ function renderFeed() {
     const price = e.kind === "drop" ? `${FMT.brlc(e.d.from)} → ${FMT.brlc(e.d.to)}` : FMT.brlc(refPrice(r)) + (r.business === "aluguel" ? "/mês" : "");
     const body = [badge, h("span", { class: "t" }, price, " · ", r.area ? FMT.m2(r.area) : "área n/d"), h("span", { class: "when" }, FMT.ago(e.at)),
       h("span", { class: "d" }, h("span", { class: "sw", style: `background:${COLOR[r.neighborhood]};margin-right:5px;width:8px;height:8px` }),
-        [SHORT[r.neighborhood] || r.neighborhood, r.bedrooms && r.bedrooms + " qts", vs != null && FMT.pct(vs, 0) + " vs. mediana", SOURCE[r.source]].filter(Boolean).join(" · "))];
+        [nbName(r), r.bedrooms && r.bedrooms + " qts", vs != null && FMT.pct(vs, 0) + " vs. mediana", SOURCE[r.source]].filter(Boolean).join(" · "))];
     ul.append(h("li", { class: "ev" }, u ? h("a", { href: u, target: "_blank", rel: "noopener" }, ...body) : h("div", { class: "noa" }, ...body)));
   }
   if (shown.length > 80) ul.append(h("li", {}, h("div", { class: "note" }, `Mostrando 80 de ${FMT.int(shown.length)}. Lista completa na aba Anúncios.`)));
@@ -1779,7 +1781,7 @@ function renderAuctions() {
   box.append(h("div", { class: "tablewrap" }, h("table", { class: "data" },
     h("thead", {}, h("tr", {}, h("th", {}, "Data"), h("th", {}, "Bairro"), h("th", { class: "num" }, "Área", h("span", { class: "u" }, "m²")), h("th", { class: "num" }, "Lance mín.", h("span", { class: "u" }, "R$")), h("th", { class: "num" }, "vs. mediana", h("span", { class: "u" }, "venda, R$/m²")))),
     h("tbody", {}, rows.map(r => { const d = pd(r), u = safeUrl(r.url);
-      return h("tr", {}, h("td", {}, d ? FMT.date(d) : "n/d"), h("td", {}, u ? h("a", { href: u, target: "_blank", rel: "noopener" }, SHORT[r.neighborhood] || r.neighborhood) : r.neighborhood),
+      return h("tr", {}, h("td", {}, d ? FMT.date(d) : "n/d"), h("td", {}, u ? h("a", { href: u, target: "_blank", rel: "noopener" }, nbName(r)) : nbName(r)),
         h("td", { class: "num" }, r.area ? nf0.format(r.area) : "n/d"), h("td", { class: "num" }, FMT.brlc(r.price)), h("td", { class: "num" }, vsCell(vsMedian(r)))); })))));
 }
 
@@ -1816,7 +1818,7 @@ function tableRows() {
   const view = $("#viewSel").value;
   let rows = DATA.listings.filter(r => ($("#showGone").checked || r.active || (view === "fav" && isFav(r))) && baseFilter(r));
   rows = rows.filter(view === "fav" ? isFav : view === "hidden" ? isHidden : r => !isHidden(r));
-  if (q) rows = rows.filter(r => [r.title, r.address, r.neighborhood, SOURCE[r.source], alsoText(r)].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").includes(q));
+  if (q) rows = rows.filter(r => [r.title, r.address, r.neighborhood, r.neighborhood_label, SOURCE[r.source], alsoText(r)].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").includes(q));
   const col = COLS.find(c => c.k === SORT.col) || COLS.find(c => c.k === "first_seen");
   rows.sort((a, b) => { const x = col.sort(a), y = col.sort(b); if (x == null || y == null) return (x == null) - (y == null); return (x < y ? -1 : x > y ? 1 : 0) * SORT.dir; });
   return { rows, col };
@@ -1834,7 +1836,7 @@ function cellFor(c, r) {
       copies(r).length ? h("span", { class: "addr" }, `+${copies(r).length} anúncio${copies(r).length > 1 ? "s" : ""} do mesmo imóvel: `,
         ...copies(r).slice(0, 4).map(c => ({ ...c, u: safeUrl(c.url) })).filter(c => c.u).flatMap((c, i) => [i ? " · " : "", h("a", { href: c.u, target: "_blank", rel: "noopener" }, SOURCE[c.source] || c.source)]),
         copies(r).length > 4 ? " …" : "") : null];
-    case "neighborhood": return [h("span", { class: "sw", style: `background:${COLOR[r.neighborhood] || "var(--neutral-mark)"};margin-right:5px;width:8px;height:8px` }), SHORT[r.neighborhood] || r.neighborhood];
+    case "neighborhood": return [h("span", { class: "sw", style: `background:${COLOR[r.neighborhood] || "var(--neutral-mark)"};margin-right:5px;width:8px;height:8px` }), nbName(r)];
     case "area": return r.area ? nf0.format(r.area) : "n/d";
     case "bedrooms": return r.bedrooms ?? "n/d";
     case "parking": return r.parking ?? "n/d";
@@ -1887,7 +1889,7 @@ function exportTableCsv() {
   const { rows } = tableRows();
   const head = ["Situação", "Endereço", "Título", "Bairro", "Negócio", "Área (m²)", "Quartos", "Vagas", `${priceLabel()} (${priceUnit()})`, "Condomínio (R$/mês)", `${m2Label()} (${m2Unit()})`, "vs. mediana do bairro (%)", "Visto 1ª vez", "Visto por último", "Ativo", "No orçamento", "Fonte", "URL", "Outros anúncios do mesmo imóvel", "Dias no ar (desde a 1ª coleta)", "Redução acumulada (%)", "Favorito"];
   csvDownload([head, ...rows.map(r => { const d = recentDrop(r), vs = vsMedian(r);
-    return [!r.active ? "saiu" : isNew(r) ? "novo" : d ? "queda" : "", r.address || "", r.title || "", r.neighborhood, r.business, r.area ?? null, r.bedrooms ?? null, r.parking ?? null,
+    return [!r.active ? "saiu" : isNew(r) ? "novo" : d ? "queda" : "", r.address || "", r.title || "", r.neighborhood_label || r.neighborhood, r.business, r.area ?? null, r.bedrooms ?? null, r.parking ?? null,
       refPrice(r) ?? null, r.condo ?? null, m2(r) != null ? Math.round(m2(r)) : null, vs != null ? Math.round(vs * 1000) / 10 : null,
       r.initial ? "carga inicial" : FMT.dateTime(r.first_seen), FMT.dateTime(r.last_seen), r.active ? "sim" : "não", r.in_budget === false ? "não" : "sim", SOURCE[r.source] || r.source, r.url, copies(r).map(c => c.url).join(" "), daysTxt(r), cuts(r) ? Math.round(cuts(r).pct * 1000) / 10 : null, isFav(r) ? "sim" : ""]; })],
     `Anúncios (${FMT.int(rows.length)}) — ${priceLabel()} e ${m2Label()}`, "radar-anuncios");

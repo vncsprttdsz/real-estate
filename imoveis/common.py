@@ -123,7 +123,10 @@ class Config:
         return list(self.neighborhoods) + [n for n in self.area_extra_neighborhoods if norm(n) not in self.neighborhoods_norm]
 
     def in_area(self, l) -> bool:
-        return bool(self.area_polygon and l.lat and l.lon and inside(l.lat, l.lon, self.area_polygon))
+        return self.in_area_point(l.lat, l.lon)
+
+    def in_area_point(self, lat, lon) -> bool:
+        return bool(self.area_polygon and lat and lon and inside(lat, lon, self.area_polygon))
 
     @classmethod
     def load(cls, path: Path | None = None) -> "Config":

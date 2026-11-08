@@ -224,7 +224,9 @@ def run(dry_run: bool = False) -> int:
 
     # Bairro retirado do config.yaml: esquece os anúncios dele e a carga inicial (se voltar, entra de novo como carga inicial).
     cat_prev = dashboard._load(dashboard.CATALOG, {})
-    for k in [k for k in state["seen"] if k in cat_prev and norm(cat_prev[k].get("neighborhood")) not in cfg.neighborhoods_norm]:
+    # (com área de interesse, o que fica dentro do polígono continua, qualquer que seja o rótulo)
+    for k in [k for k in state["seen"] if k in cat_prev and norm(cat_prev[k].get("neighborhood")) not in cfg.neighborhoods_norm
+              and not cfg.in_area_point(cat_prev[k].get("lat"), cat_prev[k].get("lon"))]:
         del state["seen"][k]
     # (com área de interesse ativa, rótulos de outros bairros também valem: mantém a carga inicial deles)
     keep_nb = lambda n: bool(cfg.area_polygon) or n in cfg.neighborhoods_norm
