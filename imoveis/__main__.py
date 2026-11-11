@@ -157,24 +157,23 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
             t += "\n" + x["addr"]
         return t + "\n" + x["url"]
 
+    # Um bloco por anúncio: o envio quebra mensagens longas entre blocos (o CallMeBot corta texto longo).
+    def section(title, xs, more=0):
+        for i, x in enumerate(xs):
+            t = (title + "\n\n" if i == 0 else "") + line(x) + (f"\n\n… e mais {more}." if more and i == len(xs) - 1 else "")
+            out.append((t, t))
+
     if opp:
-        txt = f"💎 Possíveis oportunidades ({cfg.bargain_pct:.0f}%+ abaixo da mediana do seu recorte):\n\n" + "\n\n".join(line(x) for x in opp[:5])
-        if len(opp) > 5:
-            txt += f"\n\n… e mais {len(opp) - 5}."
-        out.append((txt, txt))
+        section(f"💎 Possíveis oportunidades ({cfg.bargain_pct:.0f}%+ abaixo da mediana do seu recorte):", opp[:5], max(0, len(opp) - 5))
     elif new:
         best = sorted([x for x in new if x["pct"] is not None], key=lambda x: x["pct"])[:3]
         if best:
-            txt = "Nenhum bem abaixo da mediana hoje. Os de menor R$/m² vs. a mediana do seu recorte:\n\n" + "\n\n".join(line(x) for x in best)
-            out.append((txt, txt))
+            section("Nenhum bem abaixo da mediana hoje. Os de menor R$/m² vs. a mediana do seu recorte:", best)
     # Quedas de preço (as que já aparecem como oportunidade não se repetem)
     in_opp = {x["key"] for x in opp[:5]}
     rest = [x for x in drops if x["key"] not in in_opp]
     if rest:
-        txt = f"📉 Baixaram de preço ({len(rest)}):\n\n" + "\n\n".join(line(x) for x in rest[:8])
-        if len(rest) > 8:
-            txt += f"\n\n… e mais {len(rest) - 8}."
-        out.append((txt, txt))
+        section(f"📉 Baixaram de preço ({len(rest)}):", rest[:8], max(0, len(rest) - 8))
     return f"🏢 Compra — resumo de {d}", out
 
 

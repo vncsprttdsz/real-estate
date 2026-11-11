@@ -125,12 +125,16 @@ class Notifier:
             if r.status_code != 200:
                 print(f"[erro] Telegram: {r.status_code} {r.text[:300]}", file=sys.stderr)
 
+    # O CallMeBot corta mensagens longas sem avisar (HTTP 200): a de 11/11, com 948 caracteres, chegou cortada.
+    # Agrupa os anúncios em mensagens curtas, sempre quebrando entre um anúncio e outro.
+    WA_MAX = 600
+
     def _whatsapp(self, subject, items, footer):
-        """CallMeBot: GET simples; limita o tamanho e espaça as mensagens para não ser bloqueado."""
+        """CallMeBot: GET simples; mensagens curtas e espaçadas para não ser cortado nem bloqueado."""
         msgs, cur, sent = [], f"*{subject}*", 0
         for text, _ in items:
-            if len(cur) + len(text) > 1500:
-                if len(msgs) == 4:  # evita enxurrada: até 5 mensagens + 1 aviso
+            if cur and len(cur) + len(text) > self.WA_MAX:
+                if len(msgs) == 7:  # evita enxurrada: até 8 mensagens + 1 aviso
                     msgs.append(cur)
                     cur = None
                     break
@@ -150,7 +154,7 @@ class Notifier:
             for m in msgs:
                 try:
                     r = http.get("https://api.callmebot.com/whatsapp.php",
-                                 params={"phone": phone, "text": m, "apikey": key}, retries=2)
+                                 params={"phone": phone, "text": m.strip(), "apikey": key}, retries=2)
                     resumo = re.sub(r"\d{4,}", "…", re.sub(r"<[^>]+>|\s+", " ", r.text)).strip()[:160]   # sem telefone/chave
                     if r.status_code != 200 or re.search(r"error|invalid|not (allowed|valid)", r.text[:800], re.I):
                         print(f"[erro] WhatsApp/CallMeBot: HTTP {r.status_code} · {resumo}", file=sys.stderr)

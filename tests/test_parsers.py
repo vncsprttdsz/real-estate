@@ -147,10 +147,14 @@ def test_whatsapp_callmebot(monkeypatch):
     assert len(calls) == 1
     assert calls[0]["phone"] == "+5511999998888" and calls[0]["apikey"] == "123456"
     assert "*🏠 1 anúncio novo*" in calls[0]["text"] and "https://z/1" in calls[0]["text"]
-    # muitos anúncios: no máximo 6 mensagens
+    # muitos anúncios: mensagens curtas (o CallMeBot corta as longas), quebradas entre anúncios, no máximo 9
     calls.clear()
-    n.send("muitos", [notify.describe(l)] * 200)
-    assert len(calls) == 6 and "mais" in calls[-1]["text"]
+    item = notify.describe(l)
+    n.send("muitos", [item] * 200)
+    assert len(calls) == 9 and "mais" in calls[-1]["text"]
+    assert all(len(c["text"]) <= notify.Notifier.WA_MAX for c in calls)
+    assert all(c["text"].count("https://z/1") * len(item[0]) <= len(c["text"]) for c in calls)   # anúncios inteiros
+    assert not any(c["text"].startswith("\n") for c in calls)
 
 
 def test_plausibility(cfg):
