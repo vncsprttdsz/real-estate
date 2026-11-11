@@ -431,8 +431,11 @@ def run(dry_run: bool = False) -> int:
     if drops:
         items = [describe(l, " · ".join(x for x in (star_note(l), f"{why}: {brl(old)} → {brl(l.ref_price)} (−{(1 - l.ref_price / old) * 100:.0f}%)") if x)) for l, old, why in drops]
         notifier.send(f"📉 {len(drops)} anúncio(s) baixaram de preço", items)
-    if first_load:
-        summary = ", ".join(f"{k}: {v}" for k, v in first_load.items())
+    # Só avisa quando um site inteiro começa a ser monitorado; rótulo de bairro novo (comum com a área de
+    # interesse: qualquer rótulo dentro do polígono) entra calado como carga inicial.
+    first_src = {k: v for k, v in first_load.items() if "(" not in k}
+    if first_src:
+        summary = ", ".join(f"{k}: {v}" for k, v in first_src.items())
         notifier.send(
             "✅ Monitor de imóveis ativado",
             [(f"Carga inicial ({summary}). A partir de agora você recebe só os anúncios novos. "

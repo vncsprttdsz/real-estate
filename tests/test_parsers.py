@@ -905,3 +905,27 @@ def test_amenities_air_conditioning_and_view():
     assert q.air_conditioning is True and q.free_view is True
     assert details.highlights(q, None) == ["vista livre", "ar-condicionado"]
     assert details.highlights(q, "Vista livre e ar condicionado") == ["vista livre", "ar-condicionado"]   # sem repetir
+
+
+def test_new_label_initial_load_is_silent(tmp_path, monkeypatch):
+    """Rótulo de bairro novo (fonte já ativa) entra como carga inicial sem mensagem de 'ativado'."""
+    poly = [[-23.58, -46.69], [-23.58, -46.67], [-23.60, -46.67], [-23.60, -46.69]]
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_rent=20_000, immediate=("aluguel",), area_polygon=poly)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append(subj))
+    A = lambda i, nb: Listing("zap", f"a{i}", f"https://z/a{i}", "aluguel", neighborhood=nb, address=f"Rua {chr(65 + i)} 1",
+                              area=150, price=10_000, total_monthly=12_000 + i, bedrooms=3, lat=-23.59, lon=-46.68)
+    batches = iter([{"zap": [A(0, "Itaim Bibi")]}, {"zap": [A(0, "Itaim Bibi"), A(1, "Vila Olímpia")]}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run()
+    assert any("ativado" in s for s in sent)          # 1ª coleta do site: avisa
+    sent.clear(); app.run()
+    assert not sent                                   # rótulo novo: carga inicial calada
