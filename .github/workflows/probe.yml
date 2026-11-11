@@ -2,6 +2,10 @@ name: Sondagem dos sites
 
 on:
   workflow_dispatch:
+    inputs:
+      modulo:
+        description: "Script de sondagem (módulo Python)"
+        default: scripts.probe_listings
 
 permissions:
   contents: read
@@ -17,4 +21,4 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - run: python -m scripts.probe_listings
+      - run: python -m ${{ inputs.modulo || 'scripts.probe_listings' }}
