@@ -74,6 +74,8 @@ class Listing:
     lat: float | None = None   # coordenadas do prédio (ou aproximadas, quando o anunciante esconde o endereço)
     lon: float | None = None
     geo_approx: bool = False
+    air_conditioning: bool | None = None   # comodidade informada pelo portal (True) ou desconhecido (None)
+    free_view: bool | None = None          # "vista livre" informada pelo portal (QuintoAndar)
 
     @property
     def key(self) -> str:

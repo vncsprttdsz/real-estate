@@ -85,6 +85,8 @@ select, input[type="search"], input[type="number"] { height: var(--ctl-h); borde
 .check { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
 .check input { width: 15px; height: 15px; accent-color: var(--accent); margin: 0; }
 .active-filters { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-2); }
+.feats { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 3px; }
+.feats .tag { height: 17px; font-size: 10.5px; padding: 0 5px; color: var(--ink-2); }
 .tag { display: inline-flex; align-items: center; height: 20px; padding: 0 6px; font-size: 11.5px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--border); color: var(--ink); }
 .fbody { display: contents; }
 .ftoggle { display: none; }
@@ -839,6 +841,8 @@ const SOURCE = { zap: "ZAP", vivareal: "Viva Real", quintoandar: "QuintoAndar", 
 const BUSINESS = { venda: "Comprar", aluguel: "Alugar", leilao: "Leilão" };
 const SHORT = { "Vila Nova Conceição": "V. N. Conceição" };
 /** Bairro para exibir: o rótulo do site quando o anúncio está no grupo "Outros na área". */
+/** Destaques informados pelo portal (comodidades da busca e andar). */
+const feats = r => [r.air_conditioning && "ar-condicionado", r.free_view && "vista livre", r.floor >= 10 && `${r.floor}º andar`].filter(Boolean);
 const nbName = r => r.neighborhood_label || SHORT[r.neighborhood] || r.neighborhood;
 const DEFAULT_F = { period: "30", business: "venda", bairro: "todos", quartos: 0, budget: true, area: false };
 let DATA = null, NBS = [], COLOR = {}, MED = {}, POLY = null;
@@ -1833,6 +1837,7 @@ function cellFor(c, r) {
     case "cut": { const c = cuts(r); return c ? h("span", { class: "cutv", title: `${c.n} redução(ões): de ${FMT.brl(c.from)} para ${FMT.brl(refPrice(r))}` }, `${FMT.pct(c.pct, 1)}${c.n > 1 ? ` · ${c.n}×` : ""}`) : h("span", { class: "muted" }, "—"); }
     case "status": return !r.active ? h("span", { class: "badge gone" }, "Saiu") : isNew(r) ? h("span", { class: "badge new" }, "Novo") : d ? h("span", { class: "badge" }, "▼ " + FMT.pct(d.pct)) : r.business === "leilao" ? h("span", { class: "badge" }, "Leilão") : "";
     case "title": return [u ? h("a", { href: u, target: "_blank", rel: "noopener", class: "ttl" }, r.address || r.title || "Abrir anúncio") : h("span", { class: "ttl" }, r.address || r.title), r.address && r.title ? h("span", { class: "addr" }, r.title) : null,
+      feats(r).length ? h("span", { class: "feats" }, ...feats(r).map(t => h("span", { class: "tag" }, t))) : null,
       copies(r).length ? h("span", { class: "addr" }, `+${copies(r).length} anúncio${copies(r).length > 1 ? "s" : ""} do mesmo imóvel: `,
         ...copies(r).slice(0, 4).map(c => ({ ...c, u: safeUrl(c.url) })).filter(c => c.u).flatMap((c, i) => [i ? " · " : "", h("a", { href: c.u, target: "_blank", rel: "noopener" }, SOURCE[c.source] || c.source)]),
         copies(r).length > 4 ? " …" : "") : null];

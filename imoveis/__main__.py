@@ -119,7 +119,8 @@ def digest_add(state: dict, day: str, kind: str, l: Listing, gap=None, old: floa
     items.append({"kind": kind, "key": l.key, "business": l.business, "nb": l.neighborhood.strip(), "area": l.area,
                   "price": l.ref_price, "old": old, "url": l.url, "addr": l.address or l.title, "bedrooms": l.bedrooms,
                   "source": l.source, "pct": round(gap.pct, 4) if gap else None, "scope": gap.scope if gap else None,
-                  "median": round(gap.median) if gap else None})
+                  "median": round(gap.median) if gap else None,
+                  "tags": details.highlights(l, None)})   # só o que a busca informa (sem baixar a página)
 
 
 def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list[tuple[str, str]]]:
@@ -148,6 +149,8 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
         parts = [p for p in (pct, x["nb"], f"{x['area']:.0f} m²" if x["area"] else "", f"{x['bedrooms']} qts" if x["bedrooms"] else "",
                              brl(x["price"]), ppm) if p]
         t = " · ".join(parts)
+        if x.get("tags"):
+            t += "\n⭐ " + " · ".join(x["tags"]).capitalize()
         if x["kind"] == "queda" and x.get("old"):
             t += f"\nbaixou de {brl(x['old'])}" + (f" (−{(1 - x['price'] / x['old']) * 100:.0f}%)" if x["price"] else "")
         if x.get("addr"):
@@ -363,13 +366,15 @@ def run(dry_run: bool = False) -> int:
     drops = [x for x in drops if now_imm(x[0])]
     bargains = [x for x in bargains if now_imm(x[0])]
 
-    # Destaques (⭐ andar alto / vista livre): descrição só dos poucos anúncios que vão gerar aviso agora.
+    # Destaques (⭐ andar alto / vista livre / ar-condicionado): comodidades da busca para todos; descrição
+    # (página do anúncio) só dos primeiros 12 que vão gerar aviso agora.
     stars: dict[str, list[str]] = {}
-    if cfg.highlight and not dry_run:
+    if cfg.highlight:
         cand = {l.key: l for l in new_items + [x[0] for x in drops] + [x[0] for x in bargains]}
         http_d = Http(1.0, 2.0)
-        for l in list(cand.values())[:12]:
-            tags = details.highlights(l, details.fetch_description(http_d, l))
+        for i, l in enumerate(cand.values()):
+            text = details.fetch_description(http_d, l) if i < 12 and not dry_run else None
+            tags = details.highlights(l, text)
             if tags:
                 stars[l.key] = tags
         star_first = lambda key: 0 if key in stars else 1

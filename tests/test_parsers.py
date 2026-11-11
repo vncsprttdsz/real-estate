@@ -865,3 +865,39 @@ def test_price_drop_alert_10pct_cumulative(tmp_path, monkeypatch):
     assert len(drops[2]) == 1 and "https://z/a0" in drops[2][0]   # −10,7% acumulado desde R$ 15.000
     assert drops[3] == []                                   # −0,7% depois do aviso: não repete
     assert not any("https://z/a1" in t for d in drops for t in d)   # 100 m²: fora dos critérios de aviso
+
+
+def test_air_conditioning_highlight():
+    from imoveis import details
+    L = Listing("zap", "1", "u", "aluguel", neighborhood="Itaim Bibi", area=150)
+    cases = {
+        "Apartamento com ar-condicionado em todas as suítes": "ar-condicionado",
+        "Ar condicionado central (VRF) e vista livre": "ar-condicionado",
+        "Living climatizado": "ar-condicionado",
+        "Infraestrutura para ar condicionado nos dormitórios": "infra para ar-condicionado",
+        "Preparado para ar-condicionado split": "infra para ar-condicionado",
+        "infra para ar condicionado. Suítes com ar-condicionado split": "ar-condicionado",
+        "Não possui ar condicionado": None,
+        "Sem ar condicionado": None,
+        "Sala ampla e varanda": None,
+    }
+    for text, want in cases.items():
+        assert details.air_conditioning(text) == want, text
+    assert details.highlights(L, "Ar condicionado central (VRF) e vista livre") == ["vista livre", "ar-condicionado"]
+
+
+def test_amenities_air_conditioning_and_view():
+    from imoveis import details
+    from imoveis.sources import grupozap, quintoandar
+    item = {"listing": {"id": "9", "unitTypes": ["APARTMENT"], "usableAreas": [150], "amenities": ["ELEVATOR", "AIR_CONDITIONING"],
+                        "pricingInfos": [{"businessType": "RENTAL", "price": "10000", "monthlyCondoFee": "2000"}],
+                        "address": {"neighborhood": "Itaim Bibi", "street": "Rua A", "streetNumber": "1"}}}
+    z = grupozap.parse_listing(item, "zap", "aluguel")
+    assert z.air_conditioning is True and z.free_view is None
+    item["listing"]["amenities"] = ["ELEVATOR"]
+    assert grupozap.parse_listing(item, "zap", "aluguel").air_conditioning is None
+    q = quintoandar.parse_house({"id": 5, "area": 150, "type": "Apartamento", "rentPrice": 10000, "totalCost": 12000, "forRent": True,
+                                 "neighbourhood": "Itaim Bibi", "amenities": ["AR_CONDICIONADO", "VISTA_LIVRE", "BOX"]}, "aluguel")
+    assert q.air_conditioning is True and q.free_view is True
+    assert details.highlights(q, None) == ["vista livre", "ar-condicionado"]
+    assert details.highlights(q, "Vista livre e ar condicionado") == ["vista livre", "ar-condicionado"]   # sem repetir

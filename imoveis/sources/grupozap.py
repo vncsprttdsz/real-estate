@@ -95,6 +95,7 @@ def parse_listing(item: dict, source: str, business: str) -> Listing | None:
         bedrooms=first_int(lst.get("bedrooms")),
         parking=first_int(lst.get("parkingSpaces")),
         floor=(first_int(lst.get("unitFloor")) or None),
+        air_conditioning=True if "AIR_CONDITIONING" in (lst.get("amenities") or []) else None,
         **_coords(addr),
     )
 
