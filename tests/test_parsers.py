@@ -981,3 +981,13 @@ def test_purchase_alerts_only_with_highlight(tmp_path, monkeypatch):
     assert "https://z/v4" not in text and "https://z/v5" not in text and "https://z/a1" not in text
     assert "4 anúncios novos de compra" in text and "Com destaque (andar alto, vista livre ou perto de parque): 2." in text
     assert "💎" not in text
+
+
+def test_real_parks_contours():
+    from imoveis import geo
+    geo._PARKS = None
+    assert set(geo.parks()) == {"Parque Ibirapuera", "Parque do Povo"}
+    assert geo.nearest_park(-23.5874, -46.6576, 500) == ("Parque Ibirapuera", 0.0)       # dentro do parque
+    name, d = geo.nearest_park(-23.5910, -46.6680, 500)                                    # Av. República do Líbano
+    assert name == "Parque Ibirapuera" and 300 < d < 420
+    assert geo.nearest_park(-23.5990, -46.6760, 500) is None                               # longe dos dois
