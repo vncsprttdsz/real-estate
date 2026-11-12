@@ -887,7 +887,7 @@ def test_air_conditioning_highlight():
     }
     for text, want in cases.items():
         assert details.air_conditioning(text) == want, text
-    assert details.highlights(L, "Ar condicionado central (VRF) e vista livre") == ["vista livre", "ar-condicionado"]
+    assert details.highlights(L, "Ar condicionado central (VRF) e vista livre") == ["vista livre"]   # AR não é destaque de aviso
 
 
 def test_amenities_air_conditioning_and_view():
@@ -903,8 +903,8 @@ def test_amenities_air_conditioning_and_view():
     q = quintoandar.parse_house({"id": 5, "area": 150, "type": "Apartamento", "rentPrice": 10000, "totalCost": 12000, "forRent": True,
                                  "neighbourhood": "Itaim Bibi", "amenities": ["AR_CONDICIONADO", "VISTA_LIVRE", "BOX"]}, "aluguel")
     assert q.air_conditioning is True and q.free_view is True
-    assert details.highlights(q, None) == ["vista livre", "ar-condicionado"]
-    assert details.highlights(q, "Vista livre e ar condicionado") == ["vista livre", "ar-condicionado"]   # sem repetir
+    assert details.highlights(q, None) == ["vista livre"]
+    assert details.highlights(q, "Vista livre e ar condicionado") == ["vista livre"]   # sem repetir
 
 
 def test_new_label_initial_load_is_silent(tmp_path, monkeypatch):
@@ -929,3 +929,55 @@ def test_new_label_initial_load_is_silent(tmp_path, monkeypatch):
     assert any("ativado" in s for s in sent)          # 1ª coleta do site: avisa
     sent.clear(); app.run()
     assert not sent                                   # rótulo novo: carga inicial calada
+
+
+def test_purchase_alerts_only_with_highlight(tmp_path, monkeypatch):
+    """12/11: compra no resumo diário; novo só com andar alto, vista livre ou perto de parque; queda ≥ 10% sempre;
+    aluguel não avisa; abaixo da mediana não avisa."""
+    from datetime import datetime
+    from imoveis import geo
+    monkeypatch.setattr(geo, "_PARKS", {"Parque Teste": [[-23.580, -46.680], [-23.580, -46.670], [-23.585, -46.670], [-23.585, -46.680]]})
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_sale=3_000_000, max_rent=20_000, alert_min_area=120,
+                 alert_min_bedrooms=3, immediate=(), digest=("venda",), digest_hour=19, new_require_highlight=True,
+                 park_max_m=500, price_drop_pct=10, bargain_pct=25, bargain_alert=False, bargain_min_n=1)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, [t for t, _ in items])))
+    clock = {"t": datetime(2026, 11, 12, 9, 17, tzinfo=app.SP)}
+    monkeypatch.setattr(app, "now_sp", lambda: clock["t"])
+    monkeypatch.setattr(app, "now", lambda: clock["t"].astimezone(__import__("datetime").timezone.utc).isoformat(timespec="seconds"))
+
+    def V(i, price=2_000_000, **kw):
+        return Listing("zap", f"v{i}", f"https://z/v{i}", "venda", neighborhood="Itaim Bibi", address=f"Rua {chr(65 + i)} 1",
+                       area=150, price=price, bedrooms=3, **kw)
+    far = dict(lat=-23.600, lon=-46.700)
+    base = [V(0, **far), V(1, **far)]
+    rent = Listing("zap", "a1", "https://z/a1", "aluguel", neighborhood="Itaim Bibi", address="Rua Z 1", area=150,
+                   price=8_000, total_monthly=10_000, bedrooms=3, floor=15)
+    later = [V(0, **far), V(1, price=1_700_000, **far),              # v1: −15%
+             V(2, floor=14, **far),                                   # andar alto
+             V(3, lat=-23.587, lon=-46.675),                          # ~220 m do parque
+             V(4, **far),                                             # sem destaque
+             V(5, price=900_000, **far),                              # muito abaixo da mediana, sem destaque
+             rent]
+    batches = iter([{"zap": base}, {"zap": later}, {"zap": later}])
+    monkeypatch.setattr(app, "collect", lambda c, s: (next(batches), {}))
+    app.run()
+    clock["t"] = datetime(2026, 11, 12, 15, 17, tzinfo=app.SP); sent.clear(); app.run()
+    assert not sent                                                                     # nada imediato
+    clock["t"] = datetime(2026, 11, 12, 19, 17, tzinfo=app.SP); app.run()
+    assert [s for s, _ in sent] == ["🏢 Compra — resumo de 12/11"]                    # nada imediato, nada de aluguel
+    text = "\n\n".join(sent[0][1])
+    assert "https://z/v2" in text and "Andar alto (14º)" in text
+    assert "https://z/v3" in text and "⭐ Perto do Parque Teste (200 m)" in text
+    assert "https://z/v1" in text and "baixou de R$ 2.000.000 (−15%)" in text
+    assert "https://z/v4" not in text and "https://z/v5" not in text and "https://z/a1" not in text
+    assert "4 anúncios novos de compra" in text and "Com destaque (andar alto, vista livre ou perto de parque): 2." in text
+    assert "💎" not in text

@@ -31,15 +31,17 @@ fontes:
 avisos:
   area_minima_m2: 120          # só avisa imóveis com esta área ou mais
   quartos_minimos: 3           # e com pelo menos estes quartos (anúncio sem a informação é avisado)
-  destacar_andar_alto_vista: true   # lê a descrição dos avisos imediatos e destaca (⭐) andar alto e vista livre
-  imediato: [aluguel]          # avisa a cada coleta: anúncio novo, queda de preço e abaixo da mediana
-  resumo_diario: [venda, leilao]   # uma mensagem por dia: quantos novos, bairros, quedas e oportunidades
+  destacar_andar_alto_vista: true   # lê a descrição do anúncio para achar andar alto e vista livre
+  perto_de_parque_m: 500       # destaque: até X m da borda do Parque Ibirapuera ou do Parque do Povo
+  novos_so_com_destaque: true  # anúncio novo só avisa com andar alto, vista livre ou perto de parque (12/11)
+  imediato: []                 # avisos a cada coleta (desde 12/11: nenhum; aluguel não avisa mais)
+  resumo_diario: [venda, leilao]   # uma mensagem por dia: novos com destaque e quedas de preço
   resumo_diario_hora: 19       # enviado na 1ª coleta a partir desta hora (19h17); cobre das 19h de ontem às 19h de hoje
 painel_url: https://vncsprttdsz.github.io/real-estate/
 
-# Avisar também quando o preço de um anúncio já visto cair pelo menos X% (mesmos critérios dos avisos de
-# novos: área, quartos, área de interesse e orçamento; aluguel na hora, compra no resumo diário). Quedas em
-# degraus somam (compara com o maior preço desde o último aviso de queda).
+# Avisar também quando o preço de um anúncio já visto cair pelo menos X% (mesmos filtros dos avisos de novos:
+# área, quartos, área de interesse e orçamento; não precisa de destaque). Quedas em degraus somam (compara com
+# o maior preço desde o último aviso de queda).
 alerta_queda_preco_pct: 10
 
 # Avisar quando um anúncio (novo, ou que baixou de preço) tiver R$/m² pelo menos X% abaixo da mediana dos
@@ -47,6 +49,7 @@ alerta_queda_preco_pct: 10
 # Com so_no_orcamento, compara só com os anúncios dentro do orçamento (no bairro inteiro, quase tudo que cabe
 # no teto já fica abaixo da mediana). 25% ≈ 3 avisos por dia (medido em 29/10–07/11).
 alerta_abaixo_mediana:
+  avisar: false           # 12/11: deixou de gerar aviso; a diferença vs. mediana segue como informação nas mensagens
   pct: 25
   amostra_minima: 15      # anúncios no grupo de comparação; com menos, compara com o bairro inteiro
   so_no_orcamento: true   # false = compara com o bairro inteiro e avisa mesmo acima do teto de preço

@@ -1,5 +1,5 @@
 """Detalhes de anúncio buscados só para quem vai gerar aviso: descrição e destaques (andar alto, vista livre,
-ar-condicionado).
+perto de parque). O ar-condicionado é lido (air_conditioning) e aparece no painel, mas não é destaque de aviso.
 
 Ar-condicionado e vista livre também vêm das comodidades da busca (ZAP/Viva Real: AIR_CONDITIONING;
 QuintoAndar: AR_CONDICIONADO e VISTA_LIVRE), sem baixar a página. As APIs de busca não trazem a descrição; a página do anúncio no ZAP traz a do anunciante (1–2 mil caracteres).
@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import re
 
+from . import geo
 from .common import Listing
 from .http import Http
 
@@ -66,7 +67,8 @@ def fetch_description(http: Http, l: Listing) -> str | None:
     return "\n".join(ds[:3]) if ds else None   # a maior costuma ser a do anunciante; as outras são resumos do portal
 
 
-def highlights(l: Listing, text: str | None) -> list[str]:
+def highlights(l: Listing, text: str | None, park_max_m: float = 0) -> list[str]:
+    """Destaques que contam para os avisos: andar alto, vista livre e perto de parque (ar-condicionado não conta)."""
     tags = []
     if l.floor and l.floor >= HIGH_FLOOR:
         tags.append(f"andar alto ({l.floor}º)")
@@ -75,7 +77,7 @@ def highlights(l: Listing, text: str | None) -> list[str]:
     for name, pat in PATTERNS.items():
         if text and pat.search(text) and not any(t.startswith(name) for t in tags):
             tags.append(name)
-    ac = "ar-condicionado" if getattr(l, "air_conditioning", False) else air_conditioning(text)
-    if ac:
-        tags.append(ac)
+    park = geo.nearest_park(l.lat, l.lon, park_max_m)
+    if park:
+        tags.append(f"perto do {park[0]} ({round(park[1] / 50) * 50:.0f} m)" if park[1] else f"no {park[0]}")
     return tags

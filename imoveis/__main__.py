@@ -105,13 +105,15 @@ def write_report(listings: list[Listing], cfg: Config) -> None:
 
 
 SP = ZoneInfo("America/Sao_Paulo")
+cap1 = lambda t: t[:1].upper() + t[1:]   # maiúscula só na 1ª letra (preserva "Parque Ibirapuera")
 
 
 def now_sp() -> datetime:
     return datetime.now(SP)
 
 
-def digest_add(state: dict, day: str, kind: str, l: Listing, gap=None, old: float | None = None) -> None:
+def digest_add(state: dict, day: str, kind: str, l: Listing, gap=None, old: float | None = None,
+               tags: list | None = None, listed: bool = True) -> None:
     """Guarda um evento de compra para o resumo do dia (compacto; uma entrada por imóvel e tipo)."""
     items = state.setdefault("digest", {}).setdefault(day, [])
     if any(x["key"] == l.key and x["kind"] == kind for x in items):
@@ -119,8 +121,7 @@ def digest_add(state: dict, day: str, kind: str, l: Listing, gap=None, old: floa
     items.append({"kind": kind, "key": l.key, "business": l.business, "nb": l.neighborhood.strip(), "area": l.area,
                   "price": l.ref_price, "old": old, "url": l.url, "addr": l.address or l.title, "bedrooms": l.bedrooms,
                   "source": l.source, "pct": round(gap.pct, 4) if gap else None, "scope": gap.scope if gap else None,
-                  "median": round(gap.median) if gap else None,
-                  "tags": details.highlights(l, None)})   # só o que a busca informa (sem baixar a página)
+                  "median": round(gap.median) if gap else None, "tags": tags or [], "listed": listed})
 
 
 def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list[tuple[str, str]]]:
@@ -129,7 +130,8 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
     new = [x for x in items if x["kind"] == "novo"]
     drops = [x for x in items if x["kind"] == "queda"]
     lim = -(cfg.bargain_pct or 0) / 100
-    opp = sorted([x for x in items if x["pct"] is not None and cfg.bargain_pct and x["pct"] <= lim], key=lambda x: x["pct"])
+    opp = sorted([x for x in items if x["pct"] is not None and cfg.bargain_pct and cfg.bargain_alert and x["pct"] <= lim],
+                 key=lambda x: x["pct"])
     by_nb: dict = {}
     for x in new:
         by_nb[x["nb"]] = by_nb.get(x["nb"], 0) + 1
@@ -139,8 +141,11 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
     ppms = sorted(x["price"] / x["area"] for x in new if x["price"] and x["area"])
     if ppms:
         head += f"\nR$/m² mediano dos novos: {brl(ppms[len(ppms) // 2])}."
+    listed = [x for x in new if x.get("listed", True)]
+    if cfg.new_require_highlight:
+        head += f"\nCom destaque (andar alto, vista livre ou perto de parque): {len(listed)}."
     if drops:
-        head += f"\nQuedas de preço: {len(drops)}."
+        head += f"\nQuedas de {cfg.price_drop_pct:.0f}% ou mais: {len(drops)}."
     out = [(head, head)]
 
     def line(x):
@@ -150,7 +155,7 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
                              brl(x["price"]), ppm) if p]
         t = " · ".join(parts)
         if x.get("tags"):
-            t += "\n⭐ " + " · ".join(x["tags"]).capitalize()
+            t += "\n⭐ " + cap1(" · ".join(x["tags"]))
         if x["kind"] == "queda" and x.get("old"):
             t += f"\nbaixou de {brl(x['old'])}" + (f" (−{(1 - x['price'] / x['old']) * 100:.0f}%)" if x["price"] else "")
         if x.get("addr"):
@@ -165,12 +170,16 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
 
     if opp:
         section(f"💎 Possíveis oportunidades ({cfg.bargain_pct:.0f}%+ abaixo da mediana do seu recorte):", opp[:5], max(0, len(opp) - 5))
-    elif new:
+    in_opp = {x["key"] for x in opp[:5]}
+    if cfg.new_require_highlight:
+        hl = [x for x in listed if x["key"] not in in_opp]
+        if hl:
+            section(f"⭐ Novos com destaque ({len(hl)}):", hl[:8], max(0, len(hl) - 8))
+    elif new and not opp:
         best = sorted([x for x in new if x["pct"] is not None], key=lambda x: x["pct"])[:3]
         if best:
             section("Nenhum bem abaixo da mediana hoje. Os de menor R$/m² vs. a mediana do seu recorte:", best)
     # Quedas de preço (as que já aparecem como oportunidade não se repetem)
-    in_opp = {x["key"] for x in opp[:5]}
     rest = [x for x in drops if x["key"] not in in_opp]
     if rest:
         section(f"📉 Baixaram de preço ({len(rest)}):", rest[:8], max(0, len(rest) - 8))
@@ -282,11 +291,9 @@ def run(dry_run: bool = False) -> int:
                 # avisar, recomeça do preço avisado para não repetir a cada pequeno ajuste).
                 since = prev.get("drop_ts")
                 ref = max([p for t, p in prev.get("hist") or [] if p and (not since or t >= since)] + [old_price])
-                if not cfg.within_cap(l.business, old_price):
-                    drops.append((l, old_price, "Baixou e entrou no seu orçamento"))
-                    prev["drop_ts"] = ts
-                elif cfg.price_drop_pct and l.ref_price <= ref * (1 - cfg.price_drop_pct / 100):
-                    drops.append((l, ref, "Queda de preço"))
+                if cfg.price_drop_pct and l.ref_price <= ref * (1 - cfg.price_drop_pct / 100):
+                    why = "Queda de preço" if cfg.within_cap(l.business, ref) else "Baixou e entrou no seu orçamento"
+                    drops.append((l, ref, why))
                     prev["drop_ts"] = ts
             prev["last_seen"] = ts
             if l.ref_price and l.ref_price != old_price:
@@ -308,6 +315,7 @@ def run(dry_run: bool = False) -> int:
         if cfg.bargain_budget_only:   # compara com o seu recorte: anúncios dentro do orçamento
             rows = [d for d in rows if cfg.within_cap(d.get("business"), (d.get("total_monthly") or d.get("price")) if d.get("business") == "aluguel" else d.get("price"))]
         market = bargain.Market(rows, cfg.bargain_min_n, " no seu orçamento" if cfg.bargain_budget_only else "")
+    if cfg.bargain_pct and cfg.bargain_alert:
         lim = -cfg.bargain_pct / 100
         for l in new_items + new_outside:
             g = market.gap(l.to_dict())
@@ -345,41 +353,45 @@ def run(dry_run: bool = False) -> int:
     big = lambda l: ((not cfg.alert_min_area or (l.area is not None and l.area >= cfg.alert_min_area))
                      and (not cfg.alert_min_bedrooms or l.bedrooms is None or l.bedrooms >= cfg.alert_min_bedrooms)
                      and in_area(l))
+    # Destaques (⭐ andar alto / vista livre / perto de parque) de quem pode gerar aviso: dados da busca para todos;
+    # descrição (página do anúncio) só dos primeiros 20.
+    alertable = lambda l: (l.business in cfg.immediate or l.business in cfg.digest) and big(l)
+    stars: dict[str, list[str]] = {}
+    if cfg.highlight or cfg.park_max_m:
+        cand = {l.key: l for l in [l for l in new_items if alertable(l)] + [x[0] for x in drops + bargains if alertable(x[0])]}
+        http_d = Http(1.0, 2.0)
+        for i, l in enumerate(cand.values()):
+            text = details.fetch_description(http_d, l) if cfg.highlight and i < 20 and not dry_run else None
+            tags = details.highlights(l, text, cfg.park_max_m)
+            if tags:
+                stars[l.key] = tags
+    passes_new = lambda l: not cfg.new_require_highlight or l.key in stars
+
     # Resumo do dia D cobre de digest_hour de D−1 a digest_hour de D: o que aparece depois do envio vai para o de amanhã.
     when = datetime.fromisoformat(ts).astimezone(SP)
     day = (when + timedelta(days=1) if when.hour >= cfg.digest_hour else when).strftime("%Y-%m-%d")
     if cfg.digest:
         gap_of = {l.key: g for l, g, _ in bargains}
-        for l in new_items:
+        for l in new_items:   # todos os novos nos filtros entram na contagem; só os com destaque são listados
             if l.business in cfg.digest and big(l):
                 g = gap_of.get(l.key) or (market.gap(l.to_dict()) if cfg.bargain_pct else None)
-                digest_add(state, day, "novo", l, g)
+                digest_add(state, day, "novo", l, g, tags=stars.get(l.key, []), listed=passes_new(l))
         for l, g, old in bargains:
             if l.business in cfg.digest and big(l):
-                digest_add(state, day, "novo" if old is None else "queda", l, g, old)
+                digest_add(state, day, "novo" if old is None else "queda", l, g, old, tags=stars.get(l.key, []))
         for l, old, _ in drops:
             if l.business in cfg.digest and big(l):
-                digest_add(state, day, "queda", l, market.gap(l.to_dict()) if cfg.bargain_pct else None, old)
+                digest_add(state, day, "queda", l, market.gap(l.to_dict()) if cfg.bargain_pct else None, old, tags=stars.get(l.key, []))
     now_imm = lambda l: l.business in cfg.immediate and big(l)
-    new_items = [l for l in new_items if now_imm(l)]
+    new_items = [l for l in new_items if now_imm(l) and passes_new(l)]
     drops = [x for x in drops if now_imm(x[0])]
     bargains = [x for x in bargains if now_imm(x[0])]
 
-    # Destaques (⭐ andar alto / vista livre / ar-condicionado): comodidades da busca para todos; descrição
-    # (página do anúncio) só dos primeiros 12 que vão gerar aviso agora.
-    stars: dict[str, list[str]] = {}
-    if cfg.highlight:
-        cand = {l.key: l for l in new_items + [x[0] for x in drops] + [x[0] for x in bargains]}
-        http_d = Http(1.0, 2.0)
-        for i, l in enumerate(cand.values()):
-            text = details.fetch_description(http_d, l) if i < 12 and not dry_run else None
-            tags = details.highlights(l, text)
-            if tags:
-                stars[l.key] = tags
+    if stars:
         star_first = lambda key: 0 if key in stars else 1
         new_items.sort(key=lambda l: star_first(l.key))
         bargains.sort(key=lambda x: (star_first(x[0].key), x[1].pct))
-    star_note = lambda l: ("⭐ " + " · ".join(stars[l.key]).capitalize()) if l.key in stars else ""
+    star_note = lambda l: ("⭐ " + cap1(" · ".join(stars[l.key]))) if l.key in stars else ""
 
     # Esquece anúncios sumidos há muito tempo (só de fontes que funcionaram neste ciclo).
     cutoff = datetime.now(timezone.utc).timestamp() - REMOVE_AFTER_DAYS * 86400
