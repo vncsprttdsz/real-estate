@@ -29,6 +29,22 @@ APARTMENT_TYPES = {"APARTMENT", "PENTHOUSE", "FLAT", "DUPLEX", "TRIPLEX", "LOFT"
 MAX_RESULTS = {"zap": 1200, "vivareal": 240}
 
 
+# Sondagem de 15/11 (compra, Itaim/VNC): POOL 31–36%, BARBECUE_GRILL 13–25% (em geral do condomínio);
+# BARBECUE_BALCONY 2–3% (churrasqueira na varanda, da unidade). Não há código de piscina privativa.
+POOL_CODES = {"POOL", "HEATED_POOL", "ADULT_POOL", "CHILDRENS_POOL", "COVERED_POOL", "SEMI_OLYMPIC_POOL"}
+
+
+def _leisure(am: set) -> dict:
+    out = {}
+    if am & POOL_CODES:
+        out["pool"] = "predio"
+    if "BARBECUE_BALCONY" in am:
+        out["bbq"] = "apto"
+    elif "BARBECUE_GRILL" in am:
+        out["bbq"] = "predio"
+    return out
+
+
 def parse_listing(item: dict, source: str, business: str) -> Listing | None:
     """Converte um item de `search.result.listings[]` em Listing."""
     lst = item.get("listing", item)
@@ -96,6 +112,7 @@ def parse_listing(item: dict, source: str, business: str) -> Listing | None:
         parking=first_int(lst.get("parkingSpaces")),
         floor=(first_int(lst.get("unitFloor")) or None),
         air_conditioning=True if "AIR_CONDITIONING" in (lst.get("amenities") or []) else None,
+        **_leisure(set(lst.get("amenities") or [])),
         **_coords(addr),
     )
 

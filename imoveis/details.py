@@ -21,6 +21,26 @@ PATTERNS = {
                               r"para\s+o\s+ibirapuera|indevass[aá]vel|privilegiada)|sem\s+(prédio|vizinho)s?\s+(na\s+)?frente", re.I),
 }
 HIGH_FLOOR = 10
+# Lazer. Do apartamento (conta como destaque): piscina privativa, churrasqueira na varanda. Do prédio (só ⭐ extra
+# em quem já tem destaque): qualquer outra menção. "sem piscina" não conta.
+LEISURE_APTO = {
+    "piscina": re.compile(r"piscinas?\s+(privativas?|exclusivas?|pr[óo]prias?|particular)|piscinas?\s+(na|no|da|do)\s+"
+                          r"(cobertura|terra[çc]o|varanda|apartamento|unidade|sacada)", re.I),
+    "churrasqueira": re.compile(r"churrasqueiras?\s+(na|no|da|do)\s+(varanda|terra[çc]o|sacada|apartamento|unidade|cobertura)|"
+                                r"(varanda|sacada|terra[çc]o)\s+gourmet\s+(com|e)\s+churrasqueira|"
+                                r"churrasqueiras?\s+(privativas?|pr[óo]prias?|exclusivas?)", re.I),
+}
+LEISURE_ANY = {
+    "piscina": re.compile(r"\bpiscinas?\b", re.I),
+    "churrasqueira": re.compile(r"\bchurrasqueiras?\b", re.I),
+}
+LEISURE_TAG = {("piscina", "apto"): "piscina privativa", ("churrasqueira", "apto"): "churrasqueira na varanda",
+               ("piscina", "predio"): "piscina no prédio", ("churrasqueira", "predio"): "churrasqueira no prédio"}
+
+
+def mentions(text: str | None, pat: re.Pattern) -> bool:
+    """Alguma menção que não seja negada logo antes ("sem piscina", "não possui churrasqueira")."""
+    return any(not AC_NEG.search(text[max(0, m.start() - 25):m.start()]) for m in pat.finditer(text or ""))
 # Ar-condicionado: instalado × só infraestrutura (tubulação/ponto/preparado); "sem ar" não conta.
 AC = re.compile(r"ar[\s-]*condicionados?|ar\s+central|\bsplits?\b|climatizad[oa]s?|\bvrf\b", re.I)
 AC_INFRA = re.compile(r"(infra[\s-]*(estrutura)?|preparad[oa]s?|pr[ée][\s-]*(instala\w*|disposi\w*)|pontos?|tubula\w*|"
@@ -67,8 +87,26 @@ def fetch_description(http: Http, l: Listing) -> str | None:
     return "\n".join(ds[:3]) if ds else None   # a maior costuma ser a do anunciante; as outras são resumos do portal
 
 
+def leisure(l: Listing, text: str | None) -> dict:
+    """{"piscina"|"churrasqueira": "apto"|"predio"}: dados da busca e, se houver, a descrição (o do apartamento prevalece)."""
+    out = {}
+    for name, flag in (("piscina", "pool"), ("churrasqueira", "bbq")):
+        api = getattr(l, flag, None)
+        if api == "apto" or mentions(text, LEISURE_APTO[name]):
+            out[name] = "apto"
+        elif api == "predio" or mentions(text, LEISURE_ANY[name]):
+            out[name] = "predio"
+    return out
+
+
+def extras(l: Listing, text: str | None) -> list[str]:
+    """Marcas que não contam como destaque (lazer do prédio): só aparecem junto de um destaque."""
+    return [LEISURE_TAG[n, v] for n, v in leisure(l, text).items() if v == "predio"]
+
+
 def highlights(l: Listing, text: str | None, park_max_m: float = 0) -> list[str]:
-    """Destaques que contam para os avisos: andar alto, vista livre e perto de parque (ar-condicionado não conta)."""
+    """Destaques que contam para os avisos: andar alto, vista livre, piscina, churrasqueira e perto de parque
+    (ar-condicionado não conta)."""
     tags = []
     if l.floor and l.floor >= HIGH_FLOOR:
         tags.append(f"andar alto ({l.floor}º)")
@@ -77,6 +115,9 @@ def highlights(l: Listing, text: str | None, park_max_m: float = 0) -> list[str]
     for name, pat in PATTERNS.items():
         if text and pat.search(text) and not any(t.startswith(name) for t in tags):
             tags.append(name)
+    for name, level in leisure(l, text).items():
+        if level == "apto":
+            tags.append(LEISURE_TAG[name, level])
     park = geo.nearest_park(l.lat, l.lon, park_max_m)
     if park:
         tags.append(f"perto do {park[0]} ({round(park[1] / 50) * 50:.0f} m)" if park[1] else f"no {park[0]}")

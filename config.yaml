@@ -33,7 +33,8 @@ avisos:
   quartos_minimos: 3           # e com pelo menos estes quartos (anúncio sem a informação é avisado)
   destacar_andar_alto_vista: true   # lê a descrição do anúncio para achar andar alto e vista livre
   perto_de_parque_m: 500       # destaque: até X m da borda do Parque Ibirapuera ou do Parque do Povo
-  novos_so_com_destaque: true  # anúncio novo só avisa com andar alto, vista livre ou perto de parque (12/11)
+  novos_so_com_destaque: true  # anúncio novo só avisa com destaque: andar alto, vista livre, perto de parque (12/11),
+                               # piscina privativa ou churrasqueira do apartamento (15/11; as do prédio só acompanham)
   imediato: []                 # avisos a cada coleta (desde 12/11: nenhum; aluguel não avisa mais)
   resumo_diario: [venda, leilao]   # uma mensagem por dia: novos com destaque e quedas de preço
   resumo_diario_hora: 19       # enviado na 1ª coleta a partir desta hora (19h17); cobre das 19h de ontem às 19h de hoje

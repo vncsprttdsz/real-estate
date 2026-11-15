@@ -842,7 +842,7 @@ const BUSINESS = { venda: "Comprar", aluguel: "Alugar", leilao: "Leilão" };
 const SHORT = { "Vila Nova Conceição": "V. N. Conceição" };
 /** Bairro para exibir: o rótulo do site quando o anúncio está no grupo "Outros na área". */
 /** Destaques informados pelo portal (comodidades da busca e andar). */
-const feats = r => [r.air_conditioning && "ar-condicionado", r.free_view && "vista livre", r.floor >= 10 && `${r.floor}º andar`].filter(Boolean);
+const feats = r => [r.air_conditioning && "ar-condicionado", r.free_view && "vista livre", r.pool && (r.pool === "apto" ? "piscina privativa" : "piscina no prédio"), r.bbq && (r.bbq === "apto" ? "churrasqueira na varanda" : "churrasqueira no prédio"), r.floor >= 10 && `${r.floor}º andar`].filter(Boolean);
 const nbName = r => r.neighborhood_label || SHORT[r.neighborhood] || r.neighborhood;
 const DEFAULT_F = { period: "30", business: "venda", bairro: "todos", quartos: 0, budget: true, area: false };
 let DATA = null, NBS = [], COLOR = {}, MED = {}, POLY = null;

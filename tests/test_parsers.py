@@ -979,7 +979,7 @@ def test_purchase_alerts_only_with_highlight(tmp_path, monkeypatch):
     assert "https://z/v3" in text and "⭐ Perto do Parque Teste (200 m)" in text
     assert "https://z/v1" in text and "baixou de R$ 2.000.000 (−15%)" in text
     assert "https://z/v4" not in text and "https://z/v5" not in text and "https://z/a1" not in text
-    assert "4 anúncios novos de compra" in text and "Com destaque (andar alto, vista livre ou perto de parque): 2." in text
+    assert "4 anúncios novos de compra" in text and "Com destaque (andar alto, vista livre, parque, piscina ou churrasqueira do apto): 2." in text
     assert "💎" not in text
 
 
@@ -991,3 +991,24 @@ def test_real_parks_contours():
     name, d = geo.nearest_park(-23.5910, -46.6680, 500)                                    # Av. República do Líbano
     assert name == "Parque Ibirapuera" and 300 < d < 420
     assert geo.nearest_park(-23.5990, -46.6760, 500) is None                               # longe dos dois
+
+
+def test_leisure_highlights():
+    """15/11: piscina privativa e churrasqueira do apartamento são destaque; as do prédio só acompanham."""
+    from imoveis import details
+    from imoveis.sources import grupozap, quintoandar
+    L = Listing("zap", "1", "u", "venda", neighborhood="Itaim Bibi", area=150)
+    assert details.highlights(L, "Condomínio com piscina aquecida e churrasqueira") == []
+    assert details.extras(L, "Condomínio com piscina aquecida e churrasqueira") == ["piscina no prédio", "churrasqueira no prédio"]
+    assert details.highlights(L, "Varanda gourmet com churrasqueira. Piscina privativa no terraço") == \
+        ["piscina privativa", "churrasqueira na varanda"]
+    assert details.highlights(L, "Não possui piscina privativa") == [] and details.extras(L, "Sem piscina") == []
+    # ZAP: POOL/BARBECUE_GRILL = prédio; BARBECUE_BALCONY = varanda
+    assert grupozap._leisure({"POOL", "BARBECUE_GRILL"}) == {"pool": "predio", "bbq": "predio"}
+    assert grupozap._leisure({"HEATED_POOL", "BARBECUE_BALCONY", "BARBECUE_GRILL"}) == {"pool": "predio", "bbq": "apto"}
+    # QuintoAndar: amenities = unidade, installations = condomínio
+    assert quintoandar._leisure({"PISCINA_PRIVATIVA"}, {"PISCINA", "CHURRASQUEIRA"}) == {"pool": "apto", "bbq": "predio"}
+    q = quintoandar.parse_house({"id": 7, "area": 150, "type": "Apartamento", "salePrice": 2_000_000, "forSale": True,
+                                 "neighbourhood": "Itaim Bibi", "amenities": ["CHURRASQUEIRA"], "installations": ["PISCINA"]}, "venda")
+    assert (q.pool, q.bbq) == ("predio", "apto")
+    assert details.highlights(q, None) == ["churrasqueira na varanda"] and details.extras(q, None) == ["piscina no prédio"]

@@ -76,6 +76,8 @@ class Listing:
     geo_approx: bool = False
     air_conditioning: bool | None = None   # comodidade informada pelo portal (True) ou desconhecido (None)
     free_view: bool | None = None          # "vista livre" informada pelo portal (QuintoAndar)
+    pool: str | None = None                # piscina informada pelo portal: "apto" (privativa) ou "predio" (condomínio)
+    bbq: str | None = None                 # churrasqueira: "apto" (na varanda/da unidade) ou "predio" (condomínio)
 
     @property
     def key(self) -> str:

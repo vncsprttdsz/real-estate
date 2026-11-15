@@ -143,7 +143,7 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
         head += f"\nR$/m² mediano dos novos: {brl(ppms[len(ppms) // 2])}."
     listed = [x for x in new if x.get("listed", True)]
     if cfg.new_require_highlight:
-        head += f"\nCom destaque (andar alto, vista livre ou perto de parque): {len(listed)}."
+        head += f"\nCom destaque (andar alto, vista livre, parque, piscina ou churrasqueira do apto): {len(listed)}."
     if drops:
         head += f"\nQuedas de {cfg.price_drop_pct:.0f}% ou mais: {len(drops)}."
     out = [(head, head)]
@@ -363,8 +363,8 @@ def run(dry_run: bool = False) -> int:
         for i, l in enumerate(cand.values()):
             text = details.fetch_description(http_d, l) if cfg.highlight and i < 20 and not dry_run else None
             tags = details.highlights(l, text, cfg.park_max_m)
-            if tags:
-                stars[l.key] = tags
+            if tags:   # lazer do prédio só acompanha quem já tem destaque
+                stars[l.key] = tags + details.extras(l, text)
     passes_new = lambda l: not cfg.new_require_highlight or l.key in stars
 
     # Resumo do dia D cobre de digest_hour de D−1 a digest_hour de D: o que aparece depois do envio vai para o de amanhã.

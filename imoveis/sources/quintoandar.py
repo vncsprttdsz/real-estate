@@ -31,6 +31,7 @@ DEFAULT_VIEWPORT = {"north": -23.565, "south": -23.605, "east": -46.655, "west":
 FIELDS = [
     "id", "area", "rentPrice", "totalCost", "salePrice", "condoIptu", "address", "regionName",
     "type", "forRent", "forSale", "bedrooms", "parkingSpaces", "neighbourhood", "location", "amenities",
+    "installations",
 ]
 
 
@@ -82,7 +83,23 @@ def parse_house(h: dict, business: str) -> Listing | None:
         lon=to_float((h.get("location") or {}).get("lon")),
         air_conditioning=True if "AR_CONDICIONADO" in (h.get("amenities") or []) else None,
         free_view=True if "VISTA_LIVRE" in (h.get("amenities") or []) else None,
+        **_leisure(set(h.get("amenities") or []), set(h.get("installations") or [])),
     )
+
+
+def _leisure(unit: set, condo: set) -> dict:
+    """amenities = do apartamento (PISCINA_PRIVATIVA, CHURRASQUEIRA); installations = do condomínio (PISCINA, CHURRASQUEIRA).
+    Sondagem de 15/11 (compra): privativa 17%, churrasqueira da unidade 53%, piscina do prédio 50%."""
+    out = {}
+    if "PISCINA_PRIVATIVA" in unit:
+        out["pool"] = "apto"
+    elif "PISCINA" in condo:
+        out["pool"] = "predio"
+    if "CHURRASQUEIRA" in unit:
+        out["bbq"] = "apto"
+    elif "CHURRASQUEIRA" in condo:
+        out["bbq"] = "predio"
+    return out
 
 
 def viewports(neighborhood: str) -> list[dict]:
