@@ -35,7 +35,10 @@ SOURCE_INFO = {
     "zap": "API do portal; por bairro e negócio, os 1.200 anúncios mais recentes (≥ área mínima, apartamentos).",
     "vivareal": "Mesma base do ZAP (Grupo OLX); lê os 240 mais recentes e descarta ids já vistos no ZAP.",
     "quintoandar": "API do portal; todos os resultados de cada bairro (≥ área mínima), mais recentes primeiro.",
-    "zuk": "Listagem de leilões da capital; só a 1ª página (30 leilões) — o site não expõe paginação.",
+    "zuk": "Leilões de apartamentos da capital (lista inteira pelo 'Carregar mais'); abre cada lote dos bairros para ler "
+           "lances e datas do 1º/2º leilão e ocupação.",
+    "mega": "Mega Leilões: apartamentos da capital (todas as páginas); abre os lotes dos bairros (praças, avaliação, ocupação).",
+    "caixa": "Lista oficial da Caixa (CSV do estado): imóveis retomados à venda (leilão, licitação, venda direta).",
 }
 
 # Mudanças de cobertura/metodologia que afetam séries e contagens (data ISO, texto).
@@ -196,7 +199,7 @@ def build(cfg: Config, state: dict, results: dict[str, list[Listing]], errors: d
     history = history[-KEEP_HISTORY_DAYS:]
 
     sources = {}
-    for name, enabled in {"zap": 1, "vivareal": 1, "quintoandar": 1, "zuk": 1, **cfg.sources}.items():
+    for name, enabled in {"zap": 1, "vivareal": 1, "quintoandar": 1, "zuk": 1, "mega": 1, "caixa": 1, **cfg.sources}.items():
         if not enabled:
             continue
         sources[name] = {

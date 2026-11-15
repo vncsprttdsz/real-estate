@@ -263,6 +263,9 @@ def test_vivareal_dedup(monkeypatch, cfg):
     monkeypatch.setattr(grupozap, "fetch", lambda http, cfg, src: [a] if src == "zap" else [b, c])
     monkeypatch.setattr(quintoandar, "fetch", lambda http, cfg: [])
     monkeypatch.setattr(zuk, "fetch", lambda *a, **k: [])
+    from imoveis.sources import caixa, mega
+    monkeypatch.setattr(mega, "fetch", lambda *a, **k: [])
+    monkeypatch.setattr(caixa, "fetch", lambda *a, **k: [])
     results, errors = app.collect(cfg, {"seen": {}, "zuk_rejected": []})
     assert [l.id for l in results["vivareal"]] == ["2"]
 
@@ -1021,3 +1024,65 @@ def test_leisure_highlights():
                                  "neighbourhood": "Itaim Bibi", "amenities": ["CHURRASQUEIRA"], "installations": ["PISCINA"]}, "venda")
     assert (q.pool, q.bbq) == ("predio", "apto")
     assert details.highlights(q, None) == ["churrasqueira na varanda"] and details.extras(q, None) == ["piscina no prédio"]
+
+
+def test_auction_digest(tmp_path, monkeypatch):
+    """Leilões: critérios próprios (≥120 m², custo total ≤ teto, sem destaque, sem mínimo de quartos), ocupado entra
+    com alerta, 1ª coleta de uma fonte de leilão não é calada, e o resumo traz lances, custo total e comparações."""
+    from datetime import datetime
+    from imoveis import leilao
+    cfg = Config(neighborhoods=["Itaim Bibi"], min_area=100, max_sale=2_250_000, alert_min_area=150, alert_min_bedrooms=3,
+                 immediate=(), digest=("venda", "leilao"), digest_hour=19, new_require_highlight=True, auction_min_area=120,
+                 area_extra_neighborhoods=["Jardim Europa"], bargain_pct=25, bargain_alert=False, bargain_min_n=1)
+    monkeypatch.setattr(app, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(app, "CURRENT", tmp_path / "anuncios.json")
+    monkeypatch.setattr(app, "REPORT", tmp_path / "ANUNCIOS.md")
+    from imoveis import dashboard
+    monkeypatch.setattr(dashboard, "CATALOG", tmp_path / "catalogo.json")
+    monkeypatch.setattr(dashboard, "HISTORY", tmp_path / "historico.json")
+    monkeypatch.setattr(dashboard, "OUTPUT", tmp_path / "dados.json")
+    monkeypatch.setattr(app.Config, "load", classmethod(lambda c: cfg))
+
+    class FakeItbi:
+        period = "10/2024–09/2026"
+
+        def building(self, address, min_n=3):
+            return (6, 15_000.0) if "Joaquim Floriano" in address else None
+    monkeypatch.setattr(leilao, "ItbiIndex", FakeItbi)
+    sent = []
+    monkeypatch.setattr(app.Notifier, "send", lambda self, subj, items, footer="": sent.append((subj, [t for t, _ in items])))
+    clock = {"t": datetime(2026, 11, 16, 9, 17, tzinfo=app.SP)}
+    monkeypatch.setattr(app, "now_sp", lambda: clock["t"])
+    monkeypatch.setattr(app, "now", lambda: clock["t"].astimezone(__import__("datetime").timezone.utc).isoformat(timespec="seconds"))
+
+    def A(src, i, nb, area, bids, **kw):
+        rounds = [{"n": n + 1, "date": f"2026-12-{10 + 10 * n}", "bid": b} for n, b in enumerate(bids)]
+        return Listing(src, str(i), f"https://{src}/{i}", "leilao", neighborhood=nb, address=kw.pop("address", f"Rua {i}, 10"),
+                       area=area, price=min(bids), rounds=rounds, auction_kind="judicial", **kw)
+    venda = [Listing("zap", f"v{i}", f"https://z/v{i}", "venda", neighborhood="Itaim Bibi", address=f"Rua V{i} 1", area=150,
+                     price=2_700_000 + i * 10_000, bedrooms=3) for i in range(3)]
+    lots = [A("zuk", 1, "Itaim Bibi", 160, [2_400_000, 1_600_000], appraisal=2_400_000, occupied=True,
+              address="Rua Joaquim Floriano, 100"),                                 # entra: ocupado, 2º leilão no teto
+            A("mega", 2, "Jardim Europa", None, [1_500_000]),                       # entra: extra da área, área desconhecida
+            A("mega", 3, "Itaim Bibi", 100, [900_000]),                             # fora: < 120 m²
+            A("zuk", 4, "Itaim Bibi", 200, [2_200_000]),                            # fora: custo total 2,398 mi > teto
+            A("caixa", 5, "Moema", 200, [1_000_000])]                               # fora: bairro
+    batches = iter([{"zap": venda}, {"zap": venda, "zuk": [lots[0], lots[3]], "mega": [lots[1], lots[2]], "caixa": [lots[4]]},
+                    {"zap": venda, "zuk": [lots[0], lots[3]], "mega": [lots[1], lots[2]], "caixa": [lots[4]]}])
+    # como o collect() real: só o que passa em cfg.matches (bairro/área de interesse, área mínima do painel)
+    monkeypatch.setattr(app, "collect", lambda c, s: ({k: [l for l in v if c.matches(l)] for k, v in next(batches).items()}, {}))
+    app.run()
+    clock["t"] = datetime(2026, 11, 16, 13, 17, tzinfo=app.SP); sent.clear(); app.run()
+    assert not [s for s, _ in sent if s.startswith("🏢")]
+    clock["t"] = datetime(2026, 11, 16, 19, 17, tzinfo=app.SP); app.run()
+    dig = [items for s, items in sent if s.startswith("🏢")]
+    assert len(dig) == 1
+    text = "\n\n".join(dig[0])
+    assert "Leilões no seu perfil: 2." in text and "🔨 Leilões (2)" in text
+    assert "https://zuk/1" in text and "https://mega/2" in text
+    assert all(f"https://{u}" not in text for u in ("mega/3", "zuk/4", "caixa/5"))
+    assert "1º leilão 10/12: R$ 2.400.000" in text and "2º leilão 20/12: R$ 1.600.000" in text
+    assert "custo total ≈ R$ 1.744.000" in text                           # 1,6 mi × 1,09
+    assert "avaliação R$ 2.400.000 (−33%)" in text
+    assert "vs. 6 vendas no prédio (ITBI)" in text and "⚠️ ocupado" in text
+    assert "0 anúncios novos de compra" in text                           # leilão não conta como anúncio de compra

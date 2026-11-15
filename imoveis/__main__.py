@@ -17,8 +17,10 @@ from zoneinfo import ZoneInfo
 from .common import ROOT, Config, Listing, norm
 from .http import Http
 from .notify import Notifier, brl, describe
-from . import bargain, dashboard, dedupe, details, geo, macro
-from .sources import grupozap, quintoandar, zuk
+from . import bargain, dashboard, dedupe, details, geo, leilao, macro
+from .sources import caixa, grupozap, mega, quintoandar, zuk
+
+AUCTION_SOURCES = ("zuk", "mega", "caixa")   # leilões: poucos lotes; sem carga inicial calada por bairro
 
 STATE = ROOT / "data" / "state.json"
 CURRENT = ROOT / "data" / "anuncios.json"
@@ -53,6 +55,8 @@ def collect(cfg: Config, state: dict) -> tuple[dict[str, list[Listing]], dict[st
         "vivareal": lambda: grupozap.fetch(http, cfg, "vivareal"),
         "quintoandar": lambda: quintoandar.fetch(http, cfg),
         "zuk": lambda: zuk.fetch(http, cfg, known, rejected),
+        "mega": lambda: mega.fetch(http, cfg, known, rejected),
+        "caixa": lambda: caixa.fetch(http, cfg),
     }
     for name, job in jobs.items():
         if not cfg.sources.get(name, True):
@@ -60,7 +64,7 @@ def collect(cfg: Config, state: dict) -> tuple[dict[str, list[Listing]], dict[st
         try:
             found = job()
             results[name] = [l for l in found if cfg.matches(l)]
-            if name == "zuk":  # não reabrir leilões fora dos critérios a cada ciclo
+            if name in ("zuk", "mega"):  # não reabrir leilões fora dos critérios a cada ciclo
                 rejected.update(l.id for l in found if not cfg.matches(l))
             print(f"{name}: {len(found)} coletados, {len(results[name])} dentro dos critérios")
         except Exception as e:
@@ -113,7 +117,7 @@ def now_sp() -> datetime:
 
 
 def digest_add(state: dict, day: str, kind: str, l: Listing, gap=None, old: float | None = None,
-               tags: list | None = None, listed: bool = True) -> None:
+               tags: list | None = None, listed: bool = True, auction: dict | None = None) -> None:
     """Guarda um evento de compra para o resumo do dia (compacto; uma entrada por imóvel e tipo)."""
     items = state.setdefault("digest", {}).setdefault(day, [])
     if any(x["key"] == l.key and x["kind"] == kind for x in items):
@@ -121,12 +125,15 @@ def digest_add(state: dict, day: str, kind: str, l: Listing, gap=None, old: floa
     items.append({"kind": kind, "key": l.key, "business": l.business, "nb": l.neighborhood.strip(), "area": l.area,
                   "price": l.ref_price, "old": old, "url": l.url, "addr": l.address or l.title, "bedrooms": l.bedrooms,
                   "source": l.source, "pct": round(gap.pct, 4) if gap else None, "scope": gap.scope if gap else None,
-                  "median": round(gap.median) if gap else None, "tags": tags or [], "listed": listed})
+                  "median": round(gap.median) if gap else None, "tags": tags or [], "listed": listed,
+                  **({"auction": auction} if auction else {})})
 
 
 def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list[tuple[str, str]]]:
     """Resumo diário de compra: contagem por bairro, quedas e oportunidades."""
     d = f"{day[8:10]}/{day[5:7]}"
+    auctions = [x for x in items if x.get("business") == "leilao"]
+    items = [x for x in items if x.get("business") != "leilao"]
     new = [x for x in items if x["kind"] == "novo"]
     drops = [x for x in items if x["kind"] == "queda"]
     lim = -(cfg.bargain_pct or 0) / 100
@@ -146,6 +153,8 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
         head += f"\nCom destaque (andar alto, vista livre, parque, piscina ou churrasqueira do apto): {len(listed)}."
     if drops:
         head += f"\nQuedas de {cfg.price_drop_pct:.0f}% ou mais: {len(drops)}."
+    if auctions:
+        head += f"\nLeilões no seu perfil: {len(auctions)}."
     out = [(head, head)]
 
     def line(x):
@@ -183,6 +192,16 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
     rest = [x for x in drops if x["key"] not in in_opp]
     if rest:
         section(f"📉 Baixaram de preço ({len(rest)}):", rest[:8], max(0, len(rest) - 8))
+    # Leilões: um bloco por lote (lances e datas, avaliação, custo total, comparações, ocupação)
+    if auctions:
+        auctions.sort(key=lambda x: (x.get("auction") or {}).get("cost") or x.get("price") or 0)
+        for i, x in enumerate(auctions[:8]):
+            t = (f"🔨 Leilões ({len(auctions)}) — custo total = lance + 5% de comissão + ITBI + registro; dívidas e "
+                 "desocupação conforme o edital:\n\n" if i == 0 else "")
+            t += ("Baixou: " if x["kind"] == "queda" else "") + leilao.describe(x)
+            out.append((t, t))
+        if len(auctions) > 8:
+            out.append((f"… e mais {len(auctions) - 8} leilões no painel.", ""))
     return f"🏢 Compra — resumo de {d}", out
 
 
@@ -264,7 +283,8 @@ def run(dry_run: bool = False) -> int:
             prev = state["seen"].get(l.key)
             if prev is None:
                 unit = dedupe.key(l.to_dict())
-                initializing = src_new or norm(l.neighborhood) not in nbs_done
+                # Leilão não tem carga inicial calada: lote é raro e tem data; o que já existe também interessa.
+                initializing = source not in AUCTION_SOURCES and (src_new or norm(l.neighborhood) not in nbs_done)
                 if initializing:
                     label = source if src_new else f"{source} ({l.neighborhood})"
                     first_load[label] = first_load.get(label, 0) + 1
@@ -305,7 +325,7 @@ def run(dry_run: bool = False) -> int:
         # Marca como inicializados os bairros que trouxeram anúncios (ou todos, no Zuk, onde vazio é normal).
         seen_nbs = {norm(l.neighborhood) for l in listings}
         # (os anúncios já passaram por cfg.matches: todo rótulo visto aqui é de bairro monitorado ou da área)
-        done = nbs_done | (cfg.neighborhoods_norm if source == "zuk" else seen_nbs)
+        done = nbs_done | (cfg.neighborhoods_norm if source in AUCTION_SOURCES else seen_nbs)
         state["initialized_nbs"][source] = sorted(done)
 
     # Abaixo da mediana: anúncios novos, ou que baixaram e cruzaram o limite.
@@ -350,9 +370,12 @@ def run(dry_run: bool = False) -> int:
 
     # Avisos: só imóveis com a área mínima de alerta; negócios do resumo diário vão para o resumo.
     in_area = lambda l: (not cfg.area_polygon or (geo.inside(l.lat, l.lon, cfg.area_polygon) if l.lat and l.lon else cfg.area_keep_unknown))
-    big = lambda l: ((not cfg.alert_min_area or (l.area is not None and l.area >= cfg.alert_min_area))
-                     and (not cfg.alert_min_bedrooms or l.bedrooms is None or l.bedrooms >= cfg.alert_min_bedrooms)
-                     and in_area(l))
+    auction_area = cfg.auction_min_area if cfg.auction_min_area is not None else cfg.alert_min_area
+    # Leilão: critérios mais amplos (área própria; área desconhecida passa; sem mínimo de quartos).
+    big = lambda l: (((not auction_area or l.area is None or l.area >= auction_area) and in_area(l)) if l.business == "leilao" else
+                     ((not cfg.alert_min_area or (l.area is not None and l.area >= cfg.alert_min_area))
+                      and (not cfg.alert_min_bedrooms or l.bedrooms is None or l.bedrooms >= cfg.alert_min_bedrooms)
+                      and in_area(l)))
     # Destaques (⭐ andar alto / vista livre / perto de parque) de quem pode gerar aviso: dados da busca para todos;
     # descrição (página do anúncio) só dos primeiros 20.
     alertable = lambda l: (l.business in cfg.immediate or l.business in cfg.digest) and big(l)
@@ -365,7 +388,16 @@ def run(dry_run: bool = False) -> int:
             tags = details.highlights(l, text, cfg.park_max_m)
             if tags:   # lazer do prédio só acompanha quem já tem destaque
                 stars[l.key] = tags + details.extras(l, text)
-    passes_new = lambda l: not cfg.new_require_highlight or l.key in stars
+    passes_new = lambda l: not cfg.new_require_highlight or l.key in stars or l.business == "leilao"   # leilão não exige destaque
+    has_auction = any(l.business == "leilao" for l in new_items + [x[0] for x in drops])
+    itbi_ix = leilao.ItbiIndex() if has_auction else None
+    # Mediana dos anúncios de venda do bairro e faixa de área (mercado inteiro, não só o orçamento)
+    market_all = bargain.Market(market_rows(results, catalog, state, ts), cfg.bargain_min_n, "") if has_auction else None
+    auction_of = lambda l: ({**leilao.assess(l.to_dict(), cfg.auction_costs, market_all, itbi_ix),
+                             "rounds": l.rounds, "appraisal": l.appraisal, "occupied": l.occupied, "financing": l.financing,
+                             "kind_label": {"judicial": "leilão judicial", "banco": "leilão de banco",
+                                            "venda direta": "venda direta (banco)"}.get(l.auction_kind or "", "leilão")}
+                            if l.business == "leilao" else None)
 
     # Resumo do dia D cobre de digest_hour de D−1 a digest_hour de D: o que aparece depois do envio vai para o de amanhã.
     when = datetime.fromisoformat(ts).astimezone(SP)
@@ -375,13 +407,14 @@ def run(dry_run: bool = False) -> int:
         for l in new_items:   # todos os novos nos filtros entram na contagem; só os com destaque são listados
             if l.business in cfg.digest and big(l):
                 g = gap_of.get(l.key) or (market.gap(l.to_dict()) if cfg.bargain_pct else None)
-                digest_add(state, day, "novo", l, g, tags=stars.get(l.key, []), listed=passes_new(l))
+                digest_add(state, day, "novo", l, g, tags=stars.get(l.key, []), listed=passes_new(l), auction=auction_of(l))
         for l, g, old in bargains:
             if l.business in cfg.digest and big(l):
                 digest_add(state, day, "novo" if old is None else "queda", l, g, old, tags=stars.get(l.key, []))
         for l, old, _ in drops:
             if l.business in cfg.digest and big(l):
-                digest_add(state, day, "queda", l, market.gap(l.to_dict()) if cfg.bargain_pct else None, old, tags=stars.get(l.key, []))
+                digest_add(state, day, "queda", l, market.gap(l.to_dict()) if cfg.bargain_pct else None, old,
+                           tags=stars.get(l.key, []), auction=auction_of(l))
     now_imm = lambda l: l.business in cfg.immediate and big(l)
     new_items = [l for l in new_items if now_imm(l) and passes_new(l)]
     drops = [x for x in drops if now_imm(x[0])]
@@ -402,7 +435,7 @@ def run(dry_run: bool = False) -> int:
 
     # Alertas de fontes quebradas (site mudou ou bloqueou).
     broken = []
-    for name in ("zap", "vivareal", "quintoandar", "zuk"):
+    for name in ("zap", "vivareal", "quintoandar") + AUCTION_SOURCES:
         if name in errors:
             state["failures"][name] = state["failures"].get(name, 0) + 1
             if state["failures"][name] == FAIL_ALERT_AFTER:

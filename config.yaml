@@ -26,6 +26,8 @@ fontes:
   vivareal: true
   quintoandar: true
   zuk: true
+  mega: true      # Mega Leilões (judicial e extrajudicial)
+  caixa: true     # imóveis retomados da Caixa (lista oficial)
 
 # Para onde vão os avisos (WhatsApp etc.). O painel continua mostrando tudo a partir de area_minima_m2.
 avisos:
@@ -39,6 +41,14 @@ avisos:
   resumo_diario: [venda, leilao]   # uma mensagem por dia: novos com destaque e quedas de preço
   resumo_diario_hora: 19       # enviado na 1ª coleta a partir desta hora (19h17); cobre das 19h de ontem às 19h de hoje
 painel_url: https://vncsprttdsz.github.io/real-estate/
+
+# Leilões (Zuk, Mega Leilões, Caixa) — critérios mais amplos que os de compra (15/11): área do mapa, área mínima
+# abaixo (área não informada passa), custo total estimado até preco_max_venda, sem exigir destaque nem quartos;
+# ocupados entram com alerta. Preço do lote = menor lance entre os leilões por vir. Custo total = lance +
+# comissão do leiloeiro (0 em venda direta) + ITBI + registro; dívidas e desocupação ficam por conta do edital.
+leiloes:
+  area_minima_m2: 120
+  custos: {comissao_pct: 5, itbi_pct: 3, registro_pct: 1}
 
 # Avisar também quando o preço de um anúncio já visto cair pelo menos X% (mesmos filtros dos avisos de novos:
 # área, quartos, área de interesse e orçamento; não precisa de destaque). Quedas em degraus somam (compara com

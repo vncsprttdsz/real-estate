@@ -59,11 +59,10 @@ APPRAISAL_RE = re.compile(r"(?:valor\s+de\s+)?avalia[çc][ãa]o[^R\d]{0,40}R\$\s
 AREA_RE = re.compile(r"(\d+(?:[.,]\d+)?)\s*m²", re.I)
 
 
-def parse_detail(html: str) -> dict:
-    t = page_text(html)
-    rounds = [{"n": int(n), "date": _date(d), "bid": to_float(v)} for n, d, v in ROUND_RE.findall(t)]
+def parse_rounds(seg: str) -> list[dict]:
+    rounds = [{"n": int(n), "date": _date(d), "bid": to_float(v)} for n, d, v in ROUND_RE.findall(seg)]
     if not rounds:
-        m = SINGLE_RE.search(t)
+        m = SINGLE_RE.search(seg)
         if m:
             rounds = [{"n": 1, "date": _date(m.group(1)), "bid": to_float(m.group(2))}]
     seen, uniq = set(), []
@@ -71,20 +70,43 @@ def parse_detail(html: str) -> dict:
         if r["n"] not in seen:
             seen.add(r["n"])
             uniq.append(r)
+    return uniq
+
+
+def cards(list_html: str) -> dict[str, dict]:
+    """Dados de cada cartão da listagem, pelo código do lote: praças (data e lance), tipo e ocupação.
+    A página de detalhe mostra também os outros lotes do mesmo leilão, então as praças vêm do cartão."""
+    t = page_text(list_html)
+    pos = [(m.group(0).upper(), m.start()) for m in re.finditer(r"\b[XJ]\d{6}\b", t)]
+    out = {}
+    for i, (code, p) in enumerate(pos):
+        if code in out:
+            continue
+        seg = t[p:pos[i + 1][1] if i + 1 < len(pos) else p + 800][:800]
+        out[code] = {
+            "rounds": parse_rounds(seg),
+            "kind": "judicial" if re.search(r"\bJudicial\b", seg) else ("banco" if re.search(r"Extrajudicial", seg) else None),
+            "occupied": False if re.search(r"IM[ÓO]VEL\s+DESOCUPADO", seg) else (True if re.search(r"IM[ÓO]VEL\s+OCUPADO", seg) else None),
+        }
+    return out
+
+
+def parse_detail(html: str) -> dict:
+    t = page_text(html)
     ap = APPRAISAL_RE.search(t)
     occ = None
     if re.search(r"im[óo]vel\s+desocupado", t, re.I):
         occ = False
-    elif re.search(r"im[óo]vel\s+ocupado|\bocupado\s+por\b|encontra-se\s+ocupado", t, re.I):
+    elif re.search(r"\bOcupado\.\s*Desocupa[çc][ãa]o|im[óo]vel\s+ocupado|encontra-se\s+ocupado", t, re.I):
         occ = True
-    kind = "judicial" if re.search(r"\bjudicial\b", t, re.I) and not re.search(r"\bextrajudicial\b", t, re.I) else (
-        "banco" if re.search(r"extrajudicial|aliena[çc][ãa]o fiduci", t, re.I) else None)
-    addr = re.search(r"((?:Rua|R\.|Avenida|Av\.|Alameda|Al\.|Praça)\s[^,\n]{3,60},\s*\d{1,5})", t)
+    kind = "judicial" if re.search(r"\bJudicial\b", t[:3000]) else ("banco" if re.search(r"Extrajudicial", t[:3000]) else None)
+    addrs = re.findall(r"((?:Rua|R\.|Avenida|Av\.|Alameda|Al\.|Praça)\s[^,\n]{3,60},\s*\d{1,5})", t)
+    addr = min(addrs, key=len) if addrs else None   # a menor: evita pegar junto o texto do título
     qts = re.search(r"(\d+)\s*(?:dormit[óo]rios?|quartos?|su[íi]tes?)", t, re.I)
     title = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
     return {
-        "rounds": uniq, "appraisal": to_float(ap.group(1)) if ap else None, "occupied": occ, "kind": kind,
-        "address": addr.group(1) if addr else "", "bedrooms": int(qts.group(1)) if qts else None,
+        "appraisal": (to_float(ap.group(1)) or None) if ap else None, "occupied": occ, "kind": kind,
+        "address": addr or "", "bedrooms": int(qts.group(1)) if qts else None,
         "financing": True if re.search(r"aceita\s+financiamento|financiamento\s+banc[áa]rio", t, re.I) else None,
         "title": htmllib.unescape(TAG.sub("", title.group(1))).strip() if title else "",
     }
@@ -96,6 +118,7 @@ def fetch(http: Http, cfg: Config, known_ids: set[str], rejected: set[str], toda
     wanted = wanted_slugs(cfg)
     base = LIST_URL.format(uf=cfg.state.lower(), city=slug(cfg.city))
     lots: dict[str, tuple[str, str]] = {}
+    card: dict[str, dict] = {}
     for page in range(1, MAX_PAGES + 1):
         r = http.get(base + (f"?pagina={page}" if page > 1 else ""))
         dump_debug(f"mega-lista-{page}.html [HTTP {r.status_code}]", r.text)
@@ -107,6 +130,7 @@ def fetch(http: Http, cfg: Config, known_ids: set[str], rejected: set[str], toda
         if not set(found) - set(lots):
             break
         lots.update(found)
+        card.update(cards(r.text))
     out = []
     for code, (url, lot_slug) in lots.items():
         nb = neighborhood_of(lot_slug, wanted)
@@ -125,11 +149,14 @@ def fetch(http: Http, cfg: Config, known_ids: set[str], rejected: set[str], toda
             if key in known_ids:   # mantém o lote ativo mesmo sem conseguir reler a página
                 out.append(Listing(source="mega", id=code, url=url, business="leilao", neighborhood=nb, area=area))
             continue
-        nr = next_round(d["rounds"], today)
+        c = card.get(code, {})
+        rounds = c.get("rounds") or []
+        nr = next_round(rounds, today)
+        occupied = c.get("occupied") if c.get("occupied") is not None else d["occupied"]
         out.append(Listing(
             source="mega", id=code, url=url, business="leilao", title=d["title"] or lot_slug.replace("-", " "),
             neighborhood=nb, address=d["address"], area=area, price=nr["bid"] if nr else None, bedrooms=d["bedrooms"],
-            appraisal=d["appraisal"], rounds=d["rounds"] or None, auction_kind=d["kind"], occupied=d["occupied"],
-            financing=d["financing"], extra=" · ".join(f"{x['n']}º leilão {x['date'] or ''}" for x in d["rounds"]),
+            appraisal=d["appraisal"], rounds=rounds or None, auction_kind=c.get("kind") or d["kind"], occupied=occupied,
+            financing=d["financing"], extra=" · ".join(f"{x['n']}º leilão {x['date'] or ''}" for x in rounds),
         ))
     return out

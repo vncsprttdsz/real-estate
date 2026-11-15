@@ -62,7 +62,8 @@ def load_all(http: Http, url: str) -> tuple[str, int]:
     order = re.search(r'<select[^>]*id="ordenar".*?<option[^>]*value="([^"]*)"[^>]*selected', html, re.S)
     if not token:
         return html, 0
-    post_url = f"{SITE}/{uri.group(1).lstrip('/')}" if uri else f"{SITE}/carrega-mais"
+    # Rota do Ziggy (JSON com barras escapadas): "carrega.mais":{"uri":"leilao-de-imoveis\/mais"} (sondagem de 15/11)
+    post_url = f"{SITE}/{uri.group(1).replace(chr(92), '').lstrip('/')}" if uri else f"{SITE}/leilao-de-imoveis/mais"
     seen = extract_all_links(html)
     rounds = 0
     for _ in range(MAX_MORE):
@@ -149,7 +150,8 @@ def parse_detail(html: str, url: str, lid: str, neighborhood_slug: str, cfg: Con
         occ = True
     kind = "judicial" if re.search(r"Processo:?\s*\d{7}-\d{2}", text) else (
         "banco" if re.search(r"aliena[çc][ãa]o fiduci|extrajudicial|banco|caixa econ", text[:6000], re.I) else None)
-    addr = re.search(r"((?:Rua|Avenida|Av\.|Alameda|Al\.|Praça)\s[^,]{3,60},\s*\d{1,5})", text)
+    addrs = re.findall(r"((?:Rua|Avenida|Av\.|Alameda|Al\.|Praça)\s[^,]{3,60},\s*\d{1,5})", text)
+    addr = min(addrs, key=len) if addrs else None   # a menor: evita pegar junto o texto do título
     qts = re.search(r"(\d+)\s*(?:dormit[óo]rios?|quartos?|su[íi]tes?)", text, re.I)
     dates = DATE_RE.findall(text)
     extra = (" · ".join(f"{r['n']}º leilão {r['date'] or ''}" for r in rounds) if rounds else
@@ -164,7 +166,7 @@ def parse_detail(html: str, url: str, lid: str, neighborhood_slug: str, cfg: Con
         business="leilao",
         title=title or "Imóvel em leilão",
         neighborhood=nb_name,
-        address=addr.group(1) if addr else "",
+        address=addr or "",
         area=area,
         price=price,
         bedrooms=int(qts.group(1)) if qts else None,

@@ -38,19 +38,21 @@ def z():
 
 def m():
     base = mega.LIST_URL.format(uf="sp", city="sao-paulo")
-    lots = {}
+    lots, card = {}, {}
     for p in range(1, 6):
         r = http.get(base + (f"?pagina={p}" if p > 1 else ""))
         f = mega.lot_links(r.text)
         if not set(f) - set(lots):
             break
         lots.update(f)
+        card.update(mega.cards(r.text))
+    print(f"[mega] cartões lidos: {len(card)}; com praças: {sum(1 for c in card.values() if c['rounds'])}")
     w = mega.wanted_slugs(cfg)
     alvo = {c: v for c, v in lots.items() if mega.neighborhood_of(v[1], w)}
     print(f"[mega] {len(lots)} lotes; nos bairros-alvo: {len(alvo)} {list(alvo)}")
     for c, (u, s) in (list(alvo.items()) + list(lots.items()))[:4]:
         d = mega.parse_detail(http.get(u).text)
-        print(f"  [mega lote] {c} {s[:70]} -> {d}")
+        print(f"  [mega lote] {c} {s[:70]} -> cartão {card.get(c)} | detalhe {d}")
 
 
 def c():
