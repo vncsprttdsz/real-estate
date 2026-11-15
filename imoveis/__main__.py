@@ -134,6 +134,8 @@ def digest_messages(day: str, items: list[dict], cfg: Config) -> tuple[str, list
     d = f"{day[8:10]}/{day[5:7]}"
     auctions = [x for x in items if x.get("business") == "leilao"]
     items = [x for x in items if x.get("business") != "leilao"]
+    # Critério de área vigente na hora do envio (o resumo acumula o dia; o limite pode ter mudado no meio)
+    items = [x for x in items if not cfg.alert_min_area or not x.get("area") or x["area"] >= cfg.alert_min_area]
     new = [x for x in items if x["kind"] == "novo"]
     drops = [x for x in items if x["kind"] == "queda"]
     lim = -(cfg.bargain_pct or 0) / 100

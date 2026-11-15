@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import re
+from datetime import date
 import unicodedata
 from statistics import median
 
@@ -123,9 +124,11 @@ def describe(x: dict) -> str:
     head = " · ".join(p for p in (x.get("nb"), f"{x['area']:.0f} m²" if x.get("area") else "",
                                   f"{x['bedrooms']} qts" if x.get("bedrooms") else "", a.get("kind_label")) if p)
     lines = [head]
+    today = date.today().isoformat()
     for r in a.get("rounds") or []:
         d = r.get("date") or ""
-        lines.append(f"{r.get('n', '')}º leilão{(' ' + d[8:10] + '/' + d[5:7]) if d else ''}: {brl(r.get('bid'))}")
+        lines.append(f"{r.get('n', '')}º leilão{(' ' + d[8:10] + '/' + d[5:7]) if d else ''}: {brl(r.get('bid'))}"
+                     + (" (já passou)" if d and d < today else ""))
     if not a.get("rounds") and x.get("price"):
         lines.append(f"Lance/preço: {brl(x['price'])}")
     bits = []
