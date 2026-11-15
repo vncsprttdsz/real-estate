@@ -56,7 +56,7 @@ def to_float(value) -> float | None:
 
 @dataclass
 class Listing:
-    source: str          # zap | vivareal | quintoandar | zuk
+    source: str          # zap | vivareal | quintoandar | zuk | mega | caixa
     id: str
     url: str
     business: str        # venda | aluguel | leilao
@@ -78,6 +78,12 @@ class Listing:
     free_view: bool | None = None          # "vista livre" informada pelo portal (QuintoAndar)
     pool: str | None = None                # piscina informada pelo portal: "apto" (privativa) ou "predio" (condomínio)
     bbq: str | None = None                 # churrasqueira: "apto" (na varanda/da unidade) ou "predio" (condomínio)
+    # Leilão / venda de banco (price = lance do próximo leilão ou preço de venda)
+    appraisal: float | None = None         # valor de avaliação do edital
+    rounds: list | None = None             # [{"n": 1, "date": "AAAA-MM-DD", "bid": 1234.0}, ...]
+    auction_kind: str | None = None        # "judicial" | "banco" | "venda direta"
+    occupied: bool | None = None           # True ocupado, False desocupado, None não informado
+    financing: bool | None = None          # aceita financiamento
 
     @property
     def key(self) -> str:
@@ -118,6 +124,8 @@ class Config:
     area_extra_neighborhoods: list = field(default_factory=list)   # coletados só pelo que cai dentro da área
     highlight: bool = False                # busca a descrição dos avisos imediatos e destaca andar alto / vista livre
     new_require_highlight: bool = False    # anúncio novo só avisa com pelo menos um destaque
+    auction_min_area: float | None = None  # área mínima dos avisos de leilão (None = a dos avisos)
+    auction_costs: dict = field(default_factory=lambda: {"comissao_pct": 5, "itbi_pct": 3, "registro_pct": 1})
     park_max_m: float = 0                  # destaque "perto do parque": distância máxima até a borda (0 = desligado)
 
     @property
@@ -128,6 +136,14 @@ class Config:
     def query_neighborhoods(self) -> list[str]:
         """Bairros consultados nos portais: os monitorados + os extras da área de interesse."""
         return list(self.neighborhoods) + [n for n in self.area_extra_neighborhoods if norm(n) not in self.neighborhoods_norm]
+
+    @property
+    def extra_neighborhoods_norm(self) -> set[str]:
+        return {norm(n) for n in self.area_extra_neighborhoods}
+
+    def in_label_area(self, l) -> bool:
+        """Sem coordenadas (leilões), vale o rótulo: bairro monitorado ou extra da área de interesse."""
+        return l.business == "leilao" and not (l.lat and l.lon) and norm(l.neighborhood) in self.extra_neighborhoods_norm
 
     def in_area(self, l) -> bool:
         return self.in_area_point(l.lat, l.lon)
@@ -161,6 +177,8 @@ class Config:
             dashboard_url=str(raw.get("painel_url") or ""),
             highlight=bool((raw.get("avisos") or {}).get("destacar_andar_alto_vista", False)),
             new_require_highlight=bool((raw.get("avisos") or {}).get("novos_so_com_destaque", False)),
+            auction_min_area=(raw.get("leiloes") or {}).get("area_minima_m2"),
+            auction_costs={"comissao_pct": 5, "itbi_pct": 3, "registro_pct": 1, **((raw.get("leiloes") or {}).get("custos") or {})},
             park_max_m=float((raw.get("avisos") or {}).get("perto_de_parque_m") or 0),
             area_polygon=(((raw.get("area_de_interesse") or {}).get("poligono") or [])
                           if (raw.get("area_de_interesse") or {}).get("ativo") else []),
@@ -185,7 +203,7 @@ class Config:
     def matches(self, l: Listing) -> bool:
         """Bairro, área e tipo — o mercado que o monitor acompanha (sem o teto de preço)."""
         # Bairro monitorado, ou qualquer rótulo desde que o prédio fique dentro da área de interesse
-        if norm(l.neighborhood) not in self.neighborhoods_norm and not self.in_area(l):
+        if norm(l.neighborhood) not in self.neighborhoods_norm and not self.in_area(l) and not self.in_label_area(l):
             return False
         # Leilões frequentemente não informam área na listagem: só descarta se souber que é menor.
         if l.area is not None and l.area < self.min_area:
@@ -205,6 +223,9 @@ class Config:
         return not cap or price is None or price <= cap
 
     def in_budget(self, l: Listing) -> bool:
+        if l.business == "leilao":   # leilão: pelo custo total estimado (lance + comissão + ITBI + registro)
+            from .leilao import total_cost
+            return self.within_cap("leilao", total_cost(l.ref_price, l.auction_kind, self.auction_costs))
         return self.within_cap(l.business, l.ref_price)
 
 

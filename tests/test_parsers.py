@@ -89,8 +89,8 @@ def test_zuk(cfg):
     links = zuk.extract_links(ZUK_LIST, cfg)
     assert set(links) == {"31234-198765", "31555-200001"}
     l = zuk.parse_detail(ZUK_DETAIL, links["31234-198765"], "31234-198765", "itaim-bibi", cfg)
-    assert l.area == 152.3 and l.price == 1920000 and l.neighborhood == "Itaim Bibi"
-    assert "20/11/2026" in l.extra and cfg.matches(l)
+    assert l.area == 152.3 and l.price == 1920000 and l.neighborhood == "Itaim Bibi"   # menor lance por vir (2º leilão)
+    assert l.rounds[0]["date"] == "2026-11-20" and "1º leilão 2026-11-20" in l.extra and cfg.matches(l)
     casa = ZUK_DETAIL.replace("Apartamento", "Casa")
     assert zuk.parse_detail(casa, "u", "1", "itaim-bibi", cfg) is None
 
@@ -313,10 +313,15 @@ def test_quintoandar_keeps_partial_on_pagination_limit(cfg):
     assert len(houses) == 72 * len(cfg.neighborhoods)
 
 
-def test_zuk_discovers_page_param(cfg):
-    page1 = '<a href="/imovel/sp/sao-paulo/moema/rua-a-1/1-1">x</a>'
-    page2 = '<a href="/imovel/sp/sao-paulo/itaim-bibi/rua-b-2/2-2">y</a>'
-    detail = '<meta property="og:title" content="Apartamento 120 m²"><p>Área útil: 120 m²</p>'
+def test_zuk_load_more(cfg):
+    """A listagem traz 30 lotes; o resto vem do "Carregar mais" (POST na rota carrega.mais com o token da página)."""
+    page1 = ('<input type="hidden" name="_token" value="tok123"><script>var Ziggy={"routes":{"carrega.mais":{"uri":"carrega-mais"}}}'
+             '</script><div class="card_lotes_div" data-parceiro="0"><a href="/imovel/sp/sao-paulo/moema/rua-a-1/1-1">x</a></div>')
+    more = '<div class="card_lotes_div" data-parceiro="0"><a href="/imovel/sp/sao-paulo/itaim-bibi/rua-b-2/2-2">y</a></div>'
+    detail = ('<meta property="og:title" content="Apartamento 120 m²"><p>Área útil: 120 m²</p>'
+              '<p>Lance mínimo: 1º Leilão 20/11/26 às 10h00 R$ 1.500.000,00 2º Leilão 10/12/26 às 10h00 R$ 900.000,00</p>'
+              '<p>Imóvel desocupado</p>')
+    posts = []
 
     class FakeHttp:
         def get(self, url, **kw):
@@ -324,14 +329,18 @@ def test_zuk_discovers_page_param(cfg):
                 return _R(200, detail)
             if "robots" in url or "sitemap" in url:
                 return _R(404, "")
-            if url.endswith("?pagina=2"):
-                return _R(200, page2)
-            if "?pagina=3" in url:
-                return _R(200, page2)  # nada novo: para
-            return _R(200, page1)      # base e parâmetros ignorados
+            return _R(200, page1)
+
+        def post(self, url, data=None, **kw):
+            posts.append((url, data))
+            return _R(200, more if len(posts) == 1 else more)   # 2ª chamada não traz nada novo: para
 
     found = zuk.fetch(FakeHttp(), cfg, set(), set())
+    assert posts[0][0].endswith("/carrega-mais") and posts[0][1]["_token"] == "tok123" and posts[0][1]["limit"] == 1
+    assert len(posts) == 2
     assert [l.id for l in found] == ["2-2"] and found[0].neighborhood == "Itaim Bibi"
+    l = found[0]
+    assert l.occupied is False and [r["bid"] for r in l.rounds] == [1_500_000, 900_000] and l.price == 900_000
 
 
 def test_new_neighborhood_is_initial_load(tmp_path, monkeypatch):
