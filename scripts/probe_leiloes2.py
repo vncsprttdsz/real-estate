@@ -41,10 +41,15 @@ for pat in (r"carregar mais|load[-_ ]?more|ver mais", r"/api/[a-z0-9/_-]+", r"aj
             r"total\s*de\s*\d+\s*im[óo]veis|\d+\s*im[óo]veis\s*encontrados|\d+\s*resultados"):
     print(f"[zuk] /{pat}/:", [s[:300] for s in around(r1.text, pat, 3, 120)])
 print("[zuk] selects:", re.findall(r'<select[^>]*name="([^"]+)"', r1.text)[:15])
+for m in list(re.finditer(r"carregarMais", r1.text))[:6]:
+    print("[zuk carregarMais]", r1.text[max(0, m.start() - 200):m.end() + 900].replace("\n", " ")[:1100])
+for pat in (r"url\s*:\s*['\"][^'\"]+['\"]", r"route\(['\"][^'\"]+", r"https://www\.portalzuk\.com\.br/[a-z-]+/[a-z-]*(busca|filtro|carregar|lista)[^'\"\s]*"):
+    print(f"[zuk] /{pat}/:", sorted(set(re.findall(pat, r1.text)))[:15])
 print("[zuk] forms:", re.findall(r'<form[^>]*action="([^"]+)"', r1.text)[:5])
 # página de um lote: campos
 if p1:
     u = sorted(p1)[0]
+    u = u if u.startswith("http") else zuk.SITE + u
     d = text(http.get(u).text)
     for pat in (r"avalia[çc][ãa]o", r"1[ºo°]?\s*leil[ãa]o|primeiro leil", r"2[ºo°]?\s*leil[ãa]o|segundo leil", r"ocupad|desocupad",
                 r"financi|fgts", r"[áa]rea (útil|privativa|constru)", r"dormit|quartos", r"comiss[ãa]o", r"judicial|extrajudicial|aliena[çc][ãa]o fiduci", r"d[ée]bito|iptu|condom[íi]nio"):
@@ -52,23 +57,31 @@ if p1:
     print("[zuk lote] url:", u)
 
 # ---------- Mega Leilões ----------
-mb = "https://www.megaleiloes.com.br/imoveis/apartamentos/sp/sao-paulo"
-r = http.get(mb)
-links = sorted(set(re.findall(r'href="(https://www\.megaleiloes\.com\.br/imoveis/apartamentos/sp/sao-paulo/[^"#?]+)"', r.text)))
-print(f"[mega] p1: {len(links)} links de lote; exemplos: {links[:5]}")
-for q in ("?pagina=2", "?page=2"):
-    rr = http.get(mb + q, retries=1)
-    l2 = set(re.findall(r'href="(https://www\.megaleiloes\.com\.br/imoveis/apartamentos/sp/sao-paulo/[^"#?]+)"', rr.text))
-    print(f"[mega] {q}: HTTP {rr.status_code} · {len(l2)} links · novos: {len(l2 - set(links))}")
-t = text(r.text)
-print("[mega] total:", around(t, r"\d+\s*(lotes|im[óo]veis|resultados)", 3, 60))
-print("[mega] card exemplo:", around(t, r"Itaim", 2, 300))
-if links:
-    d = text(http.get(links[0]).text)
-    for pat in (r"avalia[çc][ãa]o", r"1[ªaº]?\s*(pra[çc]a|leil[ãa]o)", r"2[ªaº]?\s*(pra[çc]a|leil[ãa]o)", r"ocupad|desocupad", r"financi|fgts",
-                r"[áa]rea (útil|privativa|constru)", r"dormit|quartos", r"comiss[ãa]o", r"processo|judicial|extrajudicial", r"d[ée]bito"):
-        print(f"[mega lote] /{pat}/:", around(d, pat, 2, 110))
-    print("[mega lote] url:", links[0])
+def mega():
+    mb = "https://www.megaleiloes.com.br/imoveis/apartamentos/sp/sao-paulo"
+    r = http.get(mb)
+    links = sorted(set(re.findall(r'href="(https://www\.megaleiloes\.com\.br/imoveis/apartamentos/sp/sao-paulo/[^"#?]+)"', r.text)))
+    print(f"[mega] p1: {len(links)} links de lote; exemplos: {links[:5]}")
+    for q in ("?pagina=2", "?page=2"):
+        rr = http.get(mb + q, retries=1)
+        l2 = set(re.findall(r'href="(https://www\.megaleiloes\.com\.br/imoveis/apartamentos/sp/sao-paulo/[^"#?]+)"', rr.text))
+        print(f"[mega] {q}: HTTP {rr.status_code} · {len(l2)} links · novos: {len(l2 - set(links))}")
+    t = text(r.text)
+    print("[mega] total:", around(t, r"\d+\s*(lotes|im[óo]veis|resultados)", 3, 60))
+    print("[mega] card exemplo:", around(t, r"Itaim", 2, 300))
+    if links:
+        d = text(http.get(links[0]).text)
+        for pat in (r"avalia[çc][ãa]o", r"1[ªaº]?\s*(pra[çc]a|leil[ãa]o)", r"2[ªaº]?\s*(pra[çc]a|leil[ãa]o)", r"ocupad|desocupad", r"financi|fgts",
+                    r"[áa]rea (útil|privativa|constru)", r"dormit|quartos", r"comiss[ãa]o", r"processo|judicial|extrajudicial", r"d[ée]bito"):
+            print(f"[mega lote] /{pat}/:", around(d, pat, 2, 110))
+        print("[mega lote] url:", links[0])
+
+
+
+try:
+    mega()
+except Exception as e:
+    print('[mega] ERRO', e)
 
 # ---------- Caixa: página de detalhe ----------
 try:
