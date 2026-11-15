@@ -1109,9 +1109,9 @@
     "price": 23215
    },
    "venda|Outros na área": {
-    "n": 1004,
+    "n": 1018,
     "ppm2": 27475.25,
-    "price": 5990000
+    "price": 5955050
    },
    "venda|Vila Uberabinha": {
     "n": 1264,
@@ -1134,8 +1134,8 @@
     "price": 17000
    },
    "aluguel|Outros na área": {
-    "n": 173,
-    "ppm2": 140.0,
+    "n": 172,
+    "ppm2": 140.17,
     "price": 24000
    },
    "aluguel|Itaim Bibi": {
