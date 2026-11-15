@@ -29,7 +29,7 @@ fontes:
 
 # Para onde vão os avisos (WhatsApp etc.). O painel continua mostrando tudo a partir de area_minima_m2.
 avisos:
-  area_minima_m2: 120          # só avisa imóveis com esta área ou mais
+  area_minima_m2: 150          # só avisa imóveis com esta área ou mais (era 120 até 15/11)
   quartos_minimos: 3           # e com pelo menos estes quartos (anúncio sem a informação é avisado)
   destacar_andar_alto_vista: true   # lê a descrição do anúncio para achar andar alto e vista livre
   perto_de_parque_m: 500       # destaque: até X m da borda do Parque Ibirapuera ou do Parque do Povo
