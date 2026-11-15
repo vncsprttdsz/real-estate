@@ -100,8 +100,10 @@ def parse_detail(html: str) -> dict:
     elif re.search(r"\bOcupado\.\s*Desocupa[çc][ãa]o|im[óo]vel\s+ocupado|encontra-se\s+ocupado", t, re.I):
         occ = True
     kind = "judicial" if re.search(r"\bJudicial\b", t[:3000]) else ("banco" if re.search(r"Extrajudicial", t[:3000]) else None)
-    addrs = re.findall(r"((?:Rua|R\.|Avenida|Av\.|Alameda|Al\.|Praça)\s[^,\n]{3,60},\s*\d{1,5})", t)
-    addr = min(addrs, key=len) if addrs else None   # a menor: evita pegar junto o texto do título
+    # Endereço do próprio lote: campo "Localização" (o texto da página traz também os outros lotes do leilão)
+    STREET = r"((?:Rua|R\.|Avenida|Av\.|Alameda|Al\.|Praça)\s[^,\n]{2,60},\s*\d{1,5})"
+    m = re.search(r"Localiza[çc][ãa]o\s+" + STREET, t)
+    addr = m.group(1) if m else None
     qts = re.search(r"(\d+)\s*(?:dormit[óo]rios?|quartos?|su[íi]tes?)", t, re.I)
     title = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
     return {

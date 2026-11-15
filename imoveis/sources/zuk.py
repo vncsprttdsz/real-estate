@@ -32,6 +32,17 @@ ROUND_RE = re.compile(r"([12])º\s*Leil[ãa]o:?\s*(\d{2}/\d{2}/\d{2,4})[^R]{0,40
 APPRAISAL_RE = re.compile(r"(?:valor\s+de\s+)?avalia[çc][ãa]o[^R\d]{0,40}R\$\s*([\d.]+,\d{2})", re.I)
 
 
+def address_from_url(url: str) -> str | None:
+    """/imovel/sp/sao-paulo/<bairro>/rua-araguari-449/<id> → 'Rua Araguari, 449' (sem acentos; basta para casar com o ITBI)."""
+    parts = url.rstrip("/").split("/")
+    if len(parts) < 3:
+        return None
+    words = parts[-2].split("-")
+    if len(words) < 2 or not words[-1].isdigit():
+        return None
+    return " ".join(w.capitalize() for w in words[:-1]) + ", " + words[-1]
+
+
 def _iso(d: str) -> str | None:
     for fmt in ("%d/%m/%y", "%d/%m/%Y"):
         try:
@@ -150,8 +161,7 @@ def parse_detail(html: str, url: str, lid: str, neighborhood_slug: str, cfg: Con
         occ = True
     kind = "judicial" if re.search(r"Processo:?\s*\d{7}-\d{2}", text) else (
         "banco" if re.search(r"aliena[çc][ãa]o fiduci|extrajudicial|banco|caixa econ", text[:6000], re.I) else None)
-    addrs = re.findall(r"((?:Rua|Avenida|Av\.|Alameda|Al\.|Praça)\s[^,]{3,60},\s*\d{1,5})", text)
-    addr = min(addrs, key=len) if addrs else None   # a menor: evita pegar junto o texto do título
+    addr = address_from_url(url)   # o texto da página traz endereços de outros lotes e do rodapé
     qts = re.search(r"(\d+)\s*(?:dormit[óo]rios?|quartos?|su[íi]tes?)", text, re.I)
     dates = DATE_RE.findall(text)
     extra = (" · ".join(f"{r['n']}º leilão {r['date'] or ''}" for r in rounds) if rounds else
