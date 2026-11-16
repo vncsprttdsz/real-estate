@@ -1160,24 +1160,24 @@
     "price": 23000
    },
    "venda|Outros na área": {
-    "n": 1017,
+    "n": 1019,
     "ppm2": 27464.79,
-    "price": 5990000
+    "price": 5960000
    },
    "venda|Vila Uberabinha": {
-    "n": 1256,
-    "ppm2": 17415.85,
-    "price": 3199500
+    "n": 1263,
+    "ppm2": 17419.35,
+    "price": 3200000
    },
    "venda|Vila Nova Conceição": {
-    "n": 1566,
-    "ppm2": 30000.62,
-    "price": 5393500
+    "n": 1575,
+    "ppm2": 30000.0,
+    "price": 5350000
    },
    "venda|Itaim Bibi": {
-    "n": 1804,
+    "n": 1811,
     "ppm2": 18766.23,
-    "price": 2973580
+    "price": 2950000
    },
    "aluguel|Vila Uberabinha": {
     "n": 309,
@@ -1190,7 +1190,7 @@
     "price": 24000
    },
    "aluguel|Itaim Bibi": {
-    "n": 573,
+    "n": 575,
     "ppm2": 120.0,
     "price": 15950
    },
