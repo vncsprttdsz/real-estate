@@ -1216,9 +1216,9 @@
     "price": 16000
    },
    "venda|Outros na área": {
-    "n": 991,
-    "ppm2": 27829.1,
-    "price": 5960000
+    "n": 990,
+    "ppm2": 27803.44,
+    "price": 5975000
    },
    "venda|Vila Uberabinha": {
     "n": 1265,
@@ -1237,8 +1237,8 @@
    },
    "aluguel|Vila Uberabinha": {
     "n": 311,
-    "ppm2": 119.44,
-    "price": 17165
+    "ppm2": 119.73,
+    "price": 17500
    },
    "aluguel|Outros na área": {
     "n": 174,

@@ -31129,8 +31129,8 @@
  },
  {
   "source": "zap",
-  "id": "2922989764",
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-141m2-id-2922989764/",
+  "id": "2923037277",
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-141m2-id-2923037277/",
   "business": "aluguel",
   "title": "",
   "neighborhood": "Jardim Europa",
@@ -31143,8 +31143,8 @@
   "parking": 1,
   "extra": "",
   "floor": null,
-  "lat": -23.584,
-  "lon": -46.678,
+  "lat": -23.582,
+  "lon": -46.679,
   "geo_approx": true,
   "air_conditioning": true,
   "free_view": null,
@@ -31418,9 +31418,9 @@
   "financing": null
  },
  {
-  "source": "vivareal",
+  "source": "zap",
   "id": "2906862314",
-  "url": "https://www.vivareal.com.br/imovel/apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-com-garagem-150m2-aluguel-RS10000-id-2906862314/",
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-interfone-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2906862314/",
   "business": "aluguel",
   "title": "",
   "neighborhood": "Itaim Bibi",
