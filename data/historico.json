@@ -1207,43 +1207,43 @@
   "groups": {
    "aluguel|Vila Nova Conceição": {
     "n": 565,
-    "ppm2": 161.87,
+    "ppm2": 161.78,
     "price": 23000
    },
+   "aluguel|Itaim Bibi": {
+    "n": 566,
+    "ppm2": 120.06,
+    "price": 16000
+   },
    "venda|Outros na área": {
-    "n": 1004,
-    "ppm2": 27551.28,
-    "price": 5950000
+    "n": 990,
+    "ppm2": 27803.44,
+    "price": 5955050
    },
    "venda|Vila Uberabinha": {
-    "n": 1273,
-    "ppm2": 17400.88,
+    "n": 1262,
+    "ppm2": 17391.3,
     "price": 3200000
    },
    "venda|Itaim Bibi": {
-    "n": 1782,
-    "ppm2": 18775.71,
-    "price": 2978830
+    "n": 1724,
+    "ppm2": 18956.71,
+    "price": 3000000
    },
    "venda|Vila Nova Conceição": {
-    "n": 1540,
-    "ppm2": 30000.0,
-    "price": 5387700
+    "n": 1518,
+    "ppm2": 30000.62,
+    "price": 5400000
    },
    "aluguel|Vila Uberabinha": {
-    "n": 310,
-    "ppm2": 119.3,
-    "price": 17050
+    "n": 309,
+    "ppm2": 119.39,
+    "price": 17100
    },
    "aluguel|Outros na área": {
     "n": 174,
     "ppm2": 140.17,
     "price": 23000
-   },
-   "aluguel|Itaim Bibi": {
-    "n": 572,
-    "ppm2": 120.06,
-    "price": 16000
    },
    "leilao|Vila Uberabinha": {
     "n": 1,
