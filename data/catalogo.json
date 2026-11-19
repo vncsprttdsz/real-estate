@@ -477,7 +477,7 @@
   "rounds": null,
   "source": "quintoandar",
   "title": "Apartamento em Jardim Europa",
-  "total_monthly": 20355.0,
+  "total_monthly": 23055.0,
   "url": "https://www.quintoandar.com.br/imovel/893138356"
  },
  "quintoandar:aluguel:893153510": {
@@ -524501,8 +524501,8 @@
   "free_view": null,
   "geo_approx": true,
   "id": "2922902137",
-  "lat": -23.602,
-  "lon": -46.671,
+  "lat": -23.601,
+  "lon": -46.67,
   "neighborhood": "Vila Uberabinha",
   "occupied": null,
   "parking": 1,
