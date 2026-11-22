@@ -42984,6 +42984,35 @@
   "total_monthly": 17475.0,
   "url": "https://www.vivareal.com.br/imovel/apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-com-garagem-112m2-aluguel-RS15000-id-2923803384/"
  },
+ "vivareal:aluguel:2923868961": {
+  "address": "Rua Doutor Eduardo de Souza Aranha 255",
+  "air_conditioning": true,
+  "appraisal": null,
+  "area": 562.0,
+  "auction_kind": null,
+  "bbq": null,
+  "bedrooms": 4,
+  "business": "aluguel",
+  "condo": 16000.0,
+  "extra": "",
+  "financing": null,
+  "floor": null,
+  "free_view": null,
+  "geo_approx": true,
+  "id": "2923868961",
+  "lat": -23.588,
+  "lon": -46.674,
+  "neighborhood": "Vila Nova Conceição",
+  "occupied": null,
+  "parking": 8,
+  "pool": "predio",
+  "price": 80000.0,
+  "rounds": null,
+  "source": "vivareal",
+  "title": "",
+  "total_monthly": 96000.0,
+  "url": "https://www.vivareal.com.br/imovel/apartamento-4-quartos-vila-olimpia-zona-sul-sao-paulo-com-garagem-562m2-aluguel-RS80000-id-2923868961/"
+ },
  "vivareal:venda:2510792294": {
   "address": "Rua Doutor Renato Paes de Barros 188",
   "air_conditioning": true,
@@ -135989,7 +136018,7 @@
   "free_view": null,
   "geo_approx": true,
   "id": "2920954686",
-  "lat": -23.599,
+  "lat": -23.6,
   "lon": -46.671,
   "neighborhood": "Vila Uberabinha",
   "occupied": null,
@@ -158571,6 +158600,35 @@
   "total_monthly": 9391.0,
   "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2922812150/"
  },
+ "zap:aluguel:2922812277": {
+  "address": "Rua Pedroso Alvarenga 348",
+  "air_conditioning": true,
+  "appraisal": null,
+  "area": 110.0,
+  "auction_kind": null,
+  "bbq": "predio",
+  "bedrooms": 1,
+  "business": "aluguel",
+  "condo": 2254.0,
+  "extra": "",
+  "financing": null,
+  "floor": null,
+  "free_view": null,
+  "geo_approx": false,
+  "id": "2922812277",
+  "lat": -23.580404,
+  "lon": -46.673896,
+  "neighborhood": "Itaim Bibi",
+  "occupied": null,
+  "parking": 1,
+  "pool": "predio",
+  "price": 7200.0,
+  "rounds": null,
+  "source": "zap",
+  "title": "",
+  "total_monthly": 9454.0,
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-cobertura-1-quarto-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2922812277/"
+ },
  "zap:aluguel:2922812299": {
   "address": "Rua Tuim 465",
   "air_conditioning": true,
@@ -168255,7 +168313,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 11800.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2922875516/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2922875516/"
  },
  "zap:aluguel:2922875531": {
   "address": "Rua Doutor Guilherme Bannitz 55",
@@ -168953,6 +169011,35 @@
   "total_monthly": 45500.0,
   "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-235m2-id-2922876280/"
  },
+ "zap:aluguel:2922876472": {
+  "address": "Rua Diogo Jácome 518",
+  "air_conditioning": true,
+  "appraisal": null,
+  "area": 134.0,
+  "auction_kind": null,
+  "bbq": "apto",
+  "bedrooms": 2,
+  "business": "aluguel",
+  "condo": 2897.0,
+  "extra": "",
+  "financing": null,
+  "floor": null,
+  "free_view": null,
+  "geo_approx": false,
+  "id": "2922876472",
+  "lat": -23.596284,
+  "lon": -46.667395,
+  "neighborhood": "Vila Nova Conceição",
+  "occupied": null,
+  "parking": 2,
+  "pool": "predio",
+  "price": 20000.0,
+  "rounds": null,
+  "source": "zap",
+  "title": "",
+  "total_monthly": 22897.0,
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-134m2-id-2922876472/"
+ },
  "zap:aluguel:2922876473": {
   "address": "Rua Silva Correia 168",
   "air_conditioning": true,
@@ -169647,7 +169734,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 17700.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-143m2-id-2922878148/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-despensa-itaim-bibi-zona-sul-sao-paulo-sp-143m2-id-2922878148/"
  },
  "zap:aluguel:2922878160": {
   "address": "Rua Leopoldo Couto Magalhães Júnior 1305",
@@ -170024,7 +170111,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 43497.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-237m2-id-2922878587/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-237m2-id-2922878587/"
  },
  "zap:aluguel:2922878842": {
   "address": "Rua Manuel Guedes 135",
@@ -170198,7 +170285,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 8982.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2922879135/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2922879135/"
  },
  "zap:aluguel:2922879141": {
   "address": "Rua Diogo Jácome 954",
@@ -176277,8 +176364,8 @@
   "free_view": null,
   "geo_approx": false,
   "id": "2923039235",
-  "lat": -23.596216,
-  "lon": -46.667479,
+  "lat": -23.596284,
+  "lon": -46.667395,
   "neighborhood": "Vila Nova Conceição",
   "occupied": null,
   "parking": 2,
@@ -179768,7 +179855,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": 9600.0,
-  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-acesso-24-horas-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2923319752/"
+  "url": "https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-sala-de-jantar-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2923319752/"
  },
  "zap:aluguel:2923319997": {
   "address": "Rua Brás Cardoso 639",
@@ -190052,7 +190139,7 @@
   "geo_approx": true,
   "id": "2737648859",
   "lat": -23.598,
-  "lon": -46.671,
+  "lon": -46.67,
   "neighborhood": "Vila Nova Conceição",
   "occupied": null,
   "parking": 6,
@@ -235842,7 +235929,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-moema-zona-sul-sao-paulo-sp-240m2-id-2910892722/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-moema-zona-sul-sao-paulo-sp-240m2-id-2910892722/"
  },
  "zap:venda:2910976127": {
   "address": "Rua Manuel Guedes",
@@ -341056,11 +341143,15 @@
  "zap:venda:2920241824": {
   "address": "Rua Tuim",
   "air_conditioning": null,
+  "appraisal": null,
   "area": 345.0,
+  "auction_kind": null,
+  "bbq": null,
   "bedrooms": 2,
   "business": "venda",
   "condo": 3990.0,
   "extra": "",
+  "financing": null,
   "floor": null,
   "free_view": null,
   "geo_approx": true,
@@ -341068,8 +341159,11 @@
   "lat": -23.601,
   "lon": -46.669,
   "neighborhood": "Vila Uberabinha",
+  "occupied": null,
   "parking": 3,
+  "pool": null,
   "price": 5000000.0,
+  "rounds": null,
   "source": "zap",
   "title": "",
   "total_monthly": null,
@@ -361335,6 +361429,35 @@
   "title": "",
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-225m2-id-2920499801/"
+ },
+ "zap:venda:2920499883": {
+  "address": "Rua Tuim 465",
+  "air_conditioning": true,
+  "appraisal": null,
+  "area": 340.0,
+  "auction_kind": null,
+  "bbq": "apto",
+  "bedrooms": 2,
+  "business": "venda",
+  "condo": 3900.0,
+  "extra": "",
+  "financing": null,
+  "floor": null,
+  "free_view": null,
+  "geo_approx": false,
+  "id": "2920499883",
+  "lat": -23.601005,
+  "lon": -46.669332,
+  "neighborhood": "Vila Uberabinha",
+  "occupied": null,
+  "parking": 3,
+  "pool": null,
+  "price": 5000000.0,
+  "rounds": null,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-340m2-id-2920499883/"
  },
  "zap:venda:2920499899": {
   "address": "Avenida Horácio Lafer 123",
@@ -473409,8 +473532,8 @@
   "free_view": null,
   "geo_approx": true,
   "id": "2922345190",
-  "lat": -23.602,
-  "lon": -46.672,
+  "lat": -23.601,
+  "lon": -46.671,
   "neighborhood": "Vila Uberabinha",
   "occupied": null,
   "parking": 4,
@@ -523564,7 +523687,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-jogos-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2922872708/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2922872708/"
  },
  "zap:venda:2922872757": {
   "address": "Rua Tabapuã",
@@ -524208,7 +524331,7 @@
   "address": "Rua Tuim 465",
   "air_conditioning": true,
   "appraisal": null,
-  "area": 345.0,
+  "area": 340.0,
   "auction_kind": null,
   "bbq": "apto",
   "bedrooms": 2,
@@ -524218,10 +524341,10 @@
   "financing": null,
   "floor": null,
   "free_view": null,
-  "geo_approx": true,
+  "geo_approx": false,
   "id": "2922873087",
-  "lat": -23.601,
-  "lon": -46.669,
+  "lat": -23.601005,
+  "lon": -46.669332,
   "neighborhood": "Vila Uberabinha",
   "occupied": null,
   "parking": 3,
@@ -524231,7 +524354,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-345m2-id-2922873087/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-340m2-id-2922873087/"
  },
  "zap:venda:2922873097": {
   "address": "Rua Aracari 126",
@@ -524695,7 +524818,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2922873361/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-vista-panoramica-vila-olimpia-zona-sul-sao-paulo-sp-127m2-id-2922873361/"
  },
  "zap:venda:2922873366": {
   "address": "Rua Jorge Coelho 167",
@@ -525971,7 +526094,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2922874632/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-sala-de-jantar-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2922874632/"
  },
  "zap:venda:2922874709": {
   "address": "Rua Tabapuã 1341",
@@ -527015,7 +527138,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-172m2-id-2922875896/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-acesso-24-horas-itaim-bibi-zona-sul-sao-paulo-sp-172m2-id-2922875896/"
  },
  "zap:venda:2922875944": {
   "address": "Rua Jacques Félix 248",
@@ -527972,7 +528095,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-acesso-24-horas-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2922877985/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-sala-de-jantar-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2922877985/"
  },
  "zap:venda:2922877987": {
   "address": "Rua Domingos Leme 758",
@@ -528146,7 +528269,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-143m2-id-2922878194/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-despensa-itaim-bibi-zona-sul-sao-paulo-sp-143m2-id-2922878194/"
  },
  "zap:venda:2922878195": {
   "address": "Rua Marcos Lopes 132",
@@ -528668,7 +528791,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-closet-moema-zona-sul-sao-paulo-sp-126m2-id-2922878856/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-moema-zona-sul-sao-paulo-sp-126m2-id-2922878856/"
  },
  "zap:venda:2922878871": {
   "address": "Rua Leopoldo Couto Magalhães Júnior 550",
@@ -529567,7 +529690,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-acesso-24-horas-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2922879981/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2922879981/"
  },
  "zap:venda:2922880034": {
   "address": "Rua Afonso Braz 537",
@@ -571751,8 +571874,8 @@
   "free_view": null,
   "geo_approx": false,
   "id": "2923320658",
-  "lat": -23.594936,
-  "lon": -46.676976,
+  "lat": -23.59534,
+  "lon": -46.676674,
   "neighborhood": "Vila Nova Conceição",
   "occupied": null,
   "parking": 1,
@@ -571762,7 +571885,7 @@
   "source": "zap",
   "title": "",
   "total_monthly": null,
-  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-moveis-planejados-vila-olimpia-zona-sul-sao-paulo-sp-115m2-id-2923320658/"
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-sala-de-jantar-vila-olimpia-zona-sul-sao-paulo-sp-115m2-id-2923320658/"
  },
  "zap:venda:2923321043": {
   "address": "Rua Domingos Fernandes 230",
@@ -589744,6 +589867,35 @@
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-191m2-id-2923749433/"
  },
+ "zap:venda:2923751446": {
+  "address": "Rua Pintassilgo 185",
+  "air_conditioning": null,
+  "appraisal": null,
+  "area": 147.0,
+  "auction_kind": null,
+  "bbq": "predio",
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": 2525.0,
+  "extra": "",
+  "financing": null,
+  "floor": null,
+  "free_view": null,
+  "geo_approx": true,
+  "id": "2923751446",
+  "lat": -23.601,
+  "lon": -46.671,
+  "neighborhood": "Vila Uberabinha",
+  "occupied": null,
+  "parking": 2,
+  "pool": "predio",
+  "price": 2550000.0,
+  "rounds": null,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-147m2-id-2923751446/"
+ },
  "zap:venda:2923751545": {
   "address": "Rua Professor Artur Ramos 350",
   "air_conditioning": null,
@@ -590108,7 +590260,7 @@
   "free_view": null,
   "geo_approx": true,
   "id": "2923752974",
-  "lat": -23.599,
+  "lat": -23.6,
   "lon": -46.671,
   "neighborhood": "Vila Uberabinha",
   "occupied": null,
@@ -590352,6 +590504,35 @@
   "title": "",
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-nova-conceicao-zona-sul-sao-paulo-sp-137m2-id-2923772204/"
+ },
+ "zap:venda:2923772470": {
+  "address": "Avenida Hélio Pellegrino 578",
+  "air_conditioning": true,
+  "appraisal": null,
+  "area": 359.0,
+  "auction_kind": null,
+  "bbq": "predio",
+  "bedrooms": 4,
+  "business": "venda",
+  "condo": 6900.0,
+  "extra": "",
+  "financing": null,
+  "floor": null,
+  "free_view": null,
+  "geo_approx": true,
+  "id": "2923772470",
+  "lat": -23.598,
+  "lon": -46.67,
+  "neighborhood": "Vila Nova Conceição",
+  "occupied": null,
+  "parking": 0,
+  "pool": "predio",
+  "price": 11219120.0,
+  "rounds": null,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-359m2-id-2923772470/"
  },
  "zap:venda:2923772492": {
   "address": "Rua Doutor Guilherme Bannitz 146",
@@ -592875,6 +593056,35 @@
   "title": "",
   "total_monthly": null,
   "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-169m2-id-2923863769/"
+ },
+ "zap:venda:2923871550": {
+  "address": "Rua Itacema 65",
+  "air_conditioning": true,
+  "appraisal": null,
+  "area": 110.0,
+  "auction_kind": null,
+  "bbq": "predio",
+  "bedrooms": 1,
+  "business": "venda",
+  "condo": 2400.0,
+  "extra": "",
+  "financing": null,
+  "floor": null,
+  "free_view": null,
+  "geo_approx": true,
+  "id": "2923871550",
+  "lat": -23.579,
+  "lon": -46.671,
+  "neighborhood": "Itaim Bibi",
+  "occupied": null,
+  "parking": 2,
+  "pool": "predio",
+  "price": 2550000.0,
+  "rounds": null,
+  "source": "zap",
+  "title": "",
+  "total_monthly": null,
+  "url": "https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2923871550/"
  },
  "zap:venda:48148890": {
   "address": "",
