@@ -1086,3 +1086,17 @@ def test_auction_digest(tmp_path, monkeypatch):
     assert "avaliação R$ 2.400.000 (−33%)" in text
     assert "vs. 6 vendas no prédio (ITBI)" in text and "⚠️ ocupado" in text
     assert "0 anúncios novos de compra" in text                           # leilão não conta como anúncio de compra
+
+
+def test_digest_reminds_sources_still_down(cfg):
+    from datetime import datetime
+    c = Config(neighborhoods=["Itaim Bibi"], min_area=100, digest=("venda",), digest_hour=19)
+    sent = []
+
+    class N:
+        def send(self, subj, items, footer=""):
+            sent.append("\n".join(t for t, _ in items))
+    state = {"digest": {}, "failures": {"mega": 61, "caixa": 3, "zap": 0}, "last_ok": {"mega": "2026-11-16T16:35:13+00:00"}}
+    app.send_digests(state, c, N(), datetime(2026, 11, 22, 19, 17, tzinfo=app.SP))
+    assert "⚠️ Fora do ar: mega (61 coletas seguidas, desde 16/11)" in sent[0]
+    assert "caixa" not in sent[0]   # Caixa só conta como fora do ar depois de 12 falhas

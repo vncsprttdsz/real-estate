@@ -26,6 +26,9 @@ STATE = ROOT / "data" / "state.json"
 CURRENT = ROOT / "data" / "anuncios.json"
 REPORT = ROOT / "ANUNCIOS.md"
 FAIL_ALERT_AFTER = 3   # ciclos seguidos com erro antes de avisar
+# Caixa: site instável (timeouts esparsos) e quase nunca tem imóvel no perfil — só avisa depois de ~1 dia fora.
+FAIL_ALERT_BY_SOURCE = {"caixa": 12}
+fail_limit = lambda name: FAIL_ALERT_BY_SOURCE.get(name, FAIL_ALERT_AFTER)
 REMOVE_AFTER_DAYS = 30
 
 
@@ -216,8 +219,15 @@ def send_digests(state: dict, cfg: Config, notifier, now: datetime, dry_run: boo
     days = sorted(d for d in pending if d < today or (d == today and now.hour >= cfg.digest_hour))
     if now.hour >= cfg.digest_hour and today not in days and state.get("digest_last") != today:
         days.append(today)                                   # dia sem novidade: avisa mesmo assim (sinal de vida)
+    # Fonte ainda fora do ar: lembra no resumo (o aviso de erro sai uma vez só, na N-ésima falha seguida)
+    down = [(n, c) for n, c in sorted((state.get("failures") or {}).items()) if c >= fail_limit(n)]
+    down_txt = ("\n⚠️ Fora do ar: " + " · ".join(
+        f"{n} ({c} coletas seguidas" + (f", desde {state['last_ok'][n][8:10]}/{state['last_ok'][n][5:7]}" if (state.get("last_ok") or {}).get(n) else "")
+        + ")" for n, c in down)) if down else ""
     for day in days:
         subject, items = digest_messages(day, pending.get(day, []), cfg)
+        if down_txt:
+            items[0] = (items[0][0] + down_txt, items[0][1])
         if cfg.dashboard_url:
             items[-1] = (items[-1][0] + f"\n\nPainel: {cfg.dashboard_url}#anuncios", items[-1][1])
         if dry_run:
@@ -440,7 +450,7 @@ def run(dry_run: bool = False) -> int:
     for name in ("zap", "vivareal", "quintoandar") + AUCTION_SOURCES:
         if name in errors:
             state["failures"][name] = state["failures"].get(name, 0) + 1
-            if state["failures"][name] == FAIL_ALERT_AFTER:
+            if state["failures"][name] == fail_limit(name):
                 broken.append(name)
         elif name in results:
             state["failures"][name] = 0
@@ -491,7 +501,7 @@ def run(dry_run: bool = False) -> int:
     if broken:
         notifier.send(
             "⚠️ Monitor de imóveis: fonte com erro",
-            [(f"{name} falhou {FAIL_ALERT_AFTER} ciclos seguidos: {errors[name]}", "") for name in broken],
+            [(f"{name} falhou {fail_limit(name)} ciclos seguidos: {errors[name]}", "") for name in broken],
         )
 
     all_current = [l for ls in results.values() for l in ls]

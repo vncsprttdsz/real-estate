@@ -68,7 +68,8 @@ def parse_rows(raw: str, cfg: Config) -> list[Listing]:
 
 
 def fetch(http: Http, cfg: Config) -> list[Listing]:
-    r = http.get(CSV_URL.format(uf=cfg.state.upper()), timeout=90)
+    # Uma tentativa só, 60 s: quando a Caixa não responde, não adianta segurar a coleta por minutos.
+    r = http.get(CSV_URL.format(uf=cfg.state.upper()), timeout=60, retries=1)
     if r.status_code != 200:
         raise RuntimeError(f"caixa: HTTP {r.status_code}")
     raw = r.content.decode("latin-1", errors="replace")
