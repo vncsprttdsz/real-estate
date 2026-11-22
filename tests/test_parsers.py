@@ -1100,3 +1100,30 @@ def test_digest_reminds_sources_still_down(cfg):
     app.send_digests(state, c, N(), datetime(2026, 11, 22, 19, 17, tzinfo=app.SP))
     assert "⚠️ Fora do ar: mega (61 coletas seguidas, desde 16/11)" in sent[0]
     assert "caixa" not in sent[0]   # Caixa só conta como fora do ar depois de 12 falhas
+
+
+def test_mega_falls_back_to_national_list():
+    """Filtro de cidade da Mega devolve 500 (desde 16/11): cai na lista geral e filtra pelo estado/cidade do link."""
+    from imoveis.sources import mega
+    c = Config(neighborhoods=["Itaim Bibi"], min_area=100)
+
+    def card(code, st, city, slug):
+        return (f'<a href="https://www.megaleiloes.com.br/imoveis/apartamentos/{st}/{city}/{slug}-{code.lower()}?utm=1">x</a> '
+                f'Apartamento {code} São Paulo, SP Judicial Lote 1 2 Praças 1ª Praça: 01/12/2026 às 10:00 R$ 2.000.000,00 '
+                f'2ª Praça: 20/12/2026 às 10:00 R$ 1.200.000,00 ')
+    p1 = card("J111111", "sp", "sao-paulo", "apartamento-160-m2-itaim-bibi-sao-paulo-sp") + \
+        card("J222222", "rj", "rio-de-janeiro", "apartamento-200-m2-leblon-rio-de-janeiro-rj")
+    p2 = card("X333333", "sp", "sao-paulo", "apartamento-130-m2-moema-sao-paulo-sp")
+
+    class H:
+        def get(self, url, **kw):
+            if url.endswith("/sp/sao-paulo") or "/sp/sao-paulo?" in url:
+                raise RuntimeError("HTTP 500")
+            if url.endswith("/imoveis/apartamentos"):
+                return _R(200, p1)
+            if "?pagina=" in url:
+                return _R(200, p2)
+            return _R(200, "<h1>Apto</h1> Valor de Avaliação R$ 2.400.000,00 Localização Rua Tabapuã, 100 IMÓVEL DESOCUPADO")
+    out = mega.fetch(H(), c, set(), set(), today="2026-11-22")
+    assert [(l.id, l.neighborhood, l.price, l.appraisal, l.occupied) for l in out] == \
+        [("J111111", "Itaim Bibi", 1_200_000, 2_400_000, False)]

@@ -15,8 +15,12 @@ from ..http import Http
 
 SITE = "https://www.megaleiloes.com.br"
 LIST_URL = SITE + "/imoveis/apartamentos/{uf}/{city}"
-LINK_RE = re.compile(r'href="(https://www\.megaleiloes\.com\.br/imoveis/apartamentos/[a-z]{2}/[a-z0-9-]+/([a-z0-9-]+-([xj]\d{5,})))["?]', re.I)
+# Desde 16/11 o filtro por estado/cidade do site devolve HTTP 500; a lista geral (Brasil inteiro, ~48 por página)
+# funciona, e o link de cada lote traz estado e cidade — o coletor cai nela e filtra.
+ALL_URL = SITE + "/imoveis/apartamentos"
+LINK_RE = re.compile(r'href="(https://www\.megaleiloes\.com\.br/imoveis/apartamentos/([a-z]{2})/([a-z0-9-]+)/([a-z0-9-]+-([xj]\d{5,})))["?]', re.I)
 MAX_PAGES = 10
+MAX_PAGES_ALL = 40
 TAG = re.compile(r"<[^>]+>")
 
 
@@ -29,11 +33,13 @@ def wanted_slugs(cfg: Config) -> dict[str, str]:
     return {slug(n): n for n in list(cfg.neighborhoods) + list(cfg.area_extra_neighborhoods)}
 
 
-def lot_links(html: str) -> dict[str, tuple[str, str]]:
-    """{código: (url sem utm, slug do lote)}"""
+def lot_links(html: str, uf: str | None = None, city: str | None = None) -> dict[str, tuple[str, str]]:
+    """{código: (url sem utm, slug do lote)}, opcionalmente só de um estado/cidade"""
     out = {}
     for m in LINK_RE.finditer(html):
-        out[m.group(3).upper()] = (m.group(1), m.group(2))
+        if (uf and m.group(2).lower() != uf) or (city and m.group(3).lower() != city):
+            continue
+        out[m.group(5).upper()] = (m.group(1), m.group(4))
     return out
 
 
@@ -118,21 +124,37 @@ def fetch(http: Http, cfg: Config, known_ids: set[str], rejected: set[str], toda
     from ..leilao import next_round
     today = today or datetime.now().strftime("%Y-%m-%d")
     wanted = wanted_slugs(cfg)
-    base = LIST_URL.format(uf=cfg.state.lower(), city=slug(cfg.city))
+    seen_all: set[str] = set()
+    uf, city = cfg.state.lower(), slug(cfg.city)
     lots: dict[str, tuple[str, str]] = {}
     card: dict[str, dict] = {}
-    for page in range(1, MAX_PAGES + 1):
-        r = http.get(base + (f"?pagina={page}" if page > 1 else ""))
-        dump_debug(f"mega-lista-{page}.html [HTTP {r.status_code}]", r.text)
-        if r.status_code != 200:
-            if page == 1:
-                raise RuntimeError(f"mega: HTTP {r.status_code}")
+
+    def page_of(url):
+        try:
+            r = http.get(url)
+        except Exception:
+            return None
+        dump_debug(f"mega-lista-{slug(url[-40:])}.html [HTTP {r.status_code}]", r.text)
+        return r.text if r.status_code == 200 else None
+
+    # 1) listagem da cidade; 2) se o site recusar, a lista geral filtrada pelo link de cada lote
+    for base, limit, national in ((LIST_URL.format(uf=uf, city=city), MAX_PAGES, False), (ALL_URL, MAX_PAGES_ALL, True)):
+        seen_any = False
+        for page in range(1, limit + 1):
+            html = page_of(base + (f"?pagina={page}" if page > 1 else ""))
+            if html is None:
+                break
+            everything = lot_links(html)
+            if not everything or not set(everything) - seen_all:
+                break
+            seen_any = True
+            seen_all.update(everything)
+            lots.update(lot_links(html, uf, city))
+            card.update(cards(html))
+        if seen_any:
             break
-        found = lot_links(r.text)
-        if not set(found) - set(lots):
-            break
-        lots.update(found)
-        card.update(cards(r.text))
+    else:
+        raise RuntimeError("mega: listagem indisponível (cidade e lista geral)")
     out = []
     for code, (url, lot_slug) in lots.items():
         nb = neighborhood_of(lot_slug, wanted)
