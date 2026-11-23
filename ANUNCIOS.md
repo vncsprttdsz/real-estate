@@ -1,8 +1,8 @@
 # Anúncios atuais dentro dos critérios
 
-Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$ 2.250.000, aluguel até R$ 15.000/mês. Critérios em [`config.yaml`](config.yaml).
+Atualizado em 23/11/2026 22:36 UTC · 1220 anúncios. Orçamento: compra até R$ 2.250.000, aluguel até R$ 15.000/mês. Critérios em [`config.yaml`](config.yaml).
 
-## Venda (849)
+## Venda (839)
 
 | Bairro | Área | Preço | Quartos | Fonte | Link |
 |---|---|---|---|---|---|
@@ -47,6 +47,7 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 100 m² | R$ 1.199.040 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-vila-uberabinha-zona-sul-sao-paulo-sp-100m2-id-2923775485/) |
 | Itaim Bibi | 135 m² | R$ 1.199.530 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2924041279/) |
 | Vila Nova Conceição | 109 m² | R$ 1.199.950 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895539087/comprar) |
+| Vila Uberabinha | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-moema-zona-sul-sao-paulo-sp-100m2-id-2924058474/) |
 | Vila Uberabinha | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-moema-zona-sul-sao-paulo-sp-100m2-id-2923952041/) |
 | Vila Uberabinha | 100 m² | R$ 1.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-moema-zona-sul-sao-paulo-sp-100m2-id-2923942672/) |
 | Vila Uberabinha | 105 m² | R$ 1.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-moema-zona-sul-sao-paulo-sp-105m2-id-2923278605/) |
@@ -88,7 +89,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 102 m² | R$ 1.280.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-moema-zona-sul-sao-paulo-sp-102m2-id-2923964343/) |
 | Vila Uberabinha | 132 m² | R$ 1.280.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-acesso-24-horas-moema-zona-sul-sao-paulo-sp-132m2-id-2923954262/) |
 | Itaim Bibi | 108 m² | R$ 1.289.160 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2924030686/) |
-| Itaim Bibi | 116 m² | R$ 1.289.440 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2923271034/) |
 | Itaim Bibi | 104 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-104m2-id-2923584173/) |
 | Itaim Bibi | 104 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-104m2-id-2923218953/) |
 | Itaim Bibi | 108 m² | R$ 1.290.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2923125820/) |
@@ -128,13 +128,14 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 107 m² | R$ 1.346.120 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-107m2-id-2923859156/) |
 | Itaim Bibi | 116 m² | R$ 1.349.480 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2924040758/) |
 | Vila Nova Conceição | 104 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-104m2-id-2923399843/) |
-| Itaim Bibi | 134 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923903480/) |
+| Itaim Bibi | 134 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-acesso-24-horas-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923903480/) |
 | Itaim Bibi | 134 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-armario-de-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923862222/) |
 | Itaim Bibi | 134 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923724854/) |
 | Itaim Bibi | 134 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923718667/) |
 | Itaim Bibi | 134 m² | R$ 1.350.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923653795/) |
 | Itaim Bibi | 134 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923547795/) |
 | Itaim Bibi | 134 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923537283/) |
+| Itaim Bibi | 100 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2923437543/) |
 | Itaim Bibi | 100 m² | R$ 1.350.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2923429952/) |
 | Itaim Bibi | 100 m² | R$ 1.350.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2923279126/) |
 | Itaim Bibi | 100 m² | R$ 1.350.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-vila-olimpia-zona-sul-sao-paulo-sp-100m2-id-2923257539/) |
@@ -156,7 +157,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 100 m² | R$ 1.363.500 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635962/comprar) |
 | Itaim Bibi | 101 m² | R$ 1.370.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-101m2-id-2923383846/) |
 | Vila Uberabinha | 100 m² | R$ 1.370.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-100m2-id-2914041435/) |
-| Itaim Bibi | 110 m² | R$ 1.374.460 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2923270759/) |
 | Itaim Bibi | 128 m² | R$ 1.377.060 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2924041217/) |
 | Vila Uberabinha | 100 m² | R$ 1.380.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-uberabinha-zona-sul-sao-paulo-sp-100m2-id-2920891438/) |
 | Itaim Bibi | 126 m² | R$ 1.380.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895431773/comprar) |
@@ -178,7 +178,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 131 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-varanda-indianopolis-zona-sul-sao-paulo-sp-131m2-id-2923946841/) |
 | Vila Uberabinha | 105 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-moema-zona-sul-sao-paulo-sp-105m2-id-2923119846/) |
 | Vila Uberabinha | 100 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-moema-zona-sul-sao-paulo-sp-100m2-id-2919591339/) |
-| Vila Uberabinha | 126 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-lavanderia-coletiva-moema-zona-sul-sao-paulo-sp-126m2-id-2914367664/) |
 | Vila Uberabinha | 126 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-moema-zona-sul-sao-paulo-sp-126m2-id-2913690560/) |
 | Vila Uberabinha | 127 m² | R$ 1.400.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-moema-zona-sul-sao-paulo-sp-127m2-id-2910888450/) |
 | Vila Uberabinha | 102 m² | R$ 1.400.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-quadra-poliesportiva-moema-zona-sul-sao-paulo-sp-102m2-id-2908315334/) |
@@ -221,7 +220,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 128 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-moema-zona-sul-sao-paulo-sp-128m2-id-2918937342/) |
 | Vila Uberabinha | 117 m² | R$ 1.490.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-117m2-id-2916642681/) |
 | Vila Uberabinha | 129 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-uberabinha-zona-sul-sao-paulo-sp-129m2-id-2915138737/) |
-| Vila Uberabinha | 117 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-117m2-id-2911683816/) |
 | Vila Uberabinha | 130 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-130m2-id-2908477471/) |
 | Vila Uberabinha | 113 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-vila-uberabinha-zona-sul-sao-paulo-sp-113m2-id-2902196702/) |
 | Vila Uberabinha | 117 m² | R$ 1.490.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-117m2-id-2900513694/) |
@@ -233,10 +231,7 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 130 m² | R$ 1.499.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-130m2-id-2921494570/) |
 | Itaim Bibi | 116 m² | R$ 1.499.300 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2924043262/) |
 | Itaim Bibi | 126 m² | R$ 1.499.480 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-126m2-id-2924039612/) |
-| Itaim Bibi | 115 m² | R$ 1.499.610 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2923361742/) |
-| Itaim Bibi | 168 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-168m2-id-2923583865/) |
 | Itaim Bibi | 128 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-escritorio-itaim-bibi-zona-sul-sao-paulo-sp-128m2-id-2923520970/) |
-| Itaim Bibi | 104 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-armario-de-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-104m2-id-2923129646/) |
 | Itaim Bibi | 100 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-100m2-id-2923125681/) |
 | Vila Uberabinha | 120 m² | R$ 1.500.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-moema-zona-sul-sao-paulo-sp-120m2-id-2923753459/) |
 | Vila Uberabinha | 105 m² | R$ 1.500.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-moema-zona-sul-sao-paulo-sp-105m2-id-2922877146/) |
@@ -264,7 +259,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 103 m² | R$ 1.540.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-salao-de-festas-vila-uberabinha-zona-sul-sao-paulo-sp-103m2-id-2923970047/) |
 | Vila Uberabinha | 110 m² | R$ 1.540.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-vila-uberabinha-zona-sul-sao-paulo-sp-110m2-id-2923957435/) |
 | Itaim Bibi | 120 m² | R$ 1.546.510 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2923772924/) |
-| Itaim Bibi | 112 m² | R$ 1.550.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-112m2-id-2923598038/) |
 | Vila Nova Conceição | 105 m² | R$ 1.550.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895406550/comprar) |
 | Itaim Bibi | 111 m² | R$ 1.550.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895836569/comprar) |
 | Itaim Bibi | 128 m² | R$ 1.550.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894769376/comprar) |
@@ -289,7 +283,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 120 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2923235274/) |
 | Vila Uberabinha | 100 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-moema-zona-sul-sao-paulo-sp-100m2-id-2923004443/) |
 | Vila Uberabinha | 100 m² | R$ 1.600.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-tv-a-cabo-moema-zona-sul-sao-paulo-sp-100m2-id-2914367665/) |
-| Vila Uberabinha | 100 m² | R$ 1.600.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-academia-moema-zona-sul-sao-paulo-sp-100m2-id-2911673914/) |
 | Itaim Bibi | 128 m² | R$ 1.600.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895634682/comprar) |
 | Itaim Bibi | 116 m² | R$ 1.600.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895767232/comprar) |
 | Itaim Bibi | 100 m² | R$ 1.600.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895729732/comprar) |
@@ -407,7 +400,7 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 115 m² | R$ 1.799.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-115m2-id-2900811215/) |
 | Itaim Bibi | 139 m² | R$ 1.799.900 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895698438/comprar) |
 | Vila Nova Conceição | 132 m² | R$ 1.800.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-flat-1-quarto-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-132m2-id-2923578527/) |
-| Itaim Bibi | 116 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2923730936/) |
+| Itaim Bibi | 116 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-cozinha-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2923730936/) |
 | Itaim Bibi | 116 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-jardim-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2923721992/) |
 | Itaim Bibi | 116 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-116m2-id-2923691968/) |
 | Itaim Bibi | 121 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-seguranca-interna-itaim-bibi-zona-sul-sao-paulo-sp-121m2-id-2923585358/) |
@@ -418,7 +411,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 152 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-varanda-moema-zona-sul-sao-paulo-sp-152m2-id-2918892099/) |
 | Vila Uberabinha | 100 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-moema-zona-sul-sao-paulo-sp-100m2-id-2913287587/) |
 | Jardim Europa | 135 m² | R$ 1.800.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-jogos-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2882479380/) |
-| Jardim Europa | 123 m² | R$ 1.800.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-123m2-id-2830783332/) |
 | Itaim Bibi | 120 m² | R$ 1.800.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-chacara-itaim-zona-sul-sao-paulo-sp-120m2-id-2896487152/) |
 | Itaim Bibi | 136 m² | R$ 1.800.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893909738/comprar) |
 | Itaim Bibi | 134 m² | R$ 1.800.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894555830/comprar) |
@@ -457,7 +449,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Jardim Europa | 124 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-124m2-id-2879638899/) |
 | Jardim Europa | 123 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-123m2-id-2867628921/) |
 | Jardim Europa | 138 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2743872808/) |
-| Jardim Europa | 124 m² | R$ 1.850.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-124m2-id-2923580379/) |
 | Jardim Paulistano | 110 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895001874/comprar) |
 | Chácara Itaim | 108 m² | R$ 1.850.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895634273/comprar) |
 | Chácara Itaim | 107 m² | R$ 1.850.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895604589/comprar) |
@@ -482,6 +473,7 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 128 m² | R$ 1.899.160 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-128m2-id-2923847442/) |
 | Vila Nova Conceição | 140 m² | R$ 1.900.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-vila-nova-conceicao-zona-sul-sao-paulo-sp-140m2-id-2923264047/) |
 | Vila Nova Conceição | 141 m² | R$ 1.900.000 | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-1-quarto-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-141m2-id-2923178441/) |
+| Jardim Paulistano | 110 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-110m2-id-2924062835/) |
 | Itaim Bibi | 108 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-108m2-id-2923995799/) |
 | Itaim Bibi | 141 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-141m2-id-2923880192/) |
 | Itaim Bibi | 145 m² | R$ 1.900.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-145m2-id-2923504662/) |
@@ -555,9 +547,9 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 154 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-154m2-id-2923123757/) |
 | Vila Uberabinha | 125 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-moema-zona-sul-sao-paulo-sp-125m2-id-2921999173/) |
 | Vila Uberabinha | 112 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-112m2-id-2909027443/) |
+| Jardim Europa | 134 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920790638/) |
 | Jardim Europa | 125 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-125m2-id-2922188466/) |
 | Jardim Europa | 123 m² | R$ 1.950.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-123m2-id-2915404544/) |
-| Jardim Europa | 134 m² | R$ 1.950.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2920790638/) |
 | Vila Nova Conceição | 100 m² | R$ 1.950.000 | 4 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895438683/comprar) |
 | Vila Nova Conceição | 120 m² | R$ 1.950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895511168/comprar) |
 | Itaim Bibi | 110 m² | R$ 1.950.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893408100/comprar) |
@@ -585,12 +577,12 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Bela Vista | 170 m² | R$ 1.980.100 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-itaim-bibi-zona-sul-sao-paulo-sp-170m2-id-2923954445/) |
 | Itaim Bibi | 140 m² | R$ 1.985.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895271158/comprar) |
 | Itaim Bibi | 187 m² | R$ 1.989.630 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-187m2-id-2924044062/) |
-| Itaim Bibi | 125 m² | R$ 1.990.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-125m2-id-2923114302/) |
 | Vila Uberabinha | 125 m² | R$ 1.990.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-salao-de-festas-moema-zona-sul-sao-paulo-sp-125m2-id-2923121035/) |
 | Vila Uberabinha | 127 m² | R$ 1.990.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-moema-zona-sul-sao-paulo-sp-127m2-id-2911220120/) |
 | Vila Uberabinha | 150 m² | R$ 1.990.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-150m2-id-2906413753/) |
 | Vila Uberabinha | 122 m² | R$ 1.990.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-moema-zona-sul-sao-paulo-sp-122m2-id-2901682940/) |
-| Jardim Europa | 110 m² | R$ 1.990.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-jardim-europa-zona-oeste-sao-paulo-sp-110m2-id-2915882717/) |
+| Jardim Europa | 110 m² | R$ 1.990.000 | 3 | vivareal | [abrir](https://www.vivareal.com.br/imovel/apartamento-3-quartos-jardim-europa-zona-oeste-sao-paulo-com-garagem-110m2-venda-RS1990000-id-2915882717/) |
+| Vila Nova Conceição | 128 m² | R$ 1.990.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895877156/comprar) |
 | Itaim Bibi | 116 m² | R$ 1.990.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895635312/comprar) |
 | Chácara Itaim | 125 m² | R$ 1.990.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895161197/comprar) |
 | Vila Nova Conceição | 127 m² | R$ 1.990.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-127m2-id-2923999902/) |
@@ -640,8 +632,8 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Moema | 104 m² | R$ 2.000.000 | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895791634/comprar) |
 | Jardim Europa | 134 m² | R$ 2.000.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895182193/comprar) |
 | Itaim Bibi | 119 m² | R$ 2.000.100 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-119m2-id-2923964378/) |
-| Vila Uberabinha | 134 m² | R$ 2.000.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-134m2-id-2923995629/) |
 | Vila Uberabinha | 134 m² | R$ 2.000.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-134m2-id-2924005645/) |
+| Vila Uberabinha | 134 m² | R$ 2.000.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-134m2-id-2923995629/) |
 | Vila Uberabinha | 135 m² | R$ 2.000.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-135m2-id-2924001132/) |
 | Vila Uberabinha | 134 m² | R$ 2.000.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-134m2-id-2923995859/) |
 | Vila Uberabinha | 134 m² | R$ 2.000.100 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-134m2-id-2923995856/) |
@@ -674,8 +666,8 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 149 m² | R$ 2.097.790 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-149m2-id-2924038974/) |
 | Vila Nova Conceição | 191 m² | R$ 2.099.060 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-vila-nova-conceicao-zona-sul-sao-paulo-sp-191m2-id-2923270838/) |
 | Itaim Bibi | 140 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-140m2-id-2923581103/) |
-| Itaim Bibi | 120 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2923577416/) |
 | Itaim Bibi | 120 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-flat-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2923579168/) |
+| Itaim Bibi | 120 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2923577416/) |
 | Itaim Bibi | 120 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2923564994/) |
 | Itaim Bibi | 120 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-flat-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2923568851/) |
 | Jardim Europa | 145 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-145m2-id-2923300080/) |
@@ -685,7 +677,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 158 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-itaim-bibi-zona-sul-sao-paulo-sp-158m2-id-2923121276/) |
 | Vila Uberabinha | 110 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-varanda-moema-zona-sul-sao-paulo-sp-110m2-id-2919699645/) |
 | Vila Uberabinha | 198 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-moema-zona-sul-sao-paulo-sp-198m2-id-2916252197/) |
-| Vila Uberabinha | 152 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-moema-zona-sul-sao-paulo-sp-152m2-id-2921449758/) |
 | Vila Uberabinha | 110 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-elevador-moema-zona-sul-sao-paulo-sp-110m2-id-2916018109/) |
 | Jardim Europa | 138 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2912419814/) |
 | Jardim Europa | 170 m² | R$ 2.100.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-170m2-id-2872329900/) |
@@ -744,7 +735,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 116 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-116m2-id-2923711433/) |
 | Vila Nova Conceição | 115 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-varanda-itaim-bibi-zona-sul-sao-paulo-sp-115m2-id-2923408995/) |
 | Itaim Bibi | 138 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-fogao-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2924016700/) |
-| Itaim Bibi | 138 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-sauna-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2923728843/) |
 | Itaim Bibi | 138 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-playground-itaim-bibi-zona-sul-sao-paulo-sp-138m2-id-2923720477/) |
 | Itaim Bibi | 150 m² | R$ 2.200.000 | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-150m2-id-2923599337/) |
 | Itaim Bibi | 135 m² | R$ 2.200.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-area-de-servico-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2923218924/) |
@@ -764,6 +754,7 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 250 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-250m2-id-2922815648/) |
 | Vila Uberabinha | 250 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-250m2-id-2922810537/) |
 | Vila Uberabinha | 250 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-250m2-id-2922802397/) |
+| Vila Uberabinha | 250 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-250m2-id-2922806994/) |
 | Vila Uberabinha | 250 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-250m2-id-2922797470/) |
 | Vila Uberabinha | 250 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-250m2-id-2922799635/) |
 | Vila Uberabinha | 250 m² | R$ 2.200.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-250m2-id-2922791442/) |
@@ -829,16 +820,15 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 120 m² | R$ 2.231.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-120m2-id-2923929146/) |
 | Itaim Bibi | 120 m² | R$ 2.231.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893651886/comprar) |
 | Indianópolis | 185 m² | R$ 2.240.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895388638/comprar) |
-| Itaim Bibi | 121 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-121m2-id-2923125769/) |
 | Itaim Bibi | 130 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-itaim-bibi-zona-sul-sao-paulo-sp-130m2-id-2923119676/) |
 | Vila Uberabinha | 228 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-228m2-id-2922878947/) |
+| Vila Uberabinha | 200 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-200m2-id-2922874207/) |
 | Vila Uberabinha | 228 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-228m2-id-2922872399/) |
 | Vila Uberabinha | 228 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-228m2-id-2922835617/) |
 | Vila Uberabinha | 228 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-228m2-id-2922815556/) |
 | Vila Uberabinha | 228 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-228m2-id-2922802400/) |
 | Vila Uberabinha | 228 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-228m2-id-2922797472/) |
 | Vila Uberabinha | 228 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-228m2-id-2922790067/) |
-| Vila Uberabinha | 200 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-200m2-id-2922874207/) |
 | Vila Uberabinha | 228 m² | R$ 2.250.000 | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-4-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-228m2-id-2922786737/) |
 | Vila Uberabinha | 198 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-churrasqueira-moema-zona-sul-sao-paulo-sp-198m2-id-2922331381/) |
 | Vila Uberabinha | 128 m² | R$ 2.250.000 | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-academia-moema-zona-sul-sao-paulo-sp-128m2-id-2921032535/) |
@@ -856,7 +846,7 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 133 m² | R$ 2.250.000 | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895339688/comprar) |
 | Itaim Bibi | 121 m² | R$ 2.250.000 | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/894154050/comprar) |
 
-## Aluguel (382)
+## Aluguel (381)
 
 | Bairro | Área | Preço | Quartos | Fonte | Link |
 |---|---|---|---|---|---|
@@ -864,9 +854,9 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Nova Conceição | 100 m² | R$ 5.150/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2921151221/) |
 | Vila Uberabinha | 110 m² | R$ 5.332/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-110m2-id-2920750497/) |
 | Vila Nova Conceição | 100 m² | R$ 5.900/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-vila-nova-conceicao-zona-sul-sao-paulo-sp-100m2-id-2918603034/) |
-| Jardim Paulista | 100 m² | R$ 6.434/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893241276) |
 | Vila Uberabinha | 105 m² | R$ 6.531/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-moema-zona-sul-sao-paulo-sp-105m2-id-2923278605/) |
 | Vila Uberabinha | 102 m² | R$ 6.593/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-102m2-id-2923171538/) |
+| Jardim Paulista | 100 m² | R$ 6.663/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893241276) |
 | Itaim Bibi | 105 m² | R$ 6.684/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-105m2-id-2922977458/) |
 | Vila Uberabinha | 120 m² | R$ 6.700/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-vila-uberabinha-zona-sul-sao-paulo-sp-120m2-id-2833565052/) |
 | Itaim Bibi | 100 m² | R$ 6.903/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895698627) |
@@ -1042,6 +1032,7 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Jardim Europa | 135 m² | R$ 11.000/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-academia-itaim-bibi-zona-sul-sao-paulo-sp-135m2-id-2921640835/) |
 | Vila Nova Conceição | 105 m² | R$ 11.021/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-vila-olimpia-zona-sul-sao-paulo-sp-105m2-id-2922070765/) |
 | Itaim Bibi | 100 m² | R$ 11.044/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893619289) |
+| Vila Nova Conceição | 105 m² | R$ 11.065/mês | 2 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895406550) |
 | Itaim Bibi | 134 m² | R$ 11.076/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923227877/) |
 | Itaim Bibi | 134 m² | R$ 11.076/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-ventilacao-natural-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2922904264/) |
 | Itaim Bibi | 134 m² | R$ 11.077/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-ar-condicionado-itaim-bibi-zona-sul-sao-paulo-sp-134m2-id-2923361020/) |
@@ -1198,7 +1189,6 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Itaim Bibi | 108 m² | R$ 13.941/mês | 1 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893878811) |
 | Vila Uberabinha | 150 m² | R$ 13.950/mês | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-150m2-id-2913556663/) |
 | Vila Nova Conceição | 141 m² | R$ 14.000/mês | 1 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-1-quarto-mobiliado-itaim-bibi-zona-sul-sao-paulo-sp-141m2-id-2923547965/) |
-| Itaim Bibi | 167 m² | R$ 14.000/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-salao-de-festas-itaim-bibi-zona-sul-sao-paulo-sp-167m2-id-2915195803/) |
 | Itaim Bibi | 146 m² | R$ 14.000/mês | 4 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-146m2-id-2922114242/) |
 | Vila Nova Conceição | 127 m² | R$ 14.008/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/893894621) |
 | Itaim Bibi | 167 m² | R$ 14.040/mês | 2 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-itaim-bibi-zona-sul-sao-paulo-sp-167m2-id-2923009435/) |
@@ -1241,4 +1231,3 @@ Atualizado em 23/11/2026 20:36 UTC · 1231 anúncios. Orçamento: compra até R$
 | Vila Uberabinha | 125 m² | R$ 14.900/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-moema-zona-sul-sao-paulo-sp-125m2-id-2556834122/) |
 | Itaim Bibi | 101 m² | R$ 14.902/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895009432) |
 | Vila Uberabinha | 124 m² | R$ 14.965/mês | 3 | zap | [abrir](https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-mobiliado-moema-zona-sul-sao-paulo-sp-124m2-id-2865401573/) |
-| Vila Nova Conceição | 178 m² | R$ 14.966/mês | 3 | quintoandar | [abrir](https://www.quintoandar.com.br/imovel/895654836) |
